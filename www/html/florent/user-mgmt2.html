@@ -1,0 +1,57 @@
+<!DOCTYPE html5>
+<html>
+<head>
+<title>SOP search function</title>
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script>
+
+
+window.onload = function(){
+	var	url = "/cgi-bin/florent/user-mgmt-list2.cgi";
+	sendReceiveTXT("GET",url,null,Display,"userinfo");
+}
+
+function Display(data,id){
+/*
+	var txt = "";
+	txt += "<table border=1>";
+	split(/|/
+	
+	for(var i in data){
+		txt += "<tr>"
+		txt += "<td>"+i+"</td>"
+		for(var l in data[i]){
+			txt += "<td>"+data[i][l]+"</td>"
+		}
+		txt += "</tr>"
+	}
+	txt +="</table>"
+	$("#"+id).html(txt);
+*/
+	var txt = "";
+	txt += "<table border=1>";
+	var array1 = new Array;
+	array1 = data.split(/\n/);
+	for(var l in array1){
+		var array2 = new Array;
+		array2 = array1[l].split(/\|/);
+		txt += "<tr>";
+		for(var i in array2){
+			txt += "<td>"+array2[i]+"</td>"
+		}
+		txt += "</tr>";
+	}
+	txt +="</table>"
+
+	$("#"+id).html(txt);
+}
+
+
+</script>
+</head>
+<body align="center">
+	<div id="userinfo"></div>
+</body>
+</html>
+

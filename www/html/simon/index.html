@@ -1,0 +1,66 @@
+<!DOCTYPE html5>
+<html>
+<head>
+<title>For Simon</title>
+<link rel="stylesheet" href="/css/gsmc.css" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script><!--
+
+window.onload = changeType;
+
+function changeType(){
+	var type = $('#type option:selected').val();
+	var url = "/cgi-bin/simon/live_migration_report.cgi?type="+type;
+	sendReceiveTXT("GET",url,null,setsessionStorage,"main");
+}
+
+function setsessionStorage(data,id){
+	sessionStorage.setItem(id,data);
+	display(JSON.parse(sessionStorage.getItem("main")),"main");
+}
+
+function display(data,id){
+	var txt = "";
+	txt += "<table border=1px>";
+	var bc = 0;
+	for(var i in data){
+		for(var l in data[i]){
+			txt += "<tr>"
+			for(var m in data[i][l]){
+				if(isEven(bc)){
+					txt += "<td bgcolor='#FAEBD7'>"+data[i][l][m]+"</td>";
+				}else{
+					txt += "<td>"+data[i][l][m]+"</td>";
+				}
+			}
+				bc++;
+			txt += "</tr>";
+		}
+	}
+	txt += "</table>";
+	$("#"+id).html(txt);
+}
+
+function get(){
+	var type = $('#type option:selected').val();
+	//var url = "/cgi-bin/simon/live_migration_report.cgi?download=yes&type="+type;
+	var url = "/cgi-bin/simon/createCSV.cgi?name=simon.csv"
+	sendReceiveJSON("POST",url,sessionStorage.getItem("main"),download,null);
+}
+
+function download(data,id){
+	downloader(data.file);
+}
+
+</script>
+<body>
+<select id='type' onChange="changeType();">
+	<option value='enterprise'>Enterprise</option>
+	<option value='standard'>Standard</option>
+</select>
+<br>
+<button id='download' onClick='get()'>Download(CSV)</button>
+<div id="main"></div>
+</body>
+</html>

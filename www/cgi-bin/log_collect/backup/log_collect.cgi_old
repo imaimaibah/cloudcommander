@@ -1,0 +1,81 @@
+#!/usr/bin/perl -I/usr/local/2nd_tools/lib
+
+print "Content-type: text/html\n\n";
+
+use env;
+use auth;
+my $user = $ENV{'AUTHENTICATE_UID'};
+my $auth = new auth($user);
+my $base_dir = $env::base_dir;
+my $Get = $ENV{'QUERY_STRING'};
+my $cgi=new web_cgi;
+$cgi->hash($Get);
+my $json = new JSON();
+
+my $data = ();
+
+if(!$auth->_auth()){
+  print "Auth failed";
+  exit;
+}
+
+### Download ROR Operation Log ###
+
+print "Content-type: text/plain\n\n";
+my $vm = $cgi->{'vm'};
+my $user = $ENV{'AUTHENTICATE_UID'};
+$cgi->{'password'} =~ s/%([0-9A-Fa-f]{2})/pack('H2', $1)/eg;
+my $password = $cgi->{'password'};
+
+##        my $file = $file".tar.bz2";
+        open(OUT,">/data/download/operationlog.tar.bz2") or die "FAILED!!";
+        print OUT <<EOF;
+timeout = 5
+connect '$env::ent_centos /ssh /auth=password /user=$user /passwd=$password'
+waitregex "\\\$ "
+sendln "ssh root"
+waitregex "password" "\\\(yes/no\\\)"
+
+if result=0 then
+        messagebox "TIMEOUT" "Cloud Commander"
+        exit
+elseif result=1 then
+        sendln "sv\@01011"
+elseif result=2 then
+        sendln "yes"
+        waitregex "password"
+        sendln "sv\@01011"
+else
+        messagebox "Could not connect." "Cloud Commander"
+				exit
+endif
+
+waitregex "# "
+				sendln "tar vcjf /DB/tmp/operationlog.tar.bz2 /var/opt/FJSVrcvmr/operation/"
+waitregex "# "
+sendln "scp /DB/tmp/operationlog.tar.bz2 $user@10.3.0.130:/data/download"
+waitregex "password" "\\\(yes/no\\\)"
+
+if result=0 then
+        messagebox "TIMEOUT" "Cloud Commander"
+        exit
+elseif result=1 then
+        sendln "$password"
+elseif result=2 then
+        sendln "yes"
+        waitregex "password"
+        sendln "$password"
+else
+        messagebox "Could not connect." "Cloud Commander"
+				exit
+endif
+
+waitregex "# "
+sendln "rm -rf /DB/tmp/operationlog.tar.bz2"
+waitregex "# "
+sendln "exit"
+waitregex "# "
+EOF
+
+
+close(OUT);

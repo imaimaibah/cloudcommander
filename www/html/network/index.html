@@ -1,0 +1,150 @@
+<!DOCTYPE html5>
+<html>
+<head>
+<title>TEST</title>
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script>
+function get_vrflist(){
+  var contractid = document.getElementById("contractid").value;
+  if(contractid == ""){
+    alert("Enter contract ID in the box.");
+    return;
+  }else if(!contractid.match(/^[A-Z0-9]{8}/)){
+    alert("Invalid Contract ID");
+    return;
+  }
+  $("#result").html("<font size='15px' color='red'>Wait.....</font>");
+  var url = "/cgi-bin/network/ASR_status.cgi?contractid="+contractid;
+  sendReceiveJSON("GET",url,null,display_vrflist,"result");
+}
+
+function display_vrflist(list,id){
+  var txt = "<table border=1><tr><td>Contract ID</td><td>VRF</td><td>Interface</td><td>IP-address</td><td>Island</td><td>description</td><td>Peer IP</td><td>route-map</td></tr>";
+  var result = document.getElementById(id);
+  for(var l in list.vrf){
+    if(isEven(l)){
+      txt += "<tr><td>"+list.vrf[l][4]+"</td><td>"+list.vrf[l][2]+"</td><td>"+list.vrf[l][0]+"</td><td>"+list.vrf[l][1]+"</td><td>"+list.vrf[l][5]+"</td><td>"+list.vrf[l][6]+"</td><td>"+list.vrf[l][7]+"</td><td>"+list.vrf[l][8]+"</td></tr>";
+    }else{
+      txt += "<tr bgcolor='#FAEBD7'><td>"+list.vrf[l][4]+"</td><td>"+list.vrf[l][2]+"</td><td>"+list.vrf[l][0]+"</td><td>"+list.vrf[l][1]+"</td><td>"+list.vrf[l][5]+"</td><td>"+list.vrf[l][6]+"</td><td>"+list.vrf[l][7]+"</td><td>"+list.vrf[l][8]+"</td></tr>";
+    }
+  }
+  txt += "</table>"
+  txt += "<input type='button' value='Download' id='ASR.csv' onClick='javascript:dl_file();'><br>";
+  var counter = list.counter;
+  if(counter == 0){
+    txt += "<select id='s_command'>";
+    txt += "<option value='show run'>show run</option>";
+    txt += "<option value='show run vrf vrf_name'>show run vrf [vrf_name]</option>";
+    txt += "<option value='sh ip route vrf vrf_name'>sh ip route vrf [vrf_name]</option>";
+    txt += "<option value='sh ip bgp vpnv4 vrf vrf_name'>sh ip bgp vpnv4 vrf [vrf_name]</option>";
+    txt += "<option value='ping vrf vrf_name peer_ip'>ping vrf [vrf_name] [Peer IP#1]</option>";
+    txt += "<option value='sh ip bgp vpnv4 vrf vrf_name neighbors peer_ip'>sh ip bgp vpnv4 vrf [vrf_name] neighbors [Peer IP#1]</option>";
+    txt += "<option value='sh ip bgp vpnv4 vrf vrf_name neighbors peer_ip received-routes'>sh ip bgp vpnv4 vrf [vrf_name] neighbors [Peer IP#1] received-routes</option>";
+    txt += "<option value='sh ip bgp vpnv4 vrf vrf_name neighbors peer_ip advertised-routes'>sh ip bgp vpnv4 vrf [vrf_name] neighbors [Peer IP#1] advertised-routes</option>";
+    txt += "<option value='sh ip vrf interfaces vrf_name'>sh ip vrf interfaces [vrf_name]</option>";
+    txt += "<option value='sh ip vrf interfaces'>sh ip vrf interfaces</option>";
+    txt += "<option value='sh route-map route-map_name'>sh route-map [route-map name]</option>";
+    txt += "<input type='button' value='action' onClick='javascript:action_command2();'><br>";
+    sessionStorage.setItem("vrfname",list.vrf[0][2]);
+    sessionStorage.setItem("peerip",list.vrf[0][7]);
+    sessionStorage.setItem("routemap",list.vrf[0][8]);
+  }
+  result.innerHTML = txt;
+}
+
+function action_command(){
+  var com1 = document.getElementById("command1").value;
+  var com2 = document.getElementById("command2").value;
+  if(com2 == ""){
+    alert("Enter commnad in the box.");
+    return;
+  }
+  var scom = com1+" "+com2;
+  $("#result2").html("<font size='15px' color='red'>Wait.....</font>");
+  var url = "/cgi-bin/network/ASR_action_cmd.cgi?scom="+scom;
+  sendReceiveJSON("GET",url,null,display_action,"result2");
+}
+
+function action_command2(){
+  var scom = document.getElementById("s_command").value;
+  $("#result2").html("<font size='15px' color='red'>Wait.....</font>");
+  var vrfname = sessionStorage.getItem("vrfname");
+  var peerip = sessionStorage.getItem("peerip");
+  var routemap = sessionStorage.getItem("routemap");
+  var url = "/cgi-bin/network/ASR_action_cmd.cgi?scom="+scom+"&vrfname="+vrfname+"&peerip="+peerip+"&routemap="+routemap;
+  sendReceiveJSON("GET",url,null,display_action,"result2");
+}
+
+function fileshow(){
+  var filename = document.getElementById("filename").value;
+  $("#result2").html("<font size='15px' color='red'>Wait.....</font>");
+  if(filename == "Contract_id_list"){
+  var url = "/cgi-bin/network/fileshow.cgi?filename="+filename;
+  }
+  if(filename == "ASRconfig"){
+  var url = "/cgi-bin/network/fileshow.cgi?filename="+filename;
+  }
+  if(filename == "vsys_zero"){
+  var url = "/cgi-bin/network/fileshow_vsysdb.cgi?filename="+filename;
+  }
+  sendReceiveJSON("GET",url,null,display_action,"result2");
+}
+
+function display_action(list,id){
+  var result2 = document.getElementById(id);
+  var txt = "<div id='index_area'><div class='index_area_box'><div style='width:800px;height:350px;overflow:auto;border:1px solid #000000;padding:10px;text-align:left;'>";
+  txt += "<b>#"+list.scom+"</b><br><br>";
+  for (var i in list.result){
+    txt += list.result[i]+"<br>";
+  }
+  txt += "</div></div></div>";
+  result2.innerHTML = txt;
+}
+
+function dl_file(id){
+//  var file = document.getElementById(id);
+    var file = "ASR.csv";
+        downloader(file);
+}
+
+</script>
+</head>
+<body>
+<table width="100%"><tr><td valign='top' width="50%">
+<table>
+	<tr>
+		<td height='40px'><b>INTRANET-ASR</b></td>
+	</tr>
+	<tr>
+		<td><b>VRF LIST</b></td>
+	</tr>
+	<tr>
+		<td height='40px'>Contract ID : </td><td><input type="text" id="contractid" size='15'><input type="button" value="create" onClick="javascript:get_vrflist();"></td>
+	</tr>
+  <tr>
+	  <td height='40px'>Contract ID List : </td><td><form method="post" action="../cgi-bin/network/fileupload.cgi" ENCTYPE="multipart/form-data" TARGET="f1"><input type="file" name="fileName"><input type="submit" value="upload"></form></td>
+  </tr>
+	<tr>
+		<td><b>COMMAND</b></td>
+	</tr>
+	<tr>
+		<td height='20px'> </td><td><select id="command1" style="width:90px;"><option value="show">show</option><option value="ping vrf">ping vrf</option><input type="text" id="command2" size='27'><input type="button" value="action" onClick="javascript:action_command();" ></td>
+	</tr>
+  <tr>
+    <td><b>SHOW</b></td>
+  </tr>
+  <tr>
+    <td height='20px'> </td><td><select id="filename"><option value="Contract_id_list">Contract_id_list</option><option value="ASRconfig">ASRconfig</option><option value="vsys_zero">vsys_zero</option><input type="button" value="show" onClick="javascript:fileshow();"></td>
+  </tr>
+</table>
+<!--
+<h3><font color='red'><b>--RESULT--</b></font></h3>
+-->
+<br>
+<div id="result"></div>
+<div id="result2"></div>
+</table>
+<iframe name="f1" width=0 height=0 style="visibility:hidden"></iframe>
+</body>
+</html>

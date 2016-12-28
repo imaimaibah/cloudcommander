@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SOP Quota Config Tool</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="css/style.css" type="text/css" />
+		<script src="script/ajax.js"></script>
+		<script src="script/quota.js"></script>
+		<script src="script/validator/util.js"></script>
+		<script src="script/validator/validator.js"></script>
+		<script>
+			var infoXML;
+			var region;
+			var templateList;
+			var orgList;
+			var releaseLabel = "(Default)";
+			
+			//// INIT. ////
+			window.onload=function(){
+				var parameters = getParameters();
+				if(parameters["region"] != null && parameters["region"] != "") $("region").value = parameters["region"];
+				region = $("region").value;
+				if(region != ""){
+					refresh();
+				}else{
+					$("org_list").innerHTML = "No Data<br />Please select region.";
+					chgBtnSts(false);
+				}
+				adjustHeight($("org_list"));
+			}
+			
+			//// ON RESIZE. ////
+			window.onresize = function(){
+				adjustHeight($("org_list"));
+			}
+			
+			//// GET ORG LIST. ////
+			function refresh(){
+				if(!Validator.submit(document.select_region_form)) return;
+				region = $("region").value;
+				if(region == ""){
+					alert("Please select Region.");
+					return;
+				}
+				// Get template list.
+				//var url = "http://" + region + ":7902/vsys/services/Quota/getTemplate?userId=vsysadmin&time=" + (new Date().getTime());
+				var url = "/cgi-bin/getTemplate.cgi?userId=vsysadmin&time="+(new Date().getTime());
+				try{
+					this.infoXML = null;
+					this.infoXML = sendReceiveXML("GET", url, null);
+				}catch(e){
+					alert(e);
+				}
+				var response = this.infoXML.childNodes[0];
+				var status = response.childNodes[0];
+				if(status.nodeValue != "SUCCESS"){
+					alert("The error occurred. [" + status.nodeValue + "]");
+					return;
+				}
+				var templates = XPathList(response,"//result/templates/template", "-");
+				templateList = new Array();
+				var idx = 0;
+				templateList[idx++] = releaseLabel;
+				for(var i = 0; i < templates.snapshotLength; i++){
+					var templateElem = templates.snapshotItem(i);
+					var templateId = XPathContent(templateElem,"id","");
+					if(!isDefault(templateId)) templateList[idx++] = templateId;
+				}
+				// Get org list.
+				//url = "http://" + region + ":7902/vsys/services/Quota/get?userId=vsysadmin&detail=true&time=" + (new Date().getTime());
+				url = "/cgi-bin/get.cgi?userId=vsysadmin&detail=true&time=" + (new Date().getTime());
+				try{
+					this.infoXML = null;
+					this.infoXML = sendReceiveXML("GET", url, null);
+				}catch(e){
+					alert(e);
+				}
+				response = this.infoXML.childNodes[0];
+				status = response.childNodes[0];
+				if(status.nodeValue != "SUCCESS"){
+					alert("The error occurred. [" + status.nodeValue + "]");
+					return;
+				}
+				var res = '';
+				var orgs = XPathList(response,"//result/orgs/org", "-");
+				res += '<table class = "main_table">';
+				res += '	<tr>';
+				res += '		<th class="org_col">Org-ID</th>';
+				res += '		<th class="id_col">Template-ID</th>';
+				res += '		<th class="name_col">Template-Name</th>';
+				res += '		<th class="cpu_col">CPU-Num<br />[economy]</th>';
+				res += '		<th class="disk_col">Disk-Size<br />[GB]</th>';
+				res += '	</tr>';
+				orgList = new Array();
+				if(orgs.snapshotLength == 0){
+					res += '	<tr>';
+					res += '		<td id = "orgId_0" class="left">&nbsp;</td>';
+					res += '		<td class="nopadding">&nbsp;</td>';
+					res += '		<td id = "templateName_0" class="left">&nbsp;</td>';
+					res += '		<td id = "cpuNum_0" class="right">&nbsp;</td>';
+					res += '		<td id = "diskSize_0" class="right">&nbsp;</td>';
+					res += '	</tr>';
+					chgBtnSts(false);
+				}else{
+					for(var idx = 0; idx < orgs.snapshotLength; idx++){
+						var orgElem = orgs.snapshotItem(idx);
+						var orgId = XPathContent(orgElem,"orgId","");
+						var templateId = XPathContent(orgElem,"templateId","");
+						var templateName = XPathContent(orgElem,"templateName","");
+						var cpuNum = XPathContent(orgElem,"quota/cpuNum","");
+						var diskSize = XPathContent(orgElem,"quota/diskSize","");
+						orgList[orgId] = templateId;
+						res += '	<tr id = "orgId_' + idx + '_row">';
+						res += '		<td id = "orgId_' + idx + '" class="left">' + orgId + '</td>';
+						res += '		<td class="nopadding">';
+						res += '<select class = "org_list_select" id="' + orgId + '" onChange = "onChange(this, \'orgId_' + idx + '_row\');">';
+						for(var j = 0; j < templateList.length; j++){
+							if(templateList[j] == templateId){
+								res += '<option value="' + templateList[j] + '" selected = "selected">' + templateList[j] + '</option>';
+							}else{
+								res += '<option value="' + templateList[j] + '">' + templateList[j] + '</option>';
+							}
+						}
+						res += '</select>';
+						res += '		</td>';
+						res += '		<td id = "templateName_' + idx + '" class="left">' + escapeHTML(templateName) + '</td>';
+						res += '		<td id = "cpuNum_' + idx + '" class="right">' + cpuNum + '</td>';
+						res += '		<td id = "diskSize_' + idx + '" class="right">' + diskSize + '</td>';
+						res += '	</tr>';
+						chgBtnSts(true);
+					}
+				}
+				res += '</table>';
+				$("org_list").innerHTML = res;
+				// adjust height.
+				adjustHeight($("org_list"));
+			}
+			
+			//// UPDATE QUOTA. ////
+			function updateQuota(){
+				if(!Validator.submit(document.select_region_form)) return;
+				region = $("region").value;
+				if(region == ""){
+					alert("Please select Region.");
+					return;
+				}
+				if(!window.confirm("Are you sure you want to set the quota?")) return;
+				var msg = "";
+				var selectList = document.org_list_form.getElementsByTagName("select");
+				for(var idx = 0; idx < selectList.length; idx++){
+					var orgId = selectList[idx].id;
+					var selIdx = selectList[idx].selectedIndex;
+					var newTemplateId = selectList[idx].options[selIdx].value;
+					var oldTemplateId = orgList[orgId];
+					if(newTemplateId != oldTemplateId){
+						// Only the quota changed is updated.
+						var url;
+						if(releaseLabel == newTemplateId){
+							// Detach
+							//url = "http://" + region + ":7902/vsys/services/Quota/detach";
+							url = "/cgi-bin/detachQuota.cgi";
+						}else{
+							// Attach
+							//url = "http://" + region + ":7902/vsys/services/Quota/attach";
+							url = "/cgi-bin/attachQuota.cgi";
+						}
+						try{
+							this.infoXML = null;
+							this.infoXML = sendReceiveXMLbyXML("POST", url, getRequestQuotaXml("vsysadmin", newTemplateId, new Array(orgId)));
+						}catch(e){
+							alert(e);
+						}
+						var response = this.infoXML.childNodes[0];
+						var status = response.childNodes[0];
+						if(status.nodeValue == "SUCCESS"){
+							msg += "[Org-ID:" + orgId + "] Processing was successful.\n";
+						}else{
+							msg += "[Org-ID:" + orgId + "] The error occurred. [" + status.nodeValue + "]";
+						}
+					}
+				}
+				msg += "\nProcessing was done.";
+				alert(msg);
+				refresh();
+			}
+			
+			//// CHANGE PAGE ////
+			function change(){
+				region = $("region").value;
+				location.href="./index.html?region=" + region;
+			}
+			
+			//// CHANGE BUTTONS STATUS ////
+			function chgBtnSts(flg){
+				document.org_list_form.update.disabled = !flg;
+			}
+			
+			//// ON LIST CHANGE. ////
+			function onChange(obj, id){
+				var color = "#F9FDAE";
+				if(orgList[obj.id] == obj.options[obj.selectedIndex].value)
+					color = "";
+				$(id).style.background = color;
+				obj.style.background = color;
+			}
+		</script>
+	</head>
+	<body>
+		<div id="container">
+			<div id="screen">
+				<!-- header -->
+				<div id = "header"><h1>SOP Quota Config Tool</h1></div>
+				<!-- main -->
+				<div id="main_content">
+					<table class="title_bar">
+						<tr>
+							<td class = "label_short">
+<!--
+								Region &gt;
+-->
+							</td>
+							<td>
+								<form name = "select_region_form" style = "display: inline;">
+									<select id = "region" onblur = "Validator.check(this)" hidden>
+										<option value="Global" selected>Global</option>
+<!--
+										<option value="172.16.1.34">Tatebayashi</option>
+										<option value="172.16.1.17">Tatebayashi-W</option>
+										<option value="10.115.222.242">Fjqs</option>
+										<option value="localhost">Local</option>
+-->
+									</select>
+								</form>
+								<input type="button" name="refresh" value="Refresh" onclick="javascript:refresh();" />
+							</td>
+						</tr>
+					</table>
+					<ul class = "tab clear">
+						<li class = "passive"><a href = "javascript:change()" class = "blue">Template List</a></li>
+						<li class = "active green">Quota State</li>
+					</ul>
+					<form name="org_list_form">
+						<div class = "tab_block">
+							<div class = "scrollable">
+								<div id="org_list"></div>
+							</div>
+							<table class = "button_bar">
+								<tr>
+									<td class = "right">
+										<input type="button" name="update" value="Update" onclick="javascript:updateQuota();" />
+									</td>
+								</tr>
+							</table>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

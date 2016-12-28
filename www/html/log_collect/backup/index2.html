@@ -1,0 +1,921 @@
+<!DOCTYPE	html5>
+<html>
+<head>
+<title>SOP Log Collection</title>
+<link	href="/css/ui.tabs.css"	rel="stylesheet" type="text/css"/>
+<script	type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script	type="text/javascript" src="/js/main.js"></script>
+<script	type="text/javascript" src="/js/ui.core.js"></script>
+<script	type="text/javascript" src="/js/ui.tabs.js"></script>
+<script type="text/javascript" src="/log_collect/ps_check.js"></script>
+<script type="text/javascript" src="/log_collect/list_date.js"></script>
+<script type="text/javascript" src="/log_collect/list_param.js"></script>
+<script type="text/javascript" src="/log_collect/input_check.js"></script>
+<script	type="text/javascript">
+	$(function() {
+		$('#ui-tab > ul').tabs({fx:	{	height:	'toggle',	duration:	'normal' }});
+	});
+</script>
+<script>
+window.onload	=	function(){
+
+// Set the number of generations.
+	sedai	=	1;
+
+// Set the numebr of operations.
+	ror	=	6;
+	var	vsysDb = 2;
+	var	vsysAp = 2;
+	var charge = 1;
+	var swcm = 3;
+	primergy = 3;
+	var pcl = 1;
+
+	ror	=	ror	+	10;
+	vsysDb = vsysDb	+	20;
+	vsysAp = vsysAp	+	30;
+	charge = charge + 40;
+	swcm = swcm + 50;
+	primergy = primergy + 60;
+	pcl = pcl + 70;
+
+	while(vsysDb > 20){
+		list_date(sedai,vsysDb,'na');
+		vsysDb = vsysDb	-	1;
+	}
+	while(vsysAp > 30){
+		list_date(sedai,vsysAp,'na');
+		vsysAp = vsysAp	-	1;
+	}
+ 	while(charge > 40){
+		list_date(sedai,charge,'na');
+		charge = charge - 1;
+	}
+	while(swcm > 50){
+		list_date(sedai,swcm,'na');
+		swcm = swcm - 1;
+	}
+	while(pcl > 70){
+		list_date(sedai,pcl,'na');
+		pcl = pcl - 1;
+	}
+	var url = "/cgi-bin/getIsland.cgi";
+	sendReceiveJSON("GET",url,null,IslandList,"island");
+	sendReceiveJSON("GET",url,null,IslandList2,"island2");
+	sendReceiveJSON("GET",url,null,IslandList3,"island3");
+}
+
+function IslandList(json,id){
+	if(json.result == "Auth	failed"){
+		alert(json.result);
+		return;
+	}
+	var	div	=	document.getElementById(id);
+	var	txt	=	"<select id='islandList' style='width:100px' name='islandList'>";
+	txt	+= "<option id='region' value='region'>Region</option>";
+
+	for(i	in json.island){
+		txt	+= "<option	id='"+json.island[i]+"'	value='"+json.island[i]+"'>"+json.island[i]+"</option>";
+	}
+	txt	+= "</select><br>";
+	txt += "<button onClick='ROR_CSM_CNM();'>Select</button>";
+	div.innerHTML	=	txt;
+}
+
+function IslandList2(json,id){
+	if(json.result == "Auth failed"){
+		alert(json.result);
+		return;
+	}
+	var div = document.getElementById(id);
+	var txt = "<select id='islandList2' style='width:100px' name='islandList2'>";
+//  txt += "<option id='region' value='region'>Region</option>";
+
+	for(i in json.island){
+		txt += "<option id='"+json.island[i]+"' value='"+json.island[i]+"'>"+json.island[i]+"</option>";
+	}
+	txt += "</select>";
+	div.innerHTML = txt;
+}
+
+function IslandList3(json,id){
+	var div = document.getElementById(id);
+	var txt = "<select id='islandList3' style='width:100px' name='islandList3'>";
+  txt += "<option id='region' value='region'>Region</option>";
+
+	for(i in json.island){
+		txt += "<option id='"+json.island[i]+"' value='"+json.island[i]+"'>"+json.island[i]+"</option>";
+	}
+	txt += "</select><br>";
+	txt += "<button onClick='ListOfDom0();'>Select</button>";
+	div.innerHTML = txt;
+}
+
+function ListOfDom0(){
+
+	$("#xen_take-bt1").attr("disabled",true);
+	document.getElementById("xen_dl1").style.display="none";
+	$("#xen_dl-bt1").attr("disabled",true);
+	$("#xen_del-bt1").attr("disabled",true);
+
+	$("#csm-agent-snap_take-bt1").attr("disabled",true);
+	document.getElementById("csm-agent-snap_dl1").style.display="none";
+	$("#csm_agent_snap_dl-bt1").attr("disabled",true);
+	$("#csm_agent_snap_del-bt1").attr("disabled",true);
+
+  $("#kvm_take-bt1").attr("disabled",true);
+  document.getElementById("kvm_dl1").style.display="none";
+  $("#kvm_dl-bt1").attr("disabled",true);
+  $("#kvm_del-bt1").attr("disabled",true);
+
+	var island3 = $("#islandList3 option:selected").val(); 
+	var url = "/cgi-bin/log_collect/Dom0List.cgi?island="+island3;
+	sendReceiveJSON("GET",url,null,Dom0List,"Dom0_window");
+}
+
+function Dom0List(list,id){
+  var div2 = document.getElementById(id);
+  var txt2 = "<select id='Dom0_List' style='width:200px' name='Dom0_List'>";
+	var i = 0;
+
+	txt2 += "<option id='na' value='na'>Select the target Dom0</option>";
+	for(i in list){
+		txt2 += "<option id='"+list[i].dom0+"' value='"+list[i].dom0+"'>"+list[i].dom0+","+list[i].ip+"</option>";
+		i++;
+  }
+  txt2 += "</select><br>";
+	txt2 += "<button onClick='Dom0_xen_csm();'>Select</button>";
+  div2.innerHTML = txt2;
+}
+
+function Dom0_xen_csm(){
+	if ($("#Dom0_List option:selected").val() == 'na'){
+		alert('Please select the target Dom0');
+	} else {
+		var select_dom0 = $("#Dom0_List option:selected").val();
+//			var url = "/cgi-bin/log_collect/Dom0List.cgi?island="+island;
+//			sendReceiveJSON("GET",url,null,getDom0List,"Dom0_xen_csm");
+// 			$("#Dom0_xen_csm").html("");
+
+		var primergy_num = primergy;
+
+		while (primergy_num > 60){
+			list_date(sedai,primergy_num,select_dom0);
+			primergy_num = primergy_num - 1;
+		}
+		kvm_xen_check();
+	}
+}
+/*
+function getDom0List(json,id){
+  var div = document.getElementById(id);
+  var txt = "";
+  var txt = "<table border=1>";
+//  txt += "<tr><th><b>&nbsp;Dom0&nbsp;</b></th><th><b>Operation</b></th><th><b>Last Activity<br>(Obtain Date)</b></th><th><b>Option</b></th><th><b>&nbsp;Delete?&nbsp;</b></th></tr>";
+  txt += "<tr><th><b>Operation</b></th><th><b>Last Activity<br>(Obtain Date)</b></th><th><b>Option</b></th><th><b>&nbsp;Delete?&nbsp;</b></th></tr>";
+//  txt += "<tr><td rowspan=2><div id='Dom0_window'></div></td>";
+//  txt += "<tr><td rowspan=2>Dom0_List</div></td>";
+  txt += "<td>1. Download Xen snap<br><input id='xen_take-bt1' type='button' value='Take' onClick='javascript:log_collect(61)'></input><br><div id='xen_dl1'><font color='red'>Downloading (It takes about 5 mis)</font></div></td>";
+  txt += "<td><div id='xen_date1'></div><input id='xen_dl-bt1' type='button' value='Download' onClick='javascript:FileOpe(61,1)'></input><br></td>";
+  txt += "<td><div id='xen_param1'></div></td>";
+  txt += "<td><input id='xen_del-bt1' type='button' value='Delete' onClick='javascript:FileOpe(61,2)'></input><br></td></tr>";
+  txt += "<tr><td>2. Download CSM Agent snap<br><input id='csm-agent-snap_take-bt1' type='button' value='Take' onClick='javascript:log_collect(62)'></input><br><div id='csm-agent-snap_dl1'><font color='red'>Downloading</font></div></td>";
+  txt += "<td><div id='csm-agent-snap_date1'></div><input id='csm_agent_snap_dl-bt1' type='button' value='Download' onClick='javascript:FileOpe(62,1)'></input><br></td>";
+  txt += "<td><div id='csm-agent-snap_param1'></div></td>";
+  txt += "<td><input id='csm_agent_snap_del-bt1' type='button' value='Delete' onClick='javascript:FileOpe(62,2)'></input><br></td></tr>";
+  txt += "</table>";
+  div.innerHTML = txt;
+}
+*/
+function ROR_CSM_CNM(){
+
+	var url = "/cgi-bin/getIsland.cgi";
+	sendReceiveJSON("GET",url,null,getRORList,"region-ror-island");
+	$("#region-ror-island").html("");
+
+	var ror_num = ror;
+
+	var island = $("#islandList option:selected").val();
+	if (island == "region") {
+		ror_num = ror_num - 1;
+	}
+
+	while (ror_num > 10) {
+		list_date(sedai,ror_num,island);
+		ror_num = ror_num - 1;
+	}
+}
+
+function getRORList(json,id){ 
+	var island = $("#islandList option:selected").val();
+	var div = document.getElementById(id);
+	var txt = "";
+	var txt = "<table border=1>";
+	txt += "<tr><th><b>Operation</b></th><th><b>Last Activity<br>(Obtain Date)</b></th><th><b>&nbsp;Delete?&nbsp;</b></th></tr>";
+	txt += "<tr><td>1. Download ROR Manager snap (Full)<br><input id='ror-snap_take-bt1' type='button' value='Take' onClick='javascript:log_collect(11)'></input><br><div id='ror-snap_dl1'><font color='red'>Downloading (It takes about 20 min.)</font></div></td>";
+	txt += "<td><div id='ror-snap_date1'></div><input id='ror-snap_dl-bt1' type='button' value='Download' onClick='javascript:FileOpe(11,1)'></input><br></td>";
+	txt += "<td><input id='ror-snap_del-bt1' type='button' value='Delete' onClick='javascript:FileOpe(11,2)'></input><br></td></tr>";
+	txt += "<tr><td>2. Download ROR Manager snap (Light)<br><input id='ror-snap_take-bt2' type='button' value='Take' onClick='javascript:log_collect(12)'></input><br><div id='ror-snap_dl2'><font color='red'>Downloading (It takes about 5 min.)</font></div></td>";
+	txt += "<td><div id='ror-snap_date2'></div><input id='ror-snap_dl-bt2' type='button' value='Download' onClick='javascript:FileOpe(12,1)'></input><br></td>";
+	txt += "<td><input id='ror-snap_del-bt2' type='button' value='Delete' onClick='javascript:FileOpe(12,2)'></input><br></td></tr>";
+	txt += "<tr><td>3. Download Operation Log from ROR<br><input id='ror-ope_take-bt1' type='button' value='Take' onClick='javascript:log_collect(13)'></input><br><div id='ror-ope_dl1'><font color='red'>Downloading (It takes less than 1 min.)</font></div></td>";
+	txt += "<td><div id='ror-ope_date1'></div><input id='ror-ope_dl-bt1' type='button' value='Download' onClick='javascript:FileOpe(13,1)'></input><br></td>";
+	txt += "<td><input id='ror-ope_del-bt1' type='button' value='Delete' onClick='javascript:FileOpe(13,2)'></input><br></td></tr>";
+	txt += "<tr><td>4. Download CNM Manager snap<br><input id='cnm-snap_take-bt1' type='button' value='Take' onClick='javascript:log_collect(14)'></input><br><div id='cnm-snap_dl1'><font color='red'>Downloading (It takes about 10 min.)</font></div></td>";
+	txt += "<td><div id='cnm-snap_date1'></div><input id='cnm-snap_dl-bt1' type='button' value='Download' onClick='javascript:FileOpe(14,1)'></input><br></td>";
+	txt += "<td><input id='cnm-snap_del-bt1' type='button' value='Delete' onClick='javascript:FileOpe(14,2)'></input><br></td></tr>";
+	txt += "<tr><td>5. Download CNM Manager snap<br>(provisioning only)<br><input id='cnm-snap_take-bt2' type='button' value='Take' onClick='javascript:log_collect(15)'></input><br><div id='cnm-snap_dl2'><font color='red'>Downloading (It takes about 5 min.)</font></div></td>";
+	txt += "<td><div id='cnm-snap_date2'></div><input id='cnm-snap_dl-bt2' type='button' value='Download' onClick='javascript:FileOpe(15,1)'></input><br></td>";
+	txt += "<td><input id='cnm-snap_del-bt2' type='button' value='Delete' onClick='javascript:FileOpe(15,2)'></input><br></td></tr>";
+	if(island != "region"){
+  	txt += "<tr><td>6. Download CSM Manager snap<br><input id='csm-snap_take-bt1' type='button' value='Take' onClick='javascript:log_collect(16)'></input><br><div id='csm-snap_dl1'><font color='red'>Downloading (It takes about 15 mins)</font></div></td>";
+  	txt += "<td><div id='csm-snap_date1'></div><input id='csm-snap_dl-bt1' type='button' value='Download' onClick='javascript:FileOpe(16,1)'></input><br></td>";
+  	txt += "<td><input id='csm-snap_del-bt1' type='button' value='Delete' onClick='javascript:FileOpe(16,2)'></input><br></td></tr>";
+	}
+	txt += "</table>";
+	div.innerHTML = txt;	
+}
+
+function result(data,id){
+	alert("Executed!");
+	location.reload(true);
+}
+
+function log_collect(id){
+	var	island = $("#islandList option:selected").val();
+	var	island2 = $("#islandList2 option:selected").val();
+//	var island3 = $("#islandList3 option:selected").val();
+	var Dom0 = $("#Dom0_List option:selected").val();
+
+
+	if(id == 11){
+//		alert("Download ROR snap (full)");
+		if(window.confirm('Is it ok to download ROR snap (full) at '+island+'?')){
+			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id+"&island="+island;
+			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+	}else if(id == 12){
+//		alert("Download ROR snap (light)");
+		if(window.confirm('Is it ok to download ROR snap (light) at '+island+'?')){
+			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id+"&island="+island;
+			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+	}else if(id == 13){
+//		alert("Download ROR ope log");
+		if(window.confirm('Is it ok to download ROR Ope log at '+island+'?')){
+			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id+"&island="+island;
+			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+	}else if(id == 14){
+//		alert("Download CNM snap");
+		if(window.confirm('Is it ok to download CNM snap (full) at '+island+'?')){
+			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id+"&island="+island;
+			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+	}else if(id == 15){
+//		alert("Download CNM snap (prov only)");
+		if(window.confirm('Is it ok to download CNM snap (prov) at '+island+'?')){
+			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id+"&island="+island;
+			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+	}else if(id == 16){
+//		alert("Download CSM snap");
+		if(window.confirm('Is it ok to download CSM snap at '+island+'?')){
+			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id+"&island="+island;
+			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+	}else if(id == 21){
+//		alert("Download vsys-db info");
+		var	vsysId	=	document.getElementById("vsys-db_vsysId").value;
+		if(window.confirm('Is it ok to download vsys-db info for '+vsysId+'?')){
+			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id+"&vsysId="+vsysId;
+			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+	}else if(id == 22){
+//		alert("Download vsys-db trace");
+		var	hizuke = document.getElementById("vsys-db_hizuke").value;
+		if(window.confirm('Is it ok to download vsys-db trace log on '+hizuke+'?')){
+			hizuke = hizuke.replace(/-/g,"");
+			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id+"&vsysId="+hizuke;
+			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+	}else if(id == 31){
+//		alert("Download vsys-ap trace");
+		var hizuke = document.getElementById("vsys-ap_hizuke").value;
+		if(window.confirm('Is it ok to download vsys-ap trace log on '+hizuke+'?')){
+			hizuke = hizuke.replace(/-/g,"");
+			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id+"&vsysId="+hizuke;
+			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+	}else if(id == 32){
+//		alert("Download vsys-ap image manager plugin");
+		if(window.confirm('Is it ok to download vsys-ap image manager plugin?')){
+			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id;
+			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+	}else if(id == 41){
+//		alert("Download charge logs");
+		if(window.confirm('Is it ok to download charge log?')){
+			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id;
+			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+	}else if(id == 51){
+//		alert("Download Systemwalker Centric Manager logs (cb-cmgr-zentai)");
+		if(window.confirm('Is it ok to download Systemwalker Centric Manager logs (cb-cmgr-zentai)?')){
+			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id;
+			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+	}else if(id == 52){
+//		alert("Download Systemwalker Centric Manager logs (cb-relay)");
+		if(window.confirm('Is it ok to download Systemwalker Centric Manager logs (cb-relay)?')){
+			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id+"&island="+island;
+			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+	}else if(id == 53){
+//		alert("Download Systemwalker Centric Manager logs ("+island2+"-sl)");
+		if(window.confirm('Is it ok to download Systemwalker Centric Manager logs ('+island2+')?')){
+			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id+"&island="+island2;
+			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+	}else if(id == 61){
+//		alert("Download Xen snap");
+		if(window.confirm('Is it ok to download xen snap?')){
+			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id+"&vsysId="+Dom0;
+			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+	}else if(id == 62){
+//    alert("Download CSM agent snap");
+    if(window.confirm('Is it ok to download CSM Agent snap?')){
+      var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id+"&vsysId="+Dom0;
+      sendReceiveTXT("GET",url,null,result,null);
+    }else{
+      window.alert('Canceled');
+    }
+	}else if(id == 63){
+//		alert("Download KVM snap");
+		if(window.confirm('Is it ok to download KVM snap?')){
+			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id+"&vsysId="+Dom0;
+			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+  }else if(id == 71){
+//		alert("Download PCL snap");
+		if(window.confirm('Is it ok to download PCL snap?')){
+//			var url = "/cgi-bin/log_collect/log_collect.cgi?kind="+id;
+//			sendReceiveTXT("GET",url,null,result,null);
+		}else{
+			window.alert('Canceled');
+		}
+	}
+}
+
+function FileOpe(kind,opetype){
+	var island = "";
+	switch (kind){
+		case 11:
+			var param = $("#ror-snap_date1").text();
+			island = $("#islandList option:selected").val();
+			break;
+
+		case 12:
+			var param = $("#ror-snap_date2").text();
+			island = $("#islandList option:selected").val();
+			break;
+
+		case 13:
+			var param = $("#ror-ope_date1").text();
+			island = $("#islandList option:selected").val();
+			break;
+
+		case 14:
+			var param = $("#cnm-snap_date1").text();
+			island = $("#islandList option:selected").val();
+			break;
+
+		case 15:
+			var param = $("#cnm-snap_date2").text();
+			island = $("#islandList option:selected").val();
+			break;
+
+		case 16:
+			var param = $("#csm-snap_date1").text();
+			island = $("#islandList option:selected").val();
+			break;
+
+		case 21:
+			var param = $("#vsys-db_date1").text();
+			break;
+
+		case 22:
+			var param = $("#vsys-db_date2").text();
+			break;
+
+		case 31:
+			var param = $("#vsys-ap_date1").text();
+			break;
+
+		case 32:
+			var param = $("#vsys-ap_date2").text();
+			break;
+
+		case 41:
+			var param = $("#charge_date1").text();
+			break;
+
+		case 51:
+			var param = $("#swcm_date1").text();
+			break;
+
+		case 52:
+			var param = $("#swcm_date2").text();
+			break;
+
+		case 53:
+			var param = $("#swcm_date3").text();
+			break;
+
+		case 61:
+			var param = $("#xen_date1").text();
+			break;
+
+		case 62:
+			var param = $("#csm-agent-snap_date1").text();
+			break;
+
+    case 63:
+      var param = $("#kvm_date1").text();
+      break;
+
+		case 71:
+			var param = $("#pcl_date1").text();
+			break;
+
+		default:
+			break;
+	}
+		var	EncParam = encodeURI(param);
+		if (opetype == 1){
+			var url = "/cgi-bin/log_collect/filepath.cgi?param="+EncParam+"&island="+island;
+			sendReceiveTXT("GET",url,null,dl_file,null);
+		}else if(opetype == 2){
+			if(window.confirm('Is it ok to delete this file?')){
+				var url = "/cgi-bin/log_collect/delfile.cgi?param="+EncParam+"&island="+island;
+				sendReceiveTXT("GET",url,null,del_file,null);
+			}else{
+				window.alert('Canceled');
+			}
+		} else {
+			alert("ERROR");
+	}
+}
+
+function dl_file(data,id){
+  var file = data;
+	downloader(file);
+}
+
+function del_file(data,id){
+	var file = data;
+	if(data == "1"){
+		alert("File deleteion is failed.");
+	}else{
+		alert("File is deleted.");
+		location.reload();
+	}
+}
+
+function Last_Reload_Time(){
+	var d = new Date();
+
+	var hour = d.getHours();
+	var min = d.getMinutes();
+	var sec = d.getSeconds();
+	var ap = "AM";
+
+	if(hour >= 12){
+		hour = hour - 12;
+		ap = "PM";
+	}
+
+	if(hour < 10) { hour = "0" + hour; }
+	if(min < 10) { min = "0" + min; }
+	if(sec < 10) { sec = "0" + sec; }
+
+return hour+":"+min+":"+sec+"&nbsp;"+ap;
+
+}
+
+</script>
+</head>	
+<body>	
+
+<div id="ui-tab">
+	<ul>
+		<li><a href="#fragment-0"><span>TOP</span></a></li>
+		<li><a href="#fragment-1"><span>ROR/CSM/CNM</span></a></li>
+		<li><a href="#fragment-2"><span>VSYS-DB</span></a></li>
+		<li><a href="#fragment-3"><span>VSYS-AP</span></a></li>
+		<li><a href="#fragment-4"><span>Charge</span></a></li>
+		<li><a href="#fragment-5"><span>Monitoring</span></a></li>
+		<li><a href="#fragment-6"><span>Dom0</span></a></li>
+		<li><a href="#fragment-7"><span>PCL</span></a></li>
+	</ul>
+	<div id="fragment-0">
+		<table>
+			<ul>
+				<h1>Tips</h1>
+				<li><b>ROR / CSM / CNM</b><br></li><br>
+				<li><b>VSYS-DB</b><br></li><br>
+				<li><b>VSYS-AP</b><br></li><br>
+				<li><b>Charge (charge-db & charge)</b><br></li><br>
+				<li><b>Monitoring (Systemwalker Centric Manager)</b><br></li><br>
+				<li><b>Dom0 (PRIMERGY RX200)</b><br></li><br>
+				<li><b>PCL</b><br></li><br>
+			</ul>
+		</table>
+	  <p><font size="3">Please clcik "F5" to refresh the displayed information.</font></p>
+		<p><font size="3">Last Reload Time(UTC): <u><script type="text/javascript">document.write(Last_Reload_Time())</script></u></font></p>
+	</div>
+	<div id="fragment-1">
+		<table>
+			<tr>
+				<td valign="top">
+					<table border=1>
+						<tr valign="center" height="48">
+							<th><b>Target</b></th>
+						</tr>
+						<tr>
+							<td>
+								<div id="island"></div>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<div id="region-ror-island"></div>
+<!--					<table border=1>
+						<tr>
+							<th><b>Operation</b></th>
+							<th><b>Last Activity<br>(Obtain Date)</b></th>
+							<th><b>&nbsp;Delete?&nbsp;</b></th>
+						</tr>
+						<tr>
+							<td>1. Download ROR Manager snap (Full)<br>
+								<input id=ror-snap_take-bt1 type="button" value="Take" onClick="javascript:log_collect(11)"></input><br>
+								<div id=ror-snap_dl1><font color="red">Downloading (It takes about 15 min.)</font></div>
+							</td>
+							<td>
+								<div id=ror-snap_date1></div>
+								<input id=ror-snap_dl-bt1 type="button" value="Download" onClick="javascript:FileOpe(11,1)"></input><br>
+							</td>
+							<td><input id=ror-snap_del-bt1 type="button" value="Delete" onClick="javascript:FileOpe(11,2)"></input><br></td>
+						</tr>
+						<tr>
+							<td>2. Download ROR Manager snap (Light)<br>
+								<input	id=ror-snap_take-bt2 type="button" value="Take" onClick="javascript:log_collect(12)"></input><br>
+								<div id=ror-snap_dl2><font color="red">Downloading (It takes about 5 min.)</font></div>
+							</td>
+							<td>
+								<div id=ror-snap_date2></div>
+								<input id=ror-snap_dl-bt2 type="button" value="Download" onClick="javascript:FileOpe(12,1)"></input><br>
+							</td>
+							<td><input id=ror-snap_del-bt2 type="button" value="Delete" onClick="javascript:FileOpe(12,2)"></input><br></td>
+						</tr>
+						<tr>
+							<td>3. Download Operation Log from ROR<br>
+								<input id=ror-ope_take-bt1 type="button" value="Take" onClick="javascript:log_collect(13)"></input><br>
+								<div id=ror-ope_dl1><font color="red">Downloading (It takes less than 1 min.)</font></div>
+							</td>
+							<td>
+								<div id=ror-ope_date1></div>
+								<input id=ror-ope_dl-bt1 type="button" value="Download" onClick="javascript:FileOpe(13,1)"></input><br>
+							</td>
+							<td><input id=ror-ope_del-bt1 type="button" value="Delete" onClick="javascript:FileOpe(13,2)"></input><br></td>
+						</tr>
+						<tr>
+							<td>4. Download CNM Manager snap<br>
+								<input id=cnm-snap_take-bt1 type="button" value="Take" onClick="javascript:log_collect(14)"></input><br>
+								<div id=cnm-snap_dl1><font color="red">Downloading (It takes about 10 min.)</font></div>
+							</td>
+							<td>
+								<div id=cnm-snap_date1></div>
+								<input id=cnm-snap_dl-bt1 type="button" value="Download" onClick="javascript:FileOpe(14,1)"></input><br>
+							</td>
+							<td><input id=cnm-snap_del-bt1 type="button" value="Delete" onClick="javascript:FileOpe(14,2)"></input><br></td>
+						</tr>
+						<tr>
+							<td>5. Download CNM Manager snap<br>(provisioning only)<br>
+								<input id=cnm-snap_take-bt2 type="button" value="Take" onClick="javascript:log_collect(15)"></input><br>
+								<div id=cnm-snap_dl2><font color="red">Downloading (It takes about 5 min.)</font></div>
+							</td>
+							<td>
+								<div id=cnm-snap_date2></div>
+								<input id=cnm-snap_dl-bt2 type="button" value="Download" onClick="javascript:FileOpe(15,1)"></input><br>
+							</td>
+							<td><input id=cnm-snap_del-bt2 type="button" value="Delete" onClick="javascript:FileOpe(15,2)"></input><br></td>
+						</tr>
+						<tr>
+						<td>6. Download CSM Manager snap<br>
+								<input id=csm-snap_take-bt1 type="button" value="Take" onClick="javascript:log_collect(16)"></input><br>
+								<div id=csm-snap_dl1><font color="red">Downloading (It takes about 15 mins)</font></div>
+							</td>
+							<td>
+								<div id=csm-snap_date1></div>
+								<input id=csm-snap_dl-bt1 type="button" value="Download" onClick="javascript:FileOpe(16,1)"></input><br>
+							</td>
+						<td><input id=csm-snap_del-bt1 type="button" value="Delete" onClick="javascript:FileOpe(16,2)"></input><br></td>
+						</tr>
+					</table>
+-->				</td>
+			</tr>
+		</table>
+		<p><font size="3">Please clcik "F5" to refresh the displayed information.</font></p>
+		<p><font size="3">Last Reload Time(UTC): <u><script type="text/javascript">document.write(Last_Reload_Time())</script></u></font></p>
+	</div>
+	<div id="fragment-2">
+		<table border=1>
+			<tr>
+				<th><b>Target</b></th>
+				<th><b>Operation</b></th>
+				<th><b>Latest	Activity<br>(Obtain	Date)</b></th>
+				<th><b>Option</b></th>
+				<th><b>&nbsp;Delete?&nbsp;</b></th>
+			</tr>
+			<tr>
+				<td rowspan=2 align=center>&nbsp;vsys-db&nbsp;</td>
+				<td>1. Download VSYS-DB info (*)<br>VSYS-ID:<input type="text" id="vsys-db_vsysId" size='20' placeholder="A1B2C3D4-E5F6G7H8I"required><br>
+					<input id=vsys-db_take-bt1 type="button" value="Take" onClick="javascript:input_check_vsysId()"></input><br>
+<!--					<div id=vsys-db_dl1><font color="red">Downloading (Start:<div id='vsys-db_ps1'></div>)(It takes less than 1 min.)</font></div>
+-->					<div id=vsys-db_dl1><font color="red">Downloading (It takes less than 1 min.)</font></div>
+				</td>
+				<td>
+					<div id=vsys-db_date1></div>
+					<input id=vsys-db_dl-bt1 type="button" value="Download" onClick="javascript:FileOpe(21,1)"></input><br>
+				</td>
+				<td>VSYS-ID:<div id=vsys-db_param1></div></td>
+				<td><input id=vsys-db_del-bt1 type="button" value="Delete" onClick="javascript:FileOpe(21,2)"></input><br></td>
+			</tr>
+			<tr>
+				<td>2. Download VSYS-DB trace log<br>Date:<input type="date" id="vsys-db_hizuke" size='10' required><br>
+					<input id=vsys-db_take-bt2 type="button" value="Take" onClick="javascript:input_check_hizuke('db')"></input><br>
+<!--					<div id=vsys-db_dl2><font color="red">Downloading (Start:<div id='vsys-db_ps2'></div>)(It takes less than 3 min.)</font></div>
+-->					<div id=vsys-db_dl2><font color="red">Downloading (It takes less than 3 min.)</font></div>
+				</td>
+				<td>
+					<div id=vsys-db_date2></div>
+          <input id=vsys-db_dl-bt2 type="button" value="Download" onClick="javascript:FileOpe(22,1)"></input><br>
+				</td>
+				<td>Date:<div id=vsys-db_param2></div></td>
+				<td><input id=vsys-db_del-bt2 type="button" value="Delete" onClick="javascript:FileOpe(22,2)"></input><br></td>
+			</tr>
+		</table>
+		<p><font size="3">(*)Target tables: `instance`, `server#instance`, `vdisk#instance`, `vnic#instance`, `vnet#instance`, `gip#instance`, `config_task_seq`, and `task`</font></p>
+		<p><font size="3">Please clcik "F5" to refresh the displayed information.</font></p>
+		<p><font size="3">Last Reload Time(UTC): <u><script type="text/javascript">document.write(Last_Reload_Time())</script></u></font></p>
+	</div>
+	<div id="fragment-3">
+		<table border=1>
+			<tr>
+				<th><b>Target</b></th>
+				<th><b>Operation</b></th>
+				<th><b>Latest Activity<br>(Obtain Date)</b></th>
+				<th><b>Option</b></th>
+				<th><b>&nbsp;Delete?&nbsp;</b></th>
+			</tr>
+			<tr>
+				<td rowspan=2 align=center>&nbsp;vsys-ap&nbsp;</td>
+					<td>1. Download VSYS-AP trace log<br>Date:<input type="date" id="vsys-ap_hizuke" size='10' required><br>
+						<input id=vsys-ap_take-bt1 type="button" value="Take" onClick="javascript:input_check_hizuke('ap')"></input><br>
+<!--						<div id=vsys-ap_dl1><font color="red">Downloading (Start:<div id='vsys-ap_ps1'></div>)(It takes less than 1 min.)</font></div>
+-->						<div id=vsys-ap_dl1><font color="red">Downloading (It takes less than 1 min.)</font></div>
+				</td>
+				<td>
+					<div id=vsys-ap_date1></div>
+					<input id=vsys-ap_dl-bt1 type="button" value="Download" onClick="javascript:FileOpe(31,1)"></input><br>
+				</td>
+				<td>Date:<div id=vsys-ap_param1></div>
+				</td>
+				<td><input id=vsys-ap_del-bt1 type="button" value="Delete" onClick="javascript:FileOpe(31,2)"></input><br></td>
+			</tr>
+			<tr>
+				<td>2. Download VSYS-AP image manager plugin<br>
+					<input id=vsys-ap_take-bt2 type="button" value="Take" onClick="javascript:log_collect(32)"></input><br>
+<!--					<div id=vsys-ap_dl2><font color="red">Downloading (Start:<div id='vsys-ap_ps2'></div>)(It takes less than 1 min.)</font></div>
+-->					<div id=vsys-ap_dl2><font color="red">Downloading (It takes less than 1 min.)</font></div>
+				</td>
+				<td>
+					<div id=vsys-ap_date2></div>
+					<input id=vsys-ap_dl-bt2 type="button" value="Download" onClick="javascript:FileOpe(32,1)"></input><br>
+				</td>
+				<td align=center>None</td>
+				<td><input id=vsys-ap_del-bt2 type="button" value="Delete" onClick="javascript:FileOpe(32,2)"></input><br></td>
+			</tr>
+		</table>
+		<p><font size="3">Please clcik "F5" to refresh the displayed information.</font></p>
+		<p><font size="3">Last Reload Time(UTC): <u><script type="text/javascript">document.write(Last_Reload_Time())</script></u></font></p>
+	</div>
+	<div id="fragment-4">
+		<table border=1>
+			<tr>
+				<th><b>Target</b></th>
+				<th><b>Operation</b></th>
+				<th><b>Latest Activity<br>(Obtain Date)</b></th>
+				<th><b>Option</b></th>
+				<th><b>&nbsp;Delete?&nbsp;</b></th>
+			</tr>
+			<tr>
+				<td align=center>&nbsp;charge & charge-db&nbsp;</td>
+				<td>1. Download Charge Investigation logs<br>
+					<input id=charge_take-bt1 type="button" value="Take" onClick="javascript:log_collect(41)"></input><br>
+<!--					<div id=charge_dl1><font color="red">Downloading (Start:<div id='charge_ps1'></div>)(It takes about 5 min.)</font></div>
+-->					<div id=charge_dl1><font color="red">Downloading (It takes about 5 min.)</font></div>
+				</td>
+				<td>
+					<div id=charge_date1></div>
+					<input id=charge_dl-bt1 type="button" value="Download" onClick="javascript:FileOpe(41,1)"></input><br>
+				</td>
+				<td align=center><div id=charge_param1></div></td>
+				<td><input id=charge_del-bt1 type="button" value="Delete" onClick="javascript:FileOpe(41,2)"></input><br></td>
+			</tr>
+		</table>
+		<p><font size="3">Please clcik "F5" to refresh the displayed information.</font></p>
+		<p><font size="3">Last Reload Time(UTC): <u><script type="text/javascript">document.write(Last_Reload_Time())</script></u></font></p>
+	</div>
+	<div id="fragment-5">
+		<table border=1>
+			<tr>
+				<th><b>Target</b></th>
+				<th><b>Operation</b></th>
+				<th><b>Latest Activity<br>(Obtain	Date)</b></th>
+				<th><b>Option</b></th>
+				<th><b>&nbsp;Delete?&nbsp;</b></th>
+			</tr>
+			<tr>
+				<td align=center>&nbsp;cb-cmgr-zentai&nbsp;</td>
+				<td>1. Download zentai server's Mainatenance Information<br>
+					<input id=swcm_take-bt1 type="button" value="Take" onClick="javascript:log_collect(51)"></input><br>
+<!--					<div id=swcm_dl1><font color="red">Downloading (Start:<div id='swcm_ps1'></div>)(It takes about 15 min.)</font></div>
+-->					<div id=swcm_dl1><font color="red">Downloading (It takes about 15 min.)</font></div>
+				</td>
+				<td>
+					<div id=swcm_date1></div>
+					<input id=swcm_dl-bt1 type="button" value="Download" onClick="javascript:FileOpe(51,1)"></input><br>
+				</td>
+				<td align=center>None</td>
+				<td><input id=swcm_del-bt1 type="button" value="Delete" onClick="javascript:FileOpe(51,2)"></input><br></td>
+			</tr>
+			<tr>
+				<td align=center>cb-relay</td>
+				<td>2. Download operation CB's Mainatenance Information<br>
+					<input id=swcm_take-bt2 type="button" value="Take" onClick="javascript:log_collect(52)"></input><br>
+<!--					<div id=swcm_dl2><font color="red">Downloading (Start:<div id='swcm_ps2'></div>)(It takes about 15 min.)</font></div>
+-->					<div id=swcm_dl2><font color="red">Downloading (It takes about 15 min.)</font></div>
+				</td>
+				<td>
+					<div id=swcm_date2></div>
+					<input id=swcm_dl-bt2 type="button" value="Download" onClick="javascript:FileOpe(52,1)"></input><br>
+				</td>
+				<td align=center>None</td>
+				<td><input id=swcm_del-bt2 type="button" value="Delete" onClick="javascript:FileOpe(52,2)"></input><br></td>
+			</tr>
+			<tr>
+				<td align=center>
+					<table>
+            <tr>
+              <td rowspan=6 valign=top>
+                <div id="island2"></div>
+              </td>
+            </tr>
+          </table>
+				</td>
+				<td>3. Download user CB's Mainatenance Information<br>
+					<input id=swcm_take-bt3 type="button" value="Take" onClick="javascript:log_collect(53)"></input><br>
+<!--					<div id=swcm_dl3><font color="red">Downloading (Start:<div id='swcm_ps3'></div>)(It takes less than 5 min.)</font></div>
+-->					<div id=swcm_dl3><font color="red">Downloading (It takes less than 5 min.)</font></div>
+				</td>
+				<td>
+					<div id=swcm_date3></div>
+					<input id=swcm_dl-bt3 type="button" value="Download" onClick="javascript:FileOpe(53,1)"></input><br>
+				</td>
+				<td align=center><div id=swcm_param3></div></td>
+				<td><input id=swcm_del-bt3 type="button" value="Delete" onClick="javascript:FileOpe(53,2)"></input><br></td>
+			</tr>
+		</table>
+		<p><font size="3">Please clcik "F5" to refresh the displayed information.</font></p>
+		<p><font size="3">Last Reload Time(UTC): <u><script type="text/javascript">document.write(Last_Reload_Time())</script></u></font></p>
+	</div>
+	<div id="fragment-6">
+		<table border=1>
+			<tr valign="center" height="48">
+				<th width="150"><b>Target</b></th>
+				<th width="230"><b>&nbsp;Dom0&nbsp;</b></th>
+				<th width="100"><b>&nbsp;Xen / KVM&nbsp;</b></th>
+				<th witdh="230"><b>Operation</b></th>
+				<th width="150"><b>Latest Activity<br>(Obtain Date)</b></th>
+				<th width="150"><b>Option</b></th>
+				<th><b>&nbsp;Delete?&nbsp;</b></th>
+			</tr>
+			<tr>
+				<td rowspan="3" align="center"><div id="island3"></div><br></td>
+				<td rowspan="3" align="center"><div id="Dom0_window"></div></td>
+				<td rowspan="3" align="center"><div id="kvm-xen"></div></td>
+				<td>1. Download Xen snap (for Xen server)<br>
+					<input id=xen_take-bt1 type="button" value="Take" onClick="javascript:log_collect(61)" disabled></input><br>
+					<div id=xen_dl1><font color="red">Downloading (It takes less than 1 min.)</font></div>
+				</td>
+				<td>
+					<div id=xen_date1></div>
+					<input id=xen_dl-bt1 type="button" value="Download" onClick="javascript:FileOpe(61,1)" disabled></input><br>
+				</td>
+				<td><div id=xen_param1></div></td>
+				<td><input id=xen_del-bt1 type="button" value="Delete" onClick="javascript:FileOpe(61,2)" disabled></input><br></td>
+			</tr>
+      <tr>
+				<td>2. Download CSM Agent snap<br>
+					<input id=csm-agent-snap_take-bt1 type="button" value="Take" onClick="javascript:log_collect(62)" disabled></input><br>
+					<div id=csm-agent-snap_dl1><font color="red">Downloading (It takes less than 5 min.)</font></div>
+				</td>
+				<td>
+					<div id=csm-agent-snap_date1></div>
+					<input id=csm_agent_snap_dl-bt1 type="button" value="Download" onClick="javascript:FileOpe(62,1)" disabled></input><br>
+				</td>
+				<td><div id=csm-agent-snap_param1></div></td>
+				<td><input id=csm_agent_snap_del-bt1 type="button" value="Delete" onClick="javascript:FileOpe(62,2)" disabled></input><br></td>
+			</tr>
+      <tr>
+        <td>3. Download fjsnap (for KVM Server)<br>
+          <input id=kvm_take-bt1 type="button" value="Take" onClick="javascript:log_collect(63)" disabled></input><br>
+          <div id=kvm_dl1><font color="red">Downloading (It takes about 5 min.)</font></div>
+        </td>
+        <td>
+          <div id=kvm_date1></div>
+          <input id=kvm_dl-bt1 type="button" value="Download" onClick="javascript:FileOpe(63,1)" disabled></input><br>
+        </td>
+        <td><div id=kvm_param1></div></td>
+        <td><input id=kvm_del-bt1 type="button" value="Delete" onClick="javascript:FileOpe(63,2)" disabled></input><br></td>
+      </tr>
+		</table>
+		<p><font size="3">Please clcik "F5" to refresh the displayed information.</font></p>
+		<p><font size="3">Last Reload Time(UTC): <u><script type="text/javascript">document.write(Last_Reload_Time())</script></u></font></p>
+	</div>
+	<div id="fragment-7">
+		<table border=1>
+			<tr>
+				<th><b>Target</b></th>
+				<th><b>Operation</b></th>
+				<th><b>Latest Activity<br>(Obtain	Date)</b></th>
+				<th><b>Option</b></th>
+				<th><b>&nbsp;Delete?&nbsp;</b></th>
+			</tr>
+			<tr>
+				<td align=center>None</td>
+				<td>1. Download PCL snap (Not Available Yet)<br>
+					<input id=pcl_take-bt1 type="button" value="Take" onClick="javascript:log_collect(71)"></input><br>
+<!--					<div id=pcl_dl1><font color="red">Downloading(Start:<div id='pcl_ps1'></div>)</font></div>
+-->					<div id=pcl_dl1><font color="red">Downloading</font></div>
+				</td>
+				<td>
+					<div id=pcl_date1></div>
+					<input id=pcl_dl-bt1 type="button" value="Download" onClick="javascript:FileOpe(71,1)"></input><br>
+				</td>
+				<td align=center>None</td>
+				<td><input id=pcl_del-bt1 type="button" value="Delete" onClick="javascript:FileOpe(71,2)"></input><br></td>
+			</tr>
+		</table>
+		<p><font size="3">Please clcik "F5" to refresh the displayed information.</font></p>
+		<p><font size="3">Last Reload Time(UTC): <u><script type="text/javascript">document.write(Last_Reload_Time())</script></u></font></p>
+	</div>
+</div>
+</body>	
+</html>

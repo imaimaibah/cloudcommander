@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+		<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+		<script type="text/javascript" src="scripts/query.js"></script>
+		<script type="text/javascript" src="/js/main.js"></script>
+		<script src="scripts/highcharts.js"></script>
+		<script type="text/javascript">
+
+window.onload = apitrend;
+
+function apitrend(){
+	var url = "/cgi-bin/trend/api_log.cgi";
+	sendReceiveJSON("GET",url,null,drawLine,'api_container');
+}
+
+function drawLine(data,id){
+	var category = data.category;
+	var xText = data.xText;
+	var yText = data.yText;
+	var MAIN = data.series;
+        var main = new Highcharts.Chart({
+            chart: {
+                renderTo: id,
+                type: "line",
+				backgroundColor: '#FFFFFF'
+            },
+            title: {
+                text: xText
+            },
+            xAxis: {
+							categories: category
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: yText
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 0,
+                y: 0,
+                floating: false,
+                shadow: true
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y +' '+data.unit;
+                }
+            },
+						plotOptions: {
+								column: {
+										stacking: 'normal',
+										pointPadding: -0.2,
+										borderWidth: 0,
+										grouping: false,
+										dataLabels: {
+											enabled: true,
+											color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    }
+                }
+						},
+						series: MAIN
+				});
+}
+		</script>
+	</head>
+<body>
+<table width="100%" border=1>
+	<tr>
+		<td width="50%" colspan=1><div id="api_container" style="min-width: 400px; height: 400px; margin: 0 auto"></div></td>
+	</tr>
+</table>
+<form id='formid'>
+<table>
+	<tr>
+    <td>Date: From</td>
+    <td><input type="text" name="start_date" onClick="cal3.hide(); cal2.write();" 
+        onChange="cal2.getFormValue(); cal2.hide();"><br><div id="caldiv2"></div></td>
+    <td>To</td>
+    <td><input type="text" name="last_date" onClick="cal2.hide(); cal3.write();" 
+        onChange="cal3.getFormValue(); cal3.hide();"><br><div id="caldiv3"></div></td>
+	</tr>
+</table>
+</form>
+</body>
+</html>

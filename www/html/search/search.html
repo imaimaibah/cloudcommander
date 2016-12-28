@@ -1,0 +1,355 @@
+<!DOCTYPE html5>
+<html>
+<head>
+<title>SOP search function</title>
+<!--
+Version 2.0
+-->
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script>
+var VERSION='1.0';
+
+window.onload = function(){
+	var  lserver = window.location.search.substr(1).split("&");
+	if(lserver[0] != ""){
+		$("#vm").val(lserver);
+		vmSearch("wait");
+	}else{
+		helpMain();
+	}
+}
+
+function gipSearch(){
+	//初期化
+	var gip = document.getElementById("gip").value;
+	if(gip == ""){
+		alert("Enter public IP in the box.");
+		return;
+	}
+	var url = "/cgi-bin/gipsearch.cgi?gip="+gip;
+	try{
+		sendReceiveJSON("GET",url,null,getResult,null);
+	}catch(e){
+		alert(e);
+	}
+}
+
+function getResult(data){
+	if(data.result == "Auth failed"){
+		alert(data.result);
+	}else if(data[0].result != "SUCCESS"){
+		alert("Can't find data.");
+	}else{
+		data.shift();
+		var result = document.getElementById("result");
+		result.innerHTML = "";
+		var str = '';
+		str += '<table border="2">';
+		str += '	<tr with="80%">';
+		str += '		<td>org ID</td><td>VSYS ID</td><td>Server ID</td><td>Public IP</td><td>Status</td><td>Entry Date</td><td>Update Date</td>';
+		str += '	</tr>';
+		for(var i in data){
+			str += '	<tr>';
+			str += '		<td>'+data[i].org_id+'</td><td>'+data[i].vsys_id+'</td>';
+			str += '		<td>'+data[i].server_id+'</td><td>'+data[i].gip+'</td><td>'+data[i].status+'</td>';
+			str += '		<td>'+data[i].entry+'</td><td>'+data[i].update+'</td>';
+			str += '	</tr>';
+		}
+		str += '</table>';
+		result.innerHTML = str;
+	}
+	
+}
+
+function vmSearch(){
+	$("#loginScreen").html("");
+	var vm = document.getElementById("vm").value;
+	if(vm == ""){
+		alert("Enter VM ID in the box.");
+		return;
+	}else if(!vm.match(/^[A-Z0-9]{8}-[A-Z0-9]{9}-S-[0-9]{4}/)){
+		alert("Invalid VM ID");
+		return;
+	}
+
+	$("#result").html("<font size='15px' color='red'>Wait.....</font>");
+
+	var url = "/cgi-bin/vmsearch.cgi?vm="+vm;
+	try{
+		sendReceiveJSON("GET",url,null,getResultVM,null)
+	}catch(e){
+		alert(e);
+	}
+}
+
+function getResultVM(data){
+	if(data.result == "Auth failed"){
+		alert(data.result);
+	}else if(data.result != "SUCCESS"){
+		alert("Can't find data");
+	}else{
+		var result = document.getElementById("result")
+		result.innreHTML = "";
+		var str = '';
+		str += '<table border="2">';
+		str += '	<tr>';
+		str += '		<td>server ID</td><td>Type</td><td>Island</td><td>OS TYPE</td><td>Status</td><td>Dom0</td><td>Console</td>';
+		str += '	</tr>';
+		str += '	<tr>';
+		if(data.resource_status == "RUNNING" && data.os_type.match(/(CentOS|IPCOM)/)){
+			lserverShow(data.server_name,undefined,data.os_type);
+			str += '		<td id="vm"><a href="javascript:void(0)" onClick="lserverShow('+"'"+data.server_name+"','"+data.dom0+"','"+data.os_type+"'"+')">'+data.server_name+'</a></td>';
+		}else{
+			str += '		<td>'+data.server_name+'</td>';
+		}
+		str += '		<td>'+data.type+'</td>';
+		str += '		<td align="center">'+data.island+'</td>';
+		str += '		<td>'+data.os_type+'</td>';
+		str += '		<td>'+data.resource_status+'</td>';
+		if(data.dom0 == undefined){
+			str += '		<td align="center">-</td>';
+		}else{
+			str += '		<td><a href="javascript:void(0)" onClick="popupPassword('+"'','"+data.dom0+"',''"+")\">"+data.dom0+'</a></td>';
+			//str += '		<td><a href="javascript:void(0)" onClick="dom0Connect('+"'"+data.dom0+"'"+')">'+data.dom0+'</a></td>';
+		}
+		if(data.resource_status == "RUNNING"){
+			str += '		<td><a href="javascript:void(0)" onClick="popupPassword('+"'"+data.server_name+"','"+data.dom0+"','"+data.os_type+"'"+')">ON</a></td>';
+		}else{
+			str += '		<td>OFF</td>';
+		}
+		str += '	</tr>';
+		str += '</table>';
+		result.innerHTML = str;
+	}
+
+		
+}
+
+function lserverShow(lserver,dom0,os_type){
+	var url;
+	if(os_type.match(/(CentOS|IPCOM)/)){
+		var url = "/cgi-bin/loginScreen.cgi?vm="+lserver+"&dom0="+dom0;
+		sendReceiveTXT("GET",url,null,loginScreen,"loginScreen");
+	}else{
+		alert("Not CentOS or IPCOM");
+	}
+}
+
+function loginScreen(txt,id){
+	$("#"+id).html('<p><font size="15px" color="blue">Login Screen</font></p><pre id="screen">'+txt+'</pre>');
+	if(!txt.match(/^\[Date: [0-9]{4}\/[0-9]{2}\/[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}\]/)){
+		$("#"+id).append('<button onClick="save()">Save</button>');
+	}
+}
+
+function save(){
+	var val = document.getElementById("screen").innerHTML;
+	var server = $("#vm > a").text();
+	var url = "/cgi-bin/saveScreen.cgi?vm="+server;
+	sendReceiveJSON("POST",url,val,showResult,null);
+}
+
+function showResult(data){
+	alert(data['result']);
+	var server = $("#vm > a").text();
+	lserverShow(server,undefined,"IPCOM");
+}
+
+function popupPassword(lserver,dom0,os_type){
+	var mywin = window.open("", "Password", "top=200,left=300,location=no,status=no,toolbar=no,resizable=no,menubar=no,scrollbars=0,width=300,height=100");
+	var txt = "Enter Your LDAP Password<br>";
+	txt += "<input type='password' id='passwd' />";
+	txt += "<input type='text' id='lserver' value='"+lserver+"' hidden />";
+	txt += "<input type='text' id='dom0' value='"+dom0+"' hidden />";
+	txt += "<input type='text' id='os_type' value='"+os_type+"' hidden />";
+	txt += "<input type='button' onClick='window.opener.Hashiwatashi(window);window.close();' value='submit' />";
+	$(mywin.document.body).html(txt);
+}
+
+function Hashiwatashi(win){
+	var password = win.document.getElementById('passwd').value;
+	var dom0 = win.document.getElementById('dom0').value;
+	var lserver = win.document.getElementById('lserver').value; 
+	var os_type = win.document.getElementById('os_type').value; 
+	lserverConnect(lserver,dom0,os_type,password);
+}
+
+function lserverConnect(lserver,dom0,os_type,password){
+	if(os_type.match(/(CentOS|IPCOM)/) || lserver==""){
+		if(password != "" && password != null){
+			var url = "/cgi-bin/vmTeraterm.cgi?vm="+lserver+"&dom0="+dom0+"&password="+encodeURIComponent(password);
+			sendReceiveTXT("GET",url,null,downloader,null);
+		}else{
+			alert("Enter your password");
+		}
+	}else{
+		var url = "/cgi-bin/VNC.cgi?vm="+lserver;
+		sendReceiveTXT("GET",url,null,sleep,null);
+	}
+}
+
+function dom0Connect(dom0){
+	var url = "/cgi-bin/vmTeraterm.cgi?dom0="+dom0;
+	sendReceiveTXT("GET",url,null,downloader,null);
+}
+
+function sleep(data){
+	if(data != "SUCCESS"){
+		alert(data);
+		return;
+	}
+	setTimeout(openNewWin,3000);
+	alert("VNC window will open in 3 seconds");
+}
+
+function openNewWin(){
+	var hostname = window.location.hostname;
+	var maxWin = window.open("http://"+hostname+":6080/vnc_auto.html","noVNC","toolbar=no,menubar=no,location=no,status=no,scrollbars=yes,resizable=yes");
+	maxWin.moveTo(0,0);
+	maxWin.resizeTo(screen.availWidth,screen.availHeight);
+	
+}
+
+function helpMain(){
+	var txt = "";
+	txt += "<h1>Tips</h1>";
+	txt += "<h2>Public IP Search</h2>";
+	txt += "You can find customer's VSYS ID by public IP address<br>";
+	txt += "Enter Public IP address in the box and click the search button.<br><br>";
+	txt += "<h2>VLAN Search</h2>";
+	txt += "You can find customer's VLAN ID by VSYS-ID or Contract-ID<br>";
+	txt += "Enter VSYS-ID in the box and click the search button.<br><br>";
+	txt += "<h2>Search VM</h2>";
+	txt += "You can find VM's status on RoR.<br>";
+	txt += "Enter VM ID in the box and click search.<br>";
+	txt += "The status appear below might not match what the customer sees in MyPortal.<br>";
+	txt += "If the status does not match, that means inconsistency of the VM status between VSYS and Resouce Coordinator is occuring.<br>";
+	txt += "Please use Recovery tool to fix the inconsistency.<br><br>";
+	txt += "<b>1. Login Screen</b><br>";
+	txt += " It shows VM's login screen. only avaialable FW, SLB or CentOS<br>";
+	txt += " By clicking VM ID, you can obtain a new login screen. If you want to save the login screen please click 'Save'<br>";
+	txt += " NOTE: 'Save' will overwrite the current login screen. <br><br>";
+	txt += "<b>2. Accessing Dom0</b><br>";
+	txt += " You can access the Dom0. Password Popup will appear. Enter your LDAP password. <br>";
+	txt += " <font color='red'>You need to allow popups on your browser.</font><br>";
+	txt += " If you type wrong password in the popup window, you won't be able to connect to the Dom0<br>";
+	txt += " After that, it will download Teraterm Macro so run the file with Teraterm.<br><br>"
+	txt += "<b>3. Console</b><br>";
+	txt += " You can access the Console. Password Popup will appear. Enter your LDAP password there.<br>";
+	txt += " <font color='red'>You need to allow popups on your browser.</font><br>";
+	txt += " For FW, SLB and CentOS, it will download Teraterm Macro so run the file with Teraterm.<br>"
+	txt += " For Windows or RHEL, a new window will open and give you the console access.<br>";
+	txt += " For CentOS or Build-in servers, if you type wrong password in the popup window, you won't be able to connect to the VM<br>";
+	txt += " VNC connection for Windows or RHEL, the connectivity lasts for only a minute.<br>";
+	txt += " It will automatically close the connection after.<br>";
+	txt += " Also, only one operator can use this function. When someone is accessing via VNC, please wait at least a minute and try again.<br><br>";
+	txt += "<h2>OS Search</h2>";
+	txt += "You can find OSes of customer's VMs by Contract-ID or VSYS-ID<br>";
+	txt += "Enter Contract-ID or VSYS-ID in the box and click the search button.<br><br>";
+	$("#help").html(txt);
+}
+
+function vlanSearch(){
+	var option = $("#vlan").val();
+	var url = "/cgi-bin/search/vlanSearch.cgi?vsysid=" + option;
+	sendReceiveJSON("GET",url,null,getResultVlan,"result");
+}
+
+function getResultVlan(data,id){
+	if(data.result != "SUCCESS"){
+		alert(data.result);
+	}else{
+		id.innerHTML = "";
+		var str = '';
+		str += '<table border="2">';
+		str += '	<tr with="80%">';
+		str += '		<td>VSYS ID</td><td>VSYS VLAN ID</td><td>Network ID</td><td>Island</td><td>Type</td><td>CNM VLAN ID</td><td>V4 IPAddress</td><td>V6 IPAddress</td>';
+		str += '	</tr>';
+			str += '	<tr>';
+		for(var i in data.vlan){
+			str += '		<td>'+data.vlan[i]+'</td>';
+		}
+			str += '	</tr>';
+		str += '</table>';
+		result.innerHTML = str;
+	}
+		
+}
+
+function osSearch(){
+	var option = $("#os").val();
+	var url = "/cgi-bin/search/osSearch.cgi?org=" + option;
+	sendReceiveJSON("GET",url,null,getResultOs,"result");
+}
+
+function getResultOs(data,id){
+	var bc = 0;
+	if(data.result != "SUCCESS"){
+		alert(data.result);
+	}else{
+		id.innerHTML = "";
+		var str = '';
+		str += '<table border="2">';
+		str += '	<tr with="80%">';
+		str += '		<td>SERVER ID</td><td>STATUS</td><td>SERVER NAME</td><td>TYPE</td><td>OS</td><td>SUPPORT</td>';
+		str += '	</tr>';
+for(var l in data.org){
+	if(isEven(bc)){
+			str += '	<tr bgcolor="#FAEBD7">';
+	}else{
+			str += '	<tr bgcolor="white">';
+	}
+			str += '		<td>'+l+'</td>';
+		for(var i in data.org[l]){
+			str += '		<td>'+data.org[l][i]+'</td>';
+		}
+			str += '	</tr>';
+bc++;
+}
+		str += '</table>';
+		result.innerHTML = str;
+	}
+		
+}
+
+</script>
+</head>
+<body>
+<table width="100%"><tr><td valign='top' width="50%">
+<table>
+	<tr>
+		<td><b>To search VSYS ID by Public IP address</b></td>
+	</tr>
+	<tr>
+		<td height='50px'>Public IP : </td><td><input type="text" id="gip" size='30'></td><td><input type="button" value="search" onClick="javascript:gipSearch();"></td>
+	</tr>
+	<br>
+	<tr>
+		<td><b>To search VLAN ID</b></td>
+	</tr>
+	<tr>
+		<td height='50px'>VSYS-ID : </td><td><input type="text" id="vlan" size='30'></td><td><input type="button" value="search" onClick="javascript:vlanSearch();"></td>
+	</tr>
+	<br>
+	<tr>
+		<td><b>To search VMs on RoR</b></td>
+	</tr>
+	<tr>
+		<td height='50px'>VM : </td><td><input type="text" id="vm" size='30'></td><td><input type="button" value="search" onClick="javascript:vmSearch();"></td>
+	</tr>
+	<br>
+	<tr>
+		<td><b>To search OS by Contract or VSYS ID</b></td>
+	</tr>
+	<tr>
+		<td height='50px'>ID : </td><td><input type="text" id="os" size='30'></td><td><input type="button" value="search" onClick="javascript:osSearch();"></td>
+	</tr>
+</table>
+<div id="result"></div>
+<div id="loginScreen"</div>
+</td><td>
+<div id="help"></div>
+</td></tr></table>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Release tool</title>
+<link href="/css/ui.tabs.css" rel="stylesheet" type="text/css" />
+<link href="/css/gsmc.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/validator.js"></script>
+<script type="text/javascript" src="/js/ui.core.js"></script>
+<script type="text/javascript" src="/js/ui.tabs.js"></script>
+<script type="text/javascript">
+$(function() {
+      $('#ui-tab > ul').tabs({ fx: { height: 'toggle', duration: 'normal'  } });
+
+//load monitoring control
+			wopen01();
+			release_tool("mstatus");
+
+//load sorry page control
+			release_tool("status");
+});
+
+//1.monitoring control
+function wopen01(){
+		var txt01 = "";
+    txt01 += '<input type="button" value="get status" onClick="release_tool(\'mstatus\')">';
+    txt01 += '<input type="button" value="stop monitoring" onClick="release_tool(\'mstop\')">';
+    txt01 += '<input type="button" value="start monitoring" onClick="release_tool(\'mstart\')">';
+    txt01 += '<br><br>';
+    txt01 += '<input type="checkbox" name="island" value="islanda" id="c1"><label for="c1">islanda</label>';
+		txt01 += '<input type="checkbox" name="island" value="islandb" id="c2"><label for="c2">islandb</label>';
+		txt01 += '<input type="checkbox" name="island" value="islandc" id="c3"><label for="c3">islandc</label>';
+		txt01 += '<input type="checkbox" name="island" value="islandd" id="c4"><label for="c4">islandd</label>';
+		txt01 += '<input type="checkbox" name="island" value="islande" id="c5"><label for="c5">islande</label>';
+    txt01 += '<br><br>';
+		 $("#fragment-1").append(txt01);
+}
+
+function wopen02(){
+    var txt01 = "";
+    txt01 += '<table border="1" cellpadding="5" cellspacing="0">';
+    txt01 += '<tr bgcolor="#0099ff">';
+    txt01 += '<th width="50" height="20">check</th>';
+    txt01 += '<th width="150" height="20">node name</th>';
+    txt01 += '<th width="150" height="20">ip address</th>';
+    txt01 += '<th width="100" height="20">monitoring status</th>';
+    txt01 += '</tr>';
+//		for(var i = 1; i = data[1].num var; i++){
+    for(var i = 1; i <= 3; i++){
+      txt01 += '<tr>';
+//			txt01 += "<th><input type="checkbox" name="+data[i][1]+" value="+data[i][1]+" id="+data[i][1]+"><label for="+data[i][1]+">"+data[i][1]+"</label></th>";
+//      txt01 += "<th>"+data[i][1]+"</th><th>"+data[i][2]+"</th><th>"+data[i][3]+"</th>";
+	    txt01 += '<th><input type="checkbox" name="select" value="select" id="s1"><label for="s1"></label></th>';
+      txt01 += "<th>sw0000-00-00</th><th>192.168.10.11</th><th>monitor</th>";
+ 		  txt01 += '</tr>';
+		}
+		txt01 += "</table>";
+		$("#fragment-1").append(txt01);
+}
+
+//2.sorry page control
+
+function wopen12(){
+    var txt11 = "";
+    txt11 += '<input type="button" value="start portal page" onClick="release_tool(\'stop\')">';
+    txt11 += '<br><br>';
+    txt11 += '<table border="1" cellpadding="5" cellspacing="0">';
+    txt11 += '<tr bgcolor="#0099ff"><th width="100" height="20">type</th><th width="100" height="20">status</th></tr>';
+    txt11 += '<tr><th>GUI</th><th>sorry page</th></tr>';
+    txt11 += '</table>';
+    $("#fragment-2").append(txt11);
+}
+
+function wopen13(){
+    var txt11 = "";
+    txt11 += '<input type="button" value="start sorry page" onClick="release_tool(\'start\')">';
+    txt11 += '<br><br>';
+    txt11 += '<table border="1" cellpadding="5" cellspacing="0">';
+    txt11 += '<tr bgcolor="#0099ff"><th width="100" height="20">type</th><th width="100" height="20">status</th></tr>';
+    txt11 += '<tr><th>GUI</th><th>portal page</th></tr>';
+    txt11 += '</table>';
+    $("#fragment-2").append(txt11);
+}
+
+function wopen14(){
+    var txt11 = "";
+    txt11 += '<input type="button" value="get status" onClick="release_tool(\'status\')">';
+    txt11 += '<br><br>';
+    txt11 += '<table border="1" cellpadding="5" cellspacing="0">';
+    txt11 += '<tr bgcolor="#0099ff"><th width="100" height="20">type</th><th width="100" height="20">status</th></tr>';
+    txt11 += '<tr><th>GUI</th><th>UNKNOWN</th></tr>';
+    txt11 += '</table>';
+    $("#fragment-2").append(txt11);
+}
+
+function empty11(){
+		$("#fragment-2").empty();
+}
+
+//3.main
+function release_tool(argu){
+  var j = 0
+  var argu2 = document.getElementsByName("island");
+  for(var i=0; i <= 5 ;i++) {
+    if(argu2[i].checked === "true"){
+      break;
+    }else{
+			j = 1;
+    }
+//  alert(argu2[i].checked);
+  alert(argu2[i].value);
+  }
+
+  if( j === "1" ) {
+		var url = "/cgi-bin/sorry.cgi?argu="+argu;
+  }else{
+    var url = "/cgi-bin/sorry.cgi?argu="+argu+"&island="+argu2[i].value;
+  }
+
+  try{
+    sendReceiveJSON("GET",url,null,getResult,null);
+  }catch(e){
+    alert(e);
+  }
+}
+
+function getResult(data){
+  if(data[0].result == "Auth failed"){
+    alert(data[0].result);
+  }else if(data[0].result == "SUCCESS" && data[0].argu == "mstatus" ){
+    alert("get mstatus");
+    wopen02();
+  }else if(data[0].result == "FAILED" && data[0].argu == "mstatus" ){
+    alert("fail to get mstatus");
+  }else if(data[0].result == "SUCCESS" && data[0].argu == "mstart" ){
+    alert("start monitoring");
+  }else if(data[0].result == "FAILED" && data[0].argu == "mstart" ){
+    alert("fail to start monitoring");
+  }else if(data[0].result == "SUCCESS" && data[0].argu == "mstop" ){
+    alert("stop monitoring");
+  }else if(data[0].result == "FAILED" && data[0].argu == "mstop" ){
+    alert("fail to stop monitoring");
+  }else if(data[0].result == "SUCCESS" && data[0].argu == "status" ){
+    alert("get status");
+    empty11();
+    wopen13();
+  }else if(data[0].result == "FAILED" && data[0].argu == "status" ){
+    alert("fail to get status");
+    empty11();
+		wopen14();
+  }else if(data[0].result == "SUCCESS" && data[0].argu == "start" ){
+    alert("start sorry page");
+    empty11();
+    wopen12();
+  }else if(data[0].result == "FAILED" && data[0].argu == "start" ){
+    alert("fail to start sorry page");
+    empty11();
+    wopen13();
+  }else if(data[0].result == "SUCCESS" && data[0].argu == "stop" ){
+    alert("start portal page");
+    empty11();
+    wopen13();
+  }else if(data[0].result == "FAILED" && data[0].argu == "stop" ){
+    alert("fail to start portal page");
+    empty11();
+    wopen12();
+  }else{
+    alert("return code error");
+    alert(data[0].result);
+    alert(data[0].argu);
+  }
+}
+
+</script>
+</head>
+<body>
+<div id="ui-tab">
+        <ul>
+                <li><a href="#fragment-1"><span>monitoring control</span></a></li>
+                <li><a href="#fragment-2"><span>sorry page control</span></a></li>
+        </ul>
+    <div id="fragment-1"></div>
+    <div id="fragment-2"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+h3 {
+	color: red;
+}
+
+dt {
+	font-weight: bold;
+	margin-top: 20px;
+}
+
+dd {
+	margin-top: 5px;
+}
+
+table {
+	width: 80%;
+}
+
+td {
+	vertical-align: center;
+	text-align: left;
+	height: 30px;
+}
+

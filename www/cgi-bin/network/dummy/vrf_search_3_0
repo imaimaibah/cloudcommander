@@ -1,0 +1,8 @@
+interface GigabitEthernet0/0/0.2478
+ description TO_F2001
+ encapsulation dot1Q 2478
+ ip vrf forwarding F2001_S12478
+ ip address 10.190.242.253 255.255.255.0
+ no ip redirects
+ logging event subif-link-status
+ snmp trap link-status

@@ -1,0 +1,72 @@
+/* ------------------------------
+	Base
+------------------------------ */
+ul.tab{
+	margin: 0;
+	margin-bottom: 0px;
+	padding: 0;
+	border-bottom: 1px #bbbbbb solid;
+}
+ul.tab li {
+	text-align: center;
+	width: 220px;
+	float: left;
+	margin: 0 0 0 7px;
+	position: relative;
+	list-style-type: none;
+	border: 1px #bbbbbb solid;
+}
+ul.tab li.active {
+	color: #333333;
+	font-weight: bold;
+	padding: 3px 0px 5px 0px;
+	bottom: -1px;
+	border-bottom: 2px #ffffff solid;
+	background: #ffffff;
+}
+ul.tab li.passive {
+	bottom: -1px;
+	border-bottom: 1px #bbbbbb solid;
+}
+ul.tab li a {
+	color: #333333;
+	display: block;
+	text-decoration: none;
+	padding: 3px 0px 5px 0px;
+	background: #ffffff;
+}
+ul.tab li a.blue {
+	border-top: 5px #7B68EE solid;
+}
+ul.tab li a.green {
+	border-top: 5px #66cdaa solid;
+}
+
+ul.tab li.blue {
+	border-top: 5px #7B68EE solid;
+}
+ul.tab li.green {
+	border-top: 5px #66cdaa solid;
+}
+ul.tab li a:hover {
+	position: relative;
+	bottom: 4px;
+}
+/* clerfix */
+.clear:after {
+    content:"";
+    display:block;
+    overflow:hidden;
+}
+.clear:after {
+    clear:both;
+}
+.clear {
+    zoom:1;
+}
+.tab_block{
+	padding: 10px;
+	border-left: 1px #bbbbbb solid;
+	border-bottom: 1px #bbbbbb solid;
+	border-right: 1px #bbbbbb solid;
+}

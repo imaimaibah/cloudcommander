@@ -1,0 +1,10 @@
+<script>
+chrome.browserAction.onClicked.addListener(function(tab) {
+	
+	var targetUrl = "Recovery.html";
+	
+	chrome.tabs.create({  url: targetUrl }, function(tab) {
+	});
+});
+
+</script>

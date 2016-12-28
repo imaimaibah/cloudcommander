@@ -1,0 +1,20 @@
+<html>
+<head>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script><!--
+function DownloadFile(id){
+	var file = document.getElementById(id).value;
+	downloader(file);
+}
+-->
+</script>
+</head>
+<body>
+<select id="d1"> 
+<option value="dayshift.jpg">Day</option>
+<option value="nightshift.jpg">Night</option>
+</select> 
+<input type=button value="Download" onClick='DownloadFile("d1");' /> 
+</body>
+</html>

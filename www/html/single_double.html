@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript">
+$.fn.single_double_click = function(single_click_callback, double_click_callback, timeout) {
+//	return this.each(function(){
+		var clicks = 0, j = this;
+		$(this).click(function(evnt){
+			clicks++;
+			if (clicks == 1) {
+				setTimeout(function(){
+					if(clicks == 1) {
+						single_click_callback(j, evnt);
+					} else {
+						double_click_callback.call(j, evnt);
+					}
+					clicks = 0;
+				}, timeout || 200);
+			}
+		});
+//	});
+}
+
+function single(id){
+	alert("single"+id.text());
+}
+
+function dbl(){
+	alert("double"+this.text());
+}
+</script>
+</head>
+<body>
+<a href='#' id="click">shin</a>
+<script>
+$("#click").single_double_click(single,dbl);
+</script>
+</body>
+</html>

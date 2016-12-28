@@ -1,0 +1,8 @@
+region_code,region_name,currency,decimal
+SOP,JP01,JPY,0
+AUS,AU01,AUD,2
+SIN,SG01,SGD,2
+USA,US01,USD,2
+UKI,GB01,UKP,2
+DEU,DE01,DEE,2
+AKS,JP02,JPY,0

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Change your password</title>
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script>
+function send(){
+	var pass = $("#password").val();
+	var conf = $("#confirm").val();
+	if(pass != conf){
+		$("#result").text("");
+		$("#result").append("<font size='5px' color='red'>Not Match</font><br>");
+		$("#result").append("<font size='5px' color='red'>Go back to typing school!!</font>");
+	}else if(pass.length<8){
+		$("#result").text("");
+		$("#result").append("<font size='5px' color='red'>Too Short</font><br>");
+		$("#result").append("<font size='5px' color='red'>Can't you remember a long password?</font>");
+	}else if(!pass.match(/[0-9]/) || !pass.match(/[a-zA-Z]/) || pass.match(/[\s,]/)){
+		$("#result").text("");
+		$("#result").append("<font size='5px' color='red'>I'm not happy with your password!!</font><br>");
+		$("#result").append("<font size='5px' color='red'>It doesn't meet the password policy. Read the Tips above first.</font>");
+	}else{
+		$("#result").text("");
+		var post = {"password": pass};
+		var url = "/cgi-bin/ChangeYourOwn.cgi";
+		sendReceiveJSON("POST",url,post,receive,"result");
+	}
+}
+
+function receive(data,id){
+	$("#"+id).text("");
+	$("#"+id).append("<font size='5px' color='red'>"+data['result']+"</font>")
+	$("#password").val("");
+	$("#confirm").val("");
+}
+</script>
+<body>
+<p><b>LDAP Password Change</b></p>
+<table>
+	<tr>
+		<td>
+			New Password:
+		</td>
+		<td>
+			<input type="password" id="password"/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Confirm :
+		</td>
+		<td>
+ 			<input type="password" id="confirm" />
+		</td>
+	</tr>
+</table>
+<input type="submit" value="Submit" onClick="send()" />
+<ul><h1>Tips</h1>
+	<li><b>Password Policy</b><br>
+		1. Include at least one alphabet and one number. <br>
+		2. At least 8 characters in length.<br>
+		3. Space( ), comma(,) cannot be used for the password<br>
+	</li>
+</ul>
+<div id="result"></div>
+</body>
+</html>

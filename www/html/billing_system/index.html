@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Billing System</title>
+<link href="/css/ui.tabs.css" rel="stylesheet" type="text/css" />
+<link href="/css/gsmc.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/validator.js"></script>
+<script type="text/javascript" src="/js/ui.core.js"></script>
+<script type="text/javascript" src="/js/ui.tabs.js"></script>
+<script type="text/javascript" src="/js/billing_system/billing_system.js"></script>
+<script type="text/javascript">
+$(function(){ 
+	$('#ui-tab > ul').tabs({ fx: { height: 'toggle', duration: 'normal'  } });
+	var url = '/cgi-bin/billing_system/get_transfer_price.cgi';
+	sendReceiveJSON("GET",url,null,createTabs,null);
+});
+
+</script>
+</head>
+<body>
+<div id="ui-tab">
+	<ul>
+		<li><a href="#transfer_price"><span>Transfer Price</span></a></li>
+		<li><a href="#host_lead"><span>host_lead</span></a></li>
+		<li><a href="#currency"><span>Currency</span></a></li>
+		<li><a href="#invoice"><span>Invoice</span></a></li>
+		<li><a href="#leadinvoice"><span>Lead Region Invoice</span></a></li>
+	</ul>
+	<div id="transfer_price"></div>
+	<div id="host_lead"></div>
+	<div id="currency"></div>
+	<div id="invoice">
+		<table>
+			<tr>
+				<td>Contract ID: <input type='txt' value='' /><button>Get</button></td>
+			</tr>
+				<td><div id='invoicetable'></div></td>
+			</tr>
+		</table>
+	</div>
+	<div id="leadinvoice"></div>
+</div>
+</body>
+</html>

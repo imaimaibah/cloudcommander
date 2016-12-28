@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SOP Menu Config Tool</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="css/style.css" type="text/css" />
+		<script src="script/ajax.js"></script>
+		<script src="script/menu.js"></script>
+		<script src="script/validator/util.js"></script>
+		<script src="script/validator/validator.js"></script>
+		<script>
+			var infoXML;
+			var region;
+			var templateList;
+			var islandList;
+			var releaseLabel = "DEFAULT";
+			
+			//// INIT. ////
+			window.onload=function(){
+				var parameters = getParameters();
+				if(parameters["region"] != null && parameters["region"] != "") $("region").value = parameters["region"];
+				region = $("region").value;
+				region = "vsys-ap";
+				if(region != ""){
+					refresh();
+				}else{
+					$("island_list").innerHTML = "No Data<br />Please select region.";
+					chgBtnSts(false);
+				}
+				adjustHeight($("island_list"));
+			}
+			
+			//// ON RESIZE. ////
+			window.onresize = function(){
+				adjustHeight($("island_list"));
+			}
+			
+			//// GET ISLAND LIST. ////
+			function refresh(){
+				//if(!Validator.submit(document.select_region_form)) return;
+				region = $("region").value;
+				region = "vsys-ap";
+				if(region == ""){
+					alert("Please select Region.");
+					return;
+				}
+				// Get template list.
+				//var url = "http://" + region + ":7902/vsys/services/Menu/getTemplate?userId=vsysadmin&time=" + (new Date().getTime());
+				var url = "/cgi-bin/getMenuTemplate.cgi?userId=vsysadmin&time=" + (new Date().getTime());
+				try{
+					this.infoXML = sendReceiveXML("GET", url, null);
+				}catch(e){
+					alert(e);
+				}
+				var response = this.infoXML.childNodes[0];
+				var status = response.childNodes[0];
+				if(status.nodeValue != "SUCCESS"){
+					alert("The error occurred. [" + status.nodeValue + "]");
+					return;
+				}
+				var templates = XPathList(response,"//result/templates/template", "-");
+				templateList = new Array();
+				var idx = 0;
+				templateList[idx++] = releaseLabel;
+				for(var i = 0; i < templates.snapshotLength; i++){
+					var templateElem = templates.snapshotItem(i);
+					var templateId = XPathContent(templateElem,"id","");
+					if(!isDefault(templateId)) templateList[idx++] = templateId;
+				}
+				// Get island list.
+				//url = "http://" + region + ":7902/vsys/services/Menu/get?userId=vsysadmin&time=" + (new Date().getTime());
+				url = "/cgi-bin/getIslandList.cgi?userId=vsysadmin&time=" + (new Date().getTime());
+				try{
+					this.infoXML = sendReceiveXML("GET", url, null);
+				}catch(e){
+					alert(e);
+				}
+				response = this.infoXML.childNodes[0];
+				status = response.childNodes[0];
+				if(status.nodeValue != "SUCCESS"){
+					alert("The error occurred. [" + status.nodeValue + "]");
+					return;
+				}
+				var res = '';
+				var islands = XPathList(response,"//result/islands/island", "-");
+				res += '<table class = "main_table">';
+				res += '	<tr>';
+				res += '		<th class="org_col">Island-ID</th>';
+				res += '		<th class="id_col">Template-ID</th>';
+				res += '		<th class="name_col">Template-Name</th>';
+				res += '	</tr>';
+				islandList = new Array();
+				if(islands.snapshotLength == 0){
+					res += '	<tr>';
+					res += '		<td id = "islandId_0" class="left">&nbsp;</td>';
+					res += '		<td class="nopadding">&nbsp;</td>';
+					res += '		<td id = "templateName_0" class="left">&nbsp;</td>';
+					res += '	</tr>';
+					chgBtnSts(false);
+				}else{
+					for(var idx = 0; idx < islands.snapshotLength; idx++){
+						var islandElem = islands.snapshotItem(idx);
+						var islandId = XPathContent(islandElem,"id","");
+						var templateId = XPathContent(islandElem,"templateId","");
+						var templateName = XPathContent(islandElem,"templateName","");
+						islandList[islandId] = templateId;
+						res += '	<tr id = "islandId_' + idx + '_row">';
+						res += '		<td id = "islandId_' + idx + '" class="left">' + islandId + '</td>';
+						res += '		<td class="nopadding">';
+						res += '<select class = "island_list_select" id="' + islandId + '" onChange = "onChange(this, \'islandId_' + idx + '_row\');">';
+						for(var j = 0; j < templateList.length; j++){
+							if(templateList[j] == templateId){
+								res += '<option value="' + templateList[j] + '" selected = "selected">' + templateList[j] + '</option>';
+							}else{
+								res += '<option value="' + templateList[j] + '">' + templateList[j] + '</option>';
+							}
+						}
+						res += '</select>';
+						res += '		</td>';
+						res += '		<td id = "templateName_' + idx + '" class="left">' + escapeHTML(templateName) + '</td>';
+						res += '	</tr>';
+						chgBtnSts(true);
+					}
+				}
+				res += '</table>';
+				$("island_list").innerHTML = res;
+				// adjust height.
+				adjustHeight($("island_list"));
+			}
+			
+			//// UPDATE SETTING. ////
+			function updateSetting(){
+				if(!Validator.submit(document.select_region_form)) return;
+				region = $("region").value;
+				if(region == ""){
+					alert("Please select Region.");
+					return;
+				}
+				if(!confirm("Are you sure you want to set?")) return;
+				var msg = "";
+				var selectList = document.island_list_form.getElementsByTagName("select");
+				for(var idx = 0; idx < selectList.length; idx++){
+					var islandId = selectList[idx].id;
+					var selIdx = selectList[idx].selectedIndex;
+					var newTemplateId = selectList[idx].options[selIdx].value;
+					var oldTemplateId = islandList[islandId];
+					if(newTemplateId != oldTemplateId){
+						// Only the list changed is updated.
+						var url;
+						if(releaseLabel == newTemplateId){
+							// Detach
+							//url = "http://" + region + ":7902/vsys/services/Menu/detach";
+							url = "/cgi-bin/detachMenu.cgi";
+						}else{
+							// Attach
+							//url = "http://" + region + ":7902/vsys/services/Menu/attach";
+							url = "/cgi-bin/attachMenu.cgi";
+						}
+						try{
+							this.infoXML = sendReceiveXMLbyXML("POST", url, getRequestAttachXml("vsysadmin", newTemplateId, new Array(islandId)));
+						}catch(e){
+							alert(e);
+						}
+						var response = this.infoXML.childNodes[0];
+						var status = response.childNodes[0];
+						if(status.nodeValue == "SUCCESS"){
+							msg += "[Island-ID:" + islandId + "] Processing was successful.\n";
+						}else{
+							msg += "[Island-ID:" + islandId + "] The error occurred. [" + status.nodeValue + "]";
+						}
+					}
+				}
+				msg += "\nProcessing was done.";
+				alert(msg);
+				refresh();
+			}
+			
+			//// CHANGE PAGE ////
+			function change(){
+				region = $("region").value;
+				location.href="./index.html?region=" + region;
+			}
+			
+			//// CHANGE BUTTONS STATUS ////
+			function chgBtnSts(flg){
+				document.island_list_form.update.disabled = !flg;
+			}
+			
+			//// ON LIST CHANGE. ////
+			function onChange(obj, id){
+				var color = "#F9FDAE";
+				if(islandList[obj.id] == obj.options[obj.selectedIndex].value)
+					color = "";
+				$(id).style.background = color;
+				obj.style.background = color;
+			}
+		</script>
+	</head>
+	<body>
+		<div id="container">
+			<div id="screen">
+				<!-- header -->
+				<div id = "header"><h1>SOP Menu Config Tool</h1></div>
+				<!-- main -->
+				<div id="main_content">
+					<table class="title_bar">
+						<tr>
+							<td class = "label_short">
+<!--
+								Region &gt;
+-->
+							</td>
+							<td>
+								<form name = "select_region_form" style = "display: inline;">
+									<select id = "region" onblur = "Validator.check(this)" hidden>
+										<option value="Global" selected>Global</option>
+										<option value="172.16.1.34">Tatebayashi</option>
+										<option value="172.16.1.17">Tatebayashi-W</option>
+										<option value="10.115.222.24">Fjqs</option>
+										<option value="localhost">Local</option>
+									</select>
+								</form>
+								<input type="button" name="refresh" value="Refresh" onclick="javascript:refresh();" />
+							</td>
+						</tr>
+					</table>
+					<ul class = "tab clear">
+						<li class = "passive"><a href = "javascript:change()" class = "blue">Template List</a></li>
+						<li class = "active green">Attach/Detach</li>
+					</ul>
+					<form name="island_list_form">
+						<div class = "tab_block">
+							<div class = "scrollable">
+								<div id="island_list"></div>
+							</div>
+							<table class = "button_bar">
+								<tr>
+									<td class = "right">
+										<input type="button" name="update" value="Update" onclick="javascript:updateSetting();" />
+									</td>
+								</tr>
+							</table>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

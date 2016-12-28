@@ -1,0 +1,59 @@
+<!DOCTYPE html5>
+<html>
+<head>
+<title>SOP search function</title>
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script>
+
+
+window.onload = function(){
+	var	url = "/cgi-bin/florent/user-mgmt-list.cgi";
+	sendReceiveJSON("GET",url,null,Display,"userinfo");
+}
+
+function Display(data,id){
+	if(data.result == "Auth failed"){
+		alert("Auth failed");
+		return;
+	}
+  var bc = 0;
+	var txt = "";
+	txt += "<table border=1>";
+  txt += "<tr bgcolor='grey'>";
+  txt += "<td>User ID</td><td>Contract ID</td><td>Mail Address</td><td>Emergency Mail Address</td><td>Family Name</td><td>First Name</td><td>Family Name (Kana)</td><td>First Name (Kana)</td><td>Emergency Telephone Number</td>";
+  txt += "</tr>";
+	for(var i in data){
+    if(isEven(bc)){
+      txt += "<tr bgcolor='#FAEBD7'>"
+    }else{
+		  txt += "<tr>"
+    }
+	  bc++;
+		txt += "<td>"+i+"</td>"
+		for(var l in data[i]){
+			txt += "<td>"+data[i][l]+"</td>"
+		}
+		txt += "</tr>"
+	}
+	txt +="</table>"
+	$("#"+id).html(txt);
+}
+
+
+</script>
+</head>
+<body align="center">
+  <table>
+  	<tr>
+	  	<td><b>To search a user contact information by contract ID</b></td>
+  	</tr>
+  	<tr>
+	  	<td height='50px'>Contract ID : </td><td><input type="text" id="contractID" size='30'></td><td><input type="button" value="search" onClick="javascript:contractIDSearch();"></td>
+  	</tr>
+  </table>
+
+	<div id="userinfo"></div>
+</body>
+</html>
+

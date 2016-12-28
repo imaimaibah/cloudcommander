@@ -1,0 +1,29 @@
+/* ------------------------------
+	Input Form
+------------------------------ */
+.input_form{
+	padding-left:10px;
+}
+/* ------------------------------
+	Input Text
+------------------------------ */
+.input_txt_id{
+	width: 300px;
+}
+.input_txt_nm{
+	width: 300px;
+}
+.input_txt_cpu{
+	width: 100px;
+}
+.input_txt_dsk{
+	width: 100px;
+}
+/* ------------------------------
+	Select
+------------------------------ */
+select.island_list_select{
+	width: 100%;
+	height: 100%;
+	border: solid 0px;
+}

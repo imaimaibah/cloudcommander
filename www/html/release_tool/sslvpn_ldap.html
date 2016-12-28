@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SSL-VPN Account creation/initilization</title>
+<!-- ui tabs.js -->
+<link href="/css/ui.tabs.css" rel="stylesheet" type="text/css" />
+<link href="/css/gsmc.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/validator.js"></script>
+<script type="text/javascript" src="/js/ui.core.js"></script>
+<script type="text/javascript" src="/js/ui.tabs.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('#ui-tab > ul').tabs({ fx: { height: 'toggle', duration: 'normal'  } });
+	var url = '/cgi-bin/getVPNUserList.cgi';
+	sendReceiveJSON("GET",url,null,showUserList,"ui-tab #fragment-2");
+	add();
+	$("#fragment-1 #button").append("<button onClick='add();'>Add</button>");
+	$("#fragment-1 #button").append("<button onClick='create();'>Create</button>");
+});
+
+function add(){
+	$("#fragment-1 #txt").append("<input type='text' onblur='Validator.check(this,\"!mail\")' size='40' /><br>");
+}
+
+function showUserList(data,id){
+	var txt = "<select id='userList' size='30' multiple>";
+	for(var i in data['userList']){
+		txt += "<option value='"+data['userList'][i]+"'>" + data['userList'][i] + "</option>";
+	}
+	txt += "</select>";
+	$("#"+id+" #select").html(txt);
+	$("#"+id+" #button").append("<button onClick='reset();'>Reset</button>");
+	$("#"+id+" #button").append("<button onClick='deleteUser();'>Delete</button>");
+	
+}
+
+function create(){
+	var children = $('#ui-tab #fragment-1 input');
+	var json = "{\"userList\":[";
+	var valid = 'true';
+	var flag = 0;
+
+	for(var i=0;i<children.length;i++){
+		if(children[i].value == ""){
+			next;
+		}else if(!children[i].value.match(/@.+\.fujitsu\.com$/)){
+			Validator.check(children[i],"!mail");
+			valid = 'false';
+		}else{
+			json += '"'+children[i].value+'",';
+			flag++;
+		}
+	}
+
+	json = json.substring(0,json.length-1);
+	json += ']}';
+
+	var url = "/cgi-bin/createSSLAccount.cgi";
+	if(valid == "true" && flag>0){
+		sendReceiveJSON("POST",url,json,result,"ui-tab #fragment-1 #invalidUser");
+	}
+	
+}
+
+function reset(){
+	var children = $('#ui-tab #fragment-2 option:selected');
+	var json = "{\"userList\":[";
+	var flag = 0;
+	for(var i=0;i<children.length;i++){
+		json += '"'+children[i].value+'",';
+		flat++;
+	}
+	json = json.substring(0,json.length-1);
+	json += ']}';
+
+	var url = "/cgi-bin/resetSSLAccount.cgi"
+	if(flag>0){
+		sendReceiveJSON("POST",url,json,result,"ui-tab #fragment-2");
+	}
+}
+
+function result(data,id){
+	alert(data['result']);
+	if(data['invalid'][0] != ""){
+		var txt = "<pre><b><font color='red'>Invalid Mail address</font></b>";
+		for(var i in data['invalid']){
+			txt += "<p>"+data['invalid'][i]+"</p>";
+		}
+		txt += "</pre>";
+		$("#"+id).html(txt);
+	}
+	sendReceiveJSON("GET",url,null,showUserList,"ui-tab #fragment-2");
+}
+
+function deleteUser(){
+	var children = $('#ui-tab #fragment-2 option:selected');
+	var json = "{\"userList\":[";
+	var flag = 0;
+
+	for(var i=0;i<children.length;i++){
+		json += '"'+children[i].value+'",';
+		flat++;
+	}
+
+	json = json.substring(0,json.length-1);
+	json += ']}';
+
+	var url = "/cgi-bin/deleteSSLAccount.cgi"
+	if(flag>0){
+		sendReceiveJSON("POST",url,json,result,"ui-tab #fragment-2");
+	}
+}
+
+</script>
+</head>
+<body>
+<div id="ui-tab">
+	<ul>
+		<li><a href="#fragment-1"><span>Create</span></a></li>
+		<li><a href="#fragment-2"><span>Reset</span></a></li>
+	</ul>
+	<div id="fragment-1">
+		<div id="txt"></div>
+		<div id="button"></div>
+		<div id='invalidUser'></div>
+	</div>
+	<div id="fragment-2">
+		<div id='select'></div>
+		<div id='button'></div>
+	</div>
+</div>
+</body>
+</html>

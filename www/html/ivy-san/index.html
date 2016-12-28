@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Region Management</title>
+<link href="/css/ui.tabs.css" rel="stylesheet" type="text/css" />
+<link href="/css/gsmc.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/validator.js"></script>
+<script type="text/javascript" src="/js/ui.core.js"></script>
+<script type="text/javascript" src="/js/ui.tabs.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('#ui-tab > ul').tabs({ fx: { height: 'toggle', duration: 'normal'  } });
+	var url = "/cgi-bin/ivy-san/getHostRegion.cgi";
+	sendReceiveJSON("GET",url,null,showRegion,"Region")
+});
+
+function showRegion(data,id){
+	var txt = "Search for ContractIDs based on ";
+	txt += "<select id='host_lead'>";
+	txt += "	<option value='host' selected>Host</option>";
+	txt += "	<option value='lead'>Lead</option>";
+	txt += "</select>";
+	txt += " Region.<br>Region Code : ";
+	txt += "<select id='region'>";
+	for(var i in data){
+		txt += "<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+	}
+	txt += "</select>";
+	txt += "<button onClick='getInfo();'>Submit</button>";
+	$("#"+id).html(txt);
+}
+
+function getInfo(){
+	var val = $("#Region #region option:selected").val();
+	var url = "/cgi-bin/ivy-san/getInfo.cgi?code="+val;
+	sendReceiveJSON("GET",url,null,showInfo,"Info");
+}
+
+function showInfo(data,id){
+	var txt = "<table border=1 id='info'>";
+	txt += "<tr>"
+	for(var i in data[0]){
+		txt += "<td>"
+		txt += data[0][i];
+		txt += "</td>"
+	}
+	txt += "</tr>"
+	
+	for(var i=1;i<data.length;i++){
+		txt += "<tr>";
+		for(var l in data[i]){
+			txt += "<td>";
+			if(l==3){
+				txt += SelectLead(data[i][l]);
+			}else if(l==4){
+				if(data[i][l] == "1"){
+					txt += "Canceled";
+				}else{
+					txt += "Active";
+				}
+			}else if(l==5){
+				txt += ChangeChargeable(data[i][l])
+			}else{
+				txt += data[i][l];
+			}
+			txt += "</td>";
+		}
+		txt += "</tr>";
+	}
+	txt += "</table>";
+	txt += "<button onClick='Change()'>Change</button>";
+	
+	$("#"+id).html(txt);
+}
+
+function SelectLead(lead){
+	var txt = "";
+	var regions = new Array;
+	regions = ['JP01','AU01','SG01','US01','GB01','DE01','JP02'];
+	txt += "<select>";
+	for(var i in regions){
+		if(regions[i] == lead){
+			txt += "	<option value='"+regions[i]+"' selected>"+regions[i]+"</option>";
+		}else{
+			txt += "	<option value='"+regions[i]+"'>"+regions[i]+"</option>";
+		}
+	}
+	txt += "</select>";
+
+
+return txt;
+}
+
+function ChangeChargeable(opt){
+	var txt = "";
+	var answer = "";
+	if(opt == "1"){
+		answer = "<option selected>Charge</option>";
+		answer += "<option>FoC</option>";
+		answer += "<option>MID</option>";
+	}else if(opt=="0"){
+		answer = "<option>Charge</option>";
+		answer += "<option selected>FoC</option>";
+		answer += "<option>MID</option>";
+	}else if(opt=="2"){
+		answer = "<option>Charge</option>";
+		answer += "<option>FoC</option>";
+		answer += "<option selected>MID</option>";
+	}
+	txt += "<select>";
+	txt += answer;
+	txt += "</select>";
+
+return txt;
+}
+
+function Change(){
+	var new_data = new Object;
+	new_data.data = [];
+	var table = document.getElementById('info');
+	var tr = table.getElementsByTagName('tr')
+	for(var i = 0;i<tr.length;i++){
+		var td = tr[i].getElementsByTagName('td');
+		new_data.data[i] = [];	
+		for(var l=0;l<td.length;l++){
+			if(td[l].childNodes[0].nodeValue == null){
+				new_data.data[i].push(td[l].childNodes[0].value);
+			}else{
+				new_data.data[i].push(td[l].childNodes[0].nodeValue);
+			}
+		}
+	}
+
+	var val = $("#Region #region option:selected").val();
+	var url = "/cgi-bin/ivy-san/rewrite.cgi?code="+val;
+	sendReceiveJSON("POST",url,JSON.stringify(new_data),getInfo,null);
+
+}
+
+</script>
+<body>
+<table><tr><td>
+<div id="ui-tab">
+	<ul>
+		<li><a href="#fragment-1"><span>Host/Lead</span></a></li>
+	</ul>
+	<div id="Region">
+	</div>
+	<div id="Info">
+	</div>
+</div>
+</body>
+</html>

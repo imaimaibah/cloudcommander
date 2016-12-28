@@ -1,0 +1,44 @@
+/* ------------------------------
+	Base
+------------------------------ */
+body{
+	height: 100%;
+	font-size:11pt;
+	margin: 0;
+	padding: 0;
+
+}
+#container {
+	height: 100%;
+}
+#screen {
+	width: 95%;
+	height: 100%;
+	margin: 0 auto;
+	text-align: left;
+}
+#header{
+	vertical-align: middle;
+	height:50px;
+	margin: 0;
+	margin-top:5px;
+	padding-left:20px;
+	background: #97A8C2;
+	border: 1px #97A8C2 solid;
+}
+#main_content {
+	height: 100%;
+}
+.scrollable{
+	overflow: auto;
+}
+
+/* ------------------------------
+	H
+------------------------------ */
+h1{
+	font-size:22px;
+	color:#ffffff;
+	font-weight: bold;
+	text-shadow: #111111 1px 1px 1px, 2px 2px;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html5>
+<html>
+<head>
+<title>SOP search function</title>
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script>
+
+window.onload = function(){
+	var	url = "/cgi-bin/DNS/getGIP.cgi";
+	sendReceiveTXT("GET",url,null,showDisplay,"gip");
+}
+
+function showDisplay(data,id){
+	if(data == "Auth failed"){
+		alert(data);
+		return;
+	}
+	var j = data.split(/\n/);
+	//$("#gip").html(data);
+	var txt = "";
+	var sss = 0;
+	txt += "<table border=2>";
+	for(var i in j){
+		j[i]=j[i].replace(/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})/,"<b>$1</b>")
+		if(isEven(sss)){
+			txt += "<tr bgcolor='#66CCFF'><td colspan=2>"+j[i]+"</td></tr>";
+		}else{
+			txt += "<tr><td colspan=2>"+j[i]+"</td></tr>";
+		}
+		sss++;
+	}
+	txt += "</table>";
+	$("#gip").html(txt);
+	
+}
+</script>
+</head>
+<body align="center">
+<font size="+1"><b>List of returned global IP address (Recent 20 records)</b></font></br>
+<u><i>Date, Time, Returned global IP address</i></u></br></br>
+<table align="center">
+<td><font face="Arial"><div id="gip"></div></font></td>
+</table>
+</body>
+</html>

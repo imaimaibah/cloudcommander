@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>SOP trend</title>
+		<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+		<script type="text/javascript" src="scripts/query.js"></script>
+		<script type="text/javascript" src="/js/main.js"></script>
+		<script type="text/javascript" src="/js/trend.js"></script>
+		<script type="text/javascript" src="/js/jkl-calendar.js"></script>
+		<script src="scripts/highcharts.js"></script>
+		<script type="text/javascript">
+
+var cal2 = new JKL.Calendar("caldiv2","formid","start_date");
+cal2.setStyle( "frame_color", "#3333CC" );
+var cal3 = new JKL.Calendar("caldiv3","formid","last_date");
+cal3.setStyle( "frame_color", "#CC3333" );
+
+window.onload = initiate;
+
+function initiate(){
+	entiretrend();
+}
+
+function entiretrend(){
+	var start = $("#start_date").val().replace(/\//g,"");
+	var end = $("#last_date").val().replace(/\//g,"");
+	if(start > end){
+		alert("Invalid date requested");
+		return;
+	}
+	var _div = document.getElementById("hour");
+	var hour = _div.options[_div.selectedIndex].value;
+	var url = "/cgi-bin/trend/entire.cgi?start="+start+"&end="+end+"&hour="+hour;
+	sendReceiveJSON("GET",url,null,setsessionStorage,"trend");
+
+}
+
+
+		</script>
+	</head>
+<body>
+<table>
+	<tr>
+	<form id='formid'>
+    <td valign='top' height='170px'>Start<br>
+    <input type="text" id="start_date" name="start_date" onClick="cal3.hide(); cal2.write();" 
+        onChange="cal2.getFormValue(); cal2.hide();"><br><div id="caldiv2"></div></td>
+		<td valign='top'><br> - </td>
+    <td valign='top'>End<br>
+    <input type="text" id="last_date" name="last_date" onClick="cal2.hide(); cal3.write();" 
+        onChange="cal3.getFormValue(); cal3.hide();"><br><div id="caldiv3"></div></td>
+		<td valign='top'>Hour<br>
+		<select SIZE=1 id="hour">
+			<option>00
+			<option>01
+			<option>02
+			<option>03
+			<option>04
+			<option>05
+			<option>06
+			<option>07
+			<option>08
+			<option>09
+			<option>10
+			<option>11
+			<option>12
+			<option>13
+			<option>14
+			<option selected>15
+			<option>16
+			<option>17
+			<option>18
+			<option>19
+			<option>20
+			<option>20
+			<option>21
+			<option>22
+			<option>23
+		</select>
+		<td valign='top'><br><input type="button" onClick="entiretrend();" value="Show" /></td>
+	</form>
+	</tr>
+</table>
+<table width="100%" border=1>
+	<tr>
+		<td width="5%" id="lserverTrend">
+		Economy Equivalent<input type="checkbox" id="economy" onClick='update(this);' />
+		Graph type<br>
+		<select id="graphtype">
+			<option value="column">Column</option>
+			<option value="percent">Column(percent)</option>
+			<option value="line">Line</option>
+		</select>
+		</td>
+		<td><div id="lserver"></div></td>
+	</tr>
+	<tr>
+		<td width="5%" id="vmtypeTrend">
+		Graph type<br>
+		<select id="graphtype">
+			<option value="column">Column</option>
+			<option value="percent">Column(percent)</option>
+			<option value="line">Line</option>
+		</select>
+		</td>
+		<td><div id="vmtype"></div></td>
+	</tr>
+	<tr>
+		<td id="vdiskTrend">
+		Graph type<br>
+		<select id="graphtype">
+			<option value="column">Column</option>
+			<option value="percent">Column(percent)</option>
+			<option value="line">Line</option>
+		</select>
+		</td>
+		<td><div id="vdisk"></div></td>
+	</tr>
+	<tr>
+		<td id="osTrend">
+		Graph type<br>
+		<select id="graphtype">
+			<option value="column">Column</option>
+			<option value="percent">Column(percent)</option>
+			<option value="line">Line</option>
+		</select>
+		</td>
+		<td><div id="os"></div></td>
+	</tr>
+	<tr>
+		<td id="middleTrend">
+		Graph type<br>
+		<select id="graphtype">
+			<option value="column">Column</option>
+			<option value="percent">Column(percent)</option>
+			<option value="line">Line</option>
+		</select>
+		</td>
+		<td><div id="middle"></div></td>
+	</tr>
+</table>
+</body>
+</html>

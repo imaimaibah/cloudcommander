@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SSL-VPN Account creation/initilization</title>
+<link href="/css/ui.tabs.css" rel="stylesheet" type="text/css" />
+<link href="/css/gsmc.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/validator.js"></script>
+<script type="text/javascript" src="/js/ui.core.js"></script>
+<script type="text/javascript" src="/js/ui.tabs.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('#ui-tab > ul').tabs({ fx: { height: 'toggle', duration: 'normal'  } });
+	var url = '/cgi-bin/getVPNUserList.cgi';
+	sendReceiveJSON("GET",url,null,setsessionStorage,"userList");
+	add();
+	$("#fragment-1 #button").append("<button onClick='add();'>Add Text Box</button>");
+	$("#fragment-1 #button").append("<button onClick='create();'>Create Account</button>");
+	url = '/cgi-bin/UserList.cgi';
+	sendReceiveJSON("GET",url,null,setsessionStorage,"user");
+	url = '/cgi-bin/GroupList.cgi';
+	sendReceiveJSON("GET",url,null,setsessionStorage,"group");
+});
+
+function add(){
+	var txt = "<tr><td><form>";
+	txt += "<input type='text' onblur='Validator.check(this,\"!mail\");' size='40' />";
+	txt += "<input type='checkbox' value='gsd' onClick='disableCheckbox(this);'>GSD</input>";
+	txt += "<input type='checkbox' value='2nd' onClick='disableCheckbox(this);'>2nd Line</input>";
+	txt += "<input type='checkbox' value='rsdm' onClick='disableCheckbox(this);'>Regional SDM</input>";
+	txt += "<input type='checkbox' value='jpsdm' onClick='disableCheckbox(this);'>JP SDM</input>";
+	txt += "<input type='checkbox' value='fsas' onClick='disableCheckbox(this);'>JP FSAS</input>";
+	txt += "<input type='checkbox' value='infra' onClick='disableCheckbox(this);'>JP INFRA</input>";
+	txt += "<input type='checkbox' value='tatebayashiCE' onClick='disableCheckbox(this);'>Tatebayashi CE</input>";
+	txt += "</form></td></tr>";
+	$("#fragment-1 #txt #table").append(txt);
+}
+
+function setsessionStorage(data,id){
+	if(data['result'] == "Auth failed"){
+		alert(data['result']);
+		return;
+	}
+	sessionStorage.setItem(id,JSON.stringify(data));
+	if(id == "user"){
+		UserList("ui-tab #fragment-4");
+	}else if(id == "group"){
+		GroupList("ui-tab #fragment-5");
+	}else if(id == "userList"){
+		showUserList("ui-tab #fragment-2","ui-tab #fragment-3");
+	}
+}
+
+function disableCheckbox(obj){
+	var checkedElement = obj.value;
+	var sisterObj = obj.parentNode.childNodes;
+	for(var i=1;i<sisterObj.length;i+=2){
+		if(checkedElement != sisterObj[i].value){
+			sisterObj[i].checked = false;
+		}
+	}
+}
+
+function showUserList(id,id2){
+	var data = JSON.parse(sessionStorage.getItem("userList"));
+	if(data['result'] == 'Auth failed'){
+		alert(data['result']);
+		return;
+	}
+
+	var txt = "<select id='userList' size='30' multiple>";
+	for(var i in data['userList']){
+		txt += "<option value='"+data['userList'][i][1]+"'>" + data['userList'][i][1] + "</option>";
+	}
+
+	txt += "</select>";
+	$("#"+id+" #select").html(txt);
+	$("#"+id+" #button").html("<button onClick='reset();'>Reset</button>");
+	$("#"+id2+" #select").html(txt);
+	$("#"+id2+" #button").html("<button onClick='deleteUser();'>Delete</button>");
+	
+}
+
+function create(){
+	var json={};
+	$('form',"#fragment-1 #txt #table").each(function(){;
+		var user = $(this).children().val();
+		var group = $(this).children(":checked").val();
+		if(json[group] == undefined){
+			json[group] = new Array;
+		}
+		if(user != "" && user != undefined){
+			json[group].push(user);
+		}
+	});
+	var valid = 'true';
+	var flag = 0;
+
+	for(var i in json){
+		for(var l=0;l<json[i].length;l++){
+			if(json[i][l] == "" || json[i][l] == undefined){
+				continue;
+			}else if(!json[i][l].match(/^\S+@.+\.fujitsu\.com$/)){
+				Validator.check(json[i][l],"!mail");
+				valid = 'false';
+			}else if(_Exists(json[i][l])){
+				alert(json[i][l] + " exists.");
+				return;
+			}else{
+				flag++;
+			}
+			if(i == undefined || i == "undefined"){
+				alert("Group not specified for "+json[i][l]+".");
+				return;
+			}
+		}
+	}
+	json = JSON.stringify(json);
+
+	var url = "/cgi-bin/createSSLAccount.cgi";
+	if(valid == "true" && flag>0){
+		sendReceiveJSON("POST",url,json,result,"ui-tab #fragment-1 #invalidUser");
+	}
+	
+}
+
+function _Exists(user){
+	var json = JSON.parse(sessionStorage.getItem("userList"));
+	for(var l in json["userList"]){
+		if(user == json["userList"][l][1]){
+			return 1;
+		}
+	}
+	
+return 0;
+}
+
+function reset(){
+	var children = $('#ui-tab #fragment-2 option:selected');
+	var json = "{\"userList\":[";
+	var flag = 0;
+	for(var i=0;i<children.length;i++){
+		json += '"'+children[i].value+'",';
+		flag++;
+	}
+	json = json.substring(0,json.length-1);
+	json += ']}';
+
+	var url = "/cgi-bin/resetSSLAccount.cgi"
+	if(flag>0){
+		//alert(json);
+		sendReceiveJSON("POST",url,json,result,null);
+	}
+}
+
+function result(data,id){
+	alert(data['result']);
+	if(data['result'] == "Auth failed"){
+		return;
+	}
+	//if(data['invalid'][0] != ""){
+	//	var txt = "<pre><b><font color='red'>Invalid Mail address</font></b>";
+	//	for(var i in data['invalid']){
+	///		txt += "<p>"+data['invalid'][i]+"</p>";
+		//}
+	//	txt += "</pre>";
+	//	$("#"+id).html(txt);
+	//}	
+	var url = '/cgi-bin/getVPNUserList.cgi';
+	sendReceiveJSON("GET",url,null,setsessionStorage,"userList");
+	$("#fragment-1 #txt #table").html("");
+	add();
+	$("#fragment-1 #button").html("<button onClick='add();'>Add Text Box</button><button onClick='create();'>Create Account</button>");
+	url = '/cgi-bin/UserList.cgi';
+	sendReceiveJSON("GET",url,null,setsessionStorage,"user");
+	url = '/cgi-bin/GroupList.cgi';
+	sendReceiveJSON("GET",url,null,setsessionStorage,"group");
+}
+
+function deleteUser(){
+	var children = $('#ui-tab #fragment-3 option:selected');
+	var json = "{\"userList\":[";
+	var flag = 0;
+
+	for(var i=0;i<children.length;i++){
+		json += '"'+children[i].value+'",';
+		flag++;
+	}
+
+	json = json.substring(0,json.length-1);
+	json += ']}';
+
+	var url = "/cgi-bin/deleteSSLAccount.cgi";
+	if(flag>0){
+		sendReceiveJSON("POST",url,json,result,null);
+	}else{
+		alert('empty');
+	}
+}
+
+function UserList(id){
+	var bc = 0;
+	var data = JSON.parse(sessionStorage.getItem("user"));
+	//if(data['result'] == 'Auth Failed'){
+	//	alert(data['result']);
+	//	return;
+	//}
+	var bgcolor="";
+	var txt = "<table border=1>";
+	txt += "	<tr bgcolor='grey'>";
+	txt += "		<td width='300px'>User Name</td><td width='300px'>Email Address</td><td>Group</td><td>SSL-VPN password period</td>";
+	txt += "	</tr>";
+	for(var i in data){
+	if(data[i][3] < 7){
+		bgcolor = 'red';
+	}else{
+		bgcolor = "";
+	}
+		if(isEven(bc)){
+			txt += " 	<tr>";
+		}else{
+			txt += "	<tr bgcolor='#FAEBD7'>";
+		}
+		if(data[i][3] == undefined){
+			txt += "		<td>"+data[i][0]+"</td><td>"+data[i][1]+"</td><td>"+data[i][2]+"</td><td>Could not be found</td>";
+		}else{
+			txt += "		<td>"+data[i][0]+"</td><td>"+data[i][1]+"</td><td>"+data[i][2]+"</td><td bgcolor='"+bgcolor+"'>"+data[i][3]+" days</td>";
+		}
+		txt += "	</tr>";
+		bc++;
+	}
+	txt += "</table>";
+	$("#"+id+" #user").html(txt);
+}
+
+function GroupList(id){
+	var data = JSON.parse(sessionStorage.getItem("group"));
+//	if(data['result'] == 'Auth Failed'){
+//		alert(data['result']);
+//		return;
+//	}
+	var txt = "<table border=1>";
+	txt += "	<tr bgcolor='grey'>";
+	txt += "		<td width='300px'>Group Name</td>";
+	txt += "	</tr>";
+	for(var i in data){
+		txt += " 	<tr>";
+		txt += "		<td><a href='javascript:void(0)' onClick='getGroup(this)'>"+data[i]+"</a></td>";
+		txt += "	</tr>";
+	}
+	txt += "</table>";
+	$("#"+id+" #group").html(txt);
+}
+
+function getUser(obj){
+	var user = $(obj).text();
+	var url = "/cgi-bin/showUser.cgi?user="+user;
+	sendReceiveJSON("GET",url,null,showUser,null);
+}
+
+function showUser(data){
+}
+
+function getGroup(obj){
+	var bc = 0;
+	var group = $(obj).text();
+	var data = JSON.parse(sessionStorage.getItem("user"));
+	var txt = ""
+	txt += "<table border=1>"
+	txt += "	<tr bgcolor='grey'><td>User Name</td><td>Email Address</td><td>SSL-VPN password period</tr>";
+
+	for(var i in data){
+		if(group == data[i][2]){
+			if(isEven(bc)){
+				txt += "	<tr bgcolor='#FAEBD7'><td>"+data[i][0]+"</td><td>"+data[i][1]+"</td><td>"+data[i][3]+" days</td></tr>";
+			}else{
+				txt += "	<tr><td>"+data[i][0]+"</td><td>"+data[i][1]+"</td><td>"+data[i][3]+" days</td></tr>";
+			}
+			bc++;
+		}
+	}
+	$("#fragment-5 #group_main").html(txt);
+	//sendReceiveJSON("GET",url,null,showGroup,null);
+}
+
+function showGroup(data){
+	var txt = "<table border=1>"
+	txt += "	<tr>"
+	txt += "		<td>Ldap Group</td><td>"+data['ldap']['group']+"</td>";
+	txt += "	</tr>"
+	txt += "	<tr>"
+	txt += "		<td>Ldap Secret</td><td>"+data['ldap']['confidential']+"</td>";
+	txt += "	</tr>";
+	txt += "	<tr>";
+	txt += "		<td>Privilege</td>";
+	txt += "		<td>";
+	txt += "			<table>";
+	for(var i in data['privilege']){
+		txt += "				<tr>";
+		txt += "					<td>"+data['privilege'][i]+"</td>";
+		txt += "				</tr>";
+	}
+	txt += "			</table>";
+	txt += "		</td>";
+	txt += "	</tr>";
+	txt += "</table>";
+
+	$("#fragment-5 #group_main").html(txt);
+}
+</script>
+</head>
+<body>
+<table><tr><td>
+<div id="ui-tab">
+	<ul>
+		<li><a href="#fragment-1"><span>Create</span></a></li>
+		<li><a href="#fragment-2"><span>Reset</span></a></li>
+		<li><a href="#fragment-3"><span>Delete</span></a></li>
+		<li><a href="#fragment-4"><span>User List</span></a></li>
+		<li><a href="#fragment-5"><span>Group List</span></a></li>
+	</ul>
+	<div id="fragment-1">
+		<div id="txt"><table id='table'></table></div>
+		<div id="button"></div>
+		<div id='invalidUser'></div>
+	</div>
+	<div id="fragment-2">
+		<div id='select'></div>
+		<div id='button'></div>
+	</div>
+	<div id="fragment-3">
+		<div id='select'></div>
+		<div id='button'></div>
+	</div>
+	<div id="fragment-4">
+		<div id="user"></div>
+		<div id="user_main"></div>
+	</div>
+	<div id="fragment-5">
+		<div id="group"></div>
+		<div id="group_main"></div>
+	</div>
+</div>
+</td></tr>
+<tr><td>
+<ul><h1>Tips</h1>
+	<li><b>Create</b><br>
+		Create LDAP and SSL-VPN account.<br>
+		Enter user's email address. The address must be fujitsu email address. Otherwise, it will reject it.<br>
+		LDAP password will be sent to the users.<br>
+	</li>
+	<br>
+	<li><b>Reset</b><br>
+		Reset LDAP and SSL-VPN password.<br>
+		Select user accounts you want to reset passwords.<br>
+		Multiple selection is available.(with Ctrl)<br>
+	</li>
+	<br>
+	<li><b>Delete</b><br>
+		Delete LDAP and SSL-VPN account.<br>
+		Select user accounts you want to delete.<br>
+		Multiple selection is available.(with Ctrl)<br>
+	</li>
+	<br>
+	<li><b>User List</b><br>
+		Display the user list.<br>
+		Red cell means SSL-VPN password expiry date is less than 7 days.<br>
+	</li>
+	<br>
+	<li><b>Group List</b><br>
+		Display the group list.<br>
+		Clicking the group will show the members.<br>
+	</li>
+</ul>
+</td></tr></table>
+</body>
+</html>

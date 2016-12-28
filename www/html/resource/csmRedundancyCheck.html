@@ -1,0 +1,20 @@
+<!DOCTYPE html5>
+<html>
+<head>
+<title>SOP search function</title>
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script><!--
+
+window.onload = function(){
+	var url = '/cgi-bin/csmRedundancyCheck.cgi';
+	var data = $.parseJSON(sendReceiveJSON("GET",url,null);
+
+}
+--></script>
+<body>
+<input type='checkbox' name='err' checked>Error
+<input type='checkbox' name='det' checked>det
+<input type='checkbox' name='nml' checked>Normal
+</body>
+</html>

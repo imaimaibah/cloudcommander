@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>SOP trend</title>
+		<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+		<script type="text/javascript" src="scripts/query.js"></script>
+		<script type="text/javascript" src="/js/main.js"></script>
+		<script type="text/javascript" src="/js/jkl-calendar.js"></script>
+		<script src="scripts/highcharts.js"></script>
+		<script type="text/javascript">
+
+var cal2 = new JKL.Calendar("caldiv2","formid","start_date");
+cal2.setStyle( "frame_color", "#3333CC" );
+var cal3 = new JKL.Calendar("caldiv3","formid","last_date");
+cal3.setStyle( "frame_color", "#CC3333" );
+
+window.onload = initiate;
+
+function initiate(){
+	entiretrend();
+}
+
+function entiretrend(){
+	var start = $("#start_date").val().replace(/\//g,"");
+	var end = $("#last_date").val().replace(/\//g,"");
+	if(start > end){
+		alert("Invalid date requested");
+		return;
+	}
+	var _div = document.getElementById("hour");
+	var hour = _div.options[_div.selectedIndex].value;
+	var url = "/cgi-bin/trend/entire.cgi?start="+start+"&end="+end+"&hour="+hour;
+	sendReceiveJSON("GET",url,null,setsessionStorage,"trend");
+
+}
+
+function setsessionStorage(data,id){
+	if(data['result'] == "Auth failed"){
+		alert(data['result']);
+		return;
+	}
+	sessionStorage.setItem(id,JSON.stringify(data));
+	var data = JSON.parse(sessionStorage.getItem("trend"));
+	$("#lserverTrend #graphtype").change(function(){
+		if($("#economy").attr('checked') == "checked"){
+			drawLine(data.eco_lserver,"lserver",$("#lserverTrend #graphtype").val());
+		}else{
+			drawLine(data.lserver,"lserver",$("#lserverTrend #graphtype").val());
+		}
+	}).change();
+	$("#osTrend #graphtype").change(function(){
+			drawLine(data.os,"os",$("#osTrend #graphtype").val());
+	}).change();
+	$("#vdiskTrend #graphtype").change(function(){
+		drawLine(data.vdisk,"vdisk",$("#vdiskTrend #graphtype").val());
+	}).change();
+	$("#vmtypeTrend #graphtype").change(function(){
+		drawLine(data.vmtype,"vmtype",$("#vmtypeTrend #graphtype").val());
+	}).change();
+	$("#middleTrend #graphtype").change(function(){
+		drawLine(data.middle,"middle",$("#middleTrend #graphtype").val());
+	}).change();
+}
+
+function update(obj){
+	var oya = obj.parentNode;
+	var shinseki = oya.parentNode.childNodes;
+	var itoko = shinseki[3].childNodes
+	var shurui = itoko[0].id;
+	var id = oya.id;
+	var data = JSON.parse(sessionStorage.getItem("trend"));
+	if(obj.checked == true){
+		drawLine(data.eco_lserver,shurui,$("#"+id+" #graphtype").val());
+	}else{
+		drawLine(data.lserver,shurui,$("#"+id+" #graphtype").val());
+	}
+}
+
+
+function drawLine(data,id,type){
+	var category = data.category;
+	var xText = data.xText;
+	var yText = data.yText;
+	var MAIN = data.series;
+	if(type == "percent"){
+		type = "column";
+		option = "percent";
+	}else{
+		option = "normal";
+	}
+        var main = new Highcharts.Chart({
+            chart: {
+                renderTo: id,
+                type: type,
+				backgroundColor: '#FFFFFF'
+            },
+            title: {
+                text: xText
+            },
+            xAxis: {
+							categories: category
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: yText
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 0,
+                y: 0,
+                floating: false,
+                shadow: true
+            },
+            tooltip: {
+                formatter: function() {
+												if(option == "normal"){
+                    			return ''+
+                        	this.x +': '+ this.y +' '+data.unit;
+												}else{
+                    			return ''+
+													this.series.name +': '+ this.y +' ('+ Math.round(this.percentage) +'%)';
+												}
+                }
+            },
+						plotOptions: {
+								column: {
+										stacking: option,
+										pointPadding: -0.2,
+										borderWidth: 0,
+										grouping: false,
+										dataLabels: {
+											enabled: true,
+											formatter: function (){
+												if(option == "normal"){
+                    			return ''+
+													this.y;
+												}else{
+                    			return ''+
+													this.y +' ('+ Math.round(this.percentage) +'%)';
+												}
+											},
+											color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    }
+                }
+						},
+						series: MAIN
+				});
+}
+		</script>
+	</head>
+<body>
+<table>
+	<tr>
+	<form id='formid'>
+    <td valign='top' height='170px'>Start<br>
+    <input type="text" id="start_date" name="start_date" onClick="cal3.hide(); cal2.write();" 
+        onChange="cal2.getFormValue(); cal2.hide();"><br><div id="caldiv2"></div></td>
+		<td valign='top'><br> - </td>
+    <td valign='top'>End<br>
+    <input type="text" id="last_date" name="last_date" onClick="cal2.hide(); cal3.write();" 
+        onChange="cal3.getFormValue(); cal3.hide();"><br><div id="caldiv3"></div></td>
+		<td valign='top'>Hour<br>
+		<select SIZE=1 id="hour">
+			<option>00
+			<option>01
+			<option>02
+			<option>03
+			<option>04
+			<option>05
+			<option>06
+			<option>07
+			<option>08
+			<option>09
+			<option>10
+			<option>11
+			<option>12
+			<option>13
+			<option>14
+			<option selected>15
+			<option>16
+			<option>17
+			<option>18
+			<option>19
+			<option>20
+			<option>20
+			<option>21
+			<option>22
+			<option>23
+		</select>
+		<td valign='top'><br><input type="button" onClick="entiretrend();" value="Show" /></td>
+	</form>
+	</tr>
+</table>
+<table width="100%" border=1>
+	<tr>
+		<td width="5%" id="lserverTrend">
+		Economy Equivalent<input type="checkbox" id="economy" onClick='update(this);' />
+		Graph type<br>
+		<select id="graphtype">
+			<option value="column">Column</option>
+			<option value="percent">Column(percent)</option>
+			<option value="line">Line</option>
+		</select>
+		</td>
+		<td><div id="lserver"></div></td>
+	</tr>
+	<tr>
+		<td width="5%" id="vmtypeTrend">
+		Graph type<br>
+		<select id="graphtype">
+			<option value="column">Column</option>
+			<option value="percent">Column(percent)</option>
+			<option value="line">Line</option>
+		</select>
+		</td>
+		<td><div id="vmtype"></div></td>
+	</tr>
+	<tr>
+		<td id="vdiskTrend">
+		Graph type<br>
+		<select id="graphtype">
+			<option value="column">Column</option>
+			<option value="percent">Column(percent)</option>
+			<option value="line">Line</option>
+		</select>
+		</td>
+		<td><div id="vdisk"></div></td>
+	</tr>
+	<tr>
+		<td id="osTrend">
+		Graph type<br>
+		<select id="graphtype">
+			<option value="column">Column</option>
+			<option value="percent">Column(percent)</option>
+			<option value="line">Line</option>
+		</select>
+		</td>
+		<td><div id="os"></div></td>
+	</tr>
+	<tr>
+		<td id="middleTrend">
+		Graph type<br>
+		<select id="graphtype">
+			<option value="column">Column</option>
+			<option value="percent">Column(percent)</option>
+			<option value="line">Line</option>
+		</select>
+		</td>
+		<td><div id="middle"></div></td>
+	</tr>
+</table>
+</body>
+</html>

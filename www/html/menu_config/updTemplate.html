@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SOP Menu Config Tool</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="css/style.css" type="text/css" />
+		<script src="script/ajax.js"></script>
+		<script src="script/menu.js"></script>
+		<script src="script/validator/util.js"></script>
+		<script src="script/validator/validator.js"></script>
+		<script>
+			var region;
+			var mode;
+			var mode_label;
+			
+			//// INIT. ////
+			window.onload=function(){
+				var parameters = getParameters();
+				region = parameters["region"];
+				if(parameters["templateName"] != null) $("frm_templateName").value = decodeURIComponent(parameters["templateName"]);
+				mode = parameters["mode"];
+				if(mode == "create"){
+					mode_label = "Create";
+				}else if(mode == "update"){
+					mode_label = "Update";
+					$("frm_templateId").value = parameters["templateId"];
+					$("frm_templateId").readOnly = true;
+					$("frm_templateId").style.border = "0";
+				}
+				var url = "/cgi-bin/getMenuTemplate.cgi?userId=vsysadmin&templateId=" + parameters["templateId"] + "&time=" + (new Date().getTime());
+				var menu = sendReceive("GET", url, null);
+				menu = menu.replace(/<Response><status>SUCCESS<\/status><result>/,"");
+				menu = menu.replace(/<\/menu><\/template><\/templates><\/result><\/Response>/,"");
+				menu = menu.replace(/<templates><template><id>.+<\/id><name>.+<\/name><menu>/,"");
+				menu = menu.replace(/&lt;/g,"<");
+				menu = menu.replace(/&gt;/g,">");
+			
+				//if(parameters["menu"] != null) $("frm_menu").value = decodeURIComponent(parameters["menu"]);
+				if(menu != null) $("frm_menu").value = menu;
+				$("input_label").innerHTML = mode_label + " Template.";
+				$("btn_update").value = mode_label;
+			}
+			
+			//// UPDATE TEMPLATE. ////
+			function updateTemplate(){
+				if(!Validator.submit(document.inputForm)) return;
+				var templateId = $("frm_templateId").value;
+				var templateName = escapeHTML($("frm_templateName").value);
+				var menu = $("frm_menu").value;
+				// If template is new creation. duplication check is performed.
+				if(mode == "create"){
+					//var url = "http://" + region + ":7902/vsys/services/Menu/getTemplate?userId=vsysadmin&templateId=" + templateId + "&time=" + (new Date().getTime());
+					var url = "/cgi-bin/getMenuTemplate.cgi?userId=vsysadmin&templateId=" + templateId + "&time=" + (new Date().getTime());
+					try{
+						this.infoXML = sendReceiveXML("GET", url, null);
+					}catch(e){
+						alert(e);
+					}
+					var response = this.infoXML.childNodes[0];
+					status = response.childNodes[0];
+					if(status.nodeValue != "SUCCESS"){
+						alert(status.nodeValue);
+						alert("The error occurred. [" + status.nodeValue + "]");
+						return;
+					}
+					var template = XPathList(response,"//result/templates/template","-");
+					if(0 < template.snapshotLength){
+						alert("The error occurred. Duplicate Template-ID[" + templateId + "]");
+						return;
+					}
+				}
+				if(!window.confirm("Are you sure you want to " + mode + " the template?")) return;
+				//var url = "http://" + region + ":7902/vsys/services/Menu/setTemplate";
+				var url = "/cgi-bin/setMenuTemplate.cgi";
+				try{
+					this.infoXML = sendReceiveXMLbyXML("POST", url, getRequestSetTemplateXml("vsysadmin", templateId, templateName, menu));
+				}catch(e){
+					alert(e);
+				}
+				var response = this.infoXML.childNodes[0];
+				var status = response.childNodes[0];
+				if(status == undefined){
+					alert("The error occurred. Please check request data.");
+				}
+				if(status.nodeValue == "SUCCESS"){
+					alert("Processing was successful.");
+				}else if(status.nodeValue == 'TEMPLATE_NAME_ALREADY_EXISTS'){
+					alert("The error occurred. Duplicate Template-Name[" + templateName + "]");
+					return;
+				}else{
+					var errormsg = this.infoXML.childNodes[1].textContent;
+					alert("The error occurred. [" + status.nodeValue + "]\n" + 
+					errormsg);
+					return;
+				}
+				goBack();
+			}
+			
+			//// GO BACK. ////
+			function goBack(){
+				history.go(-1);
+			}
+			
+			//// HELP. ////
+			function help(){
+				alert('[format]\n\n' + 
+					'<menu>\n' + 
+					'   <templates>\n' + 
+					'      <id>[Template-ID]</id>\n' + 
+					'      ...\n' + 
+					'   </templates>\n' + 
+					'   <images>\n' + 
+					'      <id>[Image-ID]</id>\n' + 
+					'      ...\n' + 
+					'   </images>\n' + 
+					'   <serverTypes>\n' + 
+					'      <type>[Server-Type]</type>\n' + 
+					'      ...\n' + 
+					'   </serverTypes>\n' + 
+					'</menu>\n');
+			}
+		</script>
+	</head>
+	<body>
+		<div id="container">
+			<div id="screen">
+				<!-- header -->
+				<div id = "header"><h1>SOP Menu Config Tool</h1></div>
+				<!-- main -->
+				<div id="main_content">
+					<table class="title_bar">
+						<tr>
+							<td>
+								<b><div id = "input_label" /></b>
+							</td>
+						</tr>
+					</table>
+					<div class="input_form">
+						<form name = "inputForm">
+						<table>
+							<tr>
+								<td>Template-ID</td>
+								<td><input id = "frm_templateId" class = "input_txt_id" type = "text" width = "100%" value = "" maxlength = "32" onblur="Validator.check(this, 'count1-32 templateId')" /></td>
+							</tr>
+							<tr>
+								<td>Template-Name</td>
+								<td><input id = "frm_templateName" class = "input_txt_nm" type = "text" value = "" maxlength = "256" onblur="Validator.check(this, 'utf8byte1-256')" /></td>
+							</tr>
+							<tr>
+								<td>Menu <a href="javascript:help()" style="text-decoration: none;">?</a></td>
+								<td><textarea id = "frm_menu" rows="24" cols="100" onblur = "Validator.check(this)"></textarea></td>
+							</tr>
+						</table>
+						<table class = "button_bar">
+							<tr>
+								<td>
+									<input id = "btn_update" type = "button" value = "Update" onclick = "javascript:updateTemplate();" />
+									<input id = "btn_cancel" type = "button" value = "Cancel" onclick = "javascript:goBack()" />
+								</td>
+							</tr>
+						</table>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

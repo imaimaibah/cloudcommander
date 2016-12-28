@@ -1,0 +1,45 @@
+#!/usr/bin/expect
+log_user 1
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+spawn /bin/bash --norc
+expect -re $prompt
+send -- "date --date 'yesterday' +'%Y-%m-%d'\n"
+expect -re ".*?\r\n"
+expect -re "(.*?)\r\n" {
+	set yesterday $expect_out(1,string)
+} 
+expect -re $prompt
+send -- "date +'%Y-%m-%d'\n"
+expect -re ".*?\r\n"
+expect -re "(.*?)\r\n" {
+	set today $expect_out(1,string)
+}
+expect -re $prompt
+send -- "exit\n"
+expect eof
+
+mgtcb_login "api-base"
+
+array set file ""
+
+set i 0
+send -- "ls --sort=time --full-time /usr/share/tomcat5/logs/ABSTrace.log*|awk \$6==\"$today\" || \$6==\"$yesterday\" '{print \$6\",\"\$9}'\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re "(.*?),(.*?)\r\n" {
+send_user $yesterday
+		array set file "$i $expect_out(2,string)"
+		incr i 1
+	} -re $prompt {
+		break
+	}
+}
+send -- "exit\n"
+expect eof
+for { set l 0 } { $l<$i } { incr l 1 } {
+	send_user $file($l);
+}
+	

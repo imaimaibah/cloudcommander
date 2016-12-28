@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Account Management</title>
+<link href="/css/ui.tabs.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/validator.js"></script>
+<script type="text/javascript" src="/js/ui.core.js"></script>
+<script type="text/javascript" src="/js/ui.tabs.js"></script>
+<script>
+$(function(){
+	$('#ui-tab > ul').tabs({ fx: { height: 'toggle', duration: 'normal'  } });
+	var url = '/cgi-bin/UserList.cgi';
+	sendReceiveJSON("GET",url,null,setsessionStorage,"user");
+	url = '/cgi-bin/GroupList.cgi';
+	sendReceiveJSON("GET",url,null,setsessionStorage,"group");
+});
+
+function setsessionStorage(data,id){
+	sessionStorage.setItem(id,JSON.stringify(data));
+	if(id == "user"){
+		UserList("ui-tab #fragment-4");
+	}else if(id == "group"){
+		GroupList("ui-tab #fragment-5");
+	}
+}
+
+function UserList(id){
+	var bc = 0;
+	var data = JSON.parse(sessionStorage.getItem("user"));
+	if(data['result'] == 'Auth Failed'){
+		alert(data['result']);
+		return;
+	}
+	var txt = "<table border=1>";
+	txt += "	<tr bgcolor='grey'>";
+	txt += "		<td width='300px'>User Name</td><td width='300px'>Email Address</td><td>Group</td><td>SSL-VPN password period</td>";
+	txt += "	</tr>";
+	for(var i in data){
+		if(isEven(bc)){
+			txt += " 	<tr>";
+		}else{
+			txt += "	<tr bgcolor='#FAEBD7'>";
+		}
+		if(data[i][3] == undefined){
+			txt += "		<td>"+data[i][0]+"</td><td>"+data[i][1]+"</td><td>"+data[i][2]+"</td><td>Could not be found</td>";
+		}else{
+			txt += "		<td>"+data[i][0]+"</td><td>"+data[i][1]+"</td><td>"+data[i][2]+"</td><td>"+data[i][3]+" days</td>";
+		}
+		txt += "	</tr>";
+		bc++;
+	}
+	txt += "</table>";
+	$("#"+id+" #user").html(txt);
+}
+
+function GroupList(id){
+	var data = JSON.parse(sessionStorage.getItem("group"));
+	if(data['result'] == 'Auth Failed'){
+		alert(data['result']);
+		return;
+	}
+	var txt = "<table border=1>";
+	txt += "	<tr bgcolor='grey'>";
+	txt += "		<td width='300px'>Group Name</td>";
+	txt += "	</tr>";
+	for(var i in data){
+		txt += " 	<tr>";
+		txt += "		<td><a href='javascript:void(0)' onClick='getGroup(this)'>"+data[i]+"</a></td>";
+		txt += "	</tr>";
+	}
+	txt += "</table>";
+	$("#"+id+" #group").html(txt);
+}
+
+function getUser(obj){
+	var user = $(obj).text();
+	var url = "/cgi-bin/showUser.cgi?user="+user;
+	sendReceiveJSON("GET",url,null,showUser,null);
+}
+
+function showUser(data){
+}
+
+function getGroup(obj){
+	var bc = 0;
+	var group = $(obj).text();
+	var data = JSON.parse(sessionStorage.getItem("user"));
+	var txt = ""
+	txt += "<table border=1>"
+	txt += "	<tr bgcolor='grey'><td>User Name</td><td>Email Address</td><td>SSL-VPN password period</tr>";
+	for(var i in data){
+		if(group == data[i][2]){
+			if(isEven(bc)){
+				txt += "	<tr bgcolor='#FAEBD7'><td>"+data[i][0]+"</td><td>"+data[i][1]+"</td><td>"+data[i][3]+" days</td></tr>";
+			}else{
+				txt += "	<tr><td>"+data[i][0]+"</td><td>"+data[i][1]+"</td><td>"+data[i][3]+" days</td></tr>";
+			}
+			bc++;
+		}
+	}
+	$("#fragment-5 #group_main").html(txt);
+	//sendReceiveJSON("GET",url,null,showGroup,null);
+}
+
+function showGroup(data){
+	var txt = "<table border=1>"
+	txt += "	<tr>"
+	txt += "		<td>Ldap Group</td><td>"+data['ldap']['group']+"</td>";
+	txt += "	</tr>"
+	txt += "	<tr>"
+	txt += "		<td>Ldap Secret</td><td>"+data['ldap']['confidential']+"</td>";
+	txt += "	</tr>";
+	txt += "	<tr>";
+	txt += "		<td>Privilege</td>";
+	txt += "		<td>";
+	txt += "			<table>";
+	for(var i in data['privilege']){
+		txt += "				<tr>";
+		txt += "					<td>"+data['privilege'][i]+"</td>";
+		txt += "				</tr>";
+	}
+	txt += "			</table>";
+	txt += "		</td>";
+	txt += "	</tr>";
+	txt += "</table>";
+
+	$("#fragment-5 #group_main").html(txt);
+}
+
+</script>
+</head>
+<body>
+<div id="ui-tab">
+	<ul>
+		<li><a href="#fragment-4"><span>User</span></a></li>
+		<li><a href="#fragment-5"><span>Group</span></a></li>
+	</ul>
+	<div id="fragment-4">
+		<div id="user"></div>
+		<div id="user_main"></div>
+	</div>
+	<div id="fragment-5">
+		<div id="group"></div>
+		<div id="group_main"></div>
+	</div>
+</div>
+</body>
+</html>

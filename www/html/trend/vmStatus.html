@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>VM Status</title>
+		<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+		<script type="text/javascript" src="scripts/query.js"></script>
+		<script type="text/javascript" src="/js/main.js"></script>
+		<script type="text/javascript" src="/js/trend.js"></script>
+		<script src="scripts/highcharts.js"></script>
+		<script type="text/javascript">
+
+window.onload = initiate;
+
+function initiate(){
+	var graphType = window.location.search.substr(1).split("&");
+	var option = graphType[0].split("=");
+	var obj = document.getElementsByTagName("option");
+	for( var i in obj){
+		if(obj[i].value == option[1]){
+			obj[i].selected = true;
+		}
+	}
+	//var url = "/cgi-bin/trend/economy_convert.cgi?start="+start_date+"&end="+end_date;
+	var url = "/cgi-bin/trend/economy_convert.cgi"
+	sendReceiveJSON("GET",url,null,setsessionStorage,"vmStatus_eco");
+	var url = "/cgi-bin/trend/vmStatus.cgi"
+	sendReceiveJSON("GET",url,null,setsessionStorage,"vmStatus");
+	var url = "/cgi-bin/trend/lserverByType.cgi"
+	sendReceiveJSON("GET",url,null,setsessionStorage,"ByType");
+}
+
+function setsessionStorage(data,id){
+	if(data['result'] == "Auth failed"){
+		alert(data['result']);
+		return;
+	}
+	sessionStorage.setItem(id,JSON.stringify(data));
+	var data = JSON.parse(sessionStorage.getItem(id));
+	$("#l"+id+" #graphtype").change(function(){
+			drawLine(data.lserver,id,$("#l"+id+" #graphtype").val());
+	}).change();
+
+}
+
+function Download(obj){
+	var data = sessionStorage.getItem(obj);
+	//var type=obj.childNodes[3].value;
+	//var format=obj.childNodes[10].value;
+	var url = "/cgi-bin/trend/create_data.cgi"
+	sendReceiveTXT("POST",url,data,alert,null);
+}
+		</script>
+	</head>
+<body>
+<table width="100%" border=1>
+	<tr>
+		<td width="5%" id="lvmStatus_eco">
+		Graph type<br>
+		<select id="graphtype">
+			<option value="column">Column</option>
+			<option value="percent">Column(percent)</option>
+			<option value="line">Line</option>
+		</select>
+		<br><br>
+		<button  onClick='Download(this.parentNode.parentNode.childNodes[3].childNodes[0].id);'>Download</button>
+		<select id="format">
+			<option value="pdf">PDF</option>
+			<option value="csv">CSV</option>
+			<option value="jpg">JPEG</option>
+		</select>
+		</td>
+		<td><div id="vmStatus_eco"></div></td>
+	</tr>
+	<tr>
+		<td width="5%" id="lvmStatus">
+		Graph type<br>
+		<select id="graphtype">
+			<option value="column">Column</option>
+			<option value="percent">Column(percent)</option>
+			<option value="line">Line</option>
+		</select>
+		<br><br>
+		<button  onClick='Download(this.parentNode.childNodes[3].value,this.parentNode.childNodes[10].value);'>Download</button>
+		<select id="format">
+			<option value="pdf">PDF</option>
+			<option value="csv">CSV</option>
+			<option value="jpg">JPEG</option>
+		</select>
+		</td>
+		<td><div id="vmStatus"></div></td>
+	</tr>
+	<tr>
+		<td width="5%" id="lByType">
+		Graph type<br>
+		<select id="graphtype">
+			<option value="column">Column</option>
+			<option value="percent">Column(percent)</option>
+			<option value="line">Line</option>
+		</select>
+		<br><br>
+		<button  onClick='Download(this.parentNode.childNodes[3].value,this.parentNode.childNodes[10].value);'>Download</button>
+		<select id="format">
+			<option value="pdf">PDF</option>
+			<option value="csv">CSV</option>
+			<option value="jpg">JPEG</option>
+		</select>
+		</td>
+		<td><div id="ByType"></div></td>
+	</tr>
+</table>
+</body>
+</html>
+

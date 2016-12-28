@@ -1,0 +1,314 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+
+		<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+		<script type="text/javascript">
+var FANZ = {};
+var FAPL = {};
+var FS = {};
+var FNA = {};
+var CEMEA = {};
+
+var category = [
+						'5/21',
+						'5/28',
+						'6/4',
+						'6/11',
+						'6/18',
+						'6/25'
+           ];
+
+FANZ.contract = [31, 33, 33, 32, 33, 33];
+FAPL.contract = [38, 38, 39, 40, 40, 40];
+FS.contract = [55, 56, 56, 56, 57, 58];
+FNA.contract = [38, 38, 38, 38, 38, 38];
+CEMEA.contract = [89, 88, 89, 89, 89, 89];
+FANZ.vsys = [87, 91, 91, 92, 96, 96];
+FAPL.vsys = [100, 102, 102, 105, 107, 107];
+FS.vsys = [180, 177, 179, 183, 183, 200];
+FNA.vsys = [126, 128, 128, 128, 131, 132];
+CEMEA.vsys = [227, 224, 228, 235, 239, 246];
+FANZ.disk = [91.7, 91.2, 91.0, 90.8, 90.4, 90.4];
+FAPL.disk = [89.6, 89.1, 89.0, 88.8, 88.5, 88.5];
+FS.disk = [83.6, 82.40, 82.9, 82.6, 82.8, 81.3];
+FNA.disk = [81.7, 80.7, 80.7, 80.7, 80.9, 80.5];
+CEMEA.disk = [73.1, 73.4, 73.0, 72.6, 72.3, 71.3];
+FANZ.deployable = [683, 730, 708, 784, 847, 856];
+FAPL.deployable = [624, 633, 651, 672, 690, 690];
+FS.deployable = [1310, 1333, 1342, 1419, 1393, 1501];
+FNA.deployable = [1030, 1039, 1040, 1040, 1067, 1069];
+CEMEA.deployable = [1641, 1624, 1679, 1697, 1717, 1849];
+					
+$(function () {
+    var cnt;
+		var vsys;
+    $(document).ready(function() {
+        cnt = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container',
+                type: 'column'
+            },
+            title: {
+                text: 'Number of Contract IDs'
+            },
+            xAxis: {
+							categories: category
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of Contracts'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: false,
+                shadow: true
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y +' IDs';
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+                series: [{
+                name: 'FANZ',
+                data: FANZ.contract
+    
+            }, {
+                name: 'FAPL',
+                data: FAPL.contract
+    
+            }, {
+                name: 'FS',
+                data: FS.contract
+    
+            }, {
+                name: 'FNA',
+                data:  FNA.contract
+            }, {
+                name: 'CEMEA&I',
+                data: CEMEA.contract
+    
+            }]
+        });
+
+        vsys = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container2',
+                type: 'column'
+            },
+            title: {
+                text: 'Number of VSYS IDs'
+            },
+            xAxis: {
+							categories: category
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of VSYS'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: false,
+                shadow: true
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y +' IDs';
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+                series: [{
+                name: 'FANZ',
+                data: FANZ.vsys
+    
+            }, {
+                name: 'FAPL',
+                data: FAPL.vsys
+    
+            }, {
+                name: 'FS',
+                data: FS.vsys
+    
+            }, {
+                name: 'FNA',
+                data:  FNA.vsys
+            }, {
+                name: 'CEMEA&I',
+                data: CEMEA.vsys
+    
+            }]
+        });
+
+        disk = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container3',
+                type: 'line'
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+							categories: category
+            },
+            yAxis: {
+                min: 60,
+                title: {
+                    text: 'Disk Space (%)'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: false,
+                shadow: true
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y +' %';
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+                series: [{
+                name: 'FANZ',
+                data: FANZ.disk
+    
+            }, {
+                name: 'FAPL',
+                data: FAPL.disk
+    
+            }, {
+                name: 'FS',
+                data: FS.disk
+    
+            }, {
+                name: 'FNA',
+                data:  FNA.disk
+            }, {
+                name: 'CEMEA&I',
+                data: CEMEA.disk
+    
+            }]
+        });
+
+        deployable = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container4',
+                type: 'line'
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+							categories: category
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Disk Space (%)'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                backgroundColor: '#FFFFFF',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: false,
+                shadow: true
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y +' %';
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+                series: [{
+                name: 'FANZ',
+                data: FANZ.deployable
+    
+            }, {
+                name: 'FAPL',
+                data: FAPL.deployable
+    
+            }, {
+                name: 'FS',
+                data: FS.deployable
+    
+            }, {
+                name: 'FNA',
+                data:  FNA.deployable
+            }, {
+                name: 'CEMEA&I',
+                data: CEMEA.deployable
+    
+            }]
+        });
+
+    });
+    
+});
+		</script>
+	</head>
+	<body>
+<script src="/js/highcharts.js"></script>
+<!--<script src="/js/modules/exporting.js"></script>-->
+
+<table width="100%" border=2>
+	<tr>
+		<td width="50%"><div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div></td>
+		<td width="50%"><div id="container2" style="min-width: 400px; height: 400px; margin: 0 auto"></div></td>
+	</tr>
+	<tr>
+		<td width="50%"><div id="container3" style="min-width: 400px; height: 400px; margin: 0 auto"></div></td>
+		<td width="50%"><div id="container4" style="min-width: 400px; height: 400px; margin: 0 auto"></div></td>
+	</tr>
+</table>
+
+	</body>
+</html>

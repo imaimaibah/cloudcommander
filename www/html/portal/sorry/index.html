@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript"><!--
+window.onload = history;
+
+function history(){
+	var url = "/cgi-bin/portal/portalHistory.cgi?page=sorry";
+	sendReceiveJSON("GET",url,null,showHistory,"portalhistory");
+	langSelect();
+}
+
+function langSelect(){
+	var lang = ["ja","en","de"];
+	var txt = "<b>Lang Select:</b> <select id='lang'>";
+	for(var i in lang){
+		txt += "	<option value='"+lang[i]+"'>"+lang[i]+"</option>";
+	}
+	txt += "</select>";
+	$("#langSelect").html(txt);
+
+}
+
+function showHistory(data,id){
+
+}
+
+function showBody(){
+	get("current");
+}
+
+function get(file){
+	var lang = $("#lang :selected");
+	var url = "/cgi-bin/portal/portal_sorry.cgi?file="+file;
+	sendReceiveTXT("GET",url,null,display,"text_field");
+}
+
+--></script>
+<body>
+<table width='80%'>
+	<tr>
+		<td><div id="selection" align='left'></div></td>
+		<td><div id="langSelect" align='left'></div></td>
+	</tr>
+</table>
+<p><textarea id="text_field" cols="500" rows="100"></textarea></p>
+<button type="button" name="submit" value="submit" onClick='send();'>submit</button>
+<div id="preview"></div>
+</body>
+</html>

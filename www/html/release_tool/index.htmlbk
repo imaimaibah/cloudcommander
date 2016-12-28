@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Release tool</title>
+<link href="/css/ui.tabs.css" rel="stylesheet" type="text/css" />
+<link href="/css/gsmc.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/validator.js"></script>
+<script type="text/javascript" src="/js/ui.core.js"></script>
+<script type="text/javascript" src="/js/ui.tabs.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('#ui-tab > ul').tabs({ fx: { height: 'toggle', duration: 'normal'  } });
+	var url = '/cgi-bin/getVPNUserList.cgi';
+	sendReceiveJSON("GET",url,null,setsessionStorage,null);
+	add();
+	$("#fragment-1 #button").append("<button onClick='add();'>Add Text Box</button>");
+	$("#fragment-1 #button").append("<button onClick='create();'>Create Account</button>");
+});
+
+function add(){
+	var txt = "<tr><td><form>";
+	txt += "<input type='text' onblur='Validator.check(this,\"!mail\");' size='40' />";
+	txt += "<input type='checkbox' value='gsd' onClick='disableCheckbox(this);'>GSD</input>";
+	txt += "<input type='checkbox' value='2nd' onClick='disableCheckbox(this);'>2nd Line</input>";
+	txt += "<input type='checkbox' value='rsdm' onClick='disableCheckbox(this);'>Global SDM</input>";
+	txt += "<input type='checkbox' value='jpsdm' onClick='disableCheckbox(this);'>JP SDM</input>";
+	txt += "<input type='checkbox' value='fsas' onClick='disableCheckbox(this);'>JP FSAS</input>";
+	txt += "<input type='checkbox' value='infra' onClick='disableCheckbox(this);'>JP INFRA</input>";
+	txt += "<input type='checkbox' value='tatebayashiCE' onClick='disableCheckbox(this);'>Tatebayashi CE</input>";
+	txt += "</form></td></tr>";
+	$("#fragment-1 #txt #table").append(txt);
+}
+
+function setsessionStorage(data){
+	if(data['result'] == "Auth failed"){
+		alert(data['result']);
+		return;
+	}
+	sessionStorage.setItem("userList",JSON.stringify(data));
+	showUserList("ui-tab #fragment-2","ui-tab #fragment-3");
+}
+
+function disableCheckbox(obj){
+	var checkedElement = obj.value;
+	var sisterObj = obj.parentNode.childNodes;
+	for(var i=1;i<sisterObj.length;i+=2){
+		if(checkedElement != sisterObj[i].value){
+			sisterObj[i].checked = false;
+		}
+	}
+}
+
+function showUserList(id,id2){
+	var data = JSON.parse(sessionStorage.getItem("userList"));
+	if(data['result'] == 'Auth failed'){
+		alert(data['result']);
+		return;
+	}
+
+	var txt = "<select id='userList' size='30' multiple>";
+	for(var i in data['userList']){
+		txt += "<option value='"+data['userList'][i]+"'>" + data['userList'][i] + "</option>";
+	}
+
+	txt += "</select>";
+	$("#"+id+" #select").html(txt);
+	$("#"+id+" #button").html("<button onClick='reset();'>Reset</button>");
+	$("#"+id2+" #select").html(txt);
+	$("#"+id2+" #button").html("<button onClick='deleteUser();'>Delete</button>");
+	
+}
+
+function create(){
+	var json={};
+	$('form',"#fragment-1 #txt #table").each(function(){;
+		var user = $(this).children().val();
+		var group = $(this).children(":checked").val();
+		if(json[group] == undefined){
+			json[group] = new Array;
+		}
+		if(user != "" && user != undefined){
+			json[group].push(user);
+		}
+	});
+	var valid = 'true';
+	var flag = 0;
+
+	for(var i in json){
+		for(var l=0;l<json[i].length;l++){
+			if(json[i][l] == "" || json[i][l] == undefined){
+				continue;
+			}else if(!json[i][l].match(/^\S+@.+\.fujitsu\.com$/)){
+				Validator.check(json[i][l],"!mail");
+				valid = 'false';
+			}else if(_Exists(json[i][l])){
+				alert(json[i][l] + " exists.");
+				return;
+			}else{
+				flag++;
+			}
+			if(i == undefined || i == "undefined"){
+				alert("Group not specified for "+json[i][l]+".");
+				return;
+			}
+		}
+	}
+	json = JSON.stringify(json);
+
+	var url = "/cgi-bin/createSSLAccount.cgi";
+	if(valid == "true" && flag>0){
+		sendReceiveJSON("POST",url,json,result,"ui-tab #fragment-1 #invalidUser");
+	}
+	
+}
+
+function _Exists(user){
+	var json = JSON.parse(sessionStorage.getItem("userList"));
+	for(var l in json["userList"]){
+		if(user == json["userList"][l]){
+			return 1;
+		}
+	}
+	
+return 0;
+}
+
+function reset(){
+	var children = $('#ui-tab #fragment-2 option:selected');
+	var json = "{\"userList\":[";
+	var flag = 0;
+	for(var i=0;i<children.length;i++){
+		json += '"'+children[i].value+'",';
+		flag++;
+	}
+	json = json.substring(0,json.length-1);
+	json += ']}';
+
+	var url = "/cgi-bin/resetSSLAccount.cgi"
+	if(flag>0){
+		alert(json);
+		sendReceiveJSON("POST",url,json,result,null);
+	}
+}
+
+function result(data){
+	if(data['result'] == "Auth failed"){
+		alert(data['result']);
+		return;
+	}
+	//if(data['invalid'][0] != ""){
+	//	var txt = "<pre><b><font color='red'>Invalid Mail address</font></b>";
+	//	for(var i in data['invalid']){
+	///		txt += "<p>"+data['invalid'][i]+"</p>";
+		//}
+	//	txt += "</pre>";
+	//	$("#"+id).html(txt);
+	//}	
+	var url = '/cgi-bin/getVPNUserList.cgi';
+	sendReceiveJSON("GET",url,null,setsessionStorage,null);
+	$("#fragment-1 #txt #table").html("");
+	add();
+	$("#fragment-1 #button").html("<button onClick='add();'>Add Text Box</button><button onClick='create();'>Create Account</button>");
+}
+
+//function deleteUser(){
+//	var children = $('#ui-tab #fragment-3 option:selected');
+//	var json = "{\"userList\":[";
+//	var flag = 0;
+//
+//	for(var i=0;i<children.length;i++){
+//		json += '"'+children[i].value+'",';
+//		flag++;
+//	}
+//
+//	json = json.substring(0,json.length-1);
+//	json += ']}';
+//
+//	var url = "/cgi-bin/deleteSSLAccount.cgi";
+//	if(flag>0){
+//		sendReceiveJSON("POST",url,json,result,null);
+//	}else{
+//		alert('empty');
+//	}
+//}
+
+</script>
+</head>
+<body>
+<div id="ui-tab">
+	<ul>
+		<li><a href="#fragment-1"><span>monitoring control</span></a></li>
+		<li><a href="#fragment-2"><span>sorry page control</span></a></li>
+	</ul>
+	<div id="fragment-1">
+		<div id="txt"><table id='table'></table></div>
+		<div id="button"></div>
+		<div id='invalidUser'></div>
+	</div>
+	<div id="fragment-2">
+		<div id='select'></div>
+		<div id='button'></div>
+	</div>
+</div>
+</body>
+</html>

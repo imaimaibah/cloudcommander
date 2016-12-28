@@ -1,0 +1,97 @@
+<!DOCTYPE html5>
+<html>
+<head>
+<title>TEST</title>
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script>
+
+function get_vrflist(){
+  var contractid = document.getElementById("contractid").value;
+  if(contractid == ""){
+    alert("Enter contract ID in the box.");
+    return;
+  }
+  $("#result").html("<font size='15px' color='red'>Wait.....</font>");
+  var url = "/cgi-bin/network/ASR_status.cgi?contractid="+contractid;
+  sendReceiveJSON("GET",url,null,display_vrflist,"result");
+}
+
+function display_vrflist(list,id){
+  var txt = "<table border=1><tr><td>Contract ID</td><td>VRF</td><td>Interface</td><td>IP-address</td><td>Island</td><td>description</td></tr>";
+  var result = document.getElementById(id);
+  for(var l in list.vrf){
+    if(isEven(l)){
+      txt += "<tr><td>"+list.vrf[l][4]+"</td><td>"+list.vrf[l][2]+"</td><td>"+list.vrf[l][0]+"</td><td>"+list.vrf[l][1]+"</td><td>"+list.vrf[l][5]+"</td><td>"+list.vrf[l][6]+"</td></tr>";
+    }else{
+      txt += "<tr bgcolor='#FAEBD7'><td>"+list.vrf[l][4]+"</td><td>"+list.vrf[l][2]+"</td><td>"+list.vrf[l][0]+"</td><td>"+list.vrf[l][1]+"</td><td>"+list.vrf[l][5]+"</td><td>"+list.vrf[l][6]+"</td></tr>";
+    }
+  }
+  txt += "</table>"
+  txt += "<input type='button' value='Download' onClick='javascript:dl_file();'>";
+  result.innerHTML = txt;
+}
+
+function get_showrun(){
+  var com = document.getElementById("command").value;
+  if(com == ""){
+    alert("Please type 'run'.");
+    return;
+  }
+  $("#result").html("<font size='15px' color='red'>Wait.....</font>");
+  var url = "/cgi-bin/network/ASR_showrun.cgi?com="+com;
+  sendReceiveJSON("GET",url,null,display_showrun,"result");
+}
+
+function display_showrun(list,id){
+  var result = document.getElementById(id);
+  var txt = "<div id='index_area'><div class='index_area_box'><div style='width:600px;height:400px;overflow:auto;border:1px solid #000000;padding:10px;text-align:left;'>";
+  txt += "#show "+list.com+"<br><br>";
+  for (var i in list.showrun){
+    txt += list.showrun[i]+"<br>";
+  }
+  txt += "</div></div></div>";
+  result.innerHTML = txt;
+}
+
+function dl_file(){
+  var file = "ASR.csv";
+        downloader(file);
+}
+
+</script>
+</head>
+<body>
+<table width="100%"><tr><td valign='top' width="100%">
+<table>
+	<tr>
+		<td height='40px'><b>INTRANET-ASR</b></td>
+	</tr>
+	<tr>
+		<td><b>VRF LIST</b></td>
+	</tr>
+	<tr>
+		<td height='40px'>Contract ID : </td><td><input type="text" id="contractid" size='25'></td><td><input type="button" value="create" onClick="javascript:get_vrflist();"></td>
+	</tr>
+	<tr>
+		<td><b>show</b></td>
+	</tr>
+	<tr>
+		<td height='40px'>COMMAND : </td><td><input type="text" value="show" size='3' disabled><input type="text" id="command" size='16'></td><td><input type="button" value="action" onClick="javascript:get_showrun();" ></td>
+	</tr>
+<!--
+	<tr>
+		<td><b>show ip route vrf [VRF NAME]</b></td>
+	</tr>
+	<tr>
+		<td height='40px'>VRF NAME : </td><td><input type="text" id="iproute" size='20'></td><td><input type="button" value="show"></td>
+	</tr>
+-->
+</table>
+<!--
+<h3><font color='red'><b>--RESULT--</b></font></h3>
+-->
+<div id="result"></div>
+</table>
+</body>
+</html>

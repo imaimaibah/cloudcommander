@@ -1,0 +1,91 @@
+/* ------------------------------
+	Base
+------------------------------ */
+td.center{
+	text-align:center;
+}
+td.right{
+	text-align:right;
+}
+td.left{
+	text-align:left;
+}
+
+/* ------------------------------
+	Main Table
+------------------------------ */
+table.main_table{
+	width:100%;
+	border-collapse: collapse;
+}
+table.main_table td, table.main_table th{
+	border: 1px inset #aaaaaa;
+	padding:3px;
+}
+table.main_table td{
+	word-break: break-all;
+}
+table.main_table th{
+	background-color:#dddddd;
+	text-align:center;
+}
+table.main_table th.org_col{
+	width:80px;
+}
+table.main_table th.chk_col{
+	width:30px;
+}
+table.main_table th.id_col{
+	width:270px;
+}
+table.main_table th.name_col{
+	width:400px;
+}
+table.main_table th.cpu_col{
+	width:80px;
+}
+table.main_table th.disk_col{
+	width:80px;
+}
+table.main_table td.nopadding{
+	padding:0px;
+}
+
+/* ------------------------------
+	Title Bar
+------------------------------ */
+table.title_bar {
+	background:#f4f4f4;
+	border-collapse:collapse;
+	border:solid 1px #bbbbbb;
+	text-align:left;
+	color:#444444;
+	width:100%;
+	height:30px;
+	margin:0px auto 30px auto;
+}
+table.title_bar td, table.title_bar th {
+	padding:0 0 0 20px;
+}
+table.title_bar .label_short {
+	width: 100px;
+	background:#e0e0e0;
+}
+
+/* ------------------------------
+	Bottom Bar
+------------------------------ */
+table.button_bar {
+	background:#eeeeee;
+	border-collapse:collapse;
+	border:solid 1px #bbbbbb;
+	text-align:right;
+	width:100%;
+	height: 30px;
+	margin:10px auto 0px auto;
+}
+table.button_bar td, table.button_bar th {
+	text-align:right;
+	color:#444444;
+	padding:3px;
+}

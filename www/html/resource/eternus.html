@@ -1,0 +1,57 @@
+<!DOCTYPE html5>
+<html>
+<head>
+<title>SOP search function</title>
+<link rel="stylesheet" href="/css/gsmc.css" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/eternus.js"></script>
+<script><!--
+
+window.onload = function(){
+	var url = "/cgi-bin/getIsland.cgi";
+	sendReceiveJSON("GET",url,null,IslandList,"island");
+}
+
+function getResources(){
+	$("#select_window").html("");
+	$("#help_window").html("");
+	$("#main_window").html("");
+	$("#events").html("");
+	var _div = document.getElementById("islandList");
+	var island = _div.options[_div.selectedIndex].value;
+	var url = "/cgi-bin/resource/getEternusList.cgi?island="+island;
+	sendReceiveJSON("GET",url,null,displayList,"select_window");
+}
+
+--></script>
+</head>
+<body>
+<table>
+	<tr>
+		<td rowspan='4' valign='top'>
+			<div id="loading"></div>
+			<div id="island"></div>
+			<div id="select_window"></div>
+		</td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<td>
+			<div id="help_window"></div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div id="main_window"></div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div id="events"></div>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

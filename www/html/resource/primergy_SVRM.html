@@ -1,0 +1,66 @@
+<!DOCTYPE html5>
+<!--
+Version 1.0
+-->
+
+<html>
+<head>
+<title>SOP search function</title>
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/primergy.js"></script>
+<script><!--
+
+window.onload = function(){
+	var url = "/cgi-bin/getIsland.cgi";
+	sendReceiveJSON("GET",url,null,IslandList,"island");
+}
+
+function getResources(){
+	var _div = document.getElementById("islandList");
+	var island = _div.options[_div.selectedIndex].value;
+	var url = "/cgi-bin/resource/getServerViewRAID.cgi?island="+island;
+	sendReceiveJSON("GET",url,null,displayList_SVRM,"select_window");
+}
+
+/*
+function displayResult(data,id){
+	$("#SVRM_window").html(txt);
+
+}
+*/
+
+--></script>
+<body>
+<table>
+	<tr>
+		<td valign='top'>
+			<div id="island"></div>
+			<div id="select_window"></div>
+		</td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<td valign='top'>
+			<pre>
+				<div id="main_window"></div>
+			</pre>
+		</td>
+<!--
+		<td valign='top'>
+			<pre>
+				<div id="domU_window"></div>
+			</pre>
+		</td>
+		<td valign='top'>
+			<pre>
+				<div id="SVRM_window"></div>
+			</pre>
+		</td>
+--!>
+	</tr>
+</table>
+<div id="migration_window"></div>
+</body>
+</html>

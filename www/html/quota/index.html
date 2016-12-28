@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SOP Quota Config Tool</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="css/style.css" type="text/css" />
+		<script src="script/ajax.js"></script>
+		<script src="script/quota.js"></script>
+		<script src="script/validator/util.js"></script>
+		<script src="script/validator/validator.js"></script>
+		<script>
+			var infoXML;
+			var region;
+			//// INIT. ////
+			window.onload=function(){
+				var parameters = getParameters();
+				if(parameters["region"] != null && parameters["region"] != "") $("region").value = parameters["region"];
+				region = $("region").value;
+				if(region != ""){
+					refresh();
+				}else{
+					$("template_list").innerHTML = "No Data<br />Please select region.";
+					chgBtnSts(false);
+				}
+				adjustHeight($("template_list"));
+			}
+			
+			//// ON RESIZE. ////
+			window.onresize = function(){
+				adjustHeight($("template_list"));
+			}
+			
+			//// GET TEMPLATE LIST. ////
+			function refresh(){
+				if(!Validator.submit(document.select_region_form)) return;
+				region = $("region").value;
+				if(region == ""){
+					alert("Please select Region.");
+					return;
+				}
+				//var url = "http://" + region + ":7902/vsys/services/Quota/getTemplate?userId=vsysadmin&time=" + (new Date().getTime());
+				var url = "/cgi-bin/getTemplate.cgi?userId=vsysadmin&time="+(new Date().getTime());
+				try{
+					this.infoXML = sendReceiveXML("GET", url, null);
+				}catch(e){
+					alert(e);
+				}
+				var response = this.infoXML.childNodes[0];
+				var status = response.childNodes[0];
+				if(status.nodeValue != "SUCCESS"){
+					alert("The error occurred. [" + status.nodeValue + "]");
+					return;
+				}
+				var res = '';
+				var templates = XPathList(response,"//result/templates/template","-");
+				res += '<table class="main_table">';
+				res += '	<tr>';
+				res += '		<th class="chk_col">&nbsp;</th>';
+				res += '		<th class="id_col">Template-ID</th>';
+				res += '		<th class="name_col">Template-Name</th>';
+				res += '		<th class="cpu_col">CPU-Num<br />[economy]</th>';
+				res += '		<th class="disk_col">Disk-Size<br />[GB]</th>';
+				res += '	</tr>';
+				if(templates.snapshotLength == 0){
+					res += '	<tr>';
+					res += '		<td class="center"><input type="radio" name="item" readOnly = "readOnly" /></td>';
+					res += '		<td id = "templateId_' + idx + '" class="left">&nbsp;</td>';
+					res += '		<td id = "templateName_' + idx + '" class="left">&nbsp;</td>';
+					res += '		<td id = "cpuNum_' + idx + '" class="right">&nbsp;</td>';
+					res += '		<td id = "diskSize_' + idx + '" class="right">&nbsp;</td>';
+					res += '	</tr>';
+					chgBtnSts(false);
+				}else{
+					for(var idx = 0; idx < templates.snapshotLength; idx++){
+						var templateElem = templates.snapshotItem(idx);
+						var templateId = XPathContent(templateElem,"id","");
+						var templateName = XPathContent(templateElem,"name","");
+						var cpuNum = XPathContent(templateElem,"quota/cpuNum","");
+						var diskSize = XPathContent(templateElem,"quota/diskSize","");
+						res += '	<tr>';
+						if(idx == 0){
+							res += '		<td class="center"><input type="radio" name="item" value="' + idx + '" onblur = "Validator.check(this)"/></td>';
+						}else{
+							res += '		<td class="center"><input type="radio" name="item" value="' + idx + '" /></td>';
+						}
+						res += '		<td id = "templateId_' + idx + '" class="left">' + templateId + '</td>';
+						res += '		<td id = "templateName_' + idx + '" class="left">' + escapeHTML(templateName) + '</td>';
+						res += '		<td id = "cpuNum_' + idx + '" class="right">' + cpuNum + '</td>';
+						res += '		<td id = "diskSize_' + idx + '" class="right">' + diskSize + '</td>';
+						res += '	</tr>';
+					}
+					chgBtnSts(true);
+				}
+				res += '</table>';
+				$("template_list").innerHTML = res;
+				// adjust height.
+				adjustHeight($("template_list"));
+			}
+			
+			//// QUOTA SETTING ////
+			function updateQuota(){
+				if(!Validator.submit(document.select_region_form)) return;
+				region = $("region").value;
+				if(region == ""){
+					alert("Please select Region.");
+					return;
+				}
+				if(!Validator.submit(document.template_list_form)) return;
+				var num = getSelTemplateNumber();
+				if(num == null){
+					alert("Please select Template.");
+					return;
+				}
+				var templateId = $("templateId_" + num).innerText;
+				var templateName = encodeURI($("templateName_" + num).innerText);
+				var cpuNum = $("cpuNum_" + num).innerText;
+				var diskSize = $("diskSize_" + num).innerText;
+				if(isDefault(templateId)){
+					alert("Can not attach/detach to Default template.");
+					return;
+				}
+				location.href="./updQuota.html?mode=update&region=" + region + "&templateId=" + templateId + "&templateName=" + templateName + "&cpuNum=" + cpuNum + "&diskSize=" + diskSize;
+			}
+			
+			//// CREATE NEW TEMPLATE ////
+			function createTemplate(){
+				if(!Validator.submit(document.select_region_form)) return;
+				region = $("region").value;
+				if(region == ""){
+					alert("Please select Region.");
+					return;
+				}
+				location.href="./updTemplate.html?mode=create&region=" + region;
+			}
+			
+			//// UPDATE TEMPLATE ////
+			function updateTemplate(){
+				if(!Validator.submit(document.select_region_form)) return;
+				region = $("region").value;
+				if(region == ""){
+					alert("Please select Region.");
+					return;
+				}
+				if(!Validator.submit(document.template_list_form)) return;
+				var num = getSelTemplateNumber();
+				if(num == null){
+					alert("Please select Template.");
+					return;
+				}
+				var templateId = $("templateId_" + num).innerText;
+				var templateName = encodeURI($("templateName_" + num).innerText);
+				var cpuNum = $("cpuNum_" + num).innerText;
+				var diskSize = $("diskSize_" + num).innerText;
+				location.href="./updTemplate.html?mode=update&region=" + region + "&templateId=" + templateId + "&templateName=" + templateName + "&cpuNum=" + cpuNum + "&diskSize=" + diskSize;
+			}
+			
+			//// DELETE TEMPLATE ////
+			function deleteTemplate(){
+				if(!Validator.submit(document.select_region_form)) return;
+				region = $("region").value;
+				if(region == ""){
+					alert("Please select Region.");
+					return;
+				}
+				if(!Validator.submit(document.template_list_form)) return;
+				var num = getSelTemplateNumber();
+				if(num == null){
+					alert("Please select Template.");
+					return;
+				}
+				var templateId = $("templateId_" + num).innerText;
+				if(isDefault(templateId)){
+					alert("Default template can not delete.");
+					return;
+				}
+				if(!window.confirm("Are you sure you want to delete the template?")) return;
+				//var url = "http://" + region + ":7902/vsys/services/Quota/removeTemplate?userId=vsysadmin&templateId=" + templateId;
+				var url = "/cgi-bin/removeTemplate.cgi?userId=vsysadmin&templateId=" + templateId;
+				try{
+					this.infoXML = sendReceiveXML("GET", url, null);
+				}catch(e){
+					alert(e);
+				}
+				var response = this.infoXML.childNodes[0];
+				var status = response.childNodes[0];
+				if(status.nodeValue == "SUCCESS"){
+					alert("Processing was successful.");
+				}else if(status.nodeValue == "TEMPLATE_ALREADY_USED"){
+					alert("Template is used. Please try again after detaching all orgId.");
+				}else{
+					alert("The error occurred. [" + status.nodeValue + "]");
+					return;
+				}
+				refresh();
+			}
+			
+			//// CHANGE PAGE ////
+			function change(){
+				region = $("region").value;
+				location.href="./orgList.html?region=" + region;
+			}
+			
+			//// CHANGE BUTTONS STATUS ////
+			function chgBtnSts(flg){
+				document.template_list_form.update.disabled = !flg;
+				document.template_list_form.attach.disabled = !flg;
+				document.template_list_form.detach.disabled = !flg;
+			}
+			
+			//// GET SEL TEMPLATE NUMBER ////
+			function getSelTemplateNumber(){
+				var num;
+				if(document.template_list_form.item.length){
+					for (var idx = 0; idx < document.template_list_form.item.length; idx++){
+						if(document.template_list_form.item[idx].checked == true)
+						num = document.template_list_form.item[idx].value;
+					}
+				}else{
+					num = document.template_list_form.item.value;
+				}
+				return num;
+			}
+		</script>
+	</head>
+	<body>
+		<div id="container">
+			<div id="screen">
+				<!-- header h50px -->
+				<div id = "header"><h1>SOP Quota Config Tool</h1></div>
+				<!-- main -->
+				<div id="main_content">
+					<!-- label h30px -->
+					<table class="title_bar">
+						<tr>
+							<td class = "label_short">
+<!--
+								Region &gt;
+-->
+							</td>
+							<td>
+								<form name = "select_region_form" style = "display: inline;">
+									<select id = "region" onblur = "Validator.check(this)" hidden>
+										<option value="Global" selected>Global</option>
+<!--
+										<option value="172.16.1.34">Tatebayashi</option>
+										<option value="172.16.1.17">Tatebayashi-W</option>
+										<option value="10.115.222.242">Fjqs</option>
+										<option value="localhost">Local</option>
+-->
+									</select>
+								</form>
+								<input type="button" name="refresh" value="Refresh" onclick="javascript:refresh();" />
+							</td>
+						</tr>
+					</table>
+					<!-- tab h30px -->
+					<ul class = "tab clear">
+						<li class = "active blue">Template List</li>
+						<li class = "passive"><a href = "javascript:change()" class = "green">Quota State</a></li>
+					</ul>
+					<!-- tab content -->
+					<form name="template_list_form">
+						<div class = "tab_block">
+							<div class = "scrollable">
+								<div id="template_list"></div>
+							</div>
+							<table class = "button_bar">
+								<tr>
+									<td class = "right">
+										<input type="button" name="attach" value="Attach/Detach" onclick="javascript:updateQuota();" />
+										<input type="button" name="update" value="Update" onclick="javascript:updateTemplate();" />
+										<input type="button" name="detach" value="Delete" onclick="javascript:deleteTemplate()" />
+										|
+										<input type="button" name="create" value="Create" onclick="javascript:createTemplate();" />
+									</td>
+								</tr>
+							</table>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

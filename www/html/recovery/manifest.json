@@ -1,0 +1,15 @@
+{
+	"name": "SOP Recovery Tool",
+	"version": "1.0.0",
+	"description": "SOP Recovery Tool",
+	"background_page": "background.html",
+	"browser_action": {
+		"default_icon": "bar_icon.png",
+		"default_title": "Click to start SOP Recovery Tool var 1.0.0"
+	},
+	"permissions": [
+		"http://*/",
+		"tabs",
+		"bookmarks"
+	]
+}

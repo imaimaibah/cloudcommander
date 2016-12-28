@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript"><!--
+window.onload = history;
+
+function history(){
+	var url = "/cgi-bin/portal/portalHistory.cgi";
+	sendReceiveJSON("GET",url,null,setsessionStorage,"portalhistory");
+
+	langSelect();
+}
+
+function langSelect(){
+	var lang = ["ja","en","de"];
+	var txt = "<b>Lang Select:</b> <select id='lang'>";
+	for(var i in lang){
+		txt += "	<option value='"+lang[i]+"'>"+lang[i]+"</option>";
+	}
+	txt += "</select>";
+	$("#langSelect").html(txt);
+
+}
+
+function setsessionStorage(data,id){
+	sessionStorage.setItem(id,JSON.stringify(data));
+	listUp(id);
+	get("current");
+}
+
+function get(file){
+	var lang = $("#lang :selected");
+	var url = "/cgi-bin/portal/user-pr_application-data.cgi?file="+file;
+	sendReceiveTXT("GET",url,null,display,"text_field");
+}
+
+function send(){
+	var data = document.getElementById("text_field").value;
+	var url = "/cgi-bin/portal/user-pr_application-data.cgi";
+	sendReceiveTXT("POST",url,data,result,null);
+}
+
+function display(data,id){
+	var textArea = document.getElementById("text_field");
+	textArea.value = data;
+	resizeTextarea(textArea);
+}
+
+function listUp(id){
+	var json = JSON.parse(sessionStorage.getItem(id));
+	var txt = "<b>Version Select:</b> <select id='select'>";
+	for(var i in json['fileList']){
+		txt += "	<option value='"+json['fileList'][i]+"'>"+json['fileList'][i]+"</option>";
+	}
+	txt += "</select><button id='refresh' onClick='refresh()'>Refresh</button>";
+	$("#selection").html(txt);
+}
+
+function refresh(){
+	var option = $("#select :selected").val();
+	option = option.replace(/ /g,"");
+	option  = option.replace(/\//g,"");
+	option = option.replace(/:/g,"");
+	get(option);
+}
+
+function result(data){
+	if(data != "SUCCESS"){
+		data = data.replace(/SUCCESS/,"");
+		alert(data);
+	}else{
+		alert(data);
+		history();
+	}
+}
+
+function resizeTextarea(textarea) {
+  var lines = textarea.value.split("\n");
+  var width = textarea.cols;
+  var height = 1;
+  for (var i = 0; i < lines.length; i++) {
+    var linelength = lines[i].length;
+    if (linelength >= width) {
+      height += Math.ceil(linelength / width);
+    }
+  }
+  height += lines.length;
+  textarea.rows = height;
+}
+
+--></script>
+<body>
+<table width='80%'>
+	<tr>
+		<td><div id="selection" align='left'></div></td>
+		<td><div id="langSelect" align='left'></div></td>
+	</tr>
+</table>
+<p><textarea id="text_field" cols="500" rows="100"></textarea></p>
+<button type="button" name="submit" value="submit" onClick='send();'>submit</button>
+<div id="preview"></div>
+</body>
+</html>

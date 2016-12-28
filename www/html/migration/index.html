@@ -1,0 +1,178 @@
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+<title>Easy Migrater</title>
+<link href="/css/migration.css" rel="stylesheet" type="text/css" />
+<script type='text/javascript' src='/js/jquery-1.7.2.js'></script>
+<script type='text/javascript' src='/js/main.js'></script>
+
+<script>
+var json;
+window.onload = function(){
+	var url = "/cgi-bin/Dom0withDomU.cgi";
+	sendReceiveJSON("GET",url,null,displayList,"From_table");
+}
+
+function displayList(list,id){
+	var txt;
+	var _selectWindow = document.getElementById(id).childNodes;
+	txt = "<select id='withDomU' style='width:150px' name='withDomU'>";
+	for(var l in list){
+		for(var i in list[l]){
+			if(list[l][i] != "0"){
+				txt += "<option id='"+i+"' value='"+i+"'>"+i+"</option>";
+			}
+		}
+	}
+
+	txt += "</select>"
+	txt += "<button onClick='get_domU();'>Get</button>";
+	_selectWindow[1].innerHTML += txt;
+	displayNonDomUList(list);
+}
+
+function displayNonDomUList(list){
+	var txt;
+	var flag = 0;
+	var _selectWindow = document.getElementById("To_table").childNodes;
+	txt = "<select id='noDomU' style='width:150px' name='noDomU'>";
+	for(var l in list){
+		for(var i in list[l]){
+			if(list[l][i] == "0"){
+				txt += "<option id='"+i+"' value='"+i+"'>"+i+"</option>";
+				flag++;
+			}
+		}
+	}
+	txt += "</select>";
+	_selectWindow[1].innerHTML += txt;
+	if(flag != 0){
+		document.migration.live.disabled = false;
+		document.migration.cold.disabled = false;
+	}else{
+		alert("No available Dom0 for migration");
+	}
+}
+
+function get_domU(){
+	var select = document.getElementById("withDomU");
+	var value = select.options[select.selectedIndex].value;
+
+	var url = "/cgi-bin/getDomUonDom0.cgi?primergy="+value;
+	//var json = $.parseJSON(sendReceiveTXT("GET",url,null));
+	sendReceiveJSON("GET",url,null,display,"From");
+}
+
+function display(json,id){
+	var txt = "";
+	if(json['result'] == "ERROR"){
+		alert(json['result']);
+		return;
+	}
+	for(var i in json){
+		for(var j in json[i]){
+			txt += '<span draggable="true" id="'+j+'" ondragstart="dragIt(this, event)"><img title="'+j+'" name="'+j+'" src="n_pc.jpg">'+j+'</span>'
+		}
+	}
+	$("#"+id).html(txt);
+
+}
+
+function dragIt(target, e) {
+    e.dataTransfer.setData('SpanImg', target.id);
+}
+
+function dropIt(target, e) {
+    var id = e.dataTransfer.getData('SpanImg');
+    target.appendChild(document.getElementById(id)); 
+    e.preventDefault();
+}
+
+/*
+function trashIt(target, e) {
+    var id = e.dataTransfer.getData('SpanImg');
+    removeElement(id);
+    e.preventDefault();   
+}
+
+function removeElement(id)	{
+    var d_node = document.getElementById(id);
+    d_node.parentNode.removeChild(d_node);
+}
+*/
+
+function migrationStart(type){
+	//var ele = document.getElementById('To').getElementsByTagName('img');
+	var select = document.getElementById("noDomU");
+	var value = select.options[select.selectedIndex].value;
+	var domUList = {};
+	domUList.type = new Array();
+	$("#To img").each(function(){
+			domUList.type.push($(this).attr("name"));
+	});
+	//for(var i=0;i<ele.length;i++){
+	//	alert(ele[i].getAttribute('name'));
+	//}
+	var json = '{"'+type+'":["';
+	var i = 0
+
+	for(;i<domUList.type.length-1;i++){
+		json += domUList.type[i] + '","';
+	}
+	json += domUList.type[i]+'"]}';
+	var url = "/cgi-bin/migration.cgi?to="+value;
+	sendReceiveJSON("POST",url,json,result,null);
+
+}
+
+function result(data){
+	alert(data['result']);
+}
+
+function moveAll(){
+	//var ele = document.getElementById('From').getElementsByTagName('img');
+	var txt = "";
+	//for(var i=0;i<ele.length;i++){
+	//	var name = ele[i].getAttribute("name");
+		//txt += '<span draggable="true" id="'+ele[i].getAttribute("name")+'" ondragstart="dragIt(this, event)"><img title="'+ele[i].getAttribute("name")+'" name="'+ele[i].getAttribute("name")+'" src="n_pc.jpg"></span>';
+	//}
+	$("#From img").each(function(){
+		var name = $(this).attr("name");
+		txt += '<span draggable="true" id="'+name+'" ondragstart="dragIt(this, event)"><img title="'+name+'" name="'+name+'" src="n_pc.jpg">'+name+'</span>';
+	});
+	var html = $("#To").html();
+	$("#To").html(html+txt);
+	$("#From").html("");
+}
+
+</script>
+
+</head>
+<body marginwidth="0" marginheight="0" leftmargin="0">
+<table width="100%" border="1" cellspacing=0 cellpadding=5>
+	<tr>
+		<td class="tableheader" id="From_table" align="center">
+			<p>From</p>
+		</td>
+	</tr>
+	<tr>
+		<td width='95%' height='150px' width='150px' align="left" id="From" ondrop="dropIt(this, event)" ondragenter="return false" ondragover="return false"></td>
+	</tr>
+	<tr bgcolor="#F2F2F2">
+		<td class="tableheader" id="To_table" align="center">
+			<p>To</p>
+		</td>
+	</tr>
+	<tr>
+		<td height="150px" align="left" id="To" ondrop="dropIt(this, event)" ondragenter="return false" ondragover="return false"></td>
+	</tr>
+</table>
+
+<form name='migration'>
+<input type='button' name="live" onClick='migrationStart("live");' value="Live Migration" disabled />
+<input type='button' name="cold" onClick='migrationStart("cold");' value="Cold Migration" disabled />
+<input type='button' onClick='moveAll();' value="Move All" />
+</form>
+
+</body>
+</html>

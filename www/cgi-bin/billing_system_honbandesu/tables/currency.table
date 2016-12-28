@@ -1,0 +1,8 @@
+seq,region_prefix,region_code,region_name,currency,decimal,update_date
+0,SOP,JP01,tatebayashi,JPY,0,
+1,AUS,AU01,homebush,AUD,2,
+2,SIN,SG01,fedcfort,SGD,2,
+3,USA,US01,sunnyvale,USD,2,
+4,UKI,GB01,ste10,GBP,2,
+5,DEU,DE01,nek,EUR,2,
+6,AKS,JP02,akashi,YEN,0,

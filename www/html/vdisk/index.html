@@ -1,0 +1,31 @@
+<!DOCTYPE html5>
+<html>
+<head>
+<title>Disk List</title>
+<link rel="stylesheet" href="/css/gsmc.css" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script><!--
+
+window.onload = function(){
+	var option = window.location.search.substr(1).split("&");
+	if(option == ""){
+		var url = "/cgi-bin/vdisk/getVdiskList.cgi";
+		sendReceiveTXT("GET",url,null,display,"list");
+	}else{
+		var vdisk = option[0].split("=");
+		var url = "/cgi-bin/vdisk/getVdiskList.cgi?vdisk="+vdisk[1];
+		sendReceiveTXT("GET",url,null,display,"list");
+	}
+}
+
+function display(data,id){
+	$("#"+id).html(data);
+}
+
+</script>
+
+<body>
+	<div id='list'></div>
+</body>
+</html>

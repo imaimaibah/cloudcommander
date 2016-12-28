@@ -1,0 +1,1049 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProductInfo>
+  <NumOfResult>65</NumOfResult>
+  <BaseDate>2013-03-01T08:59:58.000+0900</BaseDate>
+  <RegionTimeZone>Asia/Tokyo</RegionTimeZone>
+  <CurrencyUnit>JPY</CurrencyUnit>
+  <CurrencySign>&#165;</CurrencySign>
+  <NumOfDecimals>0</NumOfDecimals>
+  <Product id="16">
+    <ProductCode>SOP-DK-0001-0001</ProductCode>
+    <CategoryCode>disk_ebs</CategoryCode>
+    <CategoryName xml:lang="ja">&#12473;&#12488;&#12524;&#12540;&#12472;&#12458;&#12503;&#12471;&#12519;&#12531;  </CategoryName>
+    <CategoryName xml:lang="en">Storage Options</CategoryName>
+    <ChargeType>amount</ChargeType>
+    <ProductName xml:lang="ja">&#22679;&#35373;&#12487;&#12451;&#12473;&#12463;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;</ProductName>
+    <ProductName xml:lang="en">Disk Expansion Option Service</ProductName>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#65327;&#65328;&#65343;&#22679;&#35373;&#12487;&#12451;&#12473;&#12463;&#12469;&#12540;&#12499;&#12473;</Comment>
+    <Comment xml:lang="en">SOP_OP_Disk Expansion Option Service</Comment>
+    <UnitPrice>0.08</UnitPrice>
+    <UnitName>GBH</UnitName>
+    <DisplayUnitName xml:lang="ja">GB&#12539;&#26178;&#38291;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">GB*Hour</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="23">
+    <ProductCode>SOP-DK-0002-0001</ProductCode>
+    <CategoryCode>disk_templatebackup</CategoryCode>
+    <CategoryName xml:lang="en">Storage Options</CategoryName>
+    <CategoryName xml:lang="ja">&#12473;&#12488;&#12524;&#12540;&#12472;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <ChargeType>amount</ChargeType>
+    <ProductName xml:lang="ja">&#12452;&#12513;&#12540;&#12472;&#20445;&#31649;&#12487;&#12451;&#12473;&#12463;&#12469;&#12540;&#12499;&#12473;</ProductName>
+    <ProductName xml:lang="en">Virtual Machine Image Storage Service</ProductName>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#65327;&#65328;&#65343;&#12486;&#12531;&#12503;&#12524;&#12540;&#12488;&#20445;&#31649;&#12288;&#12487;&#12451;&#12473;&#12463;&#12469;&#12540;&#12499;&#12473;</Comment>
+    <Comment xml:lang="en">SOP_Template Backup Service</Comment>
+    <UnitPrice>0.08</UnitPrice>
+    <UnitName>GBH</UnitName>
+    <DisplayUnitName xml:lang="ja">GB&#12539;&#26178;&#38291;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">GB*Hour</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="24">
+    <ProductCode>SOP-DK-0003-0001</ProductCode>
+    <CategoryCode>disk_systembackup</CategoryCode>
+    <CategoryName xml:lang="en">Storage Options</CategoryName>
+    <CategoryName xml:lang="ja">&#12473;&#12488;&#12524;&#12540;&#12472;&#12458;&#12503;&#12471;&#12519;&#12531; </CategoryName>
+    <ChargeType>amount</ChargeType>
+    <ProductName xml:lang="ja">&#12471;&#12473;&#12486;&#12512;&#12496;&#12483;&#12463;&#12450;&#12483;&#12503;&#29992;&#12487;&#12451;&#12473;&#12463;&#12469;&#12540;&#12499;&#12473;</ProductName>
+    <ProductName xml:lang="en">System Backup Service</ProductName>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#65327;&#65328;&#65343;&#12471;&#12473;&#12486;&#12512;&#12487;&#12451;&#12473;&#12463;&#65343;&#12496;&#12483;&#12463;&#12450;&#12483;&#12503;&#29992;&#12487;&#12451;&#12473;&#12463;&#12469;&#12540;&#12499;&#12473;</Comment>
+    <Comment xml:lang="en">SOP_System Backup Service</Comment>
+    <UnitPrice>0.08</UnitPrice>
+    <UnitName>GBH</UnitName>
+    <DisplayUnitName xml:lang="ja">GB&#12539;&#26178;&#38291;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">GB*Hour</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="25">
+    <ProductCode>SOP-DK-0003-0002</ProductCode>
+    <CategoryCode>disk_databackup</CategoryCode>
+    <CategoryName xml:lang="en">Storage Options</CategoryName>
+    <CategoryName xml:lang="ja">&#12473;&#12488;&#12524;&#12540;&#12472;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <ChargeType>amount</ChargeType>
+    <ProductName xml:lang="ja">&#12487;&#12540;&#12479;&#38936;&#22495;&#12496;&#12483;&#12463;&#12450;&#12483;&#12503;&#29992;&#12487;&#12451;&#12473;&#12463;&#12469;&#12540;&#12499;&#12473;</ProductName>
+    <ProductName xml:lang="en">Data Backup Service</ProductName>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#65327;&#65328;&#65343;&#12487;&#12540;&#12479;&#38936;&#22495;&#65343;&#12496;&#12483;&#12463;&#12450;&#12483;&#12503;&#29992;&#12487;&#12451;&#12473;&#12463;&#12469;&#12540;&#12499;&#12473;</Comment>
+    <Comment xml:lang="en">SOP_Data Backup Service</Comment>
+    <UnitPrice>0.08</UnitPrice>
+    <UnitName>GBH</UnitName>
+    <DisplayUnitName xml:lang="ja">GB&#12539;&#26178;&#38291;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">GB*Hour</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="15">
+    <ProductCode>SOP-IP-0001-0001</ProductCode>
+    <CategoryCode>nw_glip</CategoryCode>
+    <CategoryName xml:lang="ja">&#12493;&#12483;&#12488;&#12527;&#12540;&#12463;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Network Options</CategoryName>
+    <ChargeType>amount</ChargeType>
+    <ProductName xml:lang="en">Global IP Address Attachment Service</ProductName>
+    <ProductName xml:lang="ja">&#12464;&#12525;&#12540;&#12496;&#12523;IP&#12450;&#12489;&#12524;&#12473;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;</ProductName>
+    <Comment xml:lang="en">SOP_Global IP Address Attachment Service</Comment>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#65327;&#65328;&#65343;&#20206;&#24819;&#12510;&#12471;&#12531;&#65343;&#12464;&#12525;&#12540;&#12496;&#12523;&#65321;&#65328;&#12450;&#12489;&#12524;&#12473;&#12469;&#12540;&#12499;&#12473;</Comment>
+    <UnitPrice>2.0</UnitPrice>
+    <UnitName>hour</UnitName>
+    <DisplayUnitName xml:lang="ja">&#26178;&#38291;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">Hour</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="13">
+    <ProductCode>SOP-MW-0001-0001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;SQL Server SE&#65288;&#12469;&#12509;&#12540;&#12488;&#12394;&#12375;&#65289;</ProductName>
+    <ProductName xml:lang="en">SQL Server SE(Support not included)</ProductName>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#65327;&#65328;&#65343;&#20206;&#24819;&#12510;&#12471;&#12531;&#65343;&#65325;&#65335;&#29872;&#22659;&#65288;SQL Server Standard Edition&#65289;&#12469;&#12540;&#12499;&#12473;</Comment>
+    <Comment xml:lang="en">SOP_SQL Server Standard Edition</Comment>
+    <UnitPrice>32086.0</UnitPrice>
+    <UnitName>cpu</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="14">
+    <ProductCode>SOP-MW-0001-0002</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;SQL Server EE&#65288;&#12469;&#12509;&#12540;&#12488;&#12394;&#12375;&#65289;</ProductName>
+    <ProductName xml:lang="en">SQL Server EE(Support not included)</ProductName>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#65327;&#65328;&#65343;&#20206;&#24819;&#12510;&#12471;&#12531;&#65343;&#65325;&#65335;&#29872;&#22659;&#65288;SQL Server Enterprise Edition&#65289;&#12469;&#12540;&#12499;&#12473;</Comment>
+    <Comment xml:lang="en">SOP_SQL Server Enterprise Edition</Comment>
+    <UnitPrice>132315.0</UnitPrice>
+    <UnitName>cpu</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="46">
+    <ProductCode>SOP-MW-0001-1001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;SQL Server SE&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#65289;</ProductName>
+    <ProductName xml:lang="en">SQL Server SE(Support included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>50616.0</UnitPrice>
+    <UnitName>cpu</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-07-07T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="47">
+    <ProductCode>SOP-MW-0001-1002</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;SQL Server EE&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#65289;</ProductName>
+    <ProductName xml:lang="en">SQL Server EE(Support included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>209325.0</UnitPrice>
+    <UnitName>cpu</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-07-07T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="48">
+    <ProductCode>SOP-MW-0101-1001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;Interstage Application Server S-JE&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#65289;(Windows)</ProductName>
+    <ProductName xml:lang="en">Fujitsu Interstage Application Server S-JE(Support included)(Windows)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>27500.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-07-07T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="49">
+    <ProductCode>SOP-MW-0102-1001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;Symfoware Server SE&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#65289;(Windows)</ProductName>
+    <ProductName xml:lang="en">Fujitsu Symfoware Server SE(Support included)(Windows)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>80000.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-07-07T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="50">
+    <ProductCode>SOP-MW-0103-1001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;Interstage Web Server&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#65289;</ProductName>
+    <ProductName xml:lang="en">Interstage Web Server(Support included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>6000.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="52">
+    <ProductCode>SOP-MW-0104-1001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;OSS Web&#12503;&#12521;&#12483;&#12488;&#12501;&#12457;&#12540;&#12512;&#65288;PHP/PostgreSQL&#65289;</ProductName>
+    <ProductName xml:lang="en">OSS Web Platform&#65288;PHP/PostgreSQL&#65289;</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>28500.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="51">
+    <ProductCode>SOP-MW-0104-1002</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;OSS Web&#12503;&#12521;&#12483;&#12488;&#12501;&#12457;&#12540;&#12512;&#65288;PHP/MySQL&#65289;</ProductName>
+    <ProductName xml:lang="en">OSS Web Platform&#65288;PHP/MySQL&#65289;</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>28500.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="53">
+    <ProductCode>SOP-MW-0104-1003</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;OSS Web&#12503;&#12521;&#12483;&#12488;&#12501;&#12457;&#12540;&#12512;&#65288;Tomcat/PostgreSQL&#65289;</ProductName>
+    <ProductName xml:lang="en">OSS Web Platform&#65288;Tomcat/PostgreSQL&#65289;</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>28500.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="54">
+    <ProductCode>SOP-MW-0104-1004</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;OSS Web&#12503;&#12521;&#12483;&#12488;&#12501;&#12457;&#12540;&#12512;&#65288;Tomcat/MySQL&#65289;</ProductName>
+    <ProductName xml:lang="en">OSS Web Platform&#65288;Tomcat/MySQL&#65289;</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>28500.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="75">
+    <ProductCode>SOP-MW-0104-1005</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;OSS Web&#12503;&#12521;&#12483;&#12488;&#12501;&#12457;&#12540;&#12512;&#65288;Ruby/PostgreSQL&#65289;</ProductName>
+    <ProductName xml:lang="en">OSS Web Platform&#65288;Ruby/PostgreSQL&#65289;</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>28500.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-11-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="76">
+    <ProductCode>SOP-MW-0104-1006</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;OSS &#38283;&#30330;&#25903;&#25588;</ProductName>
+    <ProductName xml:lang="en">OSS Development Support</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>28500.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-11-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="55">
+    <ProductCode>SOP-MW-0303-1001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;Rational AppScan Standard Edition &#12469;&#12509;&#12540;&#12488;&#65288;&#24179;&#26085; 9:00-19:00&#65289;</ProductName>
+    <ProductName xml:lang="en">Rational AppScan Standard Edition Support&#65288;Weekday 9:00-19:00&#65289;</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>498000.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-07-12T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="77">
+    <ProductCode>SOP-MW-0303-1002</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;Rational Functional Tester &#12469;&#12509;&#12540;&#12488;&#65288;&#24179;&#26085; 9:00-19:00&#65289;</ProductName>
+    <ProductName xml:lang="en">Rational Functional Tester Support&#65288;Weekday 9:00-19:00&#65289;</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>170000.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-11-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="56">
+    <ProductCode>SOP-MW-0401-0001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;Symantec System Recovery&#65288;&#12469;&#12509;&#12540;&#12488;&#12394;&#12375;&#65289;</ProductName>
+    <ProductName xml:lang="en">Symantec System Recovery(Support not included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>11000.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2011-10-22T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="57">
+    <ProductCode>SOP-MW-0401-1001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;Symantec System Recovery&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#65289;</ProductName>
+    <ProductName xml:lang="en">Symantec System Recovery(Support included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>13500.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2011-10-22T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="78">
+    <ProductCode>SOP-MW-0501-0001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;ARCserve Backup Base Suite&#65288;&#12469;&#12509;&#12540;&#12488;&#12394;&#12375;&#65289;</ProductName>
+    <ProductName xml:lang="en">ARCserve Backup Base Suite(Support not included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>10700.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-11-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="80">
+    <ProductCode>SOP-MW-0501-0002</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;ARCserve Backup Base with SQL Suite&#65288;&#12469;&#12509;&#12540;&#12488;&#12394;&#12375;&#65289;</ProductName>
+    <ProductName xml:lang="en">ARCserve Backup Base with SQL Suite(Support not included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>14000.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-11-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="82">
+    <ProductCode>SOP-MW-0501-0003</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;ARCserve Backup Client Suite&#65288;&#12469;&#12509;&#12540;&#12488;&#12394;&#12375;&#65289;</ProductName>
+    <ProductName xml:lang="en">ARCserve Backup Client Suite(Support not included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>4200.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-11-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="79">
+    <ProductCode>SOP-MW-0501-1001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;ARCserve Backup Base Suite&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#65289;</ProductName>
+    <ProductName xml:lang="en">ARCserve Backup Base Suite(Support included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>14400.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-11-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="81">
+    <ProductCode>SOP-MW-0501-1002</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;ARCserve Backup Base with SQL Suite&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#65289;</ProductName>
+    <ProductName xml:lang="en">ARCserve Backup Base with SQL Suite(Support included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>18800.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-11-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="83">
+    <ProductCode>SOP-MW-0501-1003</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;ARCserve Backup Client Suite&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#65289;</ProductName>
+    <ProductName xml:lang="en">ARCserve Backup Client Suite(Support included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>5700.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-11-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="58">
+    <ProductCode>SOP-MW-0601-0001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;NetVault Backup Server for Windows&#65288;&#12469;&#12509;&#12540;&#12488;&#12394;&#12375;&#65289;</ProductName>
+    <ProductName xml:lang="en">NetVault Backup Server for Windows(Support not included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>8000.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="59">
+    <ProductCode>SOP-MW-0601-1001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;NetVault Backup Server for Windows&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#65289;</ProductName>
+    <ProductName xml:lang="en">NetVault Backup Server for Windows(Support included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>10700.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="60">
+    <ProductCode>SOP-MW-0602-0001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;NetVault Backup SmartDisk for Windows&#65288;&#12469;&#12509;&#12540;&#12488;&#12394;&#12375;&#65289;</ProductName>
+    <ProductName xml:lang="en">NetVault Backup SmartDisk for Windows(Support not included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>2700.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="61">
+    <ProductCode>SOP-MW-0602-1001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;NetVault Backup SmartDisk for Windows&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#65289;</ProductName>
+    <ProductName xml:lang="en">NetVault Backup SmartDisk for Windows(Support included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>3700.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="62">
+    <ProductCode>SOP-MW-0603-0001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;NetVault Backup Client for Windows&#65288;&#12469;&#12509;&#12540;&#12488;&#12394;&#12375;&#65289;</ProductName>
+    <ProductName xml:lang="en">NetVault Backup Client for Windows(Support not included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>4200.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="63">
+    <ProductCode>SOP-MW-0603-1001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;NetVault Backup Client for Windows&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#65289;</ProductName>
+    <ProductName xml:lang="en">NetVault Backup Client for Windows(Support included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>5700.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="64">
+    <ProductCode>SOP-MW-0604-0001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;NetVault Backup Microsoft SQL Server SE Plug-in&#65288;&#12469;&#12509;&#12540;&#12488;&#12394;&#12375;&#65289;</ProductName>
+    <ProductName xml:lang="en">NetVault Backup Microsoft SQL Server SE Plug-in(Support not included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>14000.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="65">
+    <ProductCode>SOP-MW-0604-1001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;NetVault Backup Microsoft SQL Server SE Plug-in&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#65289;</ProductName>
+    <ProductName xml:lang="en">NetVault Backup Microsoft SQL Server SE Plug-in(Support included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>18800.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="66">
+    <ProductCode>SOP-MW-0605-1001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;NetVault Backup Server for Linux&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426; &#24179;&#26085;8&#65306;30-19&#65306;00&#65289;</ProductName>
+    <ProductName xml:lang="en">NetVault Backup Server for Linux(Weekday 8:30-19:00)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>10000.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="67">
+    <ProductCode>SOP-MW-0605-1002</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;NetVault Backup Server for Linux&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426; 24&#26178;&#38291;365&#26085;&#65289;</ProductName>
+    <ProductName xml:lang="en">NetVault Backup Server for Linux(24 hours 365 days)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>10700.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="68">
+    <ProductCode>SOP-MW-0606-1001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;NetVault Backup SmartDisk for Linux&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426; &#24179;&#26085;8&#65306;30-19&#65306;00&#65289;</ProductName>
+    <ProductName xml:lang="en">NetVault Backup SmartDisk for Linux(Weekday 8:30-19:00)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>3400.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="69">
+    <ProductCode>SOP-MW-0606-1002</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;NetVault Backup SmartDisk for Linux&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426; 24&#26178;&#38291;365&#26085;&#65289;</ProductName>
+    <ProductName xml:lang="en">NetVault Backup SmartDisk for Linux(24 hours 365 days)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>3700.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="70">
+    <ProductCode>SOP-MW-0607-1001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;NetVault Backup Client for Linux&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426; &#24179;&#26085;8&#65306;30-19&#65306;00&#65289;</ProductName>
+    <ProductName xml:lang="en">NetVault Backup Client for Linux(Weekday 8:30-19:00)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>5300.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="71">
+    <ProductCode>SOP-MW-0607-1002</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;NetVault Backup Client for Linux&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426; 24&#26178;&#38291;365&#26085;&#65289;</ProductName>
+    <ProductName xml:lang="en">NetVault Backup Client for Linux(24 hours 365 days)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>5700.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="72">
+    <ProductCode>SOP-MW-0701-1001</ProductCode>
+    <CategoryCode>middleware</CategoryCode>
+    <CategoryName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Middleware Options</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12511;&#12489;&#12523;&#12454;&#12455;&#12450;&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;Interstage Business Operations Platform&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#65289;</ProductName>
+    <ProductName xml:lang="en">Interstage Business Operations Platform(Support included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>385000.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-05-24T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="20">
+    <ProductCode>SOP-NW-0001-0001</ProductCode>
+    <CategoryCode>nw_internet</CategoryCode>
+    <CategoryName xml:lang="ja">&#12493;&#12483;&#12488;&#12527;&#12540;&#12463;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Network Options</CategoryName>
+    <ChargeType>amount</ChargeType>
+    <ProductName xml:lang="ja">&#12452;&#12531;&#12479;&#12540;&#12493;&#12483;&#12488;&#25509;&#32154;&#12469;&#12540;&#12499;&#12473;</ProductName>
+    <ProductName xml:lang="en">Internet Communication Service</ProductName>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#65327;&#65328;&#65343;&#12452;&#12531;&#12479;&#12540;&#12493;&#12483;&#12488;&#25509;&#32154;&#12469;&#12540;&#12499;&#12473;</Comment>
+    <Comment xml:lang="en">SOP_Internet Communication Service</Comment>
+    <UnitPrice>39.0</UnitPrice>
+    <UnitName>GB</UnitName>
+    <DisplayUnitName xml:lang="ja">GB</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">GB</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="21">
+    <ProductCode>SOP-NW-0002-0001</ProductCode>
+    <CategoryCode>nw_slb</CategoryCode>
+    <CategoryName xml:lang="en">Network Options </CategoryName>
+    <CategoryName xml:lang="ja">&#12493;&#12483;&#12488;&#12527;&#12540;&#12463;&#12458;&#12503;&#12471;&#12519;&#12531; </CategoryName>
+    <ChargeType>amount</ChargeType>
+    <ProductName xml:lang="ja">&#36000;&#33655;&#20998;&#25955;&#12469;&#12540;&#12499;&#12473;&#12288;&#12494;&#12540;&#12510;&#12523;</ProductName>
+    <ProductName xml:lang="en">Server Load-Balancing Service Normal</ProductName>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#65327;&#65328;&#65343;&#36000;&#33655;&#20998;&#25955;&#12469;&#12540;&#12499;&#12473;</Comment>
+    <Comment xml:lang="en">SOP_Server Load-Balancing Service</Comment>
+    <UnitPrice>50.0</UnitPrice>
+    <UnitName>hour</UnitName>
+    <DisplayUnitName xml:lang="ja">&#26178;&#38291;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">Hour</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="85">
+    <ProductCode>SOP-NW-0002-0011</ProductCode>
+    <CategoryCode>nw_slbh</CategoryCode>
+    <CategoryName xml:lang="ja">&#12493;&#12483;&#12488;&#12527;&#12540;&#12463;&#12458;&#12503;&#12471;&#12519;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Network Options</CategoryName>
+    <ChargeType>amount</ChargeType>
+    <ProductName xml:lang="ja">&#36000;&#33655;&#20998;&#25955;&#12469;&#12540;&#12499;&#12473;&#12288;&#12479;&#12540;&#12508;</ProductName>
+    <ProductName xml:lang="en">Server Load-Balancing Service Turbo</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>150.0</UnitPrice>
+    <UnitName>hour</UnitName>
+    <DisplayUnitName xml:lang="ja">&#26178;&#38291;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">Hour</DisplayUnitName>
+    <StartDate>2013-01-29T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="42">
+    <ProductCode>SOP-OS-0001-0101</ProductCode>
+    <CategoryCode>os</CategoryCode>
+    <CategoryName xml:lang="ja">OS&#29872;&#22659;</CategoryName>
+    <CategoryName xml:lang="en">OS Environment</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">OS&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;Windows Server EE&#65288;&#12469;&#12509;&#12540;&#12488;&#12394;&#12375;&#65289;</ProductName>
+    <ProductName xml:lang="en">OS Environment Windows Server EE(Support not included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>18511.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2011-02-05T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="43">
+    <ProductCode>SOP-OS-0001-0104</ProductCode>
+    <CategoryCode>os</CategoryCode>
+    <CategoryName xml:lang="ja">OS&#29872;&#22659;</CategoryName>
+    <CategoryName xml:lang="en">OS Environment</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">OS&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;Windows Server SE&#65288;&#12469;&#12509;&#12540;&#12488;&#12394;&#12375;&#65289;</ProductName>
+    <ProductName xml:lang="en">OS Environment Windows Server SE(Support not included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>5693.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2011-02-05T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="40">
+    <ProductCode>SOP-OS-0001-1101</ProductCode>
+    <CategoryCode>os</CategoryCode>
+    <CategoryName xml:lang="ja">OS&#29872;&#22659;</CategoryName>
+    <CategoryName xml:lang="en">OS Environment</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">OS&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;Windows Server EE&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#65289;</ProductName>
+    <ProductName xml:lang="en">OS Environment Windows Server EE(Support included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>38911.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2011-02-05T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="41">
+    <ProductCode>SOP-OS-0001-1104</ProductCode>
+    <CategoryCode>os</CategoryCode>
+    <CategoryName xml:lang="ja">OS&#29872;&#22659;</CategoryName>
+    <CategoryName xml:lang="en">OS Environment</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">OS&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;Windows Server SE&#65288;&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#65289;</ProductName>
+    <ProductName xml:lang="en">OS Environment Windows Server SE(Support included)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>13853.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2011-02-05T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="74">
+    <ProductCode>SOP-OS-0002-0004</ProductCode>
+    <CategoryCode>os</CategoryCode>
+    <CategoryName xml:lang="ja">OS&#29872;&#22659;</CategoryName>
+    <CategoryName xml:lang="en">OS Environment</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12489;&#12521;&#12452;&#12496;/&#12484;&#12540;&#12523;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;</ProductName>
+    <ProductName xml:lang="en">Driver &amp; Tools Service</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>720.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-11-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="44">
+    <ProductCode>SOP-OS-0201-1101</ProductCode>
+    <CategoryCode>os</CategoryCode>
+    <CategoryName xml:lang="ja">OS&#29872;&#22659;</CategoryName>
+    <CategoryName xml:lang="en">OS Environment</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">OS&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;Red Hat Enterprise Linux&#12469;&#12509;&#12540;&#12488;&#65288;&#24179;&#26085;8&#65306;30-19&#65306;00&#65289;</ProductName>
+    <ProductName xml:lang="en">OS Environment Red Hat Enterprise Linux Support(Weekday 8:30-19:00)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>15000.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2011-02-05T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="45">
+    <ProductCode>SOP-OS-0201-1102</ProductCode>
+    <CategoryCode>os</CategoryCode>
+    <CategoryName xml:lang="ja">OS&#29872;&#22659;</CategoryName>
+    <CategoryName xml:lang="en">OS Environment</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">OS&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;Red Hat Enterprise Linux&#12469;&#12509;&#12540;&#12488;&#65288;24&#26178;&#38291;365&#26085;&#65289;</ProductName>
+    <ProductName xml:lang="en">OS Environment Red Hat Enterprise Linux Support(24 hours 365 days)</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>20000.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2011-02-05T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="84">
+    <ProductCode>SOP-OS-9201-1101</ProductCode>
+    <CategoryCode>os</CategoryCode>
+    <CategoryName xml:lang="ja">OS&#29872;&#22659;</CategoryName>
+    <CategoryName xml:lang="en">OS Environment</CategoryName>
+    <ChargeType>amount</ChargeType>
+    <ProductName xml:lang="ja">OS&#29872;&#22659;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;Red Hat Enterprise Linux(&#12469;&#12509;&#12540;&#12488;&#12354;&#12426;&#12288;&#24179;&#26085;8:30-19:00)&#12288;&#26178;&#38291;&#35506;&#37329;</ProductName>
+    <ProductName xml:lang="en">Red Hat Enterprise Linux(Support Weekday 8:30-19:00)&#12288;hour</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>10.0</UnitPrice>
+    <UnitName>hour</UnitName>
+    <DisplayUnitName xml:lang="ja">&#26178;&#38291;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">Hour</DisplayUnitName>
+    <StartDate>2013-01-17T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="9">
+    <ProductCode>SOP-SD-0001-0001</ProductCode>
+    <CategoryCode>disk</CategoryCode>
+    <CategoryName xml:lang="ja">&#12471;&#12473;&#12486;&#12512;&#22522;&#26412;&#12487;&#12451;&#12473;&#12463;</CategoryName>
+    <CategoryName xml:lang="en">Standard Disk</CategoryName>
+    <ChargeType>amount</ChargeType>
+    <ProductName xml:lang="ja">&#12471;&#12473;&#12486;&#12512;&#12487;&#12451;&#12473;&#12463;&#12288;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;</ProductName>
+    <ProductName xml:lang="en">System Disk Service</ProductName>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#22522;&#26412;&#65343;&#12471;&#12473;&#12486;&#12512;&#12487;&#12451;&#12473;&#12463;&#12469;&#12540;&#12499;&#12473;</Comment>
+    <Comment xml:lang="en">SOP_System Disk Service</Comment>
+    <UnitPrice>0.08</UnitPrice>
+    <UnitName>GBH</UnitName>
+    <DisplayUnitName xml:lang="ja">GB&#12539;&#26178;&#38291;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">GB*Hour</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="10">
+    <ProductCode>SOP-TP-0001-0001</ProductCode>
+    <CategoryCode>template</CategoryCode>
+    <CategoryName xml:lang="ja">&#12486;&#12531;&#12503;&#12524;&#12540;&#12488;</CategoryName>
+    <CategoryName xml:lang="en">Template</CategoryName>
+    <ChargeType>oneTime</ChargeType>
+    <ProductName xml:lang="en">System Template Usage(1-Tier Model)</ProductName>
+    <ProductName xml:lang="ja">&#12471;&#12473;&#12486;&#12512;&#12486;&#12531;&#12503;&#12524;&#12540;&#12488;&#65297;&#38542;&#23652;&#12514;&#12487;&#12523;</ProductName>
+    <Comment xml:lang="en">System Template Usage &#65288;&#65297;-Tier Model&#65289;</Comment>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#65327;&#65328;&#65343;&#12471;&#12473;&#12486;&#12512;&#12486;&#12531;&#12503;&#12524;&#12540;&#12488;&#65288;&#12524;&#12487;&#12451;&#12513;&#12540;&#12489;&#65297;&#38542;&#23652;&#12514;&#12487;&#12523;&#65289;&#12469;&#12540;&#12499;&#12473;</Comment>
+    <UnitPrice>0.0</UnitPrice>
+    <UnitName>times</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12471;&#12473;&#12486;&#12512;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">System</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="11">
+    <ProductCode>SOP-TP-0001-0002</ProductCode>
+    <CategoryCode>template</CategoryCode>
+    <CategoryName xml:lang="ja">&#12486;&#12531;&#12503;&#12524;&#12540;&#12488;</CategoryName>
+    <CategoryName xml:lang="en">Template</CategoryName>
+    <ChargeType>oneTime</ChargeType>
+    <ProductName xml:lang="en">System Template Usage(2-Tier Model)</ProductName>
+    <ProductName xml:lang="ja">&#12471;&#12473;&#12486;&#12512;&#12486;&#12531;&#12503;&#12524;&#12540;&#12488;2&#38542;&#23652;&#12514;&#12487;&#12523;</ProductName>
+    <Comment xml:lang="en">SOP_System Template Usage &#65288;2-Tier Model&#65289;</Comment>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#65327;&#65328;&#65343;&#12471;&#12473;&#12486;&#12512;&#12486;&#12531;&#12503;&#12524;&#12540;&#12488;&#65288;&#12524;&#12487;&#12451;&#12513;&#12540;&#12489;&#65298;&#38542;&#23652;&#12514;&#12487;&#12523;&#65289;&#12469;&#12540;&#12499;&#12473;</Comment>
+    <UnitPrice>0.0</UnitPrice>
+    <UnitName>times</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12471;&#12473;&#12486;&#12512;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">System</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="12">
+    <ProductCode>SOP-TP-0001-0003</ProductCode>
+    <CategoryCode>template</CategoryCode>
+    <CategoryName xml:lang="ja">&#12486;&#12531;&#12503;&#12524;&#12540;&#12488;</CategoryName>
+    <CategoryName xml:lang="en">Template</CategoryName>
+    <ChargeType>oneTime</ChargeType>
+    <ProductName xml:lang="en">System Template Usage(3-Tier Model)</ProductName>
+    <ProductName xml:lang="ja">&#12471;&#12473;&#12486;&#12512;&#12486;&#12531;&#12503;&#12524;&#12540;&#12488;3&#38542;&#23652;&#12514;&#12487;&#12523;</ProductName>
+    <Comment xml:lang="en">SOP_System Template Usage &#65288;3-Tier Model&#65289;</Comment>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#65327;&#65328;&#65343;&#12471;&#12473;&#12486;&#12512;&#12486;&#12531;&#12503;&#12524;&#12540;&#12488;&#65288;&#12524;&#12487;&#12451;&#12513;&#12540;&#12489;&#65299;&#38542;&#23652;&#12514;&#12487;&#12523;&#65289;&#12469;&#12540;&#12499;&#12473;</Comment>
+    <UnitPrice>0.0</UnitPrice>
+    <UnitName>times</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12471;&#12473;&#12486;&#12512;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">System</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="1">
+    <ProductCode>SOP-VM-0001-0001</ProductCode>
+    <CategoryCode>vm</CategoryCode>
+    <CategoryName xml:lang="ja">&#20206;&#24819;&#12510;&#12471;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Virtual Machine</CategoryName>
+    <ChargeType>amount</ChargeType>
+    <ProductName xml:lang="ja">&#20206;&#24819;&#12510;&#12471;&#12531;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;&#12456;&#12467;&#12494;&#12511;&#12540;&#12479;&#12452;&#12503;</ProductName>
+    <ProductName xml:lang="en">Economy VM Service</ProductName>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#22522;&#26412;&#65343;&#20206;&#24819;&#12510;&#12471;&#12531;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#65343;&#12456;&#12467;&#12494;&#12511;&#12540;&#12479;&#12452;&#12503;</Comment>
+    <Comment xml:lang="en">Economy VM Service </Comment>
+    <UnitPrice>25.0</UnitPrice>
+    <UnitName>hour</UnitName>
+    <DisplayUnitName xml:lang="ja">&#26178;&#38291;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">Hour</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="2">
+    <ProductCode>SOP-VM-0001-0002</ProductCode>
+    <CategoryCode>vm</CategoryCode>
+    <CategoryName xml:lang="ja">&#20206;&#24819;&#12510;&#12471;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Virtual Machine</CategoryName>
+    <ChargeType>amount</ChargeType>
+    <ProductName xml:lang="en">Standard VM Service</ProductName>
+    <ProductName xml:lang="ja">&#20206;&#24819;&#12510;&#12471;&#12531;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;&#12473;&#12479;&#12531;&#12480;&#12540;&#12489;&#12479;&#12452;&#12503;</ProductName>
+    <Comment xml:lang="en">Standard VM Service</Comment>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#22522;&#26412;&#65343;&#20206;&#24819;&#12510;&#12471;&#12531;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#65343;&#12473;&#12479;&#12531;&#12480;&#12540;&#12489;&#12479;&#12452;&#12503;</Comment>
+    <UnitPrice>44.0</UnitPrice>
+    <UnitName>hour</UnitName>
+    <DisplayUnitName xml:lang="ja">&#26178;&#38291;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">Hour</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="3">
+    <ProductCode>SOP-VM-0001-0003</ProductCode>
+    <CategoryCode>vm</CategoryCode>
+    <CategoryName xml:lang="ja">&#20206;&#24819;&#12510;&#12471;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Virtual Machine</CategoryName>
+    <ChargeType>amount</ChargeType>
+    <ProductName xml:lang="en">Advance VM Service</ProductName>
+    <ProductName xml:lang="ja">&#20206;&#24819;&#12510;&#12471;&#12531;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;&#12450;&#12489;&#12496;&#12531;&#12473;&#12488;&#12479;&#12452;&#12503;</ProductName>
+    <Comment xml:lang="en">Advance VM Service</Comment>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#22522;&#26412;&#65343;&#20206;&#24819;&#12510;&#12471;&#12531;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#65343;&#12450;&#12489;&#12496;&#12531;&#12473;&#12488;&#12479;&#12452;&#12503;</Comment>
+    <UnitPrice>78.0</UnitPrice>
+    <UnitName>hour</UnitName>
+    <DisplayUnitName xml:lang="ja">&#26178;&#38291;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">Hour</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="4">
+    <ProductCode>SOP-VM-0001-0004</ProductCode>
+    <CategoryCode>vm</CategoryCode>
+    <CategoryName xml:lang="ja">&#20206;&#24819;&#12510;&#12471;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Virtual Machine</CategoryName>
+    <ChargeType>amount</ChargeType>
+    <ProductName xml:lang="en">High-Performance VM Service</ProductName>
+    <ProductName xml:lang="ja">&#20206;&#24819;&#12510;&#12471;&#12531;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;&#12495;&#12452;&#12497;&#12501;&#12457;&#12540;&#12510;&#12531;&#12473;&#12479;&#12452;&#12503;</ProductName>
+    <Comment xml:lang="en">High-Performance VM Service</Comment>
+    <Comment xml:lang="ja">&#65331;&#65327;&#65328;&#65343;&#22522;&#26412;&#65343;&#20206;&#24819;&#12510;&#12471;&#12531;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#65343;&#12495;&#12452;&#12497;&#12501;&#12457;&#12540;&#12510;&#12531;&#12473;&#12479;&#12452;&#12503;</Comment>
+    <UnitPrice>141.0</UnitPrice>
+    <UnitName>hour</UnitName>
+    <DisplayUnitName xml:lang="ja">&#26178;&#38291;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">Hour</DisplayUnitName>
+    <StartDate>2010-01-01T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="31">
+    <ProductCode>SOP-VM-0001-0011</ProductCode>
+    <CategoryCode>vm</CategoryCode>
+    <CategoryName xml:lang="ja">&#20206;&#24819;&#12510;&#12471;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Virtual Machine</CategoryName>
+    <ChargeType>amount</ChargeType>
+    <ProductName xml:lang="ja">&#20206;&#24819;&#12510;&#12471;&#12531;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;&#12480;&#12502;&#12523;&#12539;&#12495;&#12452;&#12479;&#12452;&#12503;</ProductName>
+    <ProductName xml:lang="en">W-High VM Service</ProductName>
+    <Comment xml:lang="ja">&#20206;&#24819;&#12510;&#12471;&#12531;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;&#12480;&#12502;&#12523;&#12539;&#12495;&#12452;&#12479;&#12452;&#12503;</Comment>
+    <Comment xml:lang="en">W-High VM Service</Comment>
+    <UnitPrice>250.0</UnitPrice>
+    <UnitName>hour</UnitName>
+    <DisplayUnitName xml:lang="ja">&#26178;&#38291;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">Hour</DisplayUnitName>
+    <StartDate>2012-06-17T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="32">
+    <ProductCode>SOP-VM-0001-0012</ProductCode>
+    <CategoryCode>vm</CategoryCode>
+    <CategoryName xml:lang="ja">&#20206;&#24819;&#12510;&#12471;&#12531;</CategoryName>
+    <CategoryName xml:lang="en">Virtual Machine</CategoryName>
+    <ChargeType>amount</ChargeType>
+    <ProductName xml:lang="ja">&#20206;&#24819;&#12510;&#12471;&#12531;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;&#12463;&#12450;&#12483;&#12489;&#12539;&#12495;&#12452;&#12479;&#12452;&#12503;</ProductName>
+    <ProductName xml:lang="en">Quad-High VM Service</ProductName>
+    <Comment xml:lang="ja">&#20206;&#24819;&#12510;&#12471;&#12531;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;&#12288;&#12463;&#12450;&#12483;&#12489;&#12539;&#12495;&#12452;&#12479;&#12452;&#12503;</Comment>
+    <Comment xml:lang="en">Quad-High VM Service</Comment>
+    <UnitPrice>450.0</UnitPrice>
+    <UnitName>hour</UnitName>
+    <DisplayUnitName xml:lang="ja">&#26178;&#38291;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">Hour</DisplayUnitName>
+    <StartDate>2012-06-17T00:00:00.000+0900</StartDate>
+  </Product>
+  <Product id="73">
+    <ProductCode>STG-OS-0001-0001</ProductCode>
+    <CategoryCode>os</CategoryCode>
+    <CategoryName xml:lang="ja">OS&#29872;&#22659;</CategoryName>
+    <CategoryName xml:lang="en">OS Environment</CategoryName>
+    <ChargeType>fixed</ChargeType>
+    <ProductName xml:lang="ja">&#12489;&#12521;&#12452;&#12496;&#65286;&#12484;&#12540;&#12523;&#25552;&#20379;&#12469;&#12540;&#12499;&#12473;</ProductName>
+    <ProductName xml:lang="en">Driver &amp; Tool Service</ProductName>
+    <Comment xml:lang="ja"></Comment>
+    <Comment xml:lang="en"></Comment>
+    <UnitPrice>720.0</UnitPrice>
+    <UnitName>month</UnitName>
+    <DisplayUnitName xml:lang="ja">&#12521;&#12452;&#12475;&#12531;&#12473;</DisplayUnitName>
+    <DisplayUnitName xml:lang="en">License</DisplayUnitName>
+    <StartDate>2012-09-14T00:00:00.000+0900</StartDate>
+  </Product>
+</ProductInfo>

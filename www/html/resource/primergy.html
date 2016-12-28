@@ -1,0 +1,108 @@
+<!DOCTYPE html5>
+<html>
+<head>
+<title>SOP search function</title>
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/primergy.js"></script>
+<script><!--
+
+window.onload = function(){
+	var url = "/cgi-bin/getIsland.cgi";
+	sendReceiveJSON("GET",url,null,IslandList,"island");
+}
+
+function getResources(){
+	var _div = document.getElementById("islandList");
+	var island = _div.options[_div.selectedIndex].value;
+	var url = "/cgi-bin/resource/getPrimergyList.cgi?island="+island;
+	sendReceiveJSON("GET",url,null,displayList,"select_window");
+}
+
+function displayResult(data,id){
+	var bc=0;
+	var txt = "";
+//iRMC
+	txt += '<table border=1><tr><td bgcolor="#AB82FF"><font size="15px"><b>Sensor Name</b></font></td><td bgcolor="#AB82FF"><font size="15px"><b>Status</b></font></td></tr><tr>'
+	for(var l in data['irmc']){
+		if(data['irmc'][l] == "N/A"){
+			txt += '	<td bgcolor="grey">'+l+'</td><td bgcolor="grey">'+data['irmc'][l]+'</td>';
+		}else if(data['irmc'][l] == "Failed" || data['irmc'][l] == "Error"){
+			txt += '	<td bgcolor="red">'+l+'</td><td bgcolor="red">'+data['irmc'][l]+'</td>';
+		}else{
+			if(isEven(bc)){
+				txt += '	<td>'+l+'</td><td>'+data['irmc'][l]+'</td>';
+			}else{
+				txt += '	<td bgcolor="#FAEBD7">'+l+'</td><td bgcolor="#FAEBD7">'+data['irmc'][l]+'</td>';
+			}
+		}
+		bc++;
+		txt += '</tr><tr>';
+	}
+	txt += '</tr></table>';
+	$("#"+id).html(txt);
+
+//domU List
+	bc=0
+	txt = '<table border=1><tr><td bgcolor="#AB82FF"><font size="15px"><b>DomU List</b></font></td></tr><tr>'
+	for(var l in data['domU']){
+		if(isEven(bc)){
+			txt += '	<td>'+data['domU'][l]+'</td>';
+		}else{
+			txt += '	<td bgcolor="#FAEBD7">'+data['domU'][l]+'</td>';
+		}
+		txt += '</tr><tr>';
+		bc++;
+	}
+	txt += '</tr></table>';
+	$("#domU_window").html(txt);
+
+//Syslog
+	bc=0
+	txt = '<table border=1><tr><td bgcolor="#AB82FF"><font size="15px"><b>Syslog</b></font></td></tr><tr>'
+	for(var l in data['syslog']){
+		if(isEven(bc)){
+			txt += '	<td>'+data['syslog'][l]+'</td>';
+		}else{
+			txt += '	<td bgcolor="#FAEBD7">'+data['syslog'][l]+'</td>';
+		}
+		txt += '</tr><tr>';
+		bc++;
+	}
+	txt += '</tr></table>';
+	$("#syslog_window").html(txt);
+
+}
+
+
+--></script>
+<body>
+<table>
+	<tr>
+		<td valign='top'>
+			<div id="island"></div>
+			<div id="select_window"></div>
+		</td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<td valign='top'>
+			<pre>
+				<div id="main_window"></div>
+			</pre>
+		</td>
+		<td valign='top'>
+			<pre>
+				<div id="domU_window"></div>
+			</pre>
+		</td>
+		<td valign='top'>
+			<pre>
+				<div id="syslog_window"></div>
+			</pre>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

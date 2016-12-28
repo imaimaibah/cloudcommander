@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SOP Recovery Tool</title>
+<script src="script/ajax.js"></script>
+<script src="script/recovery.js"></script>
+<script>
+
+function offsetTop(e){ var t = 0; while(e){ t += e.offsetTop; e = e.offsetParent; } return t; }
+function offsetLeft(e){ var l = 0; while(e){ l += e.offsetLeft; e = e.offsetParent; } return l; }
+var refreshList = new Array();
+
+var canvas;
+var ctx;
+var infoXML;
+var matchFlag = true;
+var fatalFlag = false;
+var maxRight = 0;
+var region;
+var checkFlag = false;
+var vsysId = "";
+var orgId = "";
+
+window.onload=function(){
+}
+
+function check(){
+	// 初期化
+	$("refresh_msg").style.display = "none";
+	$("result").innerHTML = "";
+	$("vsys_list").innerHTML = "";
+	$("ror_list").innerHTML = "";
+	maxRight = 0;
+	checkFlag = true;
+
+	matchFlag = true;
+	fatalFlag = false;
+	refreshList = new Array();
+	vsysId = $("vsys_id").value;
+	orgId = vsysId.substring(0,vsysId.indexOf("-"));
+/*
+	region = $("region").value;
+	if(region == ""){
+		alert("Please select Region.");
+		return;
+	}
+*/
+	var re = new RegExp("^[0-9A-Z]{8}-[0-9A-Z]{9}$");
+	if(vsysId == ""){
+		alert("Please input SystemID.");
+		return;
+	}else if(!vsysId.match(re)){
+		alert("VSYS ID you entered is not valid");
+		return;
+	}
+
+	//var url = "http://" + region + ":7902/vsys/services/Data/getBothData?vsysId=" + vsysId;
+	var url = "/cgi-bin/getBothData.cgi?vsysId=" + vsysId;
+	try{
+		this.infoXML;
+		this.infoXML = sendReceiveXML("POST",url,null);
+	}catch(e){
+		alert(e);
+	}
+	
+	var response = this.infoXML.childNodes[0];
+	var status = response.childNodes[0];
+	if(status.nodeValue != "SUCCESS"){
+		if(status.nodeValue == "Auth failed"){
+			alert("You are not authorized");
+			return;
+		}
+		alert("Failed to obtain the data");
+		return;
+	}
+
+	// VSYS側作成
+	try{
+		var str = vsysList(response);
+		$("vsys_list").innerHTML = str;
+		str = rorList(response);
+		$("ror_list").innerHTML = str;
+	}catch(e){
+		alert("Failed to obtain the data or already deleted.");
+		return;
+	}
+
+	try{
+		this.canvas = $("canvas");
+		var winWidth = document.body.clientWidth;
+		var winHeight = document.body.clientHeight;
+		var rorPosition = offsetLeft($("ror"));
+//		this.canvas.width = winWidth;
+		this.canvas.width = rorPosition+50;
+		this.canvas.height = winHeight;
+		this.ctx = this.canvas.getContext('2d');
+		this.ctx.lineWidth=3;
+		for(rs in this.vsysResourceList){
+			matchingVSYS(rs);
+		}
+		for(rs in this.rorResourceList){
+			matchingROR(rs);
+		}
+
+		// Fatalチェック
+		for(rs in this.vsysResourceList){
+			if(vsysResourceList[rs]["connect"] == false){
+				fatalFlag = true;
+			}
+		}
+		for(rs in this.rorResourceList){
+			if(rorResourceList[rs]["connect"] == false){
+				fatalFlag = true;
+			}
+		}
+
+		if(matchFlag){
+			$("result").innerHTML = '<table cellspacing=0 cellpadding=0><tr><td>&nbsp;&nbsp;Result &gt; Matches</td><td><img height=26px src="img/match.png"></td></tr></table>';
+		}else{
+			$("result").innerHTML = '<table cellspacing=0 cellpadding=0><tr><td>&nbsp;&nbsp;Result &gt; Mismatch</td><td><img height=26px src="img/unmatch.png"></td></tr></table>';
+		}
+
+	}catch(e){
+		alert(e + "\n in Check");
+	}
+}
+
+function forceStop(obj,resourceId){
+	if(!confirm("Would you like to stop the server?")){
+		return;
+	}
+	//var url = "http://" + region + ":7902/vsys/services/Data/forceStop?resourceId=" + resourceId;
+	var url = "/cgi-bin/forceStop.cgi?resourceId=" + resourceId;
+	try{
+		this.infoXML = null;
+		this.infoXML = sendReceiveXML("POST",url,null);
+	}catch(e){
+		alert(e + "\n in ForceStop");
+	}
+	
+	var response = this.infoXML.childNodes[0];
+	var status = response.childNodes[0];
+	if(status.nodeValue != "SUCCESS"){
+		if(status.nodeValue == "Auth failed"){
+			alert("You are not authorized");
+			return;
+		}
+		alert("Failed to shut down the server");
+		return;
+	}else{
+		alert("As you wish");
+	}
+	obj.disabled = true;
+}
+
+function matchingVSYS(id){
+	try{
+		if(rorResourceList[id] != null){
+			this.ctx.strokeStyle="navy";
+			var category = vsysResourceList[id].category;
+			if(category == "server"){
+				if(statusCheck(vsysResourceList[id].status,rorResourceList[id].status)){
+					connection(id+"_VSYS",id+"_ROR");
+					vsysResourceList[id]["connect"] = true;
+					rorResourceList[id]["connect"] = true;
+				}else{
+					refreshList[id] = new Array();
+					refreshList[id]["before"] = vsysResourceList[id].status;
+					if(rorResourceList[id].status == "on"){
+						refreshList[id]["after"] = "RUNNING";
+					}else{
+						refreshList[id]["after"] = "STOPPED";
+					}
+					matchFlag = false;
+					this.ctx.strokeStyle="red";
+					connection(id+"_VSYS",id+"_ROR");
+					vsysResourceList[id]["connect"] = true;
+					rorResourceList[id]["connect"] = true;
+				}
+			}else{
+				connection(id+"_VSYS",id+"_ROR");
+				vsysResourceList[id]["connect"] = true;
+				rorResourceList[id]["connect"] = true;
+			}
+		}else{
+			matchFlag = false;
+			fatalFlag = true;
+		}
+	}catch(e){
+		alert(e + "\n in MatchingVSYS");
+	}
+}
+
+function matchingROR(id){
+	try{
+		if(vsysResourceList[id] == null){
+			if(!id.match("\-D$") && !id.match("\-D\-\d+")){
+//				alert(id.match("\-D$"));
+				matchFlag = false;
+				fatalFlag = true;
+			}else{
+				rorResourceList[id]["connect"] = true;
+			}
+		}
+	}catch(e){
+		alert(e + "\n in MatchingROR");
+	}
+}
+
+function statusCheck(vsys,ror){
+	try{
+		var VSYS_STOP_STATUS = "(STOPPED|UNEXPECTED_STOP|START_ERROR|REGISTERING)";
+		var VSYS_START_STATUS = "(RUNNING|STOP_ERROR)";
+		var vsysStatus = "";
+		if(vsys.match(VSYS_STOP_STATUS)){
+			vsysStatus = "off";
+		}else if(vsys.match(VSYS_START_STATUS)){
+			vsysStatus = "on";
+		}
+		if(vsysStatus == ror) return true;
+		return false;
+	}catch(e){
+		alert(e);
+	}
+}
+
+function connection(id1,id2){
+	var obj1 = $(id1);
+	var obj2 = $(id2);
+	var obj1Y = offsetTop(obj1);
+	var obj2Y = offsetTop(obj2);
+	var obj1X = offsetLeft(obj1) + obj1.offsetWidth;
+	var obj2X = offsetLeft(obj2);
+	if(obj2X>maxRight) maxRight = obj2X;
+	this.ctx.beginPath();
+	this.ctx.moveTo(obj1X-6,obj1Y-15);
+	this.ctx.lineTo(obj2X-10,obj2Y-15);
+	this.ctx.closePath();
+	this.ctx.stroke();
+}
+
+function refreshStatus(){
+	if(!checkFlag){
+		alert("Please check the target");
+		return;
+	}
+
+	if(fatalFlag){
+		alert("Mismatch Fatal.");
+		return;
+	}
+
+	if(matchFlag){
+		alert("Matches.");
+		return;
+	}
+
+	var str = "";
+	str += "<table cellspacing=0 cellpadding=0 border=1>";
+	str += "<tr bgcolor=\"#ccffcc\">";
+	str += "<td align=center>Server ID</td>";
+	str += "<td align=center>Before</td>";
+	str += "<td align=center>After</td>";
+	str += "</tr>";
+	for(obj in refreshList){
+		str += "<tr>";
+		str += "<td>&nbsp;" + obj + "&nbsp;</td>";
+		str += "<td>&nbsp;" + refreshList[obj]["before"] + "&nbsp;</td>";
+		str += "<td>&nbsp;" + refreshList[obj]["after"] + "&nbsp;</td>";
+		str += "</tr>";
+	}
+	str += "</table>";
+	var ref = $("refresh_msg");
+	ref.style.display = "";
+	$("status_msg").innerHTML = str;
+}
+
+function forceDelete(){
+	for(rs in this.rorResourceList){
+		if(rorResourceList[rs]["category"] == "server"){
+			if(rorResourceList[rs]["status"] != "off"){
+				alert("There are VMs running in the VSYS. Please shut down them all before proceed.");
+				return;
+			}
+		}
+	}
+
+	var re = new RegExp("^[0-9A-Z]{8}-[0-9A-Z]{9}$");
+	if(!vsysId.match(re)){
+			alert("VSYS ID you entered is not valid");
+			return;
+	}
+
+	if(!confirm("Remember, no turning back once you click 'Yes'. Would you really want to delete the entire VSYS [" + vsysId + "]?")){
+		return;
+	}else{
+		alert("OK. Remember, I warned you");
+	}
+	var orgId = vsysId.substring(0,vsysId.indexOf("-"));
+	//var url = "http://" + region + ":7902/vsys/services/VSYS/lock?userId=vsysadmin&orgId=" + orgId + "&vsysId=" + vsysId + "&force=true";
+	var url = "/cgi-bin/lock.cgi?userId=vsysadmin&orgId=" + orgId + "&vsysId=" + vsysId + "&force=true";
+	try{
+		res = sendReceiveXML("POST",url,null);
+	}catch(e){
+		alert(e + "\n in ForceLock");
+	}
+	
+	var response = res.childNodes[0];
+	var status = response.childNodes[0];
+	if(status.nodeValue != "SUCCESS"){
+		if(status.nodeValue == "Auth failed"){
+			alert("You are not authorized");
+			return;
+		}
+		alert("failed to lock the VSYS [" + status.nodeValue + "]");
+		return;
+	}
+
+	//url = "http://" + region + ":7902/vsys/services/VSYS/release?userId=vsysadmin&orgId=" + orgId + "&vsysId=" + vsysId + "&force=true";
+	url = "/cgi-bin/release.cgi?userId=vsysadmin&orgId=" + orgId + "&vsysId=" + vsysId + "&force=true";
+	try{
+		res = sendReceiveXML("POST",url,null);
+	}catch(e){
+		alert(e + "\n in ForceDelete");
+	}
+
+	response = res.childNodes[0];
+	status = response.childNodes[0];
+	if(status.nodeValue != "SUCCESS"){
+		if(status.nodeValue == "Auth failed"){
+			alert("You are not authorized");
+			return;
+		}
+		alert("Failed to delete the VSYS [" + status.nodeValue + "]");
+		return;
+	}else{
+		alert("Deletion of the entire GCP system accepted. ;-< Good bye");
+	}
+}
+
+function cancelRecovery(){
+	var ref = $("refresh_msg");
+	ref.style.display = "none";
+	$("status_msg").innerHTML = "";
+}
+
+function doRecovery(){
+	xml = "<Request>";
+	xml += "<userId>vsysadmin</userId>";
+	xml += "<orgId>" + orgId + "</orgId>";
+	xml += "<vsysId>" + vsysId + "</vsysId>";
+	xml += "<servers>";
+	for(obj in refreshList){
+		xml += "<server>";
+		xml += "<serverId>" + obj + "</serverId>";
+		xml += "<beforeStatus>" + refreshList[obj]["before"] + "</beforeStatus>";
+		xml += "<afterStatus>" + refreshList[obj]["after"] + "</afterStatus>";
+		xml += "</server>";
+	}
+	xml += "</servers>";
+	xml += "</Request>";
+
+	//var url = "http://" + region + ":7902/vsys/services/Data/recoveryStatus";
+	var url = "/cgi-bin/recoveryStatus.cgi";
+	try{
+		this.infoXML = sendReceiveXMLbyXML("POST",url,xml);
+	}catch(e){
+		alert(e + "\n in recovery");
+	}
+	
+	var response = this.infoXML.childNodes[0];
+	var status = response.childNodes[0];
+	if(status.nodeValue != "SUCCESS"){
+		if(status.nodeValue == "Auth failed"){
+			alert("You are not authorized");
+			return;
+		}
+		alert("Failed to recover. The state of the system may not be NORMAL. Please contact 2nd line support.");
+		var ref = $("refresh_msg");
+		ref.style.display = "none";
+		$("status_msg").innerHTML = "";
+		return;
+	}else{
+		alert("Completed");
+	}
+
+	var ref = $("refresh_msg");
+	ref.style.display = "none";
+	$("status_msg").innerHTML = "";
+	check();
+}
+
+function $(id){
+	return document.getElementById(id);
+}
+</script>
+<link rel="stylesheet" href="css/recover.css" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<canvas id="canvas" width=0 height=0 style="position:absolute;top:30px;"></canvas>
+<div class="radius title">
+	<table border=0 cellspacing=0 cellpadding=0 width=100%>
+		<tr>
+<!--
+			<td nowrap>
+				<b>Region &gt; </b>
+				<select id="region">
+					<option value="Global">Global
+					<option value="172.16.1.34">Tatebayashi
+					<option value="172.16.1.17">Tatebayashi-W
+					<option value="10.33.209.44">Tech
+					<option value="localhost">Local
+				</select>
+			</td>
+-->
+			<td nowrap>
+				<b>&nbsp;&nbsp;SystemID &gt; </b><input id="vsys_id" value="" size=33><input type=button value="Check" onclick="javascript:check()">
+			</td>
+			<td  width=100% nowrap>
+				<b><div id="result" style="display:inline;"></div></b>
+			</td>
+			<td nowrap>
+				<a href="javascript:forceDelete();" style="cursor:hand;margin-right:5px;"><img height=26px src="img/delete.png" border=0></a><a href="javascript:refreshStatus();" style="cursor:hand;margin-right:5px;"><img height=26px src="img/refresh.png" border=0></a>
+			</td>
+<!--
+			<td>
+				<img height=26px src="img/delete.png">
+			</td>
+-->
+		</tr>
+	</table>
+</div>
+<br>
+<table border=0 cellspacing=0 cellpadding=0 width=100%>
+	<tr>
+		<td width=45%><img src="img/caption.gif">&nbsp;VSYS</td>
+		<td width=10%>&nbsp;</td>
+		<td width=45%><img src="img/caption.gif">&nbsp;<div id="ror" style="display:inline;">ROR</div></td>
+	</tr>
+	<tr>
+		<td valign=top><div id="vsys_list"></div></td>
+		<td>&nbsp;</td>
+		<td valign=top><div id="ror_list"></div></td>
+	</tr>
+</table>
+<div id="refresh_msg" style="position:absolute;display:none;width:100%;height:400px;top:0;left:0;">
+<br><br><br><br>
+<table cellspacing=0 cellpadding=0 border=0 width=100%>
+<tr><td align=center>
+<div class="radius status_msg">
+<table width=100% bgcolor=#ffffff cellspacing=0 cellpadding=0 border=0>
+	<tr>
+		<td>
+			May I proceed the below tasks?<br>
+			<div id="status_msg"></div><br>
+			
+		</td>
+	</tr>
+</table>
+<input type=button onclick="javascript:cancelRecovery()" value="Cancel">&nbsp;<input onclick="javascript:doRecovery()" type=button value="OK">
+</div>
+</td>
+</tr>
+</table>
+</body>
+</html>

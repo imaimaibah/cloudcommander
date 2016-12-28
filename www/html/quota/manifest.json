@@ -1,0 +1,15 @@
+{
+	"name" : "SOP Quota Config Tool",
+	"version" : "1.0.0",
+	"description" : "SOP Quota Config Tool",
+	"background_page" : "background.html",
+	"browser_action" : {
+		"default_icon" : "img/icon.png",
+		"default_title": "Click to start SOP Quota Config Tool var 1.0.0"
+	},
+	"permissions" : [
+		"http://*/",
+		"tabs",
+		"bookmarks"
+	]
+} 

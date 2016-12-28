@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>Introduction</title>
+<link href="/css/introduction.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script>
+$(function(){
+	if(top.browser == "Chrome"){
+		$("#introduction").load("/introduction.html #introduction");
+	}else{
+		$("#introduction").load("/browser.html");
+	}
+});
+</script>
+</head>
+<body>
+<!--
+<img src="/pics/dayshift.jpg" height="30%" width="30%">GSD: Day time shift</img>
+<img src="/pics/nightshift.jpg" height="30%" width="30%">GSD: Night time shift</img>
+-->
+<div id='introduction'></div>
+</body>
+</html>

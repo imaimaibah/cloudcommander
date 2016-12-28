@@ -1,0 +1,32 @@
+#!/usr/bin/expect 
+
+# ENV FILE
+source "/release/bin/env.exp"
+
+# Trap
+trap { interact \x1d return; send -- "\n"} {SIGTSTP SIGINT SIGTERM}
+
+# Variables
+set timeout -1
+set prompt "(\\\[.*@.*](#|\\$)|mysql>|bash-.*|sh.*#) $"
+set file [lindex $argv 0]
+set logfile [lindex $argv 1]
+set server [lindex $argv 2]
+set passwd [lindex $argv 3]
+
+# Logging
+log_file -noappend $logfile
+
+# Base
+spawn /bin/bash --norc
+expect -re $prompt
+if { $server != "" } {
+	connect_server $server $passwd
+}
+cmd $file
+if { $server != "" } {
+	disconnect_server
+}
+send -- "exit\r"
+log_file
+expect eof
