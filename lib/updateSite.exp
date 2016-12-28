@@ -1,0 +1,273 @@
+#!/usr/bin/expect
+
+
+#### SHOW RESULT ####
+proc success {msg} {
+	global server
+	puts stderr "$server $msg\[60G\[\[1;32m  GOOD  \[0;39m\]"
+
+return 0
+}
+
+proc failure {msg} {
+	global server
+	puts stderr "$server $msg\[60G\[\[1;31m  FAILED  \[0;39m\]"
+	exit
+
+return 0
+}
+
+proc warning {msg} {
+	global server
+	puts stderr "$server $msg\[60G\[\[1;33m  WARN  \[0;39m\]"
+
+return 0
+}
+
+#### UPDATE SITE COMMON FUNCTIONS####
+#### GET VERSION ####
+proc getVersion {} {
+	global prompt
+	global TEMP
+	global version
+	send -- "/bin/ls -l $TEMP/updateSite/T*.tar.Z |awk '{print \$9}'\n"
+	expect -re ".*?\n"
+	set index 0
+	while {1} {
+		expect -re "(.*?)\n" {
+			if {[regexp -- ".*/(T.*)\.tar\.Z" $expect_out(1,string) j jj] == 1} {
+				set version($index) $jj
+				incr index 1
+			}
+		} -re $prompt {
+			break
+		}
+	}
+
+	if { $index > 0 } {
+		success "GET VERSION"
+	} else {
+		failure "GET VERSION"
+	}
+}
+
+#### CHECK CHOHYO ####
+proc checkchohyo {version} {
+	global prompt
+	global TEMP
+	send -- "OLD_LANG=\$LANG\n"
+	expect -re $prompt
+	send -- "LANC=C\n"
+	expect -re $prompt
+	send -- "/opt/FJSVfupde/bin/uam check -d $TEMP/updateSite | awk '/\\\[unapplied-update\\\]/,/\\\[inapplicable-update\\\]/ {print}' | grep $version\n"
+	expect -re $prompt
+	send -- "echo \$?\n"
+	expect -re ".*?\n"
+	expect -re "(.*?)\n"
+	if {$expect_out(1,string) == 0} {
+		success "CHECK CHOHYO $version"
+	} else {
+		failure "CHECK CHOHYO $version"
+	}
+	expect -re $prompt
+	send -- "LANG=\$OLD_LANG\n"
+	expect -re $prompt
+	
+}
+
+#### APPLYING CHOHYO ####
+proc chohyo {} {
+	global prompt
+	global TEMP
+	set flag 0
+	send -- "OLD_LANG=\$LANG\n"
+	expect -re $prompt
+	send -- "LANC=C\n"
+	expect -re $prompt
+	send -- "/opt/FJSVfupde/bin/uam setup -C $TEMP/updateSite/linprdchk.tar.Z\n"
+	expect -re ".*?\n"
+	while {1} {
+		expect -re "(.*?)\n" {
+			if {[regexp -- "Backup directory" $expect_out(1,string) j jj] == 1} {
+				set flag 1
+			}
+		} -re $prompt {
+			break
+		}
+	}
+
+	if { $flag == 1 } {
+		success "APPLYING CHOHYO"
+	} else {
+		failure "APPLYING CHOHYO"
+	}
+	send -- "LANG=\$OLD_LANG\n"
+	expect -re $prompt
+}
+
+#### APPLYING UPDATE SITE ####
+proc updatesite {version} {
+	global prompt
+	global TEMP
+	send -- "OLD_LANG=\$LANG\n"
+	expect -re $prompt
+	send -- "LANC=C\n"
+	expect -re $prompt
+	send -- "/opt/FJSVfupde/bin/uam add -d $TEMP/updateSite -i $version\n"
+	expect "Are you sure you want to apply the update?" {
+		send -- "Y\n"
+		expect -re "research and apply updates\." {
+			success "APPLYING UPDATESITE $version"
+			expect -re $prompt
+		} -re "restart your computer immediately" {
+			send "N\n"
+			expect -re "research and apply updates\." {
+				success "APPLYING UPDATESITE $version"
+				expect -re $prompt
+			} -re $prompt {
+				failure "APPLYING UPDATESITE $version"
+			}
+		} -re $prompt {
+			failure "APPLYING UPDATESITE $version"
+		}
+	}
+	send -- "LANG=\$OLD_LANG\n"
+	expect -re $prompt
+}
+
+#### CHECK whether or not it is applied successfully ####
+proc applyCheck {version ret} {
+	global prompt
+	send -- "/opt/FJSVfupde/bin/uam showup |grep $version\n"
+	expect -re $prompt
+	send -- "echo \$?\n"
+	expect -re ".*?\n"
+	expect -re "(.*?)\n"
+	if { $expect_out(1,string) == $ret } {
+		success "SHOWUP $version"
+	} else {
+		failure "SHOWUP $version"
+		interact  return
+		send -- "\n"
+	}
+	expect -re $prompt
+}
+
+#### SEND PACKAGE ####
+proc mgtcb_send_package {START server file} {
+	global prompt
+	global TEMP
+	global mgtcb_pass
+	spawn /bin/bash --norc
+	expect -re $prompt
+	send -- "awk 'NR>$START' $file|openssl base64 -d | ssh root@$server \"mkdir $TEMP;tar zxv -C $TEMP\"\n"
+	expect "password" {
+		send -- "$mgtcb_pass\n"
+	} "yes/no" {
+		send -- "yes\n"
+		expect "password"
+		send -- "$mgtcb_pass\n"
+	}
+	expect -re $prompt
+	send -- "exit\n"
+	expect eof
+}
+
+proc island_send_package {START server file} {
+	global prompt
+	global TEMP
+	global island_pass
+	spawn /bin/bash --norc
+	expect -re $prompt
+	send -- "awk 'NR>$START' $file|openssl base64 -d | ssh root@$server \"mkdir $TEMP;tar zxv -C $TEMP\"\n"
+	expect "password" {
+		send -- "$island_pass\n"
+	} "yes/no" {
+		send -- "yes\n"
+		expect "password"
+		send -- "$island_pass\n"
+	}
+	expect -re $prompt
+	send -- "exit\n"
+	expect eof
+}
+
+proc updateSite_Install {} {
+
+#### GET VERSION ####
+getVersion
+global version
+
+#### APPLY CHECK ####
+for { set i 0 } { [array size version] > $i } { incr i 1} {
+	applyCheck $version($i) 1
+}
+
+#### Chohyo ####
+chohyo
+
+#### Chohyo Check ####
+for { set i 0 } { [array size version] > $i } { incr i 1} {
+	checkchohyo $version($i)
+}
+
+
+#### UPDATESITE ####
+for { set i 0 } { [array size version] > $i } { incr i 1} {
+	updatesite $version($i)
+}
+
+#### APPLY CHECK ####
+for { set i 0 } { [array size version] > $i } { incr i 1} {
+	applyCheck $version($i) 0
+}
+
+}
+
+#### DEFINITION of FUNCTIONS ####
+proc pre {} {
+	global prompt
+	global TEMP
+	send -- "sh $TEMP/pre_post.sh prepare\n"
+	expect -re $prompt
+	send -- "echo \$?\n"
+	expect -re ".*?\n"
+	while {1} {
+		expect -re "(.*)\r\n" {
+			if {[regexp -- "0" $expect_out(1,string) j jj] == 1} {
+				success "Prepare"
+				expect -re $prompt
+				return 0
+			} else {
+				failure "Prepare"
+				expect -re $prompt
+				exit 1
+			}
+		} -re $prompt {
+			break
+		}
+	}
+}
+
+proc post {} {
+	global prompt
+	global TEMP
+	send -- "sh $TEMP/pre_post.sh post\n" 
+	expect -re $prompt
+	send -- "echo \$?\n"
+	expect -re ".*?\n"
+	while {1} {
+		expect -re "(.*)\r\n" {
+			if {[regexp -- "0" $expect_out(1,string) j jj] == 1} {
+				success "Post"
+				return 0
+			} else {
+				failure "Post"
+				exit 1
+			}
+		} -re $prompt {
+			break
+		}
+	}
+}
+

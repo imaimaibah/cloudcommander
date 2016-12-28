@@ -1,0 +1,12 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set lastmonth [lindex $argv 0]
+
+log_user 0
+island_login "islanda-cbrm"
+stdout "for i in `ls /var/opt/FJSVrcvmr/operation/operation.log.$lastmonth*`;do grep -P '(Completed|Starting).*migrate,mode=\"(live|cold)\"' \$i;done"
+send -- "exit\n"
+expect eof

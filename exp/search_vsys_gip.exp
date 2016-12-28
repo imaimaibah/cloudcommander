@@ -1,0 +1,31 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set gip [lindex $argv 0]
+if { $gip != "" } {
+	set option "and gi.gip = '$gip'"
+} else {
+	set option ""
+}
+
+log_user 0
+mgtcb_login "vsys-db"
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop\n"
+expect -re $prompt
+#send -- "select gi.org_id,gi.vsys_id,vi.server_id,gi.gip,gi.status from `gip#instance` gi  inner join fw_nat fn on gi.gip = fn.gip and gi.vsys_id = fn.vsys_id inner join `vnic#instance` vi on fn.pip = vi.ip_address and fn.vsys_id = vi.vsys_id where gi.status in('ATTACHED','DETACHED','UNDEPLOY') $option order by entry_date;\n"
+send -- "select gi.org_id,gi.vsys_id,vi.server_id,gi.gip,gi.status,from_unixtime(gi.entry_date/1000),from_unixtime(gi.update_date/1000) from `gip#instance` gi left join fw_nat fn on gi.gip = fn.gip and gi.vsys_id = fn.vsys_id left join `vnic#instance` vi on fn.pip = vi.ip_address and fn.vsys_id = vi.vsys_id where gi.status in('ATTACHED','DETACHED','UNDEPLOY') $option order by gi.entry_date;\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re ".*\n" {
+		send_user -- "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+#expect eof
+log_user 1

@@ -1,0 +1,30 @@
+#!/usr/bin/expect -f
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+mgtcb_login "portal"
+send -- "/root/bin/sw2mnt.sh\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+
+mgtcb_login "sso"
+send -- "/root/bin/sw2mnt.sh\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+
+mgtcb_login "user-mgmt"
+send -- "islistwu |grep portals\n"
+expect -re $prompt
+send -- "if \[ \$? -eq 0 \];then isstopwu portals;fi\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+
+mgtcb_login "api-base"
+send -- "sed -i 's/FLAG = false/FLAG = true/' /etc/tomcat5/ovisspxy/setting.properties\n"
+expect -re $prompt 
+send -- "exit\n"
+expect eof

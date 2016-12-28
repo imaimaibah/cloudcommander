@@ -1,0 +1,21 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+trap { send -- \x03;} {SIGTSTP SIGINT SIGHUP SIGTERM}
+log_user 0
+
+set port [lindex $argv 0]
+set log [lindex $argv 1]
+set timeout -1
+spawn su - 
+expect "Password: " {
+	send -- "sv@01011\n"
+}
+expect -re $prompt
+send -- "/data/rfbproxy/bin/rfbproxy --server=localhost:$port -r /data/audit/rfb_$log-`date '+%Y%m%d%H%M%S'`\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+exit

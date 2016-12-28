@@ -1,0 +1,53 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set Dom0 [lindex $argv 0]
+
+log_user 0
+set timeout 10
+
+trap {} {SIGHUP} 
+
+
+spawn /bin/bash
+expect -re $prompt
+send -- "grep $Dom0 /etc/hosts > /dev/null 2>&1\n"
+expect -re $prompt
+send -- "echo $?\n"
+expect -re ".*?\n"
+expect -re "(.*?)\n"
+if { $expect_out(1,string) == 1 } {
+  send -- "exit\n"
+  expect -re $prompt
+
+  spawn /bin/bash/
+  expect -re $prompt
+  send -- "echo 2 > /tmp/pcl_check\n"
+} else {
+	dom0_login $Dom0
+	send -- "ls /opt/FJSVpclsnap/bin/pclsnap > /dev/null 2>&1\n"
+	expect -re $prompt
+	send -- "echo $?\n"
+	expect -re ".*?\n"
+	expect -re "(.*?)\n"
+	if { $expect_out(1,string) == 0 } {
+		send -- "exit\n"
+		expect -re $prompt
+	
+		spawn /bin/bash/
+		expect -re $prompt
+		send -- "echo 0 > /tmp/pcl_check\n"
+	}	else {
+		send -- "exit\n"
+		expect -re $prompt
+	
+		spawn /bin/bash
+		expect -re $prompt
+		send -- "echo 1 > /tmp/pcl_check\n"
+	}
+}
+expect -re $prompt
+send -- "exit\n"
+expect eof

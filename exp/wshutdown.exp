@@ -1,0 +1,26 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set vm [lindex $argv 0]
+
+log_user 0
+#send -- "echo \"select vm.server_id,vm.status,t.error_message,t.end_time from \\\`server#instance\\\` vm left join task t on vm.resource_id = t.resource_id where t.status = 'error' and vm.server_id = '$vm'\" | ssh -l root vsys-db '/usr/local/mysql/bin/mysql -u sopuser -pmtm\\\!0256 sop'\n"
+mgtcb_login "vsys-db"
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop\n"
+expect -re $prompt
+send -- "select vm.server_id,vm.status,t.error_message,t.end_time from `server#instance` vm left join task t on vm.resource_id = t.resource_id where t.status = 'error' and vm.server_id = '$vm';\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re ".*\n" {
+		send_user -- "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+log_user 1

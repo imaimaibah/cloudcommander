@@ -1,0 +1,29 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set org [lindex $argv 0]
+
+if {[regexp -- ^\[A-Z0-9\]{8}$ $org] == 1} {
+	set sql "select si.server_id,si.status,si.server_name,si.server_type,swl.software_name,swl.support from `server#instance` si, software sw, software_link sl, software_locale swl where status not in('UNDEPLOY','UNDEPLOYING','DEPLOYING') and sl.order = '0' and si.image_id = sl.image_id and sl.software_id = sw.software_id and sw.software_id = swl.software_id and swl.lcid = 'en' and si.org_id = '$org';"
+} elseif {[regexp -- ^\[A-Z0-9\]{8}-\[A-Z0-9\]{9}$ $org] == 1} {
+	set sql "select si.server_id,si.status,si.server_name,si.server_type,swl.software_name,swl.support from `server#instance` si, software sw, software_link sl, software_locale swl where status not in('UNDEPLOY','UNDEPLOYING','DEPLOYING') and sl.order = '0' and si.image_id = sl.image_id and sl.software_id = sw.software_id and sw.software_id = swl.software_id and swl.lcid = 'en' and si.vsys_id = '$org';"
+} else {
+	puts "Invalid ID specified"
+	exit
+}
+
+log_user 0
+
+mgtcb_login "vsys-db"
+send -- "/usr/local/mysql/bin/mysql -usopuser -p sop\n"
+expect "Enter password:" {
+	send -- "mtm!0256\n"
+}
+expect -re $prompt
+stdout "$sql"
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

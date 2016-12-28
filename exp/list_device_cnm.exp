@@ -1,0 +1,29 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set server [lindex $argv 0]
+if { $server == "" } {
+	send_user -- "SERVER is empty\n"
+	exit 0;
+}
+log_user 0
+
+island_login "$server"
+send -- "curl -k -X POST -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' -H 'Authorization: Basic dG9wb2xvZ3lfY29tbWFuZDp0b3BvbG9neV9wYXNzd29yZA==' -d 'COMMAND=cnmshownodeinfo'  http://localhost:51111/TopologySearch/webaccess\n"
+expect -re ".*?\n"
+send_user "$expect_out(buffer)"
+log_file -noappend /usr/local/2nd_tools/data/$server.dat
+while {1} {
+	expect -re ".*?\n" {
+		send_log -- "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+log_file
+send_user "$expect_out(buffer)"
+log_user 1
+send -- "exit\n"
+expect eof

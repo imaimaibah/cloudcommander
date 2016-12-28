@@ -1,0 +1,114 @@
+02/Feb/2012 - Shin Imai
+UPDATED: Version 1.1
+	Enhanced:
+		smtp.pl			- Modified to send an email with an attachment with options `-a <file>' Generic send mail script for 2nd_tools.
+		capacity.sh		- Modified to use smtp.pl to send an email. Generic send mail script for 2nd_tools.
+		initialize.sh	- Add a directory to the structure.
+		CSV_region.pl	- Modified to create OS list first in order to display OSes that are not deployed at all.
+		CSV_island.pl	- Modified to create OS list first in order to display OSes that are not deployed at all.
+		disp_region.pl	- Modified to create OS list first in order to display OSes that are not deployed at all.
+		fw_policy_check.exp	- Modified the SQL statement to display the protocol column.
+		fw_policy_check.pl	- Modified to use smtp.pl to send an email.
+
+	Deleted: 
+		capacity.pl		- Integrated into smtp.pl.
+
+
+23/Jan/2012 - Shin Imai
+New Release: Version 1.0
+	Executable files:
+		acctrl.sh			- Shows user's privileges in MyPortal.
+		backup_fw.sh		- Takes FW backups. The FW includes island?-fw, region-fw, fw-dmz.(Not yet copatible with Multi-Islanda)
+		capacity.sh			- Collect capacity data and sends an email with the data attached.
+		cnmshow.sh			- Shows CNM data such as the same with shownodeinfo on CNM.
+		csm_snap.sh			- Takes CSM snap.
+		eternus_check.pl	 - Checks all of the Eternus status.(Not yet Multi-Island compatible)
+		first_shell.pl		- First Line Shell. The First line can execute the following via the script 
+								1. Eternus
+								2. Primergy
+								3. Dom0 Maintenance mode (Coming Soon)
+								4. Password change for Cockpit
+								5. WShutdown/10mins issue check
+								6. Initialize SSL-VPN password for Administrators.
+		fjswitch.sh			- Checks all of the FW Switches status. (Not yet compatible with Multi-Island)
+		force_release.sh	- Force-Stops & Releases VSYS.
+		fw_policy_check.pl	- Find VSYS-ID of which FW is fully opened to the Internet.
+		gip_ope.pl			- GIP operation as attaching/detaching GIPs. (Coming Soon)
+		mente_kaijo.sh		- Sets Maintenance mode off.(Not yet comatible with Multi-Island)
+		mente.sh			- Sets Maintenance mode on. (Not yet compatible with Multi-Island)
+		pserver_check.pl	- Checks Primergy hardware status.
+		pserv_monitor.sh	- Turn monitoring off Dom0s.
+		ror_snap.sh			- Takes RoR snap.
+		sdm_shell.pl		- SDMs Shell. The SDMs can execute the following;
+								1. capacity
+								2. password change for cockpit
+								3. Force release VSYS
+								4. Check status of VSYS
+								5. Local Contents(Coming Soon)
+		send_perl.sh		- Sends perl script.
+		send_shell.sh		- Sends shell script.
+		slice_checker.pl	- Checks at which Eternus the vdisks are devided onto.
+		ssh_dom0.sh			- SSH to Dom0 on which the specified VM is running.
+
+	Library files:
+		audit.pm			- For auditting purpose.
+		env.exp				- Global variables are defined for expect scripts.
+		env.pm				- Global variables are defined for perl scripts.
+		env.sh				- Global variables are defined for shell scripts.
+		func.exp			- User defined functions are defined for expect scripts.
+		func.pm				- User defined functions are defined for perl scripts.
+		func.sh				- User defined functions are defined for shell scripts.
+		local_contents.pm	- For sdm_shell.pl. Common functions used for the local contentent uploads are defined.
+
+	Expect scripts:
+		capacity1.exp		- To gather data for the capacity.
+		capacity2.exp		- To gather data for the capacity.
+		capacity3.exp		- To gather data for the capacity.
+		capacity4.exp		- To gather data for the capacity.
+		capacity5.exp		- To gather data for the capacity.
+		csm_snap.exp		- Takes CSM snap.
+		dmz-fw.exp			- Takes a backup of dmz-fw.
+		eternus_status_check.exp
+		fjswitch.exp		- Check status of Fujitsu switches.
+		force_release.exp	- Forcibly release VSYS.
+		force_stop.exp		- Forcibly stop VMs.
+		fw_policy_check.exp	- Find VSYS-ID of which FW is fully opened to the Internet.
+		gather_providers.exp	- Gather providers for the slice checker.
+		getVMRegion.exp		- Obtain an island name where the VM belongs to.
+		get_vm_status.exp	- Get status of VMs within the VSYS.
+		gip_cnm.exp			- 
+		gip_ope.exp
+		islanda-fw.exp
+		list_device_cnm.exp
+		monitoring_start.exp
+		monitoring_stop.exp
+		passwd_change.exp
+		pserver_irmc_check.exp
+		region-fw.exp
+		ror_snap.exp
+		scp.exp
+		sendmail.exp
+		setDom0Mainte.exp
+		show_cluster.exp
+		showDom0_mainte.exp
+		showRegion.exp
+		show_user.exp
+		sorry.exp
+		sorry_kaijo.exp
+		ssh_dom0.exp
+		ssl_vpn.exp
+		vsys-db.exp
+		wshutdown.exp
+
+	Perl Scripts:
+		capacity.pl
+		check_domU.pl
+		cnmshow.pl
+		CSV_island.pl
+		CSV_region.pl
+		disp_region.pl
+		findIsland.pl
+		force_stop.pl
+		listIsland.pl
+		make_data.pl
+		smtp.pl

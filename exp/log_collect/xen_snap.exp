@@ -1,0 +1,66 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set Dom0 [lindex $argv 0]
+
+log_user 0
+set timeout 90
+set kind /tmp/$Dom0\_xen-snap.tar.gz
+set kind2 /data/download/$Dom0\_xen-snap.tar.gz
+
+trap {} {SIGHUP} 
+
+dom0_login $Dom0
+send -- "#!/bin/sh
+(
+    export LANG=C
+    set -x
+    date
+    dmesg
+    hostname
+    uptime
+    rpm -qa
+    xm list
+    xm list --long
+    xenstore-ls
+    xm vcpu-list
+    xm vnet-list --long
+    xm dmesg
+    xm info
+    xm sched-credit
+    xentop -b -i 1
+    top -b -n 1
+    ps aux
+    pstree
+    pvs -a -v
+    vgscan -vvv
+    ifconfig -a
+    route -n
+    brctl show
+) > /tmp/xen_cmd.out 2>&1
+
+tar cvzf $kind \
+    /tmp/xen_cmd.out \
+    /var/log/xen \
+    /var/log/messages* \
+    /var/log/secure* \
+    /var/log/dmesg
+
+rm -f /tmp/xen_cmd.out\n"
+expect -re $prompt
+send -- "exit\n"
+expect -re $prompt
+
+spawn /bin/bash
+expect -re $prompt
+send -- "rm -f $kind2\n"
+expect -re $prompt
+send -- "$base_dir/exp/log_collect/transfer_file2.exp $Dom0 $kind\n"
+expect -re $prompt
+dom0_login $Dom0
+send -- "rm -f $kind\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

@@ -1,0 +1,64 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set server1 charge-db
+set server2 charge
+set today [clock format [clock seconds] -format {%Y%m%d}]
+
+log_user 0
+set timeout 60
+set kind1 /var/tmp/kakinaudit_all_$today*
+set kind2 /var/tmp/$today\_charge.tar.gz
+set kind3 /data/download/$today\_charge_logs.tar.gz
+
+trap {} {SIGHUP} 
+
+island_login $server1
+send -- "/opt/sopchg/bin/auditdata_backup_all.sh\n"
+expect -re $prompt
+send -- "mv -f /data/audit/kakinaudit_all_$today* /var/tmp\n"
+expect -re $prompt
+
+send -- "exit\n"
+expect -re $prompt
+
+spawn /bin/bash
+expect -re $prompt
+
+island_login $server2
+send -- "tar zcf /var/tmp/sopchg-conf.tar.gz /etc/sopchg/conf/\n"
+expect -re $prompt
+send -- "tar zcf /var/tmp/opt-sopchg.tar.gz /var/opt/sopchg/\n"
+expect -re $prompt
+send -- "tar zcf /var/tmp/log-sopchg.tar.gz /var/log/sopchg/\n"
+expect -re $prompt
+send -- "tar zcf /var/tmp/log-message.tar.gz /var/log/messages*\n"
+expect -re $prompt
+send -- "tar zcf $kind2 /var/tmp/sopchg-conf.tar.gz /var/tmp/opt-sopchg.tar.gz /var/tmp/log-sopchg.tar.gz /var/tmp/log-message.tar.gz\n"
+expect -re $prompt
+send -- "exit\n"
+expect -re $prompt
+
+spawn /bin/bash
+expect -re $prompt
+
+send -- "rm -f /data/download/*_charge_logs*\n"
+expect -re $prompt
+send -- "$base_dir/exp/log_collect/transfer_file.exp $server1 $kind1\n"
+expect -re $prompt
+send -- "$base_dir/exp/log_collect/transfer_file.exp $server2 $kind2\n"
+expect -re $prompt
+send -- "tar zcf $kind3 /data/download/kakinaudit_all_$today* /data/download/$today\_charge.tar.gz\n"
+expect -re $prompt
+send -- "rm -f /data/download/*charge.tar.gz /data/download/*kakinaudit*\n"
+expect -re $prompt
+island_login $server1
+send -- "rm -f $kind1\n"
+expect -re $prompt
+island_login $server2
+send -- "rm -f $kind2 /var/tmp/sopchg-conf.tar.gz /var/tmp/opt-sopchg.tar.gz /var/tmp/log-sopchg.tar.gz /var/tmp/log-message.tar.gz\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

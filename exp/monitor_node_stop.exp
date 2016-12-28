@@ -1,0 +1,42 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set server [lindex $argv 0];
+set file [lindex $argv 1];
+
+log_user 0
+mgtcb_login "$server"
+set timeout -1
+send -- "echo -n > /tmp/monitoring_stop_`date '+%Y%m%d'`\n"
+expect -re $prompt
+set fhandle [open $file r]
+while {[gets $fhandle inline] >= 0} {
+    send -- "echo $inline >> /tmp/monitoring_stop_`date '+%Y%m%d'`\n"
+	expect -re $prompt
+}
+close $fhandle
+send -- "/opt/FJSVfwnm/bin/mpmonsuspend -z -f /tmp/monitoring_stop_`date '+%Y%m%d'`\n"
+expect -re $prompt
+send -- "/opt/FJSVfwnm/bin/mpmonfwclr\n"
+expect -re $prompt
+send -- "/opt/FJSVfwnm/bin/mpmonstat -f /tmp/monitoring_check_`date '+%Y%m%d'`\n"
+expect -re $prompt
+set fhandle [open $file r]
+while {[gets $fhandle inline] >= 0} {
+	set node [lindex [split $inline ","] 1]
+	send -- "awk -F, '\$1==\"\\\"$node\\\"\" {print}' /tmp/monitoring_check_`date '+%Y%m%d'`\n"
+	expect -re ".*?\n"
+	while {1} {
+		expect -re ".*\n" {
+			send_user -- "$expect_out(buffer)"
+		} -re $prompt {
+			break
+		}
+	}
+}
+close $fhandle
+send -- "exit\n"
+expect eof
+log_user 1

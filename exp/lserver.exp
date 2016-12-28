@@ -1,0 +1,14 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+log_user 0
+
+mgtcb_login "vsys-db"
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop\n"
+expect -re $prompt
+stdout "select si.org_id,sw.software_id,sw.os_type from `server#instance` as si inner join software_link as sl on sl.image_id = si.image_id left join software as sw on sl.software_id = sw.software_id where status not in('UNDEPLOY','UNDEPLOYING') and sl.order = 0 and os_category is not NULL;"
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

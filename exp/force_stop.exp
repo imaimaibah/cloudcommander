@@ -1,0 +1,63 @@
+#!/usr/bin/expect
+
+set resource [lindex $argv 0]
+set vm [lindex $argv 1]
+set island [lindex [split $resource "_"] 0]
+set prompt "(#|\\$) $"
+
+log_file -noappend "/usr/local/2nd_tools/log/exp/$resource-stop.log"
+
+spawn telnet vsys-ap 7902
+expect "Escape character is '^]'." {
+	send -- "POST /vsys/services/Data/forceStop?resourceId=$resource HTTP/1.0\r"
+	send -- "Content-Type: application/x-www-form-urlencoded\r"
+	send -- "Authorization: Basic c29wdXNlcjptdG0hMDI1Ng==\r\r"
+} timeout {
+	send_user -- "TIMEOUT\r"
+}
+expect "SUCCESS" {
+	expect eof
+} "SYSTEM_ERROR" {
+	exit 2
+} timeout {
+	exit 2
+}
+
+island_login $island
+
+set timeout 900
+send -- "tail -100f /var/log/messages|grep $vm\n"
+expect -re ".*?\n"
+expect -re "$vm:stop server:completed" {
+	send -- \x03
+	expect -re $prompt
+	send -- "exit\n"
+	expect eof
+} -re "$vm:stop server:failed" {
+	send -- \x03
+	expect -re $prompt
+	send -- "exit\n"
+	log_file
+	expect eof
+	exit 2
+} timeout {
+	send -- \x03
+	expect -re $prompt
+	send -- "exit\n"
+	expect eof
+	log_file
+	exit 2
+}
+
+set timeout 10
+mgtcb_login "vsys-db"
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop\n"
+expect -re $prompt
+send -- "UPDATE `server#instance` SET status = 'STOPPED', update_date = UNIX_TIMESTAMP() * 1000 WHERE server_id = '$vm' and resource_id = '$resource';\n"
+expect -re $prompt
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+log_file
+expect eof
+exit 0

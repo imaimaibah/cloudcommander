@@ -1,0 +1,43 @@
+#!/usr/bin/expect -f
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set serv [lindex $argv 0]
+set pass "ir@$region_num"
+
+log_user 0
+spawn ssh -l admin $serv
+expect "password" {
+	send -- "$pass\n"
+} "(yes/no)" {
+	send -- "yes\n"
+	expect "password"
+	send -- "$pass\n"
+} timeout {
+	send_user -- "TIMEOUT\n"
+	exit
+} eof {
+	send_user -- "FAILED TO CONNECT\n"
+	exit
+}
+
+expect "Enter selection or (0) to quit: "
+send -- "3"
+expect "Enter selection or (0) to quit: "
+send -- "s"
+expect -re ".*?\n"
+while {1} {
+	expect -re ".*\n" {
+ 		send_user -- "$expect_out(buffer)"
+	} "Press any key to continue " {
+		break
+	}
+}
+send -- "\n"
+expect "Enter selection or (0) to quit: "
+send -- "0"
+expect "Enter selection or (0) to quit: "
+send -- "0"
+expect eof
+log_user 1

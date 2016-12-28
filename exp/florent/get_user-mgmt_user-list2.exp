@@ -1,0 +1,35 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+#exp_internal 1
+
+log_user 0
+set server user-mgmt
+set contractid [lindex $argv 0]
+mgtcb_login $server
+
+send -- "mysql -umysqlusr -p'mwm!0277' SOPUSER\n"
+expect "mysql>"
+
+if { [info exists contractid] } {
+  send -- "select ContractNo, UserID from T_ORGNZ_INFO where DisableFlag='0' and DisableDate is Null and ContractNo='$contractid';\n"
+} elseif {
+  send -- "select ContractNo, UserID from T_ORGNZ_INFO where DisableFlag='0' and DisableDate is Null ;\n"
+}
+expect -re ".*?\n"
+
+while {1} {
+        expect -re ".*\n" {
+                send_user -- "$expect_out(buffer)"
+        } -re $prompt {
+                break
+        }
+}
+
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+#expect eof
+log_user 1

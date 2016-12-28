@@ -1,0 +1,13 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set prompt "CLI> "
+
+log_user 0
+set eternus [lindex $argv 0]
+eternus_login $eternus
+stdout "show events"
+send -- "exit\r"
+close

@@ -1,0 +1,53 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set server [lindex $argv 0]
+set flag 0
+
+set timeout -1
+log_user 0
+dom0_login $server
+send -- "virsh list --all|awk '\$2!=\"Domain-0\" && \$2!=\"Name\" {print \$2}'\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re "\[^\n\]+\n" {
+		send_user -- "$expect_out(buffer)"
+		incr flag 1
+	} -re $prompt {
+		break
+	}
+}
+send -- "echo $?\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re "0\r\n" {
+		expect -re $prompt
+		send -- "hostname\n"
+		expect -re ".*?\r\n$"
+		expect -re $prompt
+		break
+	} -re ".*?\n" {
+		send_user -- "Not Dom0\n"
+		exit 1
+	}
+}
+
+if { $flag > 2 } {
+	set num [incr flag -2]
+	send_user "There are $num VM(s) running on the Dom0.\n"
+} else {
+	send_user "Would you like to stop $server ?\[n\] "
+	expect_user -re "^(yes|YES|y|Y)\n$" {
+		send_user "Shutting down now\n"
+		#send -- "shutdown -h now\n"
+		send -- "ls -l\n"
+		expect -re $prompt
+	} -re ".*?\n$" {
+		send_user "Aborted!!\n"
+	}
+}
+send -- "exit\n"
+expect eof;
+log_user 1

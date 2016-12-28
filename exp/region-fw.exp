@@ -1,0 +1,65 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set pserv [lindex $argv 0]
+set ftp [lindex $argv 1]
+set password [lindex $argv 2]
+set timeout -1
+
+spawn /bin/bash --norc
+expect -re $prompt
+dom0_login "root" $pserv
+expect -re $prompt
+send -- "xm con region-fw\n"
+expect -re ".*?\n"
+sleep 2
+send -- "\n"
+expect "User" {
+	send -- "admin\n"
+	expect "Password"
+	send -- "$password\n"
+} "Password" {
+	send -- "\n"
+	expect "User"
+	send -- "admin\n"
+	expect "Password"
+	send -- "$password\n"
+}
+
+expect "region-fw> "
+send -- "admin\n"
+expect "region-fw# "
+send -- "ftp $ftp\n"
+expect -- "Name"
+send -- "cnm\n"
+expect "Password"
+send -- "cnm123\n"
+expect -- "ftp> "
+send -- "put startup-config.cli\n"
+expect -- "ftp> "
+send -- "quit\n"
+expect "region-fw# "
+send -- "exit\n"
+expect "region-fw> "
+send -- "exit\n"
+expect "User"
+send -- "\x1d"
+expect -re $prompt
+send -- "exit\n"
+expect -re $prompt
+send -- "scp root@islanda-cnm:/opt/FJSVproa/cnm/startup-config.cli $base_dir/backup\n"
+expect "password" {
+	send -- "sv@01011\n"
+} "yes/no" {
+	send -- "yes\n"
+	expect "password"
+	send -- "sv@01011\n"
+}
+expect -re $prompt
+send -- "mv $base_dir/backup/startup-config.cli $base_dir/backup/startup-config_region-fw_`date '+%Y%m%d'`.cli\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof 
+

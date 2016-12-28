@@ -1,0 +1,109 @@
+#!/usr/bin/expect
+
+source	"/usr/local/2nd_tools/lib/env.exp"
+source	"$base_dir/lib/func.exp"
+
+log_user	0
+set	timeout 5
+set	sedai [lindex $argv 0]
+set	opeType [lindex $argv 1]
+set island [lindex $argv 2]
+
+trap	{} {SIGHUP}
+
+spawn	/bin/bash
+expect -re $prompt
+
+#while	{$sedai >= 1} {
+	if {$opeType == 11} {
+		send -- "ls /data/download/rcxtssnap_*-cbrm* | grep $island | grep -v light\n"
+	}	elseif {$opeType == 12} {
+		send -- "ls /data/download/rcxtssnap_light_*-cbrm* | grep $island\n"
+	}	elseif {$opeType == 13} {
+		send -- "ls /data/download/*_operationlog* | grep $island\n"
+	}	elseif {$opeType == 14} {
+		send -- "ls /data/download/*cnm_snap_log* | grep $island\n"
+	}	elseif {$opeType == 15} {
+		send -- "ls /data/download/*cnm_provisioning_snap_log* | grep $island\n"
+  } elseif {$opeType == 16} {
+    send -- "ls /data/download/managersnap_FJSVcsm_island*-cbrm* | grep $island\n"
+	} elseif {$opeType == 21} {
+		send -- "ls /data/download/vsys-db_sql-info*\n"
+	} elseif {$opeType == 22} {
+		send -- "ls /data/download/vsys-db_trace*\n"
+	}	elseif {$opeType == 31} {
+		send -- "ls /data/download/vsys-ap_trace* \n"
+	} elseif {$opeType == 32} {
+		send -- "ls /data/download/vsys-ap_img-plugin*\n"
+	} elseif {$opeType == 41} {
+		send -- "ls /data/download/*charge_logs*\n"
+	} elseif {$opeType == 51} {
+		send -- "ls /data/download/swcm_cb-cmgr-zentai*\n"
+	} elseif {$opeType == 52} {
+		send -- "ls /data/download/swcm_cb-relay*\n"
+	} elseif {$opeType == 53} {
+		send -- "ls /data/download/swcm_island*\n"
+	} elseif {$opeType == 61} {
+		send -- "ls /data/download/*xen-snap* | grep $island\n"
+	} elseif {$opeType == 62} {
+		send -- "ls /data/download/agentsnap_FJSVcsma* | grep $island\n"
+	} elseif {$opeType == 63} {
+		send -- "ls /data/download/fjsnap* | grep $island\n"
+	} elseif {$opeType == 71} {
+		send -- "ls /data/download/pclsnap*\n"
+	} else {
+		send -- "echo ERROR1\n"
+	}
+	expect -re $prompt
+	send	-- "echo \$?\n"
+	expect -re ".*?\n"
+	expect -re "(.*?)\n"
+	if { $expect_out(1,string) == 0 } {
+		if {$opeType == 11} {
+			send -- "ls --full-time /data/download/ | grep rcxtssnap_ | grep $island | grep -v light | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"
+		}	elseif {$opeType == 12} {
+			send -- "ls --full-time /data/download/ | grep rcxtssnap_light_ | grep $island | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"
+		} elseif {$opeType == 13} {
+			send -- "ls --full-time /data/download/ | grep _operationlog | grep $island | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"
+		} elseif {$opeType == 14} {
+			send -- "ls --full-time /data/download/ | grep cnm_snap_log | grep $island | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"
+		} elseif {$opeType == 15} {
+			send -- "ls --full-time /data/download/ | grep cnm_provisioning_snap | grep $island | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"
+    } elseif {$opeType == 16} {
+      send -- "ls --full-time /data/download/ | grep managersnap_FJSVcsm | grep $island | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"
+		}	elseif {$opeType == 21} {
+			send -- "ls --full-time /data/download/ | grep vsys-db_sql-info | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"
+		} elseif {$opeType == 22} {
+			send -- "ls --full-time /data/download/ | grep vsys-db_trace | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"
+		} elseif {$opeType == 31} {
+			send -- "ls --full-time /data/download/ | grep vsys-ap_trace | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"
+		} elseif {$opeType == 32} {
+			send -- "ls --full-time /data/download/ | grep vsys-ap_img-plugin | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"
+		} elseif {$opeType == 41} {
+			send -- "ls --full-time /data/download/ | grep charge_logs | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"
+    } elseif {$opeType == 51} {
+      send -- "ls --full-time /data/download/ | grep swcm_cb-cmgr-zentai | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"
+    } elseif {$opeType == 52} {
+      send -- "ls --full-time /data/download/ | grep swcm_cb-relay | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"
+    } elseif {$opeType == 53} {
+      send -- "ls --full-time /data/download/ | grep swcm_island | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"
+		} elseif {$opeType == 61} {
+			send -- "ls --full-time /data/download/ | grep xen-snap | grep $island | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"	
+		} elseif {$opeType == 62} {
+			send -- "ls --full-time /data/download/ | grep agentsnap_FJSVcsma | grep $island | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"
+		} elseif {$opeType == 63} {
+			send -- "ls --full-time /data/download/ | grep fjsnap | grep $island | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"	
+    } elseif {$opeType == 71} {
+      send -- "ls --full-time /data/download/ | grep pclsnap | sed -e 's/  */ /g' | cut -d ' ' -f6,7 | cut -d '.' -f1 > /tmp/date_result$sedai$opeType \n"
+		} else {
+			send -- "echo ERROR2 \n"
+		}
+	}	else {
+		send -- "echo 'N/A' > /tmp/date_result$sedai$opeType \n"
+	}
+#	expect -re $prompt
+#	incr sedai -1
+#}
+expect -re $prompt
+send -- "exit\n"
+expect eof

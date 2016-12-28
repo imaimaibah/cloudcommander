@@ -1,0 +1,35 @@
+#!/usr/bin/expect
+
+
+set server [lindex $argv 0]
+set region [lindex $argv 1]
+log_user 0
+spawn ssh -l admin $server
+expect "password" {
+	send -- "nt%$region\r"
+} "yes/no" {
+	send -- "yes\r"
+	expect "password"
+	send -- "nt%$region\r"
+}
+expect "> "
+send -- "admin\r"
+expect "# "
+send -- "terminal pager disable\r"
+expect "# "
+send -- "show cluster\r"
+expect -re ".*?\r"
+log_file -noappend "/usr/local/2nd_tools/log/exp/show_cluster.log"
+while {1} {
+	expect -re ".*\n" {
+		send_log -- "$expect_out(buffer)"
+	} "# " {
+		break
+	}
+}
+log_file
+send -- "exit\r"
+expect "> "
+send -- "exit\r"
+expect eof
+log_user 1

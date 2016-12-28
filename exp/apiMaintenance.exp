@@ -1,0 +1,23 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set option [lindex $argv 0]
+
+log_user 0
+set timeout -1
+
+island_login "api-base"
+if { $option == "start" } {
+	send -- "sed -i 's/false/true/' /etc/tomcat5/ovisspxy/setting.properties\n"
+} elseif { $option == "stop" } {
+	send -- "sed -i 's/true/false/' /etc/tomcat5/ovisspxy/setting.properties\n"
+} else {
+	puts "Option is not specified \[start|stop\]"
+	send -- "\n"
+}
+expect -re $prompt
+send "exit\n"
+exit 0
+

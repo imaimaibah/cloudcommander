@@ -1,0 +1,34 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set Dom0 [lindex $argv 0]
+
+log_user 0
+set timeout 900
+set kind /var/tmp/pclsnap_$Dom0.tar.gz
+set kind2 /data/download/pclsnap_$Dom0.tar.gz
+
+trap {} {SIGHUP} 
+
+dom0_login $Dom0
+send -- "rm -rf /tmp/PCLsnap*\n"
+expect -re $prompt
+send -- "/opt/FJSVpclsnap/bin/pclsnap -a $kind\n"
+expect -re $prompt
+send -- "exit\n"
+expect -re $prompt
+
+spawn /bin/bash
+expect -re $prompt
+#send -- "rm -f $kind2\n"
+send -- "rm -f /data/download/pclsnap*\n"
+expect -re $prompt
+send -- "$base_dir/exp/log_collect/transfer_file2.exp $Dom0 $kind\n"
+expect -re $prompt
+dom0_login $Dom0
+send -- "rm -f $kind\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

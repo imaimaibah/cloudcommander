@@ -1,0 +1,73 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+log_user 0
+set	timeout 5
+set	sedai [lindex $argv 0]
+set	opeType [lindex $argv 1]
+set dom0 [lindex $argv 2]
+
+trap {} {SIGHUP}
+
+spawn	/bin/bash
+expect -re $prompt
+
+#while	{$sedai >= 1} {
+	if {$opeType == 21} {
+		send -- "ls /data/download/vsys-db_sql-info*\n"
+	} elseif {$opeType == 22} {
+		send -- "ls /data/download/vsys-db_trace*\n"
+	} elseif {$opeType == 31} {
+		send -- "ls /data/download/vsys-ap_trace*\n"
+	} elseif {$opeType == 41} {
+		send -- "ls /data/download/*charge_logs*\n"
+  } elseif {$opeType == 53} {
+		send -- "ls /data/download/swcm_island*\n"
+	} elseif {$opeType == 61} {
+		send -- "ls /data/download/*xen-snap* | grep $dom0\n"
+	} elseif {$opeType == 62} {
+		send -- "ls /data/download/agentsnap_FJSVcsma* | grep $dom0\n"
+	} elseif {$opeType == 63} {
+		send -- "ls /data/download/fjsnap* | grep $dom0\n"
+	} elseif {$opeType == 71} {
+		send -- "ls /data/download/pclsnap* | grep $dom0\n"
+	} else {
+		send -- "echo ERROR3 \n"
+	}
+	expect -re $prompt
+	send -- "echo \$?\n"
+	expect -re ".*?\n"
+	expect -re "(.*?)\n"
+	if { $expect_out(1,string) == 0 } {
+		if {$opeType == 21} {
+			send -- "ls /data/download/ | grep vsys-db_sql-info | cut -d '_' -f3 | cut -d '.' -f1 > /tmp/param_result$sedai$opeType\n"
+		} elseif {$opeType == 22} {
+			send -- "ls /data/download/ | grep vsys-db_trace | cut -d '_' -f3 | cut -d '.' -f1 > /tmp/param_result$sedai$opeType\n"
+		} elseif {$opeType == 31} {
+			send -- "ls /data/download/ | grep vsys-ap_trace | cut -d '_' -f3 | cut -d '.' -f1 > /tmp/param_result$sedai$opeType\n"
+		} elseif {$opeType == 41} {
+			send -- "ls /data/download/ | grep charge_logs | cut -d '_' -f1 > /tmp/param_result$sedai$opeType\n"
+		} elseif {$opeType == 53} {
+			send -- "ls /data/download/ | grep swcm_island | cut -d '-' -f1 | cut -d '_' -f2 > /tmp/param_result$sedai$opeType\n"
+		} elseif {$opeType == 61} {
+			send -- "ls /data/download/ | grep xen-snap | grep $dom0 | cut -d '_' -f1 > /tmp/param_result$sedai$opeType\n"
+		} elseif {$opeType == 62} {
+			send -- "ls /data/download/ | grep agentsnap_FJSVcsma| grep $dom0 | cut -d '_' -f3 > /tmp/param_result$sedai$opeType\n"
+		} elseif {$opeType == 63} {
+			send -- "ls /data/download/ | grep fjsnap | grep $dom0 | cut -d '_' -f2 | cut -d '.' -f1 > /tmp/param_result$sedai$opeType\n"
+		} elseif {$opeType == 71} {
+			send -- "ls /data/download/ | grep pclsnap | cut -d '_' -f2 | cut -d '.' -f1 > /tmp/param_result$sedai$opeType\n"
+		} else {
+			send -- "echo ERROR4 \n"
+		}
+	} else {
+		send -- "echo 'N/A' > /tmp/param_result$sedai$opeType\n"
+	}
+#	expect -re $prompt
+#	incr sedai -1
+#}
+expect -re $prompt
+send -- "exit\n"
+expect eof

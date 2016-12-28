@@ -1,0 +1,19 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+set server [lindex $argv 0]
+set timeout 30
+trap {} {SIGHUP}
+
+send -- "ls /data/download/rcxtssnap_islanda-cbrm.tar.bz2\n"
+
+
+send -- "test -f /data/download/rcxtssnap_light_islanda-cbrm.tar.gz\n"
+
+
+send -- "test -f /data/download/operationlog.tar.gz\n"
+
+
+send -- "test -f /data/download/vsys-db_sql-info*; echo $?\n"
+

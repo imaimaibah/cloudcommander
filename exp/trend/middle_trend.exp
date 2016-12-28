@@ -1,0 +1,14 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+log_user 0
+
+mgtcb_login "vsys-db"
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop\n"
+expect -re $prompt
+stdout "select sisl.`order`,sisl.software_id,sisl.image_id,sl.software_name,sl.license,sl.support from (select sl.* from software_link sl inner join software sw on sw.software_id = sl.software_id where sw.software_category != 'OS') sisl left join software_locale sl on sisl.software_id = sl.software_id where sl.lcid is NULL or sl.lcid = 'en';";
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

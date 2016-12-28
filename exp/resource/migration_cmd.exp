@@ -1,0 +1,38 @@
+#!/usr/bin/expect
+
+### VERSION 1.0 ###
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set dom0 [lindex $argv 0]
+set island [lindex $argv 1]
+
+set timeout -1 
+
+log_user 0
+
+island_login $island
+
+send -- "/opt/FJSVrcvmr/sys/rcxadm server set -name $dom0 -mode maintenance\n"
+expect -re $prompt
+
+send -- "cd /root/tool\n"
+expect -re $prompt
+
+#send "./livemigrateall_v2.5.sh -f $dom0\n"
+send "./livemigrateall_2nd_v1.sh -f $dom0\n"
+expect "password" {
+	send -- "$dom0_pass\n"
+} "yes/no" {
+	send -- "yes\n"
+	expect "password"
+	send -- "$dom0_pass\n"
+}
+
+expect "(y/n)"
+send -- "y\n"
+expect -re $prompt
+
+send -- "exit\n"
+expect eof

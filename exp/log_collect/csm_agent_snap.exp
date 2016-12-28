@@ -1,0 +1,39 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set Dom0 [lindex $argv 0]
+
+log_user 0
+set timeout 900
+set kind /var/tmp/agentsnap_FJSVcsma_$Dom0\_*
+set kind2 /data/download/agentsnap_FJSVcsma_$Dom0\_*
+
+trap {} {SIGHUP} 
+
+dom0_login $Dom0
+send -- "ps aux | grep agentsnap | grep -v grep > /dev/null 2>&1 ; echo $?\n"
+expect "0" { 
+	log_user 1
+		send_user -- "CSM Manager Snap is already collecting.\n"
+	log_user 0
+	send -- "exit\n"
+} "1" {
+	send -- "/opt/FJSVcsma/sbin/agentsnap -dir /var/tmp\n"
+	expect -re $prompt
+	send -- "exit\n"
+	expect -re $prompt
+
+	spawn /bin/bash
+	expect -re $prompt
+	send -- "rm -f $kind2\n"
+	expect -re $prompt
+	send -- "$base_dir/exp/log_collect/transfer_file2.exp $Dom0 $kind\n"
+	expect -re $prompt
+	dom0_login $Dom0
+	send -- "rm -f $kind\n"
+	expect -re $prompt
+	send -- "exit\n"
+}
+expect eof

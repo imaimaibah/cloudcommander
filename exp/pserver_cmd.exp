@@ -1,0 +1,14 @@
+#!/usr/bin/expect -f
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set dom0 [lindex $argv 0]
+set cmd [lindex $argv 1]
+
+set timeout -1
+log_user 0
+dom0_login $dom0
+stdout $cmd
+send -- "exit\n"
+close

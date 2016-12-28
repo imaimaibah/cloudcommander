@@ -1,0 +1,40 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set IPCOM [lindex $argv 0]
+
+log_user 0
+spawn /bin/bash --norc
+expect -re "$prompt"
+send -- "ssh admin@$IPCOM\n"
+expect "password" {
+	send -- "nt%$region_num\n"
+} "yes/no" {
+	send -- "yes\n"
+	expect "password"
+	send -- "nt%$region_num\n"
+}
+set timeout -1
+expect "> "
+send -- "admin\n"
+expect "# "
+send -- "terminal pager disable\n"
+expect "# "
+send -- "show user | include fujitsu.com\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re ".*\n" {
+		send_user -- "$expect_out(buffer)"
+	} "# " {
+		break
+	}
+}
+send -- "exit\n"
+expect "> "
+send -- "exit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+log_user 1

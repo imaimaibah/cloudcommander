@@ -1,0 +1,30 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+log_user 0
+mgtcb_login "vsys-db"
+
+set timeout -1
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop\n"
+expect -re $prompt
+#send -- "select DISTINCT(si.image_id),software.os_category from `server#instance` si left join software_link sl on si.image_id = sl.image_id and sl.order = 0 left join software on sl.software_id = software.software_id left join software_locale slo on software.software_id = slo.software_id where software.os_category is not NULL;\n"
+#send -- "select si.image_id,sl.software_id from `image` si left join software_link sl on si.image_id = sl.image_id left join software sw on sl.software_id = sw.software_id where sw.os_category is not NULL;\n"
+#expect "> "
+#send -- "select sl.image_id,sw.version from software sw left join software_link sl on sw.software_id = sl.software_id where sw.software_category = 'MIDDLE';\n"
+#send -- "select si.image_id,sl.software_id from `image` si left join software_link sl on si.image_id = sl.image_id left join software sw on sl.software_id = sw.software_id where sw.os_category is NULL;\n"
+send -- "select si.image_id,sw.os_category from `image` si left join software_link sl on si.image_id = sl.image_id left join software_locale so on sl.software_id = so.software_id left join software sw on sw.software_id = sl.software_id where so.lcid = 'en' and sw.os_category is not NULL order by si.image_id,sw.os_category desc;\n";
+expect -re ".*?\n"
+while {1} {
+	expect -re ".*\n" {
+		send_user -- "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+log_user 1

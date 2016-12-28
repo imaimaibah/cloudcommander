@@ -1,0 +1,68 @@
+#!/usr/bin/expect
+
+source	"/usr/local/2nd_tools/lib/env.exp"
+source	"$base_dir/lib/func.exp"
+
+#log_user 0
+set timeout -1
+
+trap	{} {SIGHUP}
+
+set file1 /var/tmp/win_vm-id
+set file2 /var/tmp/sql_vm-id
+set file3 /var/tmp/rhel_vm-id
+set file4 /var/tmp/oss_vm-id
+set server vsys-db
+
+island_login $server
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop\n"
+expect "mysql> "
+send -- "tee $file1;\n"
+expect "mysql> "
+send -- "select si.server_id, sw.version, si.sysvol_size from `server#instance` as si, software_link as sl, software as sw where si.image_id = sl.image_id and sl.software_id = sw.software_id and sw.software_category = 'OS' and sw.os_category like 'Win%' order by si.server_id; \n"
+expect "mysql> "
+send -- "tee $file2;\n"
+expect "mysql> "
+send -- "select si.server_id, sw.version, si.sysvol_size from `server#instance` as si, software_link as sl, software as sw where si.image_id = sl.image_id and sl.software_id = sw.software_id and sw.software_category = 'MIDDLE' and sw.version like '20%' order by si.server_id;  \n"
+expect "mysql> "
+send -- "tee $file3;\n"
+expect "mysql> "
+send -- "select si.server_id, sw.version, si.sysvol_size from `server#instance` as si, software_link as sl, software as sw where si.image_id = sl.image_id and sl.software_id = sw.software_id and sw.software_category = 'OS' and sw.os_category like 'RHEL%' order by si.server_id; \n"
+expect "mysql> "
+send -- "tee $file4;\n"
+expect "mysql> "
+send -- "select si.server_id, sw.official_version, si.sysvol_size from `server#instance` as si, software_link as sl, software as sw where si.image_id = sl.image_id and sl.software_id = sw.software_id and sw.software_category = 'MIDDLE' and sw.official_version like '%FsC%' order by si.server_id; \n"
+expect "mysql> "
+send -- "quit\n"
+expect -re $prompt
+
+send -- "grep '\\-S\\-' $file1 | sed -e 's/ *//g' | cut -d '|' -f2-4 | sed -e 's/|/,/g' > /var/tmp/`grep ps000 /etc/hosts | tail -5 | head -1 | sed -e 's/\\t/,/g' | cut -d ',' -f2 | cut -d '-' -f1-2`_win_vm-id.csv \n"
+expect -re $prompt
+send -- "grep '\\-S\\-' $file2 | sed -e 's/ *//g' | cut -d '|' -f2-4 | sed -e 's/|/,/g' > /var/tmp/`grep ps000 /etc/hosts | tail -5 | head -1 | sed -e 's/\\t/,/g' | cut -d ',' -f2 | cut -d '-' -f1-2`_sql_vm-id.csv \n"
+expect -re $prompt
+send -- "grep '\\-S\\-' $file3 | sed -e 's/ *//g' | cut -d '|' -f2-4 | sed -e 's/|/,/g' > /var/tmp/`grep ps000 /etc/hosts | tail -5 | head -1 | sed -e 's/\\t/,/g' | cut -d ',' -f2 | cut -d '-' -f1-2`_rhel_vm-id.csv \n"
+expect -re $prompt
+send -- "grep '\\-S\\-' $file4 | sed -e 's/ *//g' | cut -d '|' -f2-4 | sed -e 's/|/,/g' > /var/tmp/`grep ps000 /etc/hosts | tail -5 | head -1 | sed -e 's/\\t/,/g' | cut -d ',' -f2 | cut -d '-' -f1-2`_oss_vm-id.csv \n"
+expect -re $prompt
+
+send -- "exit \n"
+expect eof
+
+spawn scp root@$server:/var/tmp/*_vm-id.csv /var/tmp/
+expect "password" {
+	send -- "sv@01011\n"
+} "(yes/no)" {
+		send -- "yes\n"
+		expect "password"
+		send -- "sv@01011\n"
+} timeout {
+		send_user -- "$server TIMEOUT\n"
+		exit
+}
+expect eof
+
+island_login $server
+send -- "rm -f /var/tmp/*_vm-id* \n"
+expect -re $prompt
+send -- "exit \n"
+expect eof

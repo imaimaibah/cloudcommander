@@ -1,0 +1,67 @@
+#!/usr/bin/expect
+
+source	"/usr/local/2nd_tools/lib/env.exp"
+source	"$base_dir/lib/func.exp"
+
+#log_user 0
+set timeout -1
+
+trap	{} {SIGHUP}
+
+set server charge-db
+#set year [lindex $argv 0]
+#set month [lindex $argv 1]
+#set contractId [lindex $argv 2]
+
+trap	{} {SIGHUP}
+
+set year 2013
+set month 07
+
+set region tatebayashi
+#set region akashi
+#set region fanz
+#set region fapl
+#set region fna
+#set region uki
+#set region fts
+
+#spawn	/bin/bash
+#expect	-re $prompt
+
+island_login $server
+send -- "mkdir /data/update_`date +%Y%m%d`\n"
+expect -re $prompt
+send -- "touch /data/update_`date +%Y%m%d`/T_USAGE_LIST_FILTER_BY_CONTRACTNO.sql\n"
+expect -re $prompt
+#send -- "echo \"select * from SOPCHGSCM.T_USAGE_LIST where YYYYMM= '$year$month' and CONTRACTNO = '$contractId';\" > /data/update_`date +%Y%m%d`/T_USAGE_LIST_FILTER_BY_CONTRACTNO.sql\n"
+send -- "echo \"select * from SOPCHGSCM.T_USAGE_LIST where YYYYMM= '$year$month';\" > /data/update_`date +%Y%m%d`/T_USAGE_LIST_FILTER_BY_CONTRACTNO.sql\n"
+expect -re $prompt
+send -- "chown -R sopuser /data/update_`date +%Y%m%d`/ \n"
+expect -re $prompt
+send -- "su sopuser -c \"rdbexecsql -s SOPCHG -i /data/update_`date +%Y%m%d`/T_USAGE_LIST_FILTER_BY_CONTRACTNO.sql\" > /var/tmp/$region\_$year$month\_usage_record\n"
+expect -re $prompt
+send -- "exit \n"
+expect eof
+
+spawn scp root@$server:/var/tmp/$region\_$year$month\_usage_record /var/tmp/
+expect "password" {
+	send -- "sv@01011\n"
+} "(yes/no)" {
+		send -- "yes\n"
+		expect "password"
+		send -- "sv@01011\n"
+} timeout {
+		send_user -- "$server TIMEOUT\n"
+		exit
+}
+#expect -re $prompt
+#send -- "cp -p /var/tmp/$region\_$year$month\_usage_record /data/cgi-bin/windows_count/info/$region/\n"
+expect eof
+
+#island_login $server
+#send -- "rm -rf /data/update_`date +%Y%m%d`/T_USAGE_LIST_FILTER_BY_CONTRACTNO.sql\n"
+#expect -re $prompt
+#send -- "rm -rf /var/tmp/$region\_$year$month\_usage_record\n"
+#expect -re $prompt
+#expect eof

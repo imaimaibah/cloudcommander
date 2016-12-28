@@ -1,0 +1,24 @@
+#!/usr/bin/expect -f
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set server [lindex $argv 0]
+set path [lindex $argv 1]
+
+set timeout 45
+log_user 0
+
+spawn scp root@$server:$path /data/download/
+expect "password" {
+	send -- "sv@01011\n"
+} "(yes/no)" {
+        send -- "yes\n"
+        expect "password"
+        send -- "sv@01011\n"
+} timeout {
+        send_user -- "$server TIMEOUT\n"
+	exit
+}
+
+expect eof

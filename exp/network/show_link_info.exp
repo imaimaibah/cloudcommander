@@ -1,0 +1,17 @@
+#!/usr/bin/expect
+
+### VERSION 1.0 ###
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set server "region-cnm"
+
+log_user 0
+
+island_login $server
+
+stdout "/opt/FJSVcnm/runtime/jruby/bin/jruby /opt/FJSVtopo/bin/showlinkinfo.rb"
+
+send -- "exit\n"
+expect eof

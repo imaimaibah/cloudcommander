@@ -1,0 +1,44 @@
+I/O が発生した際のエラー状況の確認とリカバリ状態の確認のためのツール
+
+Usage:
+ csmCKRedundancy {-l|--error-list|-r|--recover-info} [--detail|--lun] [files]
+
+ option:
+   -l, --error-list :
+          エラーが発生した VDISK 一覧の表示
+          このオプションを指定するときにはサブオプションとして
+          --detail もしくは --lun を指定することができる。
+          --detail を指定した場合にはエラーを検出した際のアクセスタ
+          イプを表示する。
+          --lun を指定した場合にはエラーが発生した LUN とオフセット
+          情報を表示する。
+   -r, --recover-info :
+          冗長化回復情報の表示
+   files :
+          解析対象のログを変更する場合に指定する。調査資料から状況
+          を確認する場合に指定。
+          指定がない場合は CSM が標準で出力するファイルを解析対象
+          とする。
+
+使用例等は、SOP向けに作成した資料(recover.readme)を参照のこと。
+
+障害調査で使用する場合、files を指定して使用できる。
+このときの注意事項として、以下がある。
+csmCKRedundancy -l --detail [files] を使用する場合は、files の最初に
+svelog を指定すること。
+例）
+csmCKRedundancy　-l --detail svelog.0 messages
+
+出力例）
+21ec4447-f375-4c3d-94d8-84ba1e86441e DET=Jan-12-11:00:53 on 10.0.0.96  (jrm)
+7cce9e33-5d38-48ce-a4d4-3c59e92377f4 NML=Jan-12-11:03:28 on 10.0.0.101 END=Jan-12-11:44:41  (write)
+5ed28167-52e8-4869-8130-f64f8a48d844 NML=Jan-12-11:02:43 on 10.0.0.66 END=Jan-12-11:45:33  (read)
+b69d808b-5e34-4b6a-9392-cb1a15aa8412 NML=Jan-12-11:05:20 on 10.0.0.122 END=Jan-12-12:11:59  (read,write)
+5d2cf032-cb4f-46b9-9e93-618742345b1c NML=Jan-12-11:05:07 on 10.0.0.70 END=Jan-12-12:12:13  (write,write)
+
+
+使用例）
+csmCKRedundancy -l --lun messages
+
+出力例）
+2e562361-2207-4164-b41f-a4d205965456 NML=Jan-19-01:24:09 on 10.8.0.8 END=Jan-19-05:13:05 ( eternus@10.9.1.3@2=22020096,eternus@10.9.1.3@2=22020096,eternus@10.9.1.35@5=22115744,eternus@10.9.1.35@0=22032952,eternus@10.9.1.35@6=22112248,eternus@10.9.1.35@4=22136152,eternus@10.9.1.35@1=22124904 )

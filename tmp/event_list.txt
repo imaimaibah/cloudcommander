@@ -1,0 +1,6 @@
+#
+SOP-F-6103,jp-01-1-ps0000-08-02,/usr/local/2nd_tools/exp/test_event.exp
+SOP-F-6104,jp-01-1-ps0000-08-02,/usr/local/2nd_tools/exp/test_dom0_xmlist.exp
+SOP-F-6105,jp-01-1-ps0000-08-02,/usr/local/2nd_tools/exp/test_dom0_log.exp
+#
+SOP-F-5100,10.1.1.1,/usr/local/2nd_tools/exp/eternus_status_check.exp

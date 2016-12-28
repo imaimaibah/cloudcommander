@@ -1,0 +1,19 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "/usr/local/2nd_tools/lib/func.exp"
+
+log_user 0
+island_login "admin-pr"
+send -- "/opt/FJSVirepc/bin/ldapsearch -b \"ou=User,ou=sop,o=fujitsu,dc=com\" mail | awk '\$1==\"mail:\" {print \$2}'\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re ".*\n" {
+		send_user "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send -- "exit\n"
+expect eof
+log_user 1

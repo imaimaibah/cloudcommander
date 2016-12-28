@@ -1,0 +1,55 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+#exp_internal 1
+
+log_user 0
+set server secure
+set password_secure sv@01011
+
+set timeout 5
+spawn ssh -l root $server
+expect "password" {
+        send -- "$password_secure\n"
+} "yes/no" {
+        send -- "yes\n"
+        expect "password"
+        send -- "$password_secure\n"
+} timeout {
+        send_user -- "TIMEOUT\n"
+        exit 1
+} eof {
+        send_user -- "CONNECTION FAILED\n"
+        exit 1
+}
+
+expect -re $prompt {
+} timeout {
+        send_user -- "TIMEOUT\n"
+        exit 1
+}
+set timeout -1
+
+send -- "mysql -umysqlusr -p'mwm!0277' SOPUSER\n"
+
+expect "mysql> "
+
+send -- "select UserID, MailAddress, EmergencyMailAddress, UserFamilyName, UserFirstName, KanaFamilyName, KanaFirstName, EmergencyTelephoneNumber from T_USER_INFO where DisableFlag='0' and DisableDate is Null ;\n"
+
+expect -re ".*?\n"
+
+while {1} {
+        expect -re ".*\n" {
+                send_user -- "$expect_out(buffer)"
+        } -re $prompt {
+                break
+        }
+}
+
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+#expect eof
+log_user 1

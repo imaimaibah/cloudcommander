@@ -1,0 +1,30 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set vsys_id [lindex $argv 0]
+
+if { $vsys_id == "" } {
+	send_user "Invalid option\n"
+	exit 1
+}
+
+log_user 0
+mgtcb_login "vsys-db"
+send -- "/usr/local/mysql/bin/mysql -u sopuser -pmtm\\\!0256 sop\n"
+expect -re $prompt
+send -- "select g.vsys_id,g.gip,g.status,v.vnet_id from `gip#instance` g left join `vnet#instance` v on g.vsys_id = v.vsys_id where g.status != 'UNDEPLOY' and v.network_category = 'INTERNET' and g.vsys_id = '$vsys_id';\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re ".*\n" {
+		send_user -- "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+log_user 1

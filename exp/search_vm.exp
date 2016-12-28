@@ -1,0 +1,15 @@
+#!/usr/bin/expect
+
+### VERSION 1.0 ###
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set vm [lindex $argv 0]
+set island [lindex $argv 1]
+
+log_user 0
+island_login $island
+stdout "/opt/FJSVrcvmr/bin/rcxadm lserver show -name $vm"
+send -- "exit\n"
+close

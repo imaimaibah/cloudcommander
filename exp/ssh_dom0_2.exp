@@ -1,0 +1,70 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set vm [lindex $argv 0]
+set island [lindex $argv 1]
+
+log_user 0
+island_login $island
+
+set timeout -1
+send -- "/opt/FJSVrcvmr/bin/rcxadm lserver show -name $vm|grep VmHost\n"
+expect -re ".*?\n"
+expect -re "<VmHost name=\"(.*)\" id=\"${island}_.*\" />.*\n" {
+	set server $expect_out(1,string);
+	expect -re $prompt
+} -re $prompt {
+	send -- "exit\n"
+	expect eof
+	log_user 1
+	send_user -- "VM is not running\n"
+	exit
+}
+send -- "exit\n"
+#expect eof
+
+set timeout 10
+#dom0_login $server
+log_user 0
+spawn ssh -t -l root $server "xm console $vm"
+expect "password" {
+	send -- "sr@01011\n"
+} "yes/no" {
+	send -- "yes\n"
+	expect "password"
+	send -- "sr@01011\n"
+} timeout {
+	send_user "Dom0 is not ruuning"
+	exit
+} eof {
+	send_user "Dom0 is not running"
+	exit
+}
+set timeout 15
+sleep 2
+send -- "\n"
+while {1} {
+	expect -re ".*\n" {
+		send_user -- "$expect_out(buffer)"
+	} -re "\\\[^\n\\\]+\\\$" {
+	#	} "login" {
+		send -- "\x1d"
+		exit
+	} timeout {
+        send -- "\x1d"
+        send -- "exit\n"
+        expect eof
+        log_user 1
+        send_user -- "No response from VM\n"
+        exit
+       }
+}
+#expect -re $prompt
+#send -- "xm console $vm; exit\n"
+#sleep 2
+#send -- "\n"
+#log_user 0
+#interact \x1d { log_user 0; send -- \x1d } eof { log_user 0; exit }
+#log_user 0

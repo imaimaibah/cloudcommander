@@ -1,0 +1,21 @@
+#!/usr/bin/expect
+
+### VERSION 1.0 ###
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set island [lindex $argv 0]
+set vnet_id [lindex $argv 1]
+
+set server "$island-cnm"
+
+log_user 0
+
+# islandX-cnmにログインし対象のvnet_idのVLANを抽出
+island_login $server
+
+stdout "/opt/FJSVcnm/bin/cnmshowintranetconn -a $vnet_id \| grep VLAN"
+
+send -- "exit\n"
+expect eof

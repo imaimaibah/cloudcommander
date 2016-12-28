@@ -1,0 +1,49 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set Dom0 [lindex $argv 0]
+
+log_user 0
+set timeout 10
+
+trap {} {SIGHUP} 
+
+spawn /bin/bash
+expect -re $prompt
+send -- "rm -f /tmp/kvm_xen\n"
+expect -re $prompt
+dom0_login $Dom0
+send -- "head -1 /root/version_info.txt | cut -c 3-4\n"
+expect -re ".*?\n"
+expect -re "(.*?)\r\n"
+if { $expect_out(1,string) == "XP" } {
+	send -- "exit\n"
+	expect -re $prompt
+
+	spawn /bin/bash/
+	expect -re $prompt
+	send -- "echo XEN > /tmp/kvm_xen\n"
+	expect -re $prompt
+	send -- "exit\n"
+} elseif {$expect_out(1,string) == "KP" } {
+	send -- "exit\n"
+	expect -re $prompt
+
+	spawn /bin/bash
+	expect -re $prompt
+	send -- "echo KVM > /tmp/kvm_xen\n"
+	expect -re $prompt
+	send -- "exit\n"
+}	else {
+	send -- "exit\n"
+	expect -re $prompt
+
+	spawn /bin/bash
+	expect -re $prompt
+	send -- "echo Error > /tmp/kvm_xen\n"
+	expect -re $prompt
+	send -- "exit\n"
+}
+expect eof

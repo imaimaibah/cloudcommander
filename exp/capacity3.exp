@@ -1,0 +1,31 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+log_user 0
+island_login "region-cnm"
+
+set timeout -1
+send -- "/opt/FJSVcnm/bin/cnmshowgippool\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re ".*\n" {
+		send_user -- "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send_user -- "INTERCONNECT\n"
+send -- "/opt/FJSVcnm/bin/cnmshowinternetippool -a|grep -e 'Total of allocated ip address' -e 'Total of pooled ip network number'\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re ".*\n" {
+		send_user -- "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send -- "exit\n"
+expect eof
+log_user 1

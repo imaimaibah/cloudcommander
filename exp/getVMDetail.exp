@@ -1,0 +1,28 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set VM [lindex $argv 0]
+
+log_user 0
+mgtcb_login "vsys-db"
+
+set timeout -1
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop\n"
+expect -re $prompt
+send -- "select si.server_id,si.server_type,si.status,si.resource_id,sw.os_category from `server#instance` as si,software_link as sl,software as sw where si.image_id = sl.image_id and sl.software_id = sw.software_id and si.server_id = '$VM' and sw.os_category is not NULL;\n"
+expect -re ".*?\n"
+while { 1 } {
+	expect -re ".*\n" {
+		puts -nonewline "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+log_user 1
+exit 0

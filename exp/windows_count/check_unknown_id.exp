@@ -1,0 +1,24 @@
+#!/usr/bin/expect -f
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set year [lindex $argv 0]
+set month [lindex $argv 1]
+
+set file1 /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_*.csv
+set file2 /data/cgi-bin/billing_system_honbandesu/tables/host_lead*.table
+set file3 /tmp/all_org_id
+set file4 /tmp/list_unknown_id
+
+set timeout 15
+#log_user 0
+
+spawn /bin/bash
+expect -re $prompt
+send -- "cut -d ',' -f2 $file2 | sort | uniq > $file3 \n"
+expect -re $prompt
+send -- "grep island $file1 | grep -v -f $file3 | cut -d ',' -f2 | cut -d '-' -f1 | sort | uniq > $file4 \n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

@@ -1,0 +1,188 @@
+#!/usr/bin/expect
+
+proc dom0_login {server} {
+	global dom0_pass
+	global prompt
+	global spawn_id
+	set timeout 5
+	spawn ssh -l root $server
+	expect "password" {
+		send -- "$dom0_pass\n"
+	} "yes/no" {
+		send -- "yes\n"
+		expect "password"
+		send -- "$dom0_pass\n"
+	} timeout {
+		send_user -- "TIMEOUT\n"
+		exit 1
+	} eof {
+		send_user -- "CONNECTION FAILED\n"
+		exit 1
+	}
+	expect -re $prompt {
+	} timeout {
+		send_user -- "TIMEOUT\n"
+		exit 1
+	}
+	set timeout -1
+
+return $spawn_id
+}
+
+proc mgtcb_login {server} {
+	global mgtcb_pass
+	global prompt
+	global spawn_id
+	set timeout 5
+	spawn ssh -l root $server
+	expect "password" {
+		send -- "$mgtcb_pass\n"
+	} "yes/no" {
+		send -- "yes\n"
+		expect "password"
+		send -- "$mgtcb_pass\n"
+	} timeout {
+		send_user -- "TIMEOUT\n"
+		exit 1
+	} eof {
+		send_user -- "CONNECTION FAILED\n"
+		exit 1
+	}
+
+	expect -re $prompt {
+	} timeout {
+		send_user -- "TIMEOUT\n"
+		exit 1
+	}
+	set timeout -1
+
+return $spawn_id
+}
+
+proc island_login {server} {
+	global island_pass
+	global prompt
+	global spawn_id
+	set timeout 5
+	spawn ssh -l root $server
+	expect "password" {
+		send -- "$island_pass\n"
+	} "yes/no" {
+		send -- "yes\n"
+		expect "password"
+		send -- "$island_pass\n"
+	} timeout {
+		send_user -- "TIMEOUT\n"
+		exit 1
+	} eof {
+		send_user -- "CONNECTION FAILED\n"
+		exit 1
+	}
+	expect -re $prompt {
+	} timeout {
+		send_user -- "TIMEOUT\n"
+		exit 1
+	}
+	set timeout -1
+
+return $spawn_id
+}
+
+proc eternus_login {eternus} {
+	global region_num
+	global prompt
+	set prompt "CLI> "
+	global spawn_id
+	set timeout 5
+	spawn ssh -l root $eternus
+	expect "password" {
+		send -- "st!$region_num\n"
+	} "yes/no" {
+		send -- "yes\n"
+		expect "password"
+		send -- "st!$region_num\n"
+	} timeout {
+		send_user -- "TIMEOUT\n"
+		exit 1
+	} eof {
+		send_user -- "CONNECTION FAILED\n"
+		exit 1
+	}
+	expect $prompt {
+	} timeout {
+		send_user -- "TIMEOUT\n"
+		exit 1
+	}
+	set timeout -1
+
+return $spawn_id
+}
+
+proc stdout { cmd } {
+	global prompt
+	global spawn_id;
+	send -- "$cmd\r"
+	expect -re ".*?\n"
+	while {1} {
+		expect -re ".*\n" {
+			send_user --  "$expect_out(buffer)"
+		} -re $prompt {
+			break
+		}
+	}
+}
+
+proc fileout { cmd file flag } {
+	global prompt
+	global spawn_id;
+
+	if { $flag == 1 } {
+		set option "w"
+	} else {
+		set option "WRONLY APPEND CREAT"
+	} 
+		
+	send -- "$cmd\r"
+	expect -re ".*?\n"
+	set whandle [open "$file" "$option"]
+	while {1} {
+		expect -re ".*\n" {
+			puts -nonewline $whandle "$expect_out(buffer)"
+		} -re $prompt {
+			break
+		}
+	}
+	flush $whandle
+	close $whandle
+}
+
+proc router_login {router} {
+	global region_num
+#	global prompt
+	set prompt "(.*\#|.*\>)"
+	global spawn_id
+	set timeout 5
+	spawn ssh -l admin $router
+	expect "Password" {
+		send -- "nt!$region_num\n"
+	} "yes/no" {
+		send -- "yes\n"
+		expect "Password"
+		send -- "nt!$region_num\n"
+	} timeout {
+		send_user -- "TIMEOUT\n"
+		exit 1
+	} eof {
+		send_user -- "CONNECTION FAILED\n"
+		exit 1
+	}
+	expect -re $prompt {
+	} timeout {
+		send_user -- "TIMEOUT\n"
+		exit 1
+	}
+	set timeout -1
+
+return $spawn_id
+}
+

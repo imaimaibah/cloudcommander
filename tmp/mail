@@ -1,0 +1,146 @@
+Filter number:SOP-F-6103
+Hostname:jp-01-1-ps0000-08-02
+Date:9999/99/99 99:99:99
+Message:
+UX:SelfChk: ERROR: 3000: Systemwalker Centric Manager agent stopped. Monitoring:islanda-sl, Monitored:au-01-1-ps0001-08-08, Port number:9294 [/var/opt/FJSVssc/script/common/snmopchk.swt]
+
+Output:
+Start jp-01-1-ps0000-08-02
+spawn ssh -l root jp-01-1-ps0000-08-02
+root@jp-01-1-ps0000-08-02's password: 
+Last login: Thu Aug  1 11:55:04 2013 from islanda-cnm
+-bash-3.2# cat /etc/hosts
+# Do not remove the following line, or various programs
+# that require network functionality will fail.
+127.0.0.1               localhost.localdomain localhost
+::1             localhost6.localdomain6 localhost6
+
+
+##########################
+#        region          #
+##########################
+
+10.3.0.2	jp-01-1-ps0000-08-28
+10.3.0.3	jp-01-1-ps0000-08-29
+10.3.0.128	region-fw		region-fw.tatebayashi.sop
+10.3.0.129	admin-pr		admin-pr.tatebayashi.sop
+10.3.0.130	ent-centos		ent-centos.tatebayashi.sop
+10.3.0.131	ent-win			ent-win.tatebayashi.sop
+10.3.0.141	region-cbrm-image	region-cbrm-image.tatebayashi.sop
+10.3.0.142	region-cnm		region-cnm.tatebayashi.sop
+10.3.6.11	csi			csi.tatebayashi.sop
+10.3.6.194	secure			secure.tatebayashi.sop
+
+
+##########################
+#        island A        #
+##########################
+
+10.0.0.1	jp-01-1-ps0000-08-02
+10.0.0.2	jp-01-1-ps0000-08-03
+10.0.3.1	islanda-sl		islanda-sl.i-a.tatebayashi.sop
+10.0.3.2	islanda-provisioning	islanda-provisioning.i-a.tatebayashi.sop
+10.0.3.3	islanda-relay-mgr	islanda-relay-mgr.i-a.tatebayashi.sop
+10.0.3.4	islanda-relay-sv1	islanda-relay-sv1.i-a.tatebayashi.sop
+10.0.3.5	islanda-relay-sv2	islanda-relay-sv2.i-a.tatebayashi.sop
+10.0.3.6	islanda-cbrm		islanda-cbrm.i-a.tatebayashi.sop
+10.0.3.7	islanda-cnm		islanda-cnm.i-a.tatebayashi.sop
+10.0.3.8	islanda-fw		islanda-fw.i-a.tatebayashi.sop
+
+
+##########################
+#        island B        #
+##########################
+
+10.0.4.1	jp-01-1-ps0000-08-12
+10.0.4.2	jp-01-1-ps0000-08-13
+10.0.7.1	islandb-sl		islandb-sl.i-b.tatebayashi.sop
+10.0.7.2	islandb-provisioning	islandb-provisioning.i-b.tatebayashi.sop
+10.0.7.3	islandb-relay-mgr	islandb-relay-mgr.i-b.tatebayashi.sop
+10.0.7.4	islandb-relay-sv1	islandb-relay-sv1.i-b.tatebayashi.sop
+10.0.7.5	islandb-relay-sv2	islandb-relay-sv2.i-b.tatebayashi.sop
+10.0.7.6	islandb-cbrm		islandb-cbrm.i-b.tatebayashi.sop
+10.0.7.7	islandb-cnm		islandb-cnm.i-b.tatebayashi.sop
+
+
+##########################
+#          dmz           #
+##########################
+
+172.16.0.11	fw-dmz			fw-dmz.dmz.tatebayashi.sop
+172.16.0.211	portal			portal.dmz.tatebayashi.sop		stg.oviss.jp.fujitsu.com
+172.16.0.212	sso			sso.dmz.tatebayashi.sop			authentication.stg.oviss.jp.fujitsu.com
+172.16.0.16	api			api.dmz.tatebayashi.sop			api.stg.oviss.jp.fujitsu.com
+172.16.0.17	mailimss-dmz		mailimss-dmz.dmz.tatebayashi.sop	mail.stg.oviss.jp.fujitsu.com
+172.16.0.18	yumntpdns-dmz		yumntpdns-dmz.dmz.tatebayashi.sop	yum.stg.oviss.jp.fujitsu.com	ntp.stg.oviss.jp.fujitsu.com
+172.16.0.20	wsus-dmz		wsus-dmz.dmz.tatebayashi.sop
+172.16.0.19	iwss-dmz		iwss-dmz.dmz.tatebayashi.sop
+172.16.0.21	yum-user		yum-user.dmz.tatebayashi.sop
+172.16.0.22	wsus-user		wsus-user.dmz.tatebayashi.sop		wsus.stg.oviss.jp.fujitsu.com	kms.stg.oviss.jp.fujitsu.com
+172.16.0.29	slb-portal		slb-portal.dmz.tatebayashi.sop
+172.16.0.30	slb-sso			slb-sso.dmz.tatebayashi.sop
+172.16.0.31	portal1			portal1.dmz.tatebayashi.sop
+172.16.0.32	portal2			portal2.dmz.tatebayashi.sop
+172.16.0.33	sso1			sso1.dmz.tatebayashi.sop
+172.16.0.34	sso2			sso2.dmz.tatebayashi.sop
+
+##########################
+#         secure         #
+##########################
+
+172.16.1.16	visualize		visualize.sec.tatebayashi.sop
+172.16.1.20	cert-req		cert-req.sec.tatebayashi.sop
+172.16.1.21	cert-dist		cert-dist.sec.tatebayashi.sop
+172.16.1.22	auth			auth.sec.tatebayashi.sop
+172.16.1.23	user-mgmt		user-mgmt.sec.tatebayashi.sop
+172.16.1.25	api-base		api-base.sec.tatebayashi.sop
+172.16.1.26	mail-secure		mail-secure.sec.tatebayashi.sop
+172.16.1.27	yumntpdns-secure	yumntpdns-secure.sec.tatebayashi.sop
+172.16.1.28	cmdb			cmdb.sec.tatebayashi.sop
+172.16.1.29	cb-relay		cb-relay.sec.tatebayashi.sop
+172.16.1.30	cb-sqc-em		cb-sqc-em.sec.tatebayashi.sop
+172.16.1.31	cb-cmgr-zentai		cb-cmgr-zentai.sec.tatebayashi.sop
+172.16.1.32	wsus-secure		wsus-secure.sec.tatebayashi.sop
+172.16.1.33	user-pr			user-pr.sec.tatebayashi.sop
+172.16.1.34	vsys-ap			vsys-ap.sec.tatebayashi.sop
+172.16.1.35	vsys-db			vsys-db.sec.tatebayashi.sop
+172.16.1.36	charge			charge.sec.tatebayashi.sop
+172.16.1.37	cb-sl			cb-sl.sec.tatebayashi.sop
+172.16.1.39	visualize2		visualize2.sec.tatebayashi.sop
+172.16.1.41	acctrl			acctrl.sec.tatebayashi.sop
+172.16.1.48	capi			capi.sec.tatebayashi.sop
+172.16.1.49	charge-db		charge-db.sec.tatebayashi.sop
+172.16.1.50	slb-rds			slb-rds.sec.tatebayashi.sop
+172.16.1.51	rds1			rds1.sec.tatebayashi.sop
+172.16.1.52	rds2			rds2.sec.tatebayashi.sop
+172.16.1.53	visualize3		visualize3.sec.tatebayashi.sop
+172.16.1.54	zabbi			zabbi.sec.tatebayashi.sop
+172.16.1.55	kpi			kpi.sec.tatebayashi.sop
+172.16.1.56	sopos-monitor		sopos-monitor.sec.tatebayashi.sop
+172.16.1.57	sopos-cb-sl		sopos-cb-sl.sec.tatebayashi.sop
+172.16.1.58	inventory		inventory.sec.tatebayashi.sop
+
+##########################
+#          dom0          #
+##########################
+# island A
+10.0.0.3	jp-01-1-ps0000-08-04
+10.0.0.4	jp-01-1-ps0000-08-05
+10.0.0.5	jp-01-1-ps0000-08-06
+10.0.0.6	jp-01-1-ps0000-08-07
+10.0.0.7	jp-01-1-ps0000-08-08
+10.0.0.8	jp-01-1-ps0000-08-09
+10.0.0.9	jp-01-1-ps0000-08-10
+10.0.0.10	jp-01-1-ps0000-08-11
+
+# island B
+10.0.4.3	jp-01-1-ps0000-08-14
+10.0.4.4	jp-01-1-ps0000-08-15
+10.0.4.5	jp-01-1-ps0000-08-16
+10.0.4.6	jp-01-1-ps0000-08-17
+172.30.86.97	ps00-08-02RMS
+172.30.86.98	ps00-08-03RMS
+-bash-3.2# exit
+logout
+Connection to jp-01-1-ps0000-08-02 closed.
+End

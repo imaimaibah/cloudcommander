@@ -1,0 +1,16 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+log_user 0
+mgtcb_login "vsys-db"
+send -- "/usr/local/mysql/bin/mysql -usopuser -p'mtm!0256' sop\n"
+expect -re $prompt
+stdout "select l.product_id,l.lst_id,l.cpu_index,pn.product_name from lst_link as l inner join product_name as pn on l.product_id = pn.product_id where lcid = 'en';"
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+
+

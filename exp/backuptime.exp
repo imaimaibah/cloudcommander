@@ -1,0 +1,28 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set date [lindex $argv 0]
+
+set server "vsys-db"
+
+log_user 0
+
+# vsys-dbにログインしデータベースにアクセス
+mgtcb_login $server
+
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p sop\n"
+expect "Enter password:" {
+	send -- "mtm!0256\n"
+}
+
+expect -re $prompt
+
+# $date以降に実行されたバックアップの記録を抽出
+stdout "select br.bo_disk_id,br.bt_disk_id,vd.disk_size,br.bt_resource_id,br.category,br.status,br.progress,br.start_time,br.end_time,br.entry_date,br.update_date from     (select * from backup_restore where category != 'DELETE' and status = 'completed' and entry_date > ('$date' * 1000)) br   left join     `vdisk#instance` vd   on     br.bt_disk_id = vd.disk_id;"
+
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

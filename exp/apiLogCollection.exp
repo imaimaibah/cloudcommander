@@ -1,0 +1,81 @@
+#!/usr/bin/expect
+log_user 0
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set timeout -1
+spawn /bin/bash --norc
+expect -re $prompt
+send -- "date --date '3 days ago' +'%Y-%m-%d'\n"
+expect -re ".*?\r\n"
+expect -re "(.*?)\r\n" {
+	set yesterday $expect_out(1,string)
+}
+expect -re $prompt
+send -- "date +'%Y-%m-%d'\n"
+expect -re ".*?\r\n"
+expect -re "(.*?)\r\n" {
+	set today $expect_out(1,string)
+}
+expect "# "
+
+send -- "ssh root@api-base\n"
+expect "password" {
+	send -- "$mgtcb_pass\n"
+} "yes/no" {
+	send -- "y\n"
+	expect "password"
+	send -- "$mgtcb_pass\n"
+} timeout {
+	puts "TIMEOUT"
+	exit
+} eof {
+	puts "CONNECTION FAILED"
+	exit
+}
+expect -re $prompt
+
+array set file ""
+
+set i 0
+send -- "cd /usr/share/tomcat5/logs/\n"
+expect "# "
+send -- "ls --sort=time --full-time ABSTrace.log*|awk '\$6==\"$today\" || \$6==\"$yesterday\" {print \$6\",\"\$9}'\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re "(.*?),(.*?)\r\n" {
+		array set file "$i $expect_out(2,string)"
+		incr i 1
+	} "# " {
+		break
+	}
+}
+
+if { [info exists file(0)] != 1 } {
+	send_user "no updates\n"
+	exit
+}
+
+
+send -- "tar zcf /tmp/ABSTrace.log.tgz $file(0)\n"
+expect "# "
+send -- "exit\n"
+expect "# "
+send -- "scp root@api-base:/tmp/ABSTrace.log.tgz /tmp/\n"
+expect "password" {
+	send -- "sv@01011\n"
+}
+expect "# "
+for { set l 1 } { $l<$i } { incr l 1 } {
+	send -- "scp root@api-base:$file($l) /tmp/\n"
+	expect "password" {
+		send -- "sv@01011\n"
+	}
+	expect "# "
+}
+send -- "exit\n"
+expect eof
+for { set l 0 } { $l<$i } { incr l 1 } {
+	send_user -- "$file($l)\n"
+}

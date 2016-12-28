@@ -1,0 +1,42 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+log_user 0
+set sw [lindex $argv 0]
+
+set timeout 10
+spawn telnet $sw
+expect "Login:" {
+        send -- "admin\n"
+        expect "Password:"
+        send -- "nt@$region_num\n"
+}
+
+expect -re "sw00.*#$"
+send -- "terminal pager disable\n"
+expect -re "sw00.*#$"
+send -- "show logging error\n"
+expect -re ".*?\n"
+expect -re ".*?\n"
+while {1} {
+        expect -re ".*\n" {
+                send_user -- "$expect_out(buffer)"
+        } -re "sw00.*#$" {
+                break
+        }
+}
+send -- "show logging syslog\n"
+expect -re ".*?\n"
+while {1} {
+        expect -re ".*\n" {
+                send_user -- "$expect_out(buffer)"
+        } -re "sw00.*#$" {
+                break
+        }
+}
+send -- "quit\n"
+expect eof
+log_user 1
+

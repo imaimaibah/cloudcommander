@@ -1,0 +1,69 @@
+1. Contract IDs,11
+
+2.VM Usage
+,Max VMs:,5568
+,Running VMs(Economy Equivalent):,39
+,Stopped VMs(Economy Equivalent):,41
+,Deployable(Economy):,5529
+,Deployable(including stopped VMs):,5488
+,Deployed VMs:,85
+,Economy:,36
+,Standard:,18
+,Advanced:,2
+,High-perf:,0
+,Firewall:,0
+,SLB:,0
+,VSYS:,23
+
+3. Disk Usage
+,Total Disk Space(TB):,32.0
+,In Use(TB):,14.3
+,Zero Clearing(TB):,0.2
+,Free Disk Space(TB):,17.5
+,Free Disk Space(%):,55.3
+
+4. OS Usage
+Running
+,CentOS 5.4,4
+,CentOS5.4,0
+,CentOS5.6,6
+,CentOS6.0,0
+,CentOS6.2,2
+,RHEL5.7,0
+,RHEL6.2,0
+,VCIS,0
+,Win2003SE,0
+,Win2003SV,0
+,Win2008EE,1
+,Win2008SE,2
+,others,16
+
+Stopped
+,CentOS 5.4,0
+,CentOS5.4,0
+,CentOS5.6,0
+,CentOS6.0,0
+,CentOS6.2,15
+,RHEL5.7,0
+,RHEL6.2,8
+,VCIS,0
+,Win2003SE,2
+,Win2003SV,0
+,Win2008EE,2
+,Win2008SE,8
+,others,19
+
+5. Internet Connect Usage
+,Total:,762
+,In Use:,28
+,Free Internet Connect:,734
+,Free Internet Connect(%):,96.3
+
+6. Glogal IP Address Usage
+,Total:,747
+,In Use:,28
+,Unavailable:,1
+,Free Global IP Address:,718
+,Free Global IP Address(%):,96.1
+
+Capacity Data Tool Ver.1.1

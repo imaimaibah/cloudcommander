@@ -1,0 +1,15 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+log_user 0
+mgtcb_login "vsys-db"
+send -- "/usr/local/mysql/bin/mysql -usopuser -p'mtm!0256' sop\n"
+expect -re $prompt
+stdout "select owner_org,image_id,server_type,sysvol_size from image where show_flag = 0 and public_category = 'PRIVATE';"
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+

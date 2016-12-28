@@ -1,0 +1,36 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+if { "black" == [lindex $argv 0] } {
+	set file "$base_dir/data/fw_blackList.sql"
+} elseif { "white" == [lindex $argv 0] } {
+	set file "$base_dir/data/fw_whiteList.sql"
+} else {
+	send_user "Option is not specified\n"
+	exit 1
+}
+set fhandle [open $file "r"]
+
+log_user 0
+mgtcb_login "vsys-db"
+set timeout -1
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop\n"
+expect -re $prompt
+while {[gets $fhandle line] >= 0} {
+	send -- "$line\n"
+	expect -re ".*?\n"
+	while {1} {
+		expect -re ".*\n" {
+			send_user -- "$expect_out(buffer)"
+		} -re $prompt {
+			break
+		}
+	}
+}
+close $fhandle
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+log_user 1

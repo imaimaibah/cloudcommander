@@ -1,0 +1,45 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+#log_user 0
+set kind [lindex $args 0]
+if {$server == ""} {
+	puts "Option is invalid"
+	exit
+}	
+set server user-mgmt
+set kind /var/tmp/activate$kind
+set timeout 30
+
+island_login $server
+send -- "mysql -umsqluser -p'mtm!0277' SOPUSER\n"
+expect "mysql> " 
+send -- "use SOPUSER\n"
+expect "mysql> "
+send -- "tee $kind\n"
+expect "mysql> "
+if {$kind == 0} {
+	send -- "select ContractNo, userID from T_CNTRCT_USER_LINK where UserKind = '0001' order by ContractNo;\n"
+} elseif {$kind == 1} {
+	send -- "select ContractNo, userID from T_CNTRCT_USER_LINK where UserKind = '0006' order by ContractNo;\n"
+} else {
+	send -- "echo ERROR\n"
+}
+expect "mysql> "
+send -- "quit\n"
+expect -re $prompt
+
+set i '`cat /var/tmp/activate$kind | grep -v + | grep -v rows | grep -v mysql | grep -v ContractNo | wc -l`-1'
+
+for { set l 0 } { $l<$i } { incl l 1 }{
+	stdout "cat /var/tmp/activate$kind | grep -v + | grep -v rows | grep -v mysql | grep -v ContractNo | cut -d " " -f2 | awk 'NR==$l'"
+}
+
+for { set m 0 } { $m<$i } { incl m 1 }{
+  stdout "cat /var/tmp/activate$kind | grep -v + | grep -v rows | grep -v mysql | grep -v ContractNo | cut -d " " -f4 | awk 'NR==$m'"
+}
+
+send -- "exit\n"
+expect eof

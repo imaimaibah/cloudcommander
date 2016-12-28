@@ -1,0 +1,13 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+log_user 0
+set timeout 3
+set cbrm [lindex $argv 0]
+
+island_login "$cbrm"
+stdout "/opt/FJSVrcvmr/bin/rcxadm server list"
+send -- "exit\n"
+expect eof

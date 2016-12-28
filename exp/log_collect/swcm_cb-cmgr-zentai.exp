@@ -1,0 +1,40 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+log_user 0
+set timeout 1500
+
+set server cb-cmgr-zentai
+set kind /tmp/swcm_cb-cmgr-zentai.tar.gz
+
+trap {} {SIGHUP} 
+
+island_login $server 
+send "ps aux | grep swcolinf | grep -v grep > /dev/null 2>&1 ; echo $?\n"
+expect "0" {
+	log_user 1
+	send_user -- "Maintenance Log Collection is already running.\n"
+	log_user 0
+	send -- "exit\n"
+} "1" {
+	send -- "/opt/FJSVftlc/swcolinf/swcolinf -i all -o /tmp\n"
+	expect -re $prompt
+	send -- "tar zcf $kind /tmp/CentricManager*\n"
+	expect -re $prompt
+	send -- "exit\n"
+	expect -re $prompt
+
+	spawn /bin/bash
+	expect -re $prompt
+	send -- "$base_dir/exp/log_collect/transfer_file.exp $server $kind\n"
+	expect -re $prompt
+	island_login $server
+	send -- "rm -f $kind\n"
+	expect -re $prompt
+	send -- "rm -rf /tmp/CentricManager*\n"
+	expect -re $prompt
+	send -- "exit\n"
+}
+expect eof

@@ -1,0 +1,27 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+if { $argv == "" } {
+	puts "SQL statement is not specified"
+	exit
+}
+
+set option ""
+
+log_user 0
+
+for { set i 0} {$i<$argc} {incr i 1} {
+	set tmp [lindex $argv 0]
+	set option "$option$tmp "
+}
+
+mgtcb_login "vsys-db"
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop\n"
+expect -re $prompt
+stdout $option
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

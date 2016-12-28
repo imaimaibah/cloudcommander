@@ -1,0 +1,20 @@
+#!/usr/bin/expect
+
+set sql [lindex $argv 0]
+set whandle [open "/usr/local/2nd_tools/tmp/vsys-db.list" "w"]
+
+spawn ssh -l root islanda-cbrm
+expect "password" {
+	send -- "sv@01011\r"
+} "yes/no" {
+	send -- "yes\r"
+	expect "password"
+	send -- "sv@01011\r"
+}
+expect "# "
+send -- "/opt/FJSVrcvmr/bin/rcxadm pool list -name VMPOOL -template high_performance | grep VMPOOL | cut -d ')' -f3 > /tmp/high_performance\r"
+expect "# "
+send -- "if [ 4 -lt 10 ] ; then ; logger test ; fi\r"
+expect "# "
+send -- "exit\r"
+expect eof

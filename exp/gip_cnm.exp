@@ -1,0 +1,51 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set vnet_id [lindex $argv 0]
+set island [lindex $argv 1]
+
+log_user 0 
+#mgtcb_login "vsys-db"
+#send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop\n"
+#expect -re $prompt
+#send -- "select vm.vsys_id,vi.vnet_id from `vnet#instance` as vi, instance as vm where vi.vsys_id = vm.vsys_id and vm.vsys_id = '$vsys' and vi.name = 'INTERNET' and vm.status = 'NORMAL';\n"
+#expect -re ".*?\n";
+#set i 0
+#while {1} {
+#	expect -re "$vsys \\| (.*?) \\|.*\n" {
+#		array set vnet_id "$i $expect_out(1,string)"
+#		incr i 1
+#	} -re $prompt {
+#		break
+#	}
+#}
+#send -- "quit\n"
+#expect -re $prompt
+#send -- "exit\n"
+#expect eof
+#
+#if {$i>1} {
+#	send_user -- "Something is wrong. There are 2 entries.\n"
+#	exit
+#}
+#
+#if {$i == 0} {
+#	send_user -- "Cannot be found\n"
+#	exit
+#}
+
+island_login "$island-cnm"
+send -- "/opt/FJSVcnm/bin/cnmshowinternetconn -a $vnet_id\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re ".*\n" {
+		send_user -- "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send -- "exit\n"
+expect eof
+log_user 1

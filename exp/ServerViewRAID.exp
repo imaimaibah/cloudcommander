@@ -1,0 +1,37 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set server [lindex $argv 0]
+
+
+log_user 0
+dom0_login $server
+set i 0;
+send -- "amCLI -l|grep -P '(Disk|Logical)'|awk '{print \$1}'|sed 's/://'\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re "(.*?)\r\n" {
+		array set disk "$i $expect_out(1,string)"
+		incr i 1
+	} -re $prompt {
+		break
+	}
+}
+
+for { set l 0 } { $l < $i } { incr l 1 } {
+	send -- "amCLI -g $disk($l) status\n"
+	expect -re "(.*?)\r\n"
+	send_user -- "$disk($l),"
+	while {1} {
+		expect -re ".*\n" {
+			send_user -- "$expect_out(buffer)"
+		} -re $prompt {
+			break
+		}
+	}
+}
+
+send -- "exit\n"
+expect eof

@@ -1,0 +1,759 @@
+F S UID        PID  PPID  C PRI  NI ADDR SZ WCHAN  STIME TTY          TIME CMD
+F S UID        PID  PPID  C PRI  NI ADDR SZ WCHAN  STIME TTY          TIME CMD
+4 S root         1     0  0  75   0 -  2587 -       2012 ?        00:04:59 init [3]                                
+1 S root         2     1  0 -40   - -     0 migrat  2012 ?        00:01:56 [migration/0]
+4 S root         1     0  0  75   0 -  2587 -       2012 ?        00:04:59 init [3]                                
+1 S root         2     1  0 -40   - -     0 migrat  2012 ?        00:01:56 [migration/0]
+1 S root         3     1  0  94  19 -     0 ksofti  2012 ?        00:00:08 [ksoftirqd/0]
+5 S root         4     1  0 -40   - -     0 watchd  2012 ?        00:00:00 [watchdog/0]
+1 S root         3     1  0  94  19 -     0 ksofti  2012 ?        00:00:08 [ksoftirqd/0]
+5 S root         4     1  0 -40   - -     0 watchd  2012 ?        00:00:00 [watchdog/0]
+1 S root         5     1  0  70  -5 -     0 worker  2012 ?        00:00:04 [events/0]
+1 S root         6     1  0  70  -5 -     0 worker  2012 ?        00:00:00 [khelper]
+1 S root         5     1  0  70  -5 -     0 worker  2012 ?        00:00:04 [events/0]
+1 S root         6     1  0  70  -5 -     0 worker  2012 ?        00:00:00 [khelper]
+5 S root         7     1  0  70  -5 -     0 worker  2012 ?        00:00:00 [kthread]
+5 S root         7     1  0  70  -5 -     0 worker  2012 ?        00:00:00 [kthread]
+1 S root         9     7  0  70  -5 -     0 xenwat  2012 ?        00:00:00 [xenwatch]
+1 S root        10     7  0  70  -5 -     0 xb_rea  2012 ?        00:00:00 [xenbus]
+1 S root         9     7  0  70  -5 -     0 xenwat  2012 ?        00:00:00 [xenwatch]
+1 S root        10     7  0  70  -5 -     0 xb_rea  2012 ?        00:00:00 [xenbus]
+1 S root        18     7  0 -40   - -     0 migrat  2012 ?        00:02:15 [migration/1]
+1 S root        19     7  0  94  19 -     0 ksofti  2012 ?        00:00:07 [ksoftirqd/1]
+1 S root        18     7  0 -40   - -     0 migrat  2012 ?        00:02:15 [migration/1]
+1 S root        19     7  0  94  19 -     0 ksofti  2012 ?        00:00:07 [ksoftirqd/1]
+5 S root        20     7  0 -40   - -     0 watchd  2012 ?        00:00:00 [watchdog/1]
+1 S root        21     7  0  70  -5 -     0 worker  2012 ?        00:00:01 [events/1]
+5 S root        20     7  0 -40   - -     0 watchd  2012 ?        00:00:00 [watchdog/1]
+1 S root        21     7  0  70  -5 -     0 worker  2012 ?        00:00:01 [events/1]
+1 S root        22     7  0 -40   - -     0 migrat  2012 ?        00:01:51 [migration/2]
+1 S root        23     7  0  94  19 -     0 ksofti  2012 ?        00:00:07 [ksoftirqd/2]
+1 S root        22     7  0 -40   - -     0 migrat  2012 ?        00:01:51 [migration/2]
+1 S root        23     7  0  94  19 -     0 ksofti  2012 ?        00:00:07 [ksoftirqd/2]
+5 S root        24     7  0 -40   - -     0 watchd  2012 ?        00:00:00 [watchdog/2]
+1 S root        25     7  0  70  -5 -     0 worker  2012 ?        00:00:01 [events/2]
+5 S root        24     7  0 -40   - -     0 watchd  2012 ?        00:00:00 [watchdog/2]
+1 S root        25     7  0  70  -5 -     0 worker  2012 ?        00:00:01 [events/2]
+1 S root        26     7  0 -40   - -     0 migrat  2012 ?        00:01:36 [migration/3]
+1 S root        27     7  0  94  19 -     0 ksofti  2012 ?        00:00:05 [ksoftirqd/3]
+1 S root        26     7  0 -40   - -     0 migrat  2012 ?        00:01:36 [migration/3]
+1 S root        27     7  0  94  19 -     0 ksofti  2012 ?        00:00:05 [ksoftirqd/3]
+5 S root        28     7  0 -40   - -     0 watchd  2012 ?        00:00:00 [watchdog/3]
+1 S root        29     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [events/3]
+5 S root        28     7  0 -40   - -     0 watchd  2012 ?        00:00:00 [watchdog/3]
+1 S root        29     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [events/3]
+1 S root        30     7  0 -40   - -     0 migrat  2012 ?        00:01:32 [migration/4]
+1 S root        31     7  0  94  19 -     0 ksofti  2012 ?        00:00:05 [ksoftirqd/4]
+1 S root        30     7  0 -40   - -     0 migrat  2012 ?        00:01:32 [migration/4]
+1 S root        31     7  0  94  19 -     0 ksofti  2012 ?        00:00:05 [ksoftirqd/4]
+5 S root        32     7  0 -40   - -     0 watchd  2012 ?        00:00:00 [watchdog/4]
+1 S root        33     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [events/4]
+5 S root        32     7  0 -40   - -     0 watchd  2012 ?        00:00:00 [watchdog/4]
+1 S root        33     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [events/4]
+1 S root        39     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [kblockd/0]
+1 S root        40     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [kblockd/1]
+1 S root        39     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [kblockd/0]
+1 S root        40     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [kblockd/1]
+1 S root        41     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [kblockd/2]
+1 S root        42     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [kblockd/3]
+1 S root        41     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [kblockd/2]
+1 S root        42     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [kblockd/3]
+1 S root        43     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [kblockd/4]
+1 S root        44     7  0  80  -5 -     0 worker  2012 ?        00:00:00 [cqueue/0]
+1 S root        43     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [kblockd/4]
+1 S root        44     7  0  80  -5 -     0 worker  2012 ?        00:00:00 [cqueue/0]
+1 S root        45     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [cqueue/1]
+1 S root        46     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [cqueue/2]
+1 S root        45     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [cqueue/1]
+1 S root        46     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [cqueue/2]
+1 S root        47     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [cqueue/3]
+1 S root        48     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [cqueue/4]
+1 S root        47     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [cqueue/3]
+1 S root        48     7  0  70  -5 -     0 worker  2012 ?        00:00:00 [cqueue/4]
+1 S root        52     7  0  80  -5 -     0 hub_th  2012 ?        00:00:00 [khubd]
+1 S root        54     7  0  70  -5 -     0 serio_  2012 ?        00:00:00 [kseriod]
+1 S root        52     7  0  80  -5 -     0 hub_th  2012 ?        00:00:00 [khubd]
+1 S root        54     7  0  70  -5 -     0 serio_  2012 ?        00:00:00 [kseriod]
+1 S root       144     7  0  70  -5 -     0 kswapd  2012 ?        00:00:10 [kswapd0]
+1 S root       145     7  0  74  -5 -     0 worker  2012 ?        00:00:00 [aio/0]
+1 S root       144     7  0  70  -5 -     0 kswapd  2012 ?        00:00:10 [kswapd0]
+1 S root       145     7  0  74  -5 -     0 worker  2012 ?        00:00:00 [aio/0]
+1 S root       146     7  0  74  -5 -     0 worker  2012 ?        00:00:00 [aio/1]
+1 S root       146     7  0  74  -5 -     0 worker  2012 ?        00:00:00 [aio/1]
+1 S root       147     7  0  75  -5 -     0 worker  2012 ?        00:00:00 [aio/2]
+1 S root       148     7  0  76  -5 -     0 worker  2012 ?        00:00:00 [aio/3]
+1 S root       147     7  0  75  -5 -     0 worker  2012 ?        00:00:00 [aio/2]
+1 S root       148     7  0  76  -5 -     0 worker  2012 ?        00:00:00 [aio/3]
+1 S root       149     7  0  76  -5 -     0 worker  2012 ?        00:00:00 [aio/4]
+1 S root       272     7  0  70  -5 -     0 xenfb_  2012 ?        00:00:00 [xenfb thread]
+1 S root       149     7  0  76  -5 -     0 worker  2012 ?        00:00:00 [aio/4]
+1 S root       272     7  0  70  -5 -     0 xenfb_  2012 ?        00:00:00 [xenfb thread]
+1 S root       273     7  0  70  -5 -     0 xenfb_  2012 ?        00:00:00 [xenfb thread]
+1 S root       286     7  0  71  -5 -     0 worker  2012 ?        00:00:00 [kpsmoused]
+1 S root       273     7  0  70  -5 -     0 xenfb_  2012 ?        00:00:00 [xenfb thread]
+1 S root       286     7  0  71  -5 -     0 worker  2012 ?        00:00:00 [kpsmoused]
+1 S rcxdb      327 10026  0  75   0 - 16214 -      Jul23 ?        00:00:10 postgres: rcxdb production 127.0.0.1(49279) idle                     
+1 S rcxdb      327 10026  0  75   0 - 16214 -      Jul23 ?        00:00:10 postgres: rcxdb production 127.0.0.1(49279) idle                     
+1 S root       338     7  0  72  -5 -     0 worker  2012 ?        00:00:00 [kstriped]
+1 S root       338     7  0  72  -5 -     0 worker  2012 ?        00:00:00 [kstriped]
+0 S root       357     1  0  78   0 - 163777 184467 01:40 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S root       363     7  0  70  -5 -     0 kjourn  2012 ?        00:02:48 [kjournald]
+0 S root       357     1  0  78   0 - 163777 184467 01:40 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S root       363     7  0  70  -5 -     0 kjourn  2012 ?        00:02:48 [kjournald]
+1 S rcxdb      374 10026  0  75   0 - 15977 -      04:11 ?        00:00:00 postgres: rcxdb production 127.0.0.1(46121) idle                     
+1 S root       385     7  0  70  -5 -     0 kaudit  2012 ?        00:00:01 [kauditd]
+1 S rcxdb      374 10026  0  75   0 - 15977 -      04:11 ?        00:00:00 postgres: rcxdb production 127.0.0.1(46121) idle                     
+1 S root       385     7  0  70  -5 -     0 kaudit  2012 ?        00:00:01 [kauditd]
+5 S root       413     1  0  76  -4 -  3151 -       2012 ?        00:00:00 /sbin/udevd -d
+1 S rcxdb      420 10026  0  75   0 - 16215 -      Jul23 ?        00:00:08 postgres: rcxdb production 127.0.0.1(49294) idle                     
+5 S root       413     1  0  76  -4 -  3151 -       2012 ?        00:00:00 /sbin/udevd -d
+1 S rcxdb      420 10026  0  75   0 - 16215 -      Jul23 ?        00:00:08 postgres: rcxdb production 127.0.0.1(49294) idle                     
+1 S rcxdb      485 10026  0  75   0 - 16062 -      Jul18 ?        00:00:05 postgres: rcxdb production 127.0.0.1(51300) idle                     
+1 S rcxdb      485 10026  0  75   0 - 16062 -      Jul18 ?        00:00:05 postgres: rcxdb production 127.0.0.1(51300) idle                     
+1 S rcxdb      729 10026  0  75   0 - 15977 -      02:31 ?        00:00:08 postgres: rcxdb production 127.0.0.1(59286) idle                     
+1 S root       845     7  0  73  -5 -     0 worker  2012 ?        00:00:00 [kmpathd/0]
+1 S rcxdb      729 10026  0  75   0 - 15977 -      02:31 ?        00:00:08 postgres: rcxdb production 127.0.0.1(59286) idle                     
+1 S root       845     7  0  73  -5 -     0 worker  2012 ?        00:00:00 [kmpathd/0]
+1 S root       846     7  0  74  -5 -     0 worker  2012 ?        00:00:00 [kmpathd/1]
+1 S root       847     7  0  74  -5 -     0 worker  2012 ?        00:00:00 [kmpathd/2]
+1 S root       846     7  0  74  -5 -     0 worker  2012 ?        00:00:00 [kmpathd/1]
+1 S root       847     7  0  74  -5 -     0 worker  2012 ?        00:00:00 [kmpathd/2]
+1 S root       848     7  0  74  -5 -     0 worker  2012 ?        00:00:00 [kmpathd/3]
+1 S root       849     7  0  74  -5 -     0 worker  2012 ?        00:00:00 [kmpathd/4]
+1 S root       848     7  0  74  -5 -     0 worker  2012 ?        00:00:00 [kmpathd/3]
+1 S root       849     7  0  74  -5 -     0 worker  2012 ?        00:00:00 [kmpathd/4]
+1 S root       850     7  0  73  -5 -     0 worker  2012 ?        00:00:00 [kmpath_handlerd]
+1 S root       879     7  0  70  -5 -     0 kjourn  2012 ?        00:02:40 [kjournald]
+1 S root       850     7  0  73  -5 -     0 worker  2012 ?        00:00:00 [kmpath_handlerd]
+1 S root       879     7  0  70  -5 -     0 kjourn  2012 ?        00:02:40 [kjournald]
+5 S root      1155     1  0  72  -4 - 23217 stext   2012 ?        00:00:08 auditd
+4 S root      1157  1155  0  67  -8 - 36836 184466  2012 ?        00:00:04 /sbin/audispd
+5 S root      1155     1  0  72  -4 - 23217 stext   2012 ?        00:00:08 auditd
+4 S root      1157  1155  0  67  -8 - 36836 184466  2012 ?        00:00:04 /sbin/audispd
+5 S root      1183     1  0  75   0 - 16543 stext   2012 ?        00:00:31 /opt/FJSVsagt/usr/lib/opasyslog
+5 S root      1183     1  0  75   0 - 16543 stext   2012 ?        00:00:31 /opt/FJSVsagt/usr/lib/opasyslog
+0 S root      1184     1  0  79   0 -  7203 -       2012 ?        00:00:00 /opt/FJSVsagt/usr/lib/mpstartsv
+1 S root      1197     1  0  76   0 -  1477 -       2012 ?        00:00:06 syslogd -m 0
+0 S root      1184     1  0  79   0 -  7203 -       2012 ?        00:00:00 /opt/FJSVsagt/usr/lib/mpstartsv
+1 S root      1197     1  0  76   0 -  1477 -       2012 ?        00:00:06 syslogd -m 0
+5 S root      1200     1  0  75   0 -   951 syslog  2012 ?        00:00:00 klogd -x
+5 S root      1209     1  0  78   0 -  2690 -       2012 ?        00:00:09 irqbalance
+5 S root      1200     1  0  75   0 -   951 syslog  2012 ?        00:00:00 klogd -x
+5 S root      1209     1  0  78   0 -  2690 -       2012 ?        00:00:09 irqbalance
+5 S rpc       1219     1  0  83   0 -  2013 923330  2012 ?        00:00:00 portmap
+5 S rpc       1219     1  0  83   0 -  2013 923330  2012 ?        00:00:00 portmap
+1 S root      1248     7  0  72  -5 -     0 worker  2012 ?        00:00:00 [rpciod/0]
+1 S root      1248     7  0  72  -5 -     0 worker  2012 ?        00:00:00 [rpciod/0]
+1 S root      1249     7  0  73  -5 -     0 worker  2012 ?        00:00:00 [rpciod/1]
+1 S root      1250     7  0  73  -5 -     0 worker  2012 ?        00:00:00 [rpciod/2]
+1 S root      1249     7  0  73  -5 -     0 worker  2012 ?        00:00:00 [rpciod/1]
+1 S root      1250     7  0  73  -5 -     0 worker  2012 ?        00:00:00 [rpciod/2]
+1 S root      1251     7  0  73  -5 -     0 worker  2012 ?        00:00:00 [rpciod/3]
+1 S root      1252     7  0  73  -5 -     0 worker  2012 ?        00:00:00 [rpciod/4]
+1 S root      1251     7  0  73  -5 -     0 worker  2012 ?        00:00:00 [rpciod/3]
+1 S root      1252     7  0  73  -5 -     0 worker  2012 ?        00:00:00 [rpciod/4]
+5 S root      1263     1  0  84   0 -  2540 -       2012 ?        00:00:00 rpc.statd
+1 S root      1286     1  0  78   0 - 12179 -       2012 ?        00:00:01 rpc.idmapd
+5 S root      1263     1  0  84   0 -  2540 -       2012 ?        00:00:00 rpc.statd
+1 S root      1286     1  0  78   0 - 12179 -       2012 ?        00:00:01 rpc.idmapd
+0 S root      1293     1  0  83   0 - 163401 184466 06:20 ?       00:00:15 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root      1293     1  0  83   0 - 163401 184466 06:20 ?       00:00:15 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S root      1297     1  0  85   0 - 12377 stext   2012 ?        00:00:00 /opt/FJSVsvac/bin/swsvacauditd
+1 S root      1297     1  0  85   0 - 12377 stext   2012 ?        00:00:00 /opt/FJSVsvac/bin/swsvacauditd
+5 S dbus      1306     1  0  75   0 -  5316 -       2012 ?        00:00:00 dbus-daemon --system
+1 S root      1322     1  0  85   0 -  5260 stext   2012 ?        00:00:04 pcscd
+5 S dbus      1306     1  0  75   0 -  5316 -       2012 ?        00:00:00 dbus-daemon --system
+1 S root      1322     1  0  85   0 -  5260 stext   2012 ?        00:00:04 pcscd
+5 S 68        1335     1  0  75   0 -  7611 257301  2012 ?        00:00:00 hald
+5 S 68        1335     1  0  75   0 -  7611 257301  2012 ?        00:00:00 hald
+0 S root      1336  1335  0  78   0 -  5423 -       2012 ?        00:00:00 hald-runner
+0 S root      1336  1335  0  78   0 -  5423 -       2012 ?        00:00:00 hald-runner
+1 S root      1379     1  0  84   0 -  2129 -       2012 ?        00:00:00 /usr/bin/hidd --server
+1 S root      1423     1  0  81   0 - 32583 stext   2012 ?        00:00:13 automount
+1 S root      1379     1  0  84   0 -  2129 -       2012 ?        00:00:00 /usr/bin/hidd --server
+1 S root      1423     1  0  81   0 - 32583 stext   2012 ?        00:00:13 automount
+5 S root      1472     1  0  75   0 - 15654 -       2012 ?        00:00:05 /usr/sbin/sshd
+5 S root      1500     1  0  78   0 - 33516 -       2012 ?        00:00:00 cupsd
+5 S root      1472     1  0  75   0 - 15654 -       2012 ?        00:00:05 /usr/sbin/sshd
+5 S root      1500     1  0  78   0 - 33516 -       2012 ?        00:00:00 cupsd
+4 S root      1540 15953  0  75   0 - 13322 -      Jul02 ?        00:00:01 /opt/FJSVsagt/usr/lib/opamain
+0 S root      1543  1540  0  75   0 -  4201 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opalog
+4 S root      1540 15953  0  75   0 - 13322 -      Jul02 ?        00:00:01 /opt/FJSVsagt/usr/lib/opamain
+0 S root      1543  1540  0  75   0 -  4201 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opalog
+0 S root      1545  1540  0  75   0 -  4201 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opacmdc
+0 S root      1546  1540  0  82   0 - 12385 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opaacpt 0 uxpopagt
+0 S root      1545  1540  0  75   0 -  4201 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opacmdc
+0 S root      1546  1540  0  82   0 - 12385 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opaacpt 0 uxpopagt
+0 S root      1547  1540  0  82   0 -  4727 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opaudpsdrv uxpopagt
+0 S root      1548  1543  0  75   0 -  4654 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opalogmsg
+0 S root      1547  1540  0  82   0 -  4727 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opaudpsdrv uxpopagt
+0 S root      1548  1543  0  75   0 -  4654 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opalogmsg
+4 S root      1550  1540  0  78   0 -  8762 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opafmntr
+0 S root      1551  1543  0  78   0 -  4232 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opalogcmd
+4 S root      1550  1540  0  78   0 -  8762 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opafmntr
+0 S root      1551  1543  0  78   0 -  4232 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opalogcmd
+0 S root      1553  1540  0  75   0 -  7230 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opasend islanda-sl 17 1
+0 S root      1553  1540  0  75   0 -  7230 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opasend islanda-sl 17 1
+4 S root      1554  1540  0  75   0 - 10467 -      Jul02 ?        00:00:01 /opt/FJSVsagt/usr/lib/opamcauto2
+0 S root      1555  1553  0  76   0 -  7726 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opaconn islanda-sl 17 1
+4 S root      1554  1540  0  75   0 - 10467 -      Jul02 ?        00:00:01 /opt/FJSVsagt/usr/lib/opamcauto2
+0 S root      1555  1553  0  76   0 -  7726 -      Jul02 ?        00:00:00 /opt/FJSVsagt/usr/lib/opaconn islanda-sl 17 1
+1 S root      1564     1  0  75   0 - 36427 -       2012 ?        00:00:01 /usr/sbin/snmptrapd -Lsd -p /var/run/snmptrapd.pid 8162
+5 S root      1574     1  0  75   0 -   455 -       2012 ?        00:00:00 /usr/sbin/trpsrvd -ta
+1 S root      1564     1  0  75   0 - 36427 -       2012 ?        00:00:01 /usr/sbin/snmptrapd -Lsd -p /var/run/snmptrapd.pid 8162
+5 S root      1574     1  0  75   0 -   455 -       2012 ?        00:00:00 /usr/sbin/trpsrvd -ta
+1 S rcxdb     1578 10026  0  75   0 - 15836 -      Jul23 ?        00:00:03 postgres: rcxdb production 127.0.0.1(46615) idle                     
+5 S root      1596     1  0  78   0 -  1613 -       2012 ?        00:00:00 gpm -m /dev/input/mice -t exps2
+1 S rcxdb     1578 10026  0  75   0 - 15836 -      Jul23 ?        00:00:03 postgres: rcxdb production 127.0.0.1(46615) idle                     
+5 S root      1596     1  0  78   0 -  1613 -       2012 ?        00:00:00 gpm -m /dev/input/mice -t exps2
+5 S daemon    1635 28450  0  75   0 - 17664 -      Jul23 ?        00:00:00 /opt/FJSVcsm/apache/bin/httpd -E /var/opt/FJSVcsm/log/apache/error_log -k start
+5 S daemon    1635 28450  0  75   0 - 17664 -      Jul23 ?        00:00:00 /opt/FJSVcsm/apache/bin/httpd -E /var/opt/FJSVcsm/log/apache/error_log -k start
+1 S rcxdb     1791 10026  0  75   0 - 15977 -      01:41 ?        00:00:00 postgres: rcxdb production 127.0.0.1(52902) idle                     
+1 S root      1872     7  0  75   0 -     0 pdflus Jul04 ?        00:00:04 [pdflush]
+1 S rcxdb     1791 10026  0  75   0 - 15977 -      01:41 ?        00:00:00 postgres: rcxdb production 127.0.0.1(52902) idle                     
+1 S root      1872     7  0  75   0 -     0 pdflus Jul04 ?        00:00:04 [pdflush]
+1 S rcxdb     2352 10026  0  75   0 - 15961 -      Jul23 ?        00:00:02 postgres: rcxdb production 127.0.0.1(60045) idle                     
+1 S rcxdb     2352 10026  0  75   0 - 15961 -      Jul23 ?        00:00:02 postgres: rcxdb production 127.0.0.1(60045) idle                     
+1 S rcxdb     2542 10026  0  75   0 - 15835 -      Jul23 ?        00:00:03 postgres: rcxdb production 127.0.0.1(46210) idle                     
+1 S rcxdb     2544 10026  0  75   0 - 16222 -      Jul23 ?        00:00:05 postgres: rcxdb production 127.0.0.1(46212) idle                     
+1 S rcxdb     2542 10026  0  75   0 - 15835 -      Jul23 ?        00:00:03 postgres: rcxdb production 127.0.0.1(46210) idle                     
+1 S rcxdb     2544 10026  0  75   0 - 16222 -      Jul23 ?        00:00:05 postgres: rcxdb production 127.0.0.1(46212) idle                     
+0 S root      2867     1  0  85   0 - 163367 184467 05:30 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root      2867     1  0  85   0 - 163367 184467 05:30 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb     2998 10026  0  75   0 - 15832 -      Jul23 ?        00:00:02 postgres: rcxdb production 127.0.0.1(46276) idle                     
+5 S daemon    3012 11448  0  75   0 -  2385 -      09:21 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+1 S rcxdb     2998 10026  0  75   0 - 15832 -      Jul23 ?        00:00:02 postgres: rcxdb production 127.0.0.1(46276) idle                     
+5 S daemon    3012 11448  0  75   0 -  2385 -      09:21 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+1 S rcxdb     3148 10026  0  75   0 - 15978 -      07:13 ?        00:00:00 postgres: rcxdb production 127.0.0.1(48916) idle                     
+5 S daemon    3540 11448  0  75   0 -  2385 -      10:41 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+1 S rcxdb     3148 10026  0  75   0 - 15978 -      07:13 ?        00:00:00 postgres: rcxdb production 127.0.0.1(48916) idle                     
+5 S daemon    3540 11448  0  75   0 -  2385 -      10:41 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+5 S daemon    3541 11448  0  75   0 -  2385 -      10:41 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+1 S rcxdb     3781 10026  0  75   0 - 15968 -      Jul23 ?        00:00:02 postgres: rcxdb production 127.0.0.1(46367) idle                     
+5 S daemon    3541 11448  0  75   0 -  2385 -      10:41 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+1 S rcxdb     3781 10026  0  75   0 - 15968 -      Jul23 ?        00:00:02 postgres: rcxdb production 127.0.0.1(46367) idle                     
+1 S rcxdb     3942 10026  0  75   0 - 15978 -      06:23 ?        00:00:00 postgres: rcxdb production 127.0.0.1(46699) idle                     
+1 S rcxdb     4740 10026  0  75   0 - 15977 -      05:32 ?        00:00:00 postgres: rcxdb production 127.0.0.1(41593) idle                     
+1 S rcxdb     3942 10026  0  75   0 - 15978 -      06:23 ?        00:00:00 postgres: rcxdb production 127.0.0.1(46699) idle                     
+1 S rcxdb     4740 10026  0  75   0 - 15977 -      05:32 ?        00:00:00 postgres: rcxdb production 127.0.0.1(41593) idle                     
+1 S rcxdb     4760 10026  0  75   0 - 15839 -      Jul23 ?        00:00:03 postgres: rcxdb production 127.0.0.1(46480) idle                     
+0 S root      4984     1  0  85   0 - 163867 184466 03:50 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb     4760 10026  0  75   0 - 15839 -      Jul23 ?        00:00:03 postgres: rcxdb production 127.0.0.1(46480) idle                     
+0 S root      4984     1  0  85   0 - 163867 184466 03:50 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+5 S daemon    5288 28450  0  75   0 - 17664 -      Jul24 ?        00:00:00 /opt/FJSVcsm/apache/bin/httpd -E /var/opt/FJSVcsm/log/apache/error_log -k start
+0 S root      5430     1  0  78   0 - 163331 184466 03:00 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+5 S daemon    5288 28450  0  75   0 - 17664 -      Jul24 ?        00:00:00 /opt/FJSVcsm/apache/bin/httpd -E /var/opt/FJSVcsm/log/apache/error_log -k start
+0 S root      5430     1  0  78   0 - 163331 184466 03:00 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb     5564 10026  0  75   0 - 15845 -      Jul23 ?        00:00:02 postgres: rcxdb production 127.0.0.1(53794) idle                     
+1 S rcxdb     5780 10026  0  75   0 - 16160 -      Jul23 ?        00:00:04 postgres: rcxdb production 127.0.0.1(46599) idle                     
+1 S rcxdb     5564 10026  0  75   0 - 15845 -      Jul23 ?        00:00:02 postgres: rcxdb production 127.0.0.1(53794) idle                     
+1 S rcxdb     5780 10026  0  75   0 - 16160 -      Jul23 ?        00:00:04 postgres: rcxdb production 127.0.0.1(46599) idle                     
+5 S daemon    5978 28450  0  75   0 - 17664 -      04:42 ?        00:00:00 /opt/FJSVcsm/apache/bin/httpd -E /var/opt/FJSVcsm/log/apache/error_log -k start
+5 S daemon    5978 28450  0  75   0 - 17664 -      04:42 ?        00:00:00 /opt/FJSVcsm/apache/bin/httpd -E /var/opt/FJSVcsm/log/apache/error_log -k start
+5 S ntp       6347     1  0  75   0 -  4797 -       2012 ?        00:00:04 ntpd -x -u ntp:ntp -p /var/run/ntpd.pid
+5 S ntp       6347     1  0  75   0 -  4797 -       2012 ?        00:00:04 ntpd -x -u ntp:ntp -p /var/run/ntpd.pid
+0 S root      6406     1  0  85   0 - 163881 184467 02:10 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb     6488 10026  0  75   0 - 15959 -      Jul23 ?        00:00:01 postgres: rcxdb production 127.0.0.1(38599) idle                     
+0 S root      6406     1  0  85   0 - 163881 184467 02:10 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb     6488 10026  0  75   0 - 15959 -      Jul23 ?        00:00:01 postgres: rcxdb production 127.0.0.1(38599) idle                     
+1 S rcxdb     6638 10026  0  75   0 - 15977 -      03:51 ?        00:00:00 postgres: rcxdb production 127.0.0.1(37376) idle                     
+1 S rcxdb     6785 10026  0  75   0 - 15846 -      Jul23 ?        00:00:01 postgres: rcxdb production 127.0.0.1(46711) idle                     
+1 S rcxdb     6638 10026  0  75   0 - 15977 -      03:51 ?        00:00:00 postgres: rcxdb production 127.0.0.1(37376) idle                     
+1 S rcxdb     6785 10026  0  75   0 - 15846 -      Jul23 ?        00:00:01 postgres: rcxdb production 127.0.0.1(46711) idle                     
+1 S rcxdb     6891 10026  0  75   0 - 15977 -      03:01 ?        00:00:00 postgres: rcxdb production 127.0.0.1(43215) idle                     
+1 S rcxdb     6891 10026  0  75   0 - 15977 -      03:01 ?        00:00:00 postgres: rcxdb production 127.0.0.1(43215) idle                     
+0 S root      7084     1  0  78   0 - 163503 184467 01:20 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root      7101     1  0  78   0 - 163836 184466 06:50 ?       00:00:15 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root      7084     1  0  78   0 - 163503 184467 01:20 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root      7101     1  0  78   0 - 163836 184466 06:50 ?       00:00:15 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb     7407 10026  0  75   0 - 15960 -      Jul23 ?        00:00:02 postgres: rcxdb production 127.0.0.1(52787) idle                     
+0 S root      7646 28490  0  78   0 - 14729 -      11:11 ?        00:00:00 /bin/sleep 600
+1 S rcxdb     7407 10026  0  75   0 - 15960 -      Jul23 ?        00:00:02 postgres: rcxdb production 127.0.0.1(52787) idle                     
+0 S root      7646 28490  0  78   0 - 14729 -      11:11 ?        00:00:00 /bin/sleep 600
+5 S daemon    7658 11448  0  75   0 -  2385 -      11:11 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+5 S daemon    7677 11448  0  75   0 -  2385 -      11:11 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+5 S daemon    7658 11448  0  75   0 -  2385 -      11:11 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+5 S daemon    7677 11448  0  75   0 -  2385 -      11:11 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+5 S daemon    7678 11448  0  75   0 -  2385 -      11:11 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+5 S daemon    7678 11448  0  75   0 -  2385 -      11:11 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+1 S rcxdb     7763 10026  0  75   0 - 15977 -      02:11 ?        00:00:02 postgres: rcxdb production 127.0.0.1(57121) idle                     
+1 S rcxdb     8074 10026  0  75   0 - 15977 -      01:21 ?        00:00:00 postgres: rcxdb production 127.0.0.1(38642) idle                     
+1 S rcxdb     7763 10026  0  75   0 - 15977 -      02:11 ?        00:00:02 postgres: rcxdb production 127.0.0.1(57121) idle                     
+1 S rcxdb     8074 10026  0  75   0 - 15977 -      01:21 ?        00:00:00 postgres: rcxdb production 127.0.0.1(38642) idle                     
+1 S rcxdb     8188 10026  0  75   0 - 15841 -      Jul23 ?        00:00:01 postgres: rcxdb production 127.0.0.1(52881) idle                     
+0 S root      8293     1  0  85   0 - 163460 184466 06:00 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb     8188 10026  0  75   0 - 15841 -      Jul23 ?        00:00:01 postgres: rcxdb production 127.0.0.1(52881) idle                     
+0 S root      8293     1  0  85   0 - 163460 184466 06:00 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+5 S daemon    8492 28450  0  75   0 - 17664 -      Jul25 ?        00:00:00 /opt/FJSVcsm/apache/bin/httpd -E /var/opt/FJSVcsm/log/apache/error_log -k start
+1 S rcxdb     8850 10026  0  75   0 - 16213 -      Jul23 ?        00:00:05 postgres: rcxdb production 127.0.0.1(38849) idle                     
+5 S daemon    8492 28450  0  75   0 - 17664 -      Jul25 ?        00:00:00 /opt/FJSVcsm/apache/bin/httpd -E /var/opt/FJSVcsm/log/apache/error_log -k start
+1 S rcxdb     8850 10026  0  75   0 - 16213 -      Jul23 ?        00:00:05 postgres: rcxdb production 127.0.0.1(38849) idle                     
+1 S rcxdb     9255 10026  0  75   0 - 15963 -      Jul23 ?        00:00:08 postgres: rcxdb production 127.0.0.1(52999) idle                     
+1 S rcxdb     9384 10026  0  75   0 - 15964 -      Jul19 ?        00:00:05 postgres: rcxdb production 127.0.0.1(47228) idle                     
+1 S rcxdb     9255 10026  0  75   0 - 15963 -      Jul23 ?        00:00:08 postgres: rcxdb production 127.0.0.1(52999) idle                     
+1 S rcxdb     9384 10026  0  75   0 - 15964 -      Jul19 ?        00:00:05 postgres: rcxdb production 127.0.0.1(47228) idle                     
+1 S rcxdb     9526 10026  0  75   0 - 15962 -      Jul23 ?        00:00:16 postgres: rcxdb production 127.0.0.1(38752) idle                     
+1 S rcxdb     9526 10026  0  75   0 - 15962 -      Jul23 ?        00:00:16 postgres: rcxdb production 127.0.0.1(38752) idle                     
+0 S root      9735     1  0  80   0 - 163419 184466 05:10 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb     9859 10026  0  75   0 - 15977 -      06:53 ?        00:00:00 postgres: rcxdb production 127.0.0.1(45517) idle                     
+0 S root      9735     1  0  80   0 - 163419 184466 05:10 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb     9859 10026  0  75   0 - 15977 -      06:53 ?        00:00:00 postgres: rcxdb production 127.0.0.1(45517) idle                     
+0 S rcxdb    10026     1  0  75   0 - 15330 -      Jun14 ?        00:00:01 /opt/FJSVrcvmr/sys/pgsql/bin/postgres -D /opt/FJSVrcvmr/rails/db/data
+1 S rcxdb    10028 10026  0  75   0 - 15355 -      Jun14 ?        00:00:02 postgres: writer process                                             
+0 S rcxdb    10026     1  0  75   0 - 15330 -      Jun14 ?        00:00:01 /opt/FJSVrcvmr/sys/pgsql/bin/postgres -D /opt/FJSVrcvmr/rails/db/data
+1 S rcxdb    10028 10026  0  75   0 - 15355 -      Jun14 ?        00:00:02 postgres: writer process                                             
+1 S rcxdb    10029 10026  0  75   0 - 15330 -      Jun14 ?        00:00:00 postgres: wal writer process                                         
+1 S rcxdb    10030 10026  0  75   0 - 15363 -      Jun14 ?        00:00:00 postgres: autovacuum launcher process                                
+1 S rcxdb    10029 10026  0  75   0 - 15330 -      Jun14 ?        00:00:00 postgres: wal writer process                                         
+1 S rcxdb    10030 10026  0  75   0 - 15363 -      Jun14 ?        00:00:00 postgres: autovacuum launcher process                                
+1 S rcxdb    10031 10026  0  75   0 -  2399 174931 Jun14 ?        00:00:21 postgres: stats collector process                                    
+1 S rcxdb    10031 10026  0  75   0 -  2399 174931 Jun14 ?        00:00:21 postgres: stats collector process                                    
+1 S rcxdb    10113 10026  0  75   0 - 15837 -      Jul23 ?        00:00:01 postgres: rcxdb production 127.0.0.1(38829) idle                     
+4 S root     10118     1  0  85   0 - 15998 wait   Jun14 ?        00:00:00 /bin/sh /opt/FJSVrcvmr/opt/FJSVssmgr/bin/cimserver start
+1 S rcxdb    10113 10026  0  75   0 - 15837 -      Jul23 ?        00:00:01 postgres: rcxdb production 127.0.0.1(38829) idle                     
+4 S root     10118     1  0  85   0 - 15998 wait   Jun14 ?        00:00:00 /bin/sh /opt/FJSVrcvmr/opt/FJSVssmgr/bin/cimserver start
+4 S root     10239 10118  1  83   0 - 174215 184467 Jun14 ?       14:37:02 /opt/FJSVrcvmr/runtime/jre6/bin/java -Dcruiser=daemon -server -Xms140M -Xmx512M -Djava.util.p
+1 S rcxdb    10288 10026  0  75   0 - 15978 -      06:02 ?        00:00:00 postgres: rcxdb production 127.0.0.1(48460) idle                     
+4 S root     10239 10118  1  83   0 - 174215 184467 Jun14 ?       14:37:02 /opt/FJSVrcvmr/runtime/jre6/bin/java -Dcruiser=daemon -server -Xms140M -Xmx512M -Djava.util.p
+1 S rcxdb    10288 10026  0  75   0 - 15978 -      06:02 ?        00:00:00 postgres: rcxdb production 127.0.0.1(48460) idle                     
+1 S rcxdb    10292 10026  0  75   0 - 16219 -      Jul23 ?        00:00:06 postgres: rcxdb production 127.0.0.1(53146) idle                     
+0 S root     10355     1  0  79   0 - 15998 wait   Jun14 ?        00:00:00 /bin/sh /opt/FJSVrcvmr/sys/rcxtaskmgr start
+1 S rcxdb    10292 10026  0  75   0 - 16219 -      Jul23 ?        00:00:06 postgres: rcxdb production 127.0.0.1(53146) idle                     
+0 S root     10355     1  0  79   0 - 15998 wait   Jun14 ?        00:00:00 /bin/sh /opt/FJSVrcvmr/sys/rcxtaskmgr start
+1 S root     10987     1  0  75   0 - 18711 -       2012 ?        00:00:01 crond
+1 S root     10987     1  0  75   0 - 18711 -       2012 ?        00:00:01 crond
+1 S root     11013     1  0  80   0 -   460 wait    2012 ?        00:00:00 jsvc.exec -user root -home /opt/FJSVcmdba/jre -Dcatalina.home=/opt/FJSVcmdba/tomcat -Dcatalin
+1 S root     11013     1  0  80   0 -   460 wait    2012 ?        00:00:00 jsvc.exec -user root -home /opt/FJSVcmdba/jre -Dcatalina.home=/opt/FJSVcmdba/tomcat -Dcatalin
+5 S root     11014 11013  0  78   0 - 223703 stext  2012 ?        16:42:18 jsvc.exec -user root -home /opt/FJSVcmdba/jre -Dcatalina.home=/opt/FJSVcmdba/tomcat -Dcatalin
+1 S root     11182     7  0  76   0 -     0 pdflus Jul04 ?        00:00:00 [pdflush]
+5 S root     11014 11013  0  78   0 - 223703 stext  2012 ?        16:42:18 jsvc.exec -user root -home /opt/FJSVcmdba/jre -Dcatalina.home=/opt/FJSVcmdba/tomcat -Dcatalin
+1 S root     11182     7  0  76   0 -     0 pdflus Jul04 ?        00:00:00 [pdflush]
+0 S root     11183     1  0  85   0 - 164050 184467 03:30 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     11235     1  0  78   0 - 163757 184466 04:20 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     11183     1  0  85   0 - 164050 184467 03:30 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     11235     1  0  78   0 - 163757 184466 04:20 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+5 S daemon   11299 11448  0  75   0 -  2385 -      10:21 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+5 S root     11397     1  0  78   0 -  7332 -       2012 ?        00:00:00 /usr/lib64/MpFwsec
+5 S daemon   11299 11448  0  75   0 -  2385 -      10:21 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+5 S root     11397     1  0  78   0 -  7332 -       2012 ?        00:00:00 /usr/lib64/MpFwsec
+5 S root     11448     1  0  78   0 -  2217 -      Jun14 ?        00:00:03 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+5 S root     11448     1  0  78   0 -  2217 -      Jun14 ?        00:00:03 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+0 S root     11452 11448  0  78   0 -  1923 pipe_w Jun14 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/rcxrlog -s /opt/FJSVrcvmr/sys/apache/logs/error_log 1 5
+0 S root     11456 11448  0  78   0 -  1923 pipe_w Jun14 ?        00:00:17 /opt/FJSVrcvmr/sys/apache/bin/rcxrlog -s /opt/FJSVrcvmr/sys/apache/logs/access_log 1 5
+0 S root     11452 11448  0  78   0 -  1923 pipe_w Jun14 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/rcxrlog -s /opt/FJSVrcvmr/sys/apache/logs/error_log 1 5
+0 S root     11456 11448  0  78   0 -  1923 pipe_w Jun14 ?        00:00:17 /opt/FJSVrcvmr/sys/apache/bin/rcxrlog -s /opt/FJSVrcvmr/sys/apache/logs/access_log 1 5
+5 S daemon   11506 11448  0  85   0 -  2177 -      Jun14 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+5 S daemon   11506 11448  0  85   0 -  2177 -      Jun14 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+1 S root     11509     1  0  75   0 -   483 -       2012 ?        00:00:00 /opt/FJSVswstt/bin/nwsnmp-trapd -l /var/opt/FJSVswstt/log -a /opt/FSUNNWsnmp/etc/trapd/pipe
+1 S root     11509     1  0  75   0 -   483 -       2012 ?        00:00:00 /opt/FJSVswstt/bin/nwsnmp-trapd -l /var/opt/FJSVswstt/log -a /opt/FSUNNWsnmp/etc/trapd/pipe
+0 S root     11618 10355 15  78   0 - 854049 184466 Jul18 ?       1-06:30:41 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=3072m -Djruby.stack.max=102
+1 S rcxdb    11710 10026  0  75   0 - 15977 -      05:12 ?        00:00:00 postgres: rcxdb production 127.0.0.1(44890) idle                     
+0 S root     11618 10355 15  78   0 - 854049 184466 Jul18 ?       1-06:30:41 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=3072m -Djruby.stack.max=102
+1 S rcxdb    11710 10026  0  75   0 - 15977 -      05:12 ?        00:00:00 postgres: rcxdb production 127.0.0.1(44890) idle                     
+1 S rcxdb    11818 10026  0  75   0 - 15835 -      Jul23 ?        00:00:01 postgres: rcxdb production 127.0.0.1(44709) idle                     
+1 S rcxdb    11845 10026  0  75   0 - 15962 -      Jul23 ?        00:00:08 postgres: rcxdb production 127.0.0.1(49639) idle                     
+1 S rcxdb    11818 10026  0  75   0 - 15835 -      Jul23 ?        00:00:01 postgres: rcxdb production 127.0.0.1(44709) idle                     
+1 S rcxdb    11845 10026  0  75   0 - 15962 -      Jul23 ?        00:00:08 postgres: rcxdb production 127.0.0.1(49639) idle                     
+1 S rcxdb    11956 10026  0  75   0 - 16266 -      Jul18 ?        00:00:00 postgres: rcxdb production 127.0.0.1(49030) idle                     
+1 S rcxdb    12099 10026  0  75   0 - 15920 -      Jul18 ?        00:12:08 postgres: rcxdb production 127.0.0.1(49032) idle                     
+1 S rcxdb    11956 10026  0  75   0 - 16266 -      Jul18 ?        00:00:00 postgres: rcxdb production 127.0.0.1(49030) idle                     
+1 S rcxdb    12099 10026  0  75   0 - 15920 -      Jul18 ?        00:12:08 postgres: rcxdb production 127.0.0.1(49032) idle                     
+1 S rcxdb    12118 10026  0  75   0 - 15980 -      Jul18 ?        00:12:06 postgres: rcxdb production 127.0.0.1(49033) idle                     
+1 S rcxdb    12130 10026  0  75   0 - 15821 -      Jul18 ?        00:12:30 postgres: rcxdb production 127.0.0.1(49034) idle                     
+1 S rcxdb    12118 10026  0  75   0 - 15980 -      Jul18 ?        00:12:06 postgres: rcxdb production 127.0.0.1(49033) idle                     
+1 S rcxdb    12130 10026  0  75   0 - 15821 -      Jul18 ?        00:12:30 postgres: rcxdb production 127.0.0.1(49034) idle                     
+1 S rcxdb    12165 10026  0  75   0 - 15821 -      Jul18 ?        00:12:24 postgres: rcxdb production 127.0.0.1(49039) idle                     
+1 S rcxdb    12205 10026  0  75   0 - 15821 -      Jul18 ?        00:12:02 postgres: rcxdb production 127.0.0.1(49046) idle                     
+1 S rcxdb    12165 10026  0  75   0 - 15821 -      Jul18 ?        00:12:24 postgres: rcxdb production 127.0.0.1(49039) idle                     
+1 S rcxdb    12205 10026  0  75   0 - 15821 -      Jul18 ?        00:12:02 postgres: rcxdb production 127.0.0.1(49046) idle                     
+1 S rcxdb    12218 10026  0  75   0 - 15842 -      Jul18 ?        00:12:17 postgres: rcxdb production 127.0.0.1(49047) idle                     
+1 S rcxdb    12282 10026  0  76   0 - 15821 -      Jul18 ?        00:12:08 postgres: rcxdb production 127.0.0.1(49053) idle                     
+1 S rcxdb    12218 10026  0  75   0 - 15842 -      Jul18 ?        00:12:17 postgres: rcxdb production 127.0.0.1(49047) idle                     
+1 S rcxdb    12282 10026  0  76   0 - 15821 -      Jul18 ?        00:12:08 postgres: rcxdb production 127.0.0.1(49053) idle                     
+1 S rcxdb    12295 10026  0  75   0 - 15821 -      Jul18 ?        00:12:26 postgres: rcxdb production 127.0.0.1(49055) idle                     
+1 S rcxdb    12295 10026  0  75   0 - 15821 -      Jul18 ?        00:12:26 postgres: rcxdb production 127.0.0.1(49055) idle                     
+0 S root     12299     1  0  78   0 - 163303 184467 02:40 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    12329 10026  0  76   0 - 15821 -      Jul18 ?        00:12:25 postgres: rcxdb production 127.0.0.1(49061) idle                     
+0 S root     12299     1  0  78   0 - 163303 184467 02:40 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    12329 10026  0  76   0 - 15821 -      Jul18 ?        00:12:25 postgres: rcxdb production 127.0.0.1(49061) idle                     
+1 S rcxdb    12342 10026  0  75   0 - 15822 -      Jul18 ?        00:12:20 postgres: rcxdb production 127.0.0.1(49062) idle                     
+1 S rcxdb    12395 10026  0  75   0 - 15821 -      Jul18 ?        00:12:20 postgres: rcxdb production 127.0.0.1(49068) idle                     
+1 S rcxdb    12342 10026  0  75   0 - 15822 -      Jul18 ?        00:12:20 postgres: rcxdb production 127.0.0.1(49062) idle                     
+1 S rcxdb    12395 10026  0  75   0 - 15821 -      Jul18 ?        00:12:20 postgres: rcxdb production 127.0.0.1(49068) idle                     
+1 S rcxdb    12408 10026  0  75   0 - 15821 -      Jul18 ?        00:12:25 postgres: rcxdb production 127.0.0.1(49069) idle                     
+1 S rcxdb    12450 10026  0  75   0 - 15828 -      Jul18 ?        00:12:10 postgres: rcxdb production 127.0.0.1(49075) idle                     
+1 S rcxdb    12408 10026  0  75   0 - 15821 -      Jul18 ?        00:12:25 postgres: rcxdb production 127.0.0.1(49069) idle                     
+1 S rcxdb    12450 10026  0  75   0 - 15828 -      Jul18 ?        00:12:10 postgres: rcxdb production 127.0.0.1(49075) idle                     
+1 S rcxdb    12462 10026  0  75   0 - 15821 -      Jul18 ?        00:12:15 postgres: rcxdb production 127.0.0.1(49076) idle                     
+1 S rcxdb    12496 10026  0  75   0 - 15834 -      Jul18 ?        00:12:18 postgres: rcxdb production 127.0.0.1(49082) idle                     
+1 S rcxdb    12462 10026  0  75   0 - 15821 -      Jul18 ?        00:12:15 postgres: rcxdb production 127.0.0.1(49076) idle                     
+1 S rcxdb    12496 10026  0  75   0 - 15834 -      Jul18 ?        00:12:18 postgres: rcxdb production 127.0.0.1(49082) idle                     
+1 S rcxdb    12508 10026  0  75   0 - 15848 -      Jul18 ?        00:12:23 postgres: rcxdb production 127.0.0.1(49083) idle                     
+1 S rcxdb    12543 10026  0  75   0 - 15927 -      Jul18 ?        00:12:02 postgres: rcxdb production 127.0.0.1(49089) idle                     
+1 S rcxdb    12508 10026  0  75   0 - 15848 -      Jul18 ?        00:12:23 postgres: rcxdb production 127.0.0.1(49083) idle                     
+1 S rcxdb    12543 10026  0  75   0 - 15927 -      Jul18 ?        00:12:02 postgres: rcxdb production 127.0.0.1(49089) idle                     
+1 S rcxdb    12594 10026  0  75   0 - 15848 -      Jul18 ?        00:12:07 postgres: rcxdb production 127.0.0.1(49092) idle                     
+1 S rcxdb    12594 10026  0  75   0 - 15848 -      Jul18 ?        00:12:07 postgres: rcxdb production 127.0.0.1(49092) idle                     
+1 S rcxdb    12629 10026  0  75   0 - 15825 -      Jul18 ?        00:12:18 postgres: rcxdb production 127.0.0.1(49096) idle                     
+1 S rcxdb    12641 10026  0  75   0 - 15821 -      Jul18 ?        00:12:02 postgres: rcxdb production 127.0.0.1(49097) idle                     
+1 S rcxdb    12629 10026  0  75   0 - 15825 -      Jul18 ?        00:12:18 postgres: rcxdb production 127.0.0.1(49096) idle                     
+1 S rcxdb    12641 10026  0  75   0 - 15821 -      Jul18 ?        00:12:02 postgres: rcxdb production 127.0.0.1(49097) idle                     
+1 S rcxdb    12677 10026  0  75   0 - 15882 -      Jul18 ?        00:11:57 postgres: rcxdb production 127.0.0.1(49103) idle                     
+1 S rcxdb    12720 10026  0  75   0 - 15821 -      Jul18 ?        00:12:18 postgres: rcxdb production 127.0.0.1(49106) idle                     
+1 S rcxdb    12677 10026  0  75   0 - 15882 -      Jul18 ?        00:11:57 postgres: rcxdb production 127.0.0.1(49103) idle                     
+1 S rcxdb    12720 10026  0  75   0 - 15821 -      Jul18 ?        00:12:18 postgres: rcxdb production 127.0.0.1(49106) idle                     
+1 S rcxdb    12748 10026  0  75   0 - 15977 -      03:31 ?        00:00:03 postgres: rcxdb production 127.0.0.1(38972) idle                     
+1 S rcxdb    12749 10026  0  76   0 - 15821 -      Jul18 ?        00:12:29 postgres: rcxdb production 127.0.0.1(49111) idle                     
+1 S rcxdb    12748 10026  0  75   0 - 15977 -      03:31 ?        00:00:03 postgres: rcxdb production 127.0.0.1(38972) idle                     
+1 S rcxdb    12749 10026  0  76   0 - 15821 -      Jul18 ?        00:12:29 postgres: rcxdb production 127.0.0.1(49111) idle                     
+1 S rcxdb    12782 10026  0  75   0 - 15849 -      Jul18 ?        00:11:58 postgres: rcxdb production 127.0.0.1(49113) idle                     
+1 S rcxdb    13113 10026  0  75   0 - 15977 -      04:21 ?        00:00:00 postgres: rcxdb production 127.0.0.1(60739) idle                     
+1 S rcxdb    12782 10026  0  75   0 - 15849 -      Jul18 ?        00:11:58 postgres: rcxdb production 127.0.0.1(49113) idle                     
+1 S rcxdb    13113 10026  0  75   0 - 15977 -      04:21 ?        00:00:00 postgres: rcxdb production 127.0.0.1(60739) idle                     
+0 S root     13297     1  0  83   0 - 163775 184467 01:50 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    13816 10026  0  75   0 - 15977 -      02:41 ?        00:00:00 postgres: rcxdb production 127.0.0.1(51456) idle                     
+0 S root     13297     1  0  83   0 - 163775 184467 01:50 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    13816 10026  0  75   0 - 15977 -      02:41 ?        00:00:00 postgres: rcxdb production 127.0.0.1(51456) idle                     
+0 S root     14021     1  0  85   0 - 163386 184467 06:30 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     14021     1  0  85   0 - 163386 184467 06:30 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     14302     1  0  81   0 - 163539 184466 01:00 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     14302     1  0  81   0 - 163539 184466 01:00 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+5 S xfs      14433     1  0  78   0 -  5159 -       2012 ?        00:00:00 xfs -droppriv -daemon
+5 S root     14448     1  0  78   0 -  4685 -       2012 ?        00:00:00 /usr/sbin/atd
+5 S xfs      14433     1  0  78   0 -  5159 -       2012 ?        00:00:00 xfs -droppriv -daemon
+5 S root     14448     1  0  78   0 -  4685 -       2012 ?        00:00:00 /usr/sbin/atd
+5 S avahi    14457     1  0  75   0 -  6043 699445  2012 ?        00:00:00 avahi-daemon: running [islanda-cbrm.local]
+5 S avahi    14457     1  0  75   0 -  6043 699445  2012 ?        00:00:00 avahi-daemon: running [islanda-cbrm.local]
+1 S avahi    14458 14457  0  85   0 -  5787 -       2012 ?        00:00:00 avahi-daemon: chroot helper
+1 S rcxdb    14561 10026  0  75   0 - 15847 -      Jul18 ?        00:00:04 postgres: rcxdb production 127.0.0.1(45781) idle                     
+1 S avahi    14458 14457  0  85   0 -  5787 -       2012 ?        00:00:00 avahi-daemon: chroot helper
+1 S rcxdb    14561 10026  0  75   0 - 15847 -      Jul18 ?        00:00:04 postgres: rcxdb production 127.0.0.1(45781) idle                     
+1 S rcxdb    14588 10026  0  75   0 - 15977 -      01:51 ?        00:00:00 postgres: rcxdb production 127.0.0.1(42869) idle                     
+1 S rcxdb    14588 10026  0  75   0 - 15977 -      01:51 ?        00:00:00 postgres: rcxdb production 127.0.0.1(42869) idle                     
+4 S root     14674     1  0  75   0 - 16492 msgrcv  2012 ?        00:00:00 /usr/local/Fmpsdl/bin/drmsdemon
+0 S root     14676 14674  0  76   0 -  5365 msgrcv  2012 ?        00:00:00 /usr/local/Fmpsdl/bin/drmsm
+4 S root     14674     1  0  75   0 - 16492 msgrcv  2012 ?        00:00:00 /usr/local/Fmpsdl/bin/drmsdemon
+0 S root     14676 14674  0  76   0 -  5365 msgrcv  2012 ?        00:00:00 /usr/local/Fmpsdl/bin/drmsm
+0 S root     14677 14674  0  78   0 -  2692 msgrcv  2012 ?        00:00:01 /usr/local/Fmpsdl/bin/drmsn
+0 S root     14677 14674  0  78   0 -  2692 msgrcv  2012 ?        00:00:01 /usr/local/Fmpsdl/bin/drmsn
+0 S root     14678 14674  0  75   0 -  2660 msgrcv  2012 ?        00:00:00 /usr/local/Fmpsdl/bin/drmsevnt
+0 S root     14700     1  0  78   0 - 16961 -       2012 ?        00:00:00 /usr/local/Fmpsdl/bin/drmscom
+0 S root     14678 14674  0  75   0 -  2660 msgrcv  2012 ?        00:00:00 /usr/local/Fmpsdl/bin/drmsevnt
+0 S root     14700     1  0  78   0 - 16961 -       2012 ?        00:00:00 /usr/local/Fmpsdl/bin/drmscom
+0 S root     14705     1  0  85   0 - 16385 -       2012 ?        00:00:00 /usr/local/Fmpsdl/bin/drmswc
+0 S root     14719     1  0  85   0 -  3182 -       2012 ?        00:00:00 /usr/local/Fmpsdl/bin/drmsfsdb
+0 S root     14705     1  0  85   0 - 16385 -       2012 ?        00:00:00 /usr/local/Fmpsdl/bin/drmswc
+0 S root     14719     1  0  85   0 -  3182 -       2012 ?        00:00:00 /usr/local/Fmpsdl/bin/drmsfsdb
+1 S root     14750     1  0  85   0 - 20893 -       2012 ?        00:00:00 /opt/FJSVftlc/mpshrsv/bin/mpshrsv.exe
+1 S root     14759     1  0  75   0 -  4604 -       2012 ?        00:00:00 /usr/sbin/smartd -q never
+1 S root     14750     1  0  85   0 - 20893 -       2012 ?        00:00:00 /opt/FJSVftlc/mpshrsv/bin/mpshrsv.exe
+1 S root     14759     1  0  75   0 -  4604 -       2012 ?        00:00:00 /usr/sbin/smartd -q never
+1 S root     14774     1  0  82   0 -   958 wait    2012 ?        00:00:00 /opt/FJSVsorm/bin/f3crgsvr
+4 S root     14775 14774  0  78   0 -  4361 -       2012 ?        00:00:00 /opt/FJSVsorm/bin/f3crgmsg 
+1 S root     14774     1  0  82   0 -   958 wait    2012 ?        00:00:00 /opt/FJSVsorm/bin/f3crgsvr
+4 S root     14775 14774  0  78   0 -  4361 -       2012 ?        00:00:00 /opt/FJSVsorm/bin/f3crgmsg 
+1 S root     14801     1  0  78   0 -  6314 -       2012 ?        00:00:47 dcmd
+5 S root     14821     1  0  75   0 -  2660 -       2012 ?        00:00:10 thttpd -C /opt/FJSVssqc/control/thttpd.conf
+1 S root     14801     1  0  78   0 -  6314 -       2012 ?        00:00:47 dcmd
+5 S root     14821     1  0  75   0 -  2660 -       2012 ?        00:00:10 thttpd -C /opt/FJSVssqc/control/thttpd.conf
+0 S root     14910 14801  0  75   0 -  6307 -       2012 ?        00:00:02 dsa_spacemon -Dspacemon -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14911 14801  0  75   0 - 11947 -       2012 ?        11:17:55 dsa_tis -DTIS_CONVERTDSA -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14910 14801  0  75   0 -  6307 -       2012 ?        00:00:02 dsa_spacemon -Dspacemon -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14911 14801  0  75   0 - 11947 -       2012 ?        11:17:55 dsa_tis -DTIS_CONVERTDSA -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14912 14801  0  75   0 - 18523 -       2012 ?        13:19:32 dsa_tis -DTIS_CONSOLIDATE -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14912 14801  0  75   0 - 18523 -       2012 ?        13:19:32 dsa_tis -DTIS_CONSOLIDATE -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14913 14801  0  75   0 -  6916 -       2012 ?        00:00:51 dsa_forwarder -DDsaForwarder -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14914 14801  0  75   0 -  6916 -       2012 ?        00:00:53 dsa_forwarder -DDsaForwarder_sum -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14913 14801  0  75   0 -  6916 -       2012 ?        00:00:51 dsa_forwarder -DDsaForwarder -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14914 14801  0  75   0 -  6916 -       2012 ?        00:00:53 dsa_forwarder -DDsaForwarder_sum -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14915 14801  0  75   0 -  7752 -       2012 ?        00:00:15 dsa_logfile -Dmsgmanage -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14916 14801  0  75   0 -  7647 -       2012 ?        00:00:00 dsa_execute -Ddeleterecovery -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14915 14801  0  75   0 -  7752 -       2012 ?        00:00:15 dsa_logfile -Dmsgmanage -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14916 14801  0  75   0 -  7647 -       2012 ?        00:00:00 dsa_execute -Ddeleterecovery -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14917 14801  0  75   0 -  7988 -       2012 ?        00:01:05 dsa_cmd -DSAR -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14919 14801  0  75   0 -  7922 -       2012 ?        00:00:41 dsa_cmd -DSAR5mp -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14917 14801  0  75   0 -  7988 -       2012 ?        00:01:05 dsa_cmd -DSAR -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14919 14801  0  75   0 -  7922 -       2012 ?        00:00:41 dsa_cmd -DSAR5mp -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14920 14801  0  75   0 -  7918 -       2012 ?        00:00:49 dsa_cmd -DDF -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14921 14801  0  75   0 -  7918 -       2012 ?        00:00:53 dsa_cmd -DNET -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14920 14801  0  75   0 -  7918 -       2012 ?        00:00:49 dsa_cmd -DDF -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14921 14801  0  75   0 -  7918 -       2012 ?        00:00:53 dsa_cmd -DNET -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14922 14801  0  75   0 -  7936 -       2012 ?        00:00:37 dsa_cmd -DIOSTAT -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14923 14801  0  75   0 -  7966 -       2012 ?        03:17:15 dsa_cmd -DPS -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14922 14801  0  75   0 -  7936 -       2012 ?        00:00:37 dsa_cmd -DIOSTAT -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14923 14801  0  75   0 -  7966 -       2012 ?        03:17:15 dsa_cmd -DPS -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14924 14801  0  76   0 -  7889 -       2012 ?        00:00:45 dsa_cmd -DSWAP -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14925 14801  0  75   0 -  7905 -       2012 ?        01:21:34 dsa_cmd -DNETSTATA -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14924 14801  0  76   0 -  7889 -       2012 ?        00:00:45 dsa_cmd -DSWAP -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14925 14801  0  75   0 -  7905 -       2012 ?        01:21:34 dsa_cmd -DNETSTATA -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14926 14801  0  75   0 -  7922 -       2012 ?        00:05:39 dsa_cmd -DIPCS -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14926 14801  0  75   0 -  7922 -       2012 ?        00:05:39 dsa_cmd -DIPCS -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14928 14801  0  75   0 -  8009 -       2012 ?        00:00:06 dsa_cmd -DUDATA -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14929 14801  0  78   0 -  7744 -       2012 ?        00:00:46 dsa_cmd -DTRS -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14928 14801  0  75   0 -  8009 -       2012 ?        00:00:06 dsa_cmd -DUDATA -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14929 14801  0  78   0 -  7744 -       2012 ?        00:00:46 dsa_cmd -DTRS -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14930 14801  0  75   0 -  7634 -       2012 ?        00:04:11 dsa_file -DTroubleshoot1 -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14931 14801  0  75   0 -  7744 -       2012 ?        00:00:20 dsa_cmd -DALT -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14930 14801  0  75   0 -  7634 -       2012 ?        00:04:11 dsa_file -DTroubleshoot1 -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14931 14801  0  75   0 -  7744 -       2012 ?        00:00:20 dsa_cmd -DALT -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14932 14801  0  78   0 -  7605 -       2012 ?        00:00:07 dsa_execute -Dalertconfig -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14933 14801  0  78   0 -  7612 -       2012 ?        00:00:02 dsa_cmd -DAGFCTL -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14932 14801  0  78   0 -  7605 -       2012 ?        00:00:07 dsa_execute -Dalertconfig -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14933 14801  0  78   0 -  7612 -       2012 ?        00:00:02 dsa_cmd -DAGFCTL -C/etc/opt/ssqc/ssqc.conf -P14801
+0 S root     14985     1  0  78   0 -   948 pipe_w  2012 ?        00:00:00 /opt/FJSVssmgr/sys/rcxrespawn -c -r100 -w10 Server /opt/FJSVssmgr/jre/bin/java -Dcruiser=daem
+0 S root     14985     1  0  78   0 -   948 pipe_w  2012 ?        00:00:00 /opt/FJSVssmgr/sys/rcxrespawn -c -r100 -w10 Server /opt/FJSVssmgr/jre/bin/java -Dcruiser=daem
+0 S root     14987 14985  0  79   0 - 270744 184467 2012 ?        03:54:40 /opt/FJSVssmgr/jre/bin/java -Dcruiser=daemon -server -Xms140M -Xmx512M -Djava.util.prefs.syst
+1 S rcxdb    15042 10026  0  75   0 - 15829 -      Jul23 ?        00:00:01 postgres: rcxdb production 127.0.0.1(49753) idle                     
+0 S root     14987 14985  0  79   0 - 270744 184467 2012 ?        03:54:40 /opt/FJSVssmgr/jre/bin/java -Dcruiser=daemon -server -Xms140M -Xmx512M -Djava.util.prefs.syst
+1 S rcxdb    15042 10026  0  75   0 - 15829 -      Jul23 ?        00:00:01 postgres: rcxdb production 127.0.0.1(49753) idle                     
+1 S rcxdb    15201 10026  0  75   0 - 15977 -      01:01 ?        00:00:00 postgres: rcxdb production 127.0.0.1(54171) idle                     
+1 S rcxdb    15201 10026  0  75   0 - 15977 -      01:01 ?        00:00:00 postgres: rcxdb production 127.0.0.1(54171) idle                     
+0 S root     15575     1  0  78   0 - 34869 stext   2012 ?        00:00:00 /opt/FJSVfwaos/bin/f3crhxsv
+4 S root     15576     1  0  75   0 - 48635 stext   2012 ?        00:01:57 /opt/FJSVfwaos/bin/f3crhesv
+0 S root     15575     1  0  78   0 - 34869 stext   2012 ?        00:00:00 /opt/FJSVfwaos/bin/f3crhxsv
+4 S root     15576     1  0  75   0 - 48635 stext   2012 ?        00:01:57 /opt/FJSVfwaos/bin/f3crhesv
+0 S root     15577     1  0  78   0 -  6312 -       2012 ?        00:00:00 /opt/FJSVfwaos/bin/f3crhdsv
+5 S daemon   15647 11448  0  75   0 -  2385 -      10:51 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+0 S root     15577     1  0  78   0 -  6312 -       2012 ?        00:00:00 /opt/FJSVfwaos/bin/f3crhdsv
+5 S daemon   15647 11448  0  75   0 -  2385 -      10:51 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+0 S root     15688     1  0  84   0 - 126733 184467 2012 ?        00:02:56 /opt/FJSVfsjvc/jre/5.0/bin/java -XX:ReservedCodeCacheSize=64m com.fujitsu.systemwalker.pol.re
+0 S root     15688     1  0  84   0 - 126733 184467 2012 ?        00:02:56 /opt/FJSVfsjvc/jre/5.0/bin/java -XX:ReservedCodeCacheSize=64m com.fujitsu.systemwalker.pol.re
+0 S root     15721 14677  0  78   0 -  2643 -       2012 ?        00:00:00 /usr/local/Fmpsdl/bin/drmstime
+1 S root     15905     1  0  84   0 -  6927 -       2012 ?        00:00:00 /opt/FJSVssc/bin/mpscds
+0 S root     15721 14677  0  78   0 -  2643 -       2012 ?        00:00:00 /usr/local/Fmpsdl/bin/drmstime
+1 S root     15905     1  0  84   0 -  6927 -       2012 ?        00:00:00 /opt/FJSVssc/bin/mpscds
+0 S root     15938 15905  0  78   0 - 16433 stext   2012 ?        00:00:08 /opt/FJSVssc/bin/mpscdm
+5 S root     15953     1  0  75   0 -  7195 wait    2012 ?        00:00:00 /opt/FJSVsagt/usr/lib/opagtd
+0 S root     15938 15905  0  78   0 - 16433 stext   2012 ?        00:00:08 /opt/FJSVssc/bin/mpscdm
+5 S root     15953     1  0  75   0 -  7195 wait    2012 ?        00:00:00 /opt/FJSVsagt/usr/lib/opagtd
+0 S root     16271 16904  0  75   0 - 17002 wait   11:20 ?        00:00:00 sh -c LC_ALL=C; export LC_ALL; /opt/FJSVspmex/script/cpu/cpu.sh -u 60 1 > /opt/FJSVspmex/tmp/
+0 S root     16271 16904  0  75   0 - 17002 wait   11:20 ?        00:00:00 sh -c LC_ALL=C; export LC_ALL; /opt/FJSVspmex/script/cpu/cpu.sh -u 60 1 > /opt/FJSVspmex/tmp/
+0 S root     16272 16271  0  85   0 -  2699 pipe_w 11:20 ?        00:00:00 /bin/sh /opt/FJSVspmex/script/cpu/cpu.sh -u 60 1
+1 S root     16295 16272  0  85   0 -  2699 wait   11:20 ?        00:00:00 /bin/sh /opt/FJSVspmex/script/cpu/cpu.sh -u 60 1
+0 S root     16272 16271  0  85   0 -  2699 pipe_w 11:20 ?        00:00:00 /bin/sh /opt/FJSVspmex/script/cpu/cpu.sh -u 60 1
+1 S root     16295 16272  0  85   0 -  2699 wait   11:20 ?        00:00:00 /bin/sh /opt/FJSVspmex/script/cpu/cpu.sh -u 60 1
+0 S root     16296 16295  0  85   0 -  1461 -      11:20 ?        00:00:00 vmstat 60 2
+0 S root     16297 16295  0  85   0 -   965 pipe_w 11:20 ?        00:00:00 /bin/sed 1,3 d
+0 S root     16296 16295  0  85   0 -  1461 -      11:20 ?        00:00:00 vmstat 60 2
+0 S root     16297 16295  0  85   0 -   965 pipe_w 11:20 ?        00:00:00 /bin/sed 1,3 d
+0 S root     16298 16295  0  85   0 -   965 pipe_w 11:20 ?        00:00:00 /bin/sed -e s/^  *//g -e s/  */ /g
+0 S root     16298 16295  0  85   0 -   965 pipe_w 11:20 ?        00:00:00 /bin/sed -e s/^  *//g -e s/  */ /g
+0 S root     16299 16295  0  85   0 -   952 pipe_w 11:20 ?        00:00:00 /usr/bin/cut -f13,14 -d 
+0 S root     16339 16904  0  75   0 - 17002 wait   11:20 ?        00:00:00 sh -c LC_ALL=C; export LC_ALL; /opt/FJSVspmex/script/disk/diskbusy.sh 60 1 > /opt/FJSVspmex/t
+0 S root     16299 16295  0  85   0 -   952 pipe_w 11:20 ?        00:00:00 /usr/bin/cut -f13,14 -d 
+0 S root     16339 16904  0  75   0 - 17002 wait   11:20 ?        00:00:00 sh -c LC_ALL=C; export LC_ALL; /opt/FJSVspmex/script/disk/diskbusy.sh 60 1 > /opt/FJSVspmex/t
+0 S root     16340 16339  0  81   0 -  2698 wait   11:20 ?        00:00:00 /bin/sh /opt/FJSVspmex/script/disk/diskbusy.sh 60 1
+0 S root     16345 16340  0  80   0 -   952 pause  11:20 ?        00:00:00 /usr/bin/iostat -x 60 2
+0 S root     16340 16339  0  81   0 -  2698 wait   11:20 ?        00:00:00 /bin/sh /opt/FJSVspmex/script/disk/diskbusy.sh 60 1
+0 S root     16345 16340  0  80   0 -   952 pause  11:20 ?        00:00:00 /usr/bin/iostat -x 60 2
+0 S root     16346 16340  0  83   0 -   965 pipe_w 11:20 ?        00:00:00 /bin/sed -e 1,11 d
+0 S root     16346 16340  0  83   0 -   965 pipe_w 11:20 ?        00:00:00 /bin/sed -e 1,11 d
+0 S root     16347 16340  0  81   0 -  2192 pipe_w 11:20 ?        00:00:00 awk -v param=%util -f /opt/FJSVspmex/script/disk/iostat.awk
+1 S root     16619     1  0  75   0 -  2698 wait   11:21 ?        00:00:00 sh -c (/usr/bin/sar -u -P ALL 60 1 >"/var/opt/FJSVssqc/temp/SAR5mp/islanda-cbrm_SAR5mp_0001_2
+0 S root     16347 16340  0  81   0 -  2192 pipe_w 11:20 ?        00:00:00 awk -v param=%util -f /opt/FJSVspmex/script/disk/iostat.awk
+1 S root     16619     1  0  75   0 -  2698 wait   11:21 ?        00:00:00 sh -c (/usr/bin/sar -u -P ALL 60 1 >"/var/opt/FJSVssqc/temp/SAR5mp/islanda-cbrm_SAR5mp_0001_2
+1 S root     16620     1  0  78   0 -  2698 wait   11:21 ?        00:00:00 sh -c (/usr/bin/sar -cqrvwWBR 60 1 >"/var/opt/FJSVssqc/temp/SAR/islanda-cbrm_SAR_0001_2013072
+1 S root     16620     1  0  78   0 -  2698 wait   11:21 ?        00:00:00 sh -c (/usr/bin/sar -cqrvwWBR 60 1 >"/var/opt/FJSVssqc/temp/SAR/islanda-cbrm_SAR_0001_2013072
+0 S root     16621 16619  0  80   0 -   960 pipe_w 11:21 ?        00:00:00 /usr/bin/sar -u -P ALL 60 1
+0 S root     16622 16620  0  79   0 -   960 pipe_w 11:21 ?        00:00:00 /usr/bin/sar -cqrvwWBR 60 1
+0 S root     16621 16619  0  80   0 -   960 pipe_w 11:21 ?        00:00:00 /usr/bin/sar -u -P ALL 60 1
+0 S root     16622 16620  0  79   0 -   960 pipe_w 11:21 ?        00:00:00 /usr/bin/sar -cqrvwWBR 60 1
+0 S root     16623 16621  0  80   0 -   962 pause  11:21 ?        00:00:00 sadc 60 2 -z
+0 S root     16625 16622  0  79   0 -   962 pause  11:21 ?        00:00:00 sadc 60 2 -z
+0 S root     16623 16621  0  80   0 -   962 pause  11:21 ?        00:00:00 sadc 60 2 -z
+0 S root     16625 16622  0  79   0 -   962 pause  11:21 ?        00:00:00 sadc 60 2 -z
+1 S root     16694     1  0  75   0 -  2698 wait   11:21 ?        00:00:00 sh -c (/usr/bin/iostat -x -d 60 2 >"/var/opt/FJSVssqc/temp/IOSTAT/islanda-cbrm_IOSTAT_0001_20
+1 S root     16694     1  0  75   0 -  2698 wait   11:21 ?        00:00:00 sh -c (/usr/bin/iostat -x -d 60 2 >"/var/opt/FJSVssqc/temp/IOSTAT/islanda-cbrm_IOSTAT_0001_20
+0 S root     16695 16694  0  75   0 -   952 pause  11:21 ?        00:00:00 /usr/bin/iostat -x -d 60 2
+0 S root     16740     1  0  78   0 - 17943 -       2012 ?        00:00:00 /opt/FJSVftsv/bin/ftrandemon
+0 S root     16695 16694  0  75   0 -   952 pause  11:21 ?        00:00:00 /usr/bin/iostat -x -d 60 2
+0 S root     16740     1  0  78   0 - 17943 -       2012 ?        00:00:00 /opt/FJSVftsv/bin/ftrandemon
+0 S root     16838 16904  0  77   0 - 17002 wait   11:21 ?        00:00:00 sh -c LC_ALL=C; export LC_ALL; /opt/FJSVspmex/script/pgfaults/pgfaults.sh 60 1 > /opt/FJSVspm
+0 S root     16838 16904  0  77   0 - 17002 wait   11:21 ?        00:00:00 sh -c LC_ALL=C; export LC_ALL; /opt/FJSVspmex/script/pgfaults/pgfaults.sh 60 1 > /opt/FJSVspm
+0 S root     16839 16838  0  79   0 -  2698 pipe_w 11:21 ?        00:00:00 /bin/sh /opt/FJSVspmex/script/pgfaults/pgfaults.sh 60 1
+0 S root     16847 16740  0  75   0 - 20830 -       2012 ?        00:00:01 ftranftwc http
+0 S root     16839 16838  0  79   0 -  2698 pipe_w 11:21 ?        00:00:00 /bin/sh /opt/FJSVspmex/script/pgfaults/pgfaults.sh 60 1
+0 S root     16847 16740  0  75   0 - 20830 -       2012 ?        00:00:01 ftranftwc http
+0 S root     16857     1  0  84   0 - 163337 184466 04:50 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     16864     1  0  76   0 -  7681 -       2012 ?        00:00:00 /opt/FJSVsapag/bin/APA_MA
+0 S root     16857     1  0  84   0 - 163337 184466 04:50 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     16864     1  0  76   0 -  7681 -       2012 ?        00:00:00 /opt/FJSVsapag/bin/APA_MA
+1 S root     16867 16839  0  84   0 -  2698 wait   11:21 ?        00:00:00 /bin/sh /opt/FJSVspmex/script/pgfaults/pgfaults.sh 60 1
+1 S root     16867 16839  0  84   0 -  2698 wait   11:21 ?        00:00:00 /bin/sh /opt/FJSVspmex/script/pgfaults/pgfaults.sh 60 1
+0 S root     16868 16867  0  83   0 -   960 pipe_w 11:21 ?        00:00:00 /usr/bin/sar -B 60 1
+0 S root     16869 16867  0  79   0 -   965 pipe_w 11:21 ?        00:00:00 /bin/sed 1,3 d
+0 S root     16868 16867  0  83   0 -   960 pipe_w 11:21 ?        00:00:00 /usr/bin/sar -B 60 1
+0 S root     16869 16867  0  79   0 -   965 pipe_w 11:21 ?        00:00:00 /bin/sed 1,3 d
+0 S root     16870 16867  0  79   0 -   965 pipe_w 11:21 ?        00:00:00 /bin/sed -e s/^  *//g -e s/  */ /g
+0 S root     16870 16867  0  79   0 -   965 pipe_w 11:21 ?        00:00:00 /bin/sed -e s/^  *//g -e s/  */ /g
+0 S root     16871 16868  0  79   0 -   962 pause  11:21 ?        00:00:00 sadc 60 2 -z
+0 S root     16872 16867  0  84   0 -   965 pipe_w 11:21 ?        00:00:00 /bin/sed -e /Average:/d
+0 S root     16871 16868  0  79   0 -   962 pause  11:21 ?        00:00:00 sadc 60 2 -z
+0 S root     16872 16867  0  84   0 -   965 pipe_w 11:21 ?        00:00:00 /bin/sed -e /Average:/d
+0 S root     16873 16867  0  84   0 -   952 pipe_w 11:21 ?        00:00:00 /usr/bin/cut -f4 -d 
+0 S root     16873 16867  0  84   0 -   952 pipe_w 11:21 ?        00:00:00 /usr/bin/cut -f4 -d 
+0 S root     16886 15938  0  79   0 -  2563 wait    2012 ?        00:00:00 swctclsh /opt/FJSVssc/bin/mpscsync.swt /opt/systemwalker/socket/FJSVssc/scdmsync.np0 0
+5 S root     16895     1  0  75   0 - 39597 stext   2012 ?        00:00:20 /usr/sbin/snmpd -Lsd -Lf /dev/null -p /var/run/snmpd.pid -a
+0 S root     16886 15938  0  79   0 -  2563 wait    2012 ?        00:00:00 swctclsh /opt/FJSVssc/bin/mpscsync.swt /opt/systemwalker/socket/FJSVssc/scdmsync.np0 0
+5 S root     16895     1  0  75   0 - 39597 stext   2012 ?        00:00:20 /usr/sbin/snmpd -Lsd -Lf /dev/null -p /var/run/snmpd.pid -a
+0 S root     16898 16886  0  76   0 - 12001 -       2012 ?        00:00:09 /opt/FJSVfwtcc/tcl/bin/tclsh8.4 /opt/FJSVssc/bin/mpscsync.swt /opt/systemwalker/socket/FJSVss
+0 S root     16898 16886  0  76   0 - 12001 -       2012 ?        00:00:09 /opt/FJSVfwtcc/tcl/bin/tclsh8.4 /opt/FJSVssc/bin/mpscsync.swt /opt/systemwalker/socket/FJSVss
+1 S root     16904     1  0  77   0 - 46054 stext   2012 ?        00:05:32 /opt/FJSVspmex/lib/MpTrfExAgt -p 2749
+0 S root     16912     1  0  75   0 - 24708 stext   2012 ?        00:01:33 /opt/FJSVsapag/bin/APA_CO
+1 S root     16904     1  0  77   0 - 46054 stext   2012 ?        00:05:32 /opt/FJSVspmex/lib/MpTrfExAgt -p 2749
+0 S root     16912     1  0  75   0 - 24708 stext   2012 ?        00:01:33 /opt/FJSVsapag/bin/APA_CO
+1 S rcxdb    16933 10026  0  76   0 - 15977 -      06:33 ?        00:00:03 postgres: rcxdb production 127.0.0.1(41511) idle                     
+4 S root     16970  1472  0  75   0 - 21987 -      11:21 ?        00:00:00 sshd: root@pts/0 
+1 S rcxdb    16933 10026  0  76   0 - 15977 -      06:33 ?        00:00:03 postgres: rcxdb production 127.0.0.1(41511) idle                     
+4 S root     16970  1472  0  75   0 - 21987 -      11:21 ?        00:00:00 sshd: root@pts/0 
+4 S root     16972 16970  0  78   0 - 16957 wait   11:21 pts/0    00:00:00 -bash
+4 S root     16972 16970  0  78   0 - 16957 wait   11:21 pts/0    00:00:00 -bash
+4 R root     16996 16972  0  79   0 - 16404 -      11:21 pts/0    00:00:00 ps -elf
+4 R root     16996 16972  0  79   0 - 16404 -      11:21 pts/0    00:00:00 ps -elf
+0 S root     17066 15938  0  81   0 -  2563 wait    2012 ?        00:00:00 swctclsh /opt/FJSVssc/bin/mpscsync.swt /opt/systemwalker/socket/FJSVssc/scdmsync.np0 3
+0 S root     17066 15938  0  81   0 -  2563 wait    2012 ?        00:00:00 swctclsh /opt/FJSVssc/bin/mpscsync.swt /opt/systemwalker/socket/FJSVssc/scdmsync.np0 3
+0 S root     17067 17066  0  78   0 - 12001 -       2012 ?        00:00:00 /opt/FJSVfwtcc/tcl/bin/tclsh8.4 /opt/FJSVssc/bin/mpscsync.swt /opt/systemwalker/socket/FJSVss
+0 S root     17068 15938  0  80   0 -  2563 wait    2012 ?        00:00:00 swctclsh /opt/FJSVssc/bin/mpscsync.swt /opt/systemwalker/socket/FJSVssc/scdmsync.np0 6
+0 S root     17067 17066  0  78   0 - 12001 -       2012 ?        00:00:00 /opt/FJSVfwtcc/tcl/bin/tclsh8.4 /opt/FJSVssc/bin/mpscsync.swt /opt/systemwalker/socket/FJSVss
+0 S root     17068 15938  0  80   0 -  2563 wait    2012 ?        00:00:00 swctclsh /opt/FJSVssc/bin/mpscsync.swt /opt/systemwalker/socket/FJSVssc/scdmsync.np0 6
+0 S root     17069 17068  0  78   0 - 11975 -       2012 ?        00:00:00 /opt/FJSVfwtcc/tcl/bin/tclsh8.4 /opt/FJSVssc/bin/mpscsync.swt /opt/systemwalker/socket/FJSVss
+0 S root     17070 15938  0  80   0 -  2563 wait    2012 ?        00:00:00 swctclsh /opt/FJSVssc/bin/mpscsync.swt /opt/systemwalker/socket/FJSVssc/scdmsync.np0 9
+0 S root     17069 17068  0  78   0 - 11975 -       2012 ?        00:00:00 /opt/FJSVfwtcc/tcl/bin/tclsh8.4 /opt/FJSVssc/bin/mpscsync.swt /opt/systemwalker/socket/FJSVss
+0 S root     17070 15938  0  80   0 -  2563 wait    2012 ?        00:00:00 swctclsh /opt/FJSVssc/bin/mpscsync.swt /opt/systemwalker/socket/FJSVssc/scdmsync.np0 9
+0 S root     17071 17070  0  78   0 - 11975 -       2012 ?        00:00:00 /opt/FJSVfwtcc/tcl/bin/tclsh8.4 /opt/FJSVssc/bin/mpscsync.swt /opt/systemwalker/socket/FJSVss
+5 S root     17230     1  0  81   0 -  7188 -       2012 ?        00:07:11 /opt/FJSVftlc/pmon/bin/mppmon -CM
+0 S root     17071 17070  0  78   0 - 11975 -       2012 ?        00:00:00 /opt/FJSVfwtcc/tcl/bin/tclsh8.4 /opt/FJSVssc/bin/mpscsync.swt /opt/systemwalker/socket/FJSVss
+5 S root     17230     1  0  81   0 -  7188 -       2012 ?        00:07:11 /opt/FJSVftlc/pmon/bin/mppmon -CM
+0 S root     17591     1  0  78   0 -  7672 -       2012 ?        00:00:00 /opt/FJSVsapag/bin/APA_CC
+0 S root     17591     1  0  78   0 -  7672 -       2012 ?        00:00:00 /opt/FJSVsapag/bin/APA_CC
+0 S root     17599     1  0  78   0 -  7679 -       2012 ?        00:00:00 /opt/FJSVsapag/bin/APA_PR
+0 S root     17612     1  0  75   0 - 35647 stext   2012 ?        00:09:28 /opt/FJSVsapag/bin/APA_AC
+0 S root     17599     1  0  78   0 -  7679 -       2012 ?        00:00:00 /opt/FJSVsapag/bin/APA_PR
+0 S root     17612     1  0  75   0 - 35647 stext   2012 ?        00:09:28 /opt/FJSVsapag/bin/APA_AC
+0 S root     17705     1  0  75   0 - 12807 stext   2012 ?        00:01:07 /opt/FJSVsapag/bin/APA_MF
+0 S root     17705     1  0  75   0 - 12807 stext   2012 ?        00:01:07 /opt/FJSVsapag/bin/APA_MF
+4 S root     17742     1  0  75   0 -   948 -       2012 tty1     00:00:00 /sbin/mingetty tty1
+4 S root     17743     1  0  79   0 -   948 -       2012 tty2     00:00:00 /sbin/mingetty tty2
+4 S root     17742     1  0  75   0 -   948 -       2012 tty1     00:00:00 /sbin/mingetty tty1
+4 S root     17743     1  0  79   0 -   948 -       2012 tty2     00:00:00 /sbin/mingetty tty2
+4 S root     17744     1  0  77   0 -   948 -       2012 tty3     00:00:00 /sbin/mingetty tty3
+4 S root     17747     1  0  77   0 -   948 -       2012 tty4     00:00:00 /sbin/mingetty tty4
+4 S root     17744     1  0  77   0 -   948 -       2012 tty3     00:00:00 /sbin/mingetty tty3
+4 S root     17747     1  0  77   0 -   948 -       2012 tty4     00:00:00 /sbin/mingetty tty4
+4 S root     17748     1  0  80   0 -   948 -       2012 tty5     00:00:00 /sbin/mingetty tty5
+4 S root     17749     1  0  81   0 -   948 -       2012 tty6     00:00:00 /sbin/mingetty tty6
+4 S root     17748     1  0  80   0 -   948 -       2012 tty5     00:00:00 /sbin/mingetty tty5
+4 S root     17749     1  0  81   0 -   948 -       2012 tty6     00:00:00 /sbin/mingetty tty6
+0 S root     18167     1  0  78   0 - 163587 184466 04:00 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     18167     1  0  78   0 - 163587 184466 04:00 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     18453     1  0  83   0 - 163853 184467 03:10 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     18453     1  0  83   0 - 163853 184467 03:10 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    18656 10026  0  75   0 - 15977 -      04:51 ?        00:00:00 postgres: rcxdb production 127.0.0.1(39031) idle                     
+0 S root     19234     1  0  83   0 - 163370 184467 02:20 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    18656 10026  0  75   0 - 15977 -      04:51 ?        00:00:00 postgres: rcxdb production 127.0.0.1(39031) idle                     
+0 S root     19234     1  0  83   0 - 163370 184467 02:20 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    19692 10026  0  76   0 - 15977 -      04:01 ?        00:00:00 postgres: rcxdb production 127.0.0.1(34231) idle                     
+1 S rcxdb    19919 10026  0  75   0 - 15977 -      03:11 ?        00:00:00 postgres: rcxdb production 127.0.0.1(51672) idle                     
+1 S rcxdb    19692 10026  0  76   0 - 15977 -      04:01 ?        00:00:00 postgres: rcxdb production 127.0.0.1(34231) idle                     
+1 S rcxdb    19919 10026  0  75   0 - 15977 -      03:11 ?        00:00:00 postgres: rcxdb production 127.0.0.1(51672) idle                     
+0 S root     20171     1  0  85   0 - 163541 184467 01:30 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     20171     1  0  85   0 - 163541 184467 01:30 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     20241     1  0  78   0 - 163335 184466 07:00 ?       00:00:14 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     20241     1  0  78   0 - 163335 184466 07:00 ?       00:00:14 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    20491 10026  0  75   0 - 15831 -      Jul23 ?        00:00:01 postgres: rcxdb production 127.0.0.1(51157) idle                     
+1 S rcxdb    20610 10026  0  75   0 - 15977 -      02:21 ?        00:00:00 postgres: rcxdb production 127.0.0.1(39900) idle                     
+1 S rcxdb    21134 10026  0  75   0 - 15978 -      01:31 ?        00:00:00 postgres: rcxdb production 127.0.0.1(50620) idle                     
+1 S rcxdb    20491 10026  0  75   0 - 15831 -      Jul23 ?        00:00:01 postgres: rcxdb production 127.0.0.1(51157) idle                     
+1 S rcxdb    20610 10026  0  75   0 - 15977 -      02:21 ?        00:00:00 postgres: rcxdb production 127.0.0.1(39900) idle                     
+1 S rcxdb    21134 10026  0  75   0 - 15978 -      01:31 ?        00:00:00 postgres: rcxdb production 127.0.0.1(50620) idle                     
+0 S root     21273     1  0  82   0 - 163458 184467 06:10 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     22723     1  0  80   0 - 163374 184467 05:20 ?       00:00:15 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     21273     1  0  82   0 - 163458 184467 06:10 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     22723     1  0  80   0 - 163374 184467 05:20 ?       00:00:15 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    22997 10026  0  75   0 - 15977 -      07:03 ?        00:00:00 postgres: rcxdb production 127.0.0.1(39812) idle                     
+5 S daemon   23593 11448  0  75   0 -  2385 -      10:31 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+1 S rcxdb    22997 10026  0  75   0 - 15977 -      07:03 ?        00:00:00 postgres: rcxdb production 127.0.0.1(39812) idle                     
+5 S daemon   23593 11448  0  75   0 -  2385 -      10:31 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+1 S rcxdb    23626 10026  0  75   0 - 15978 -      06:12 ?        00:00:02 postgres: rcxdb production 127.0.0.1(35739) idle                     
+0 S root     24119     1  0  78   0 - 163534 184466 04:30 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    23626 10026  0  75   0 - 15978 -      06:12 ?        00:00:02 postgres: rcxdb production 127.0.0.1(35739) idle                     
+0 S root     24119     1  0  78   0 - 163534 184466 04:30 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     24203     1  0  80   0 - 163619 184467 03:40 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     24203     1  0  80   0 - 163619 184467 03:40 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     24329     1  0  75   0 -   950 -       2012 xvc0     00:00:00 /sbin/agetty xvc0 9600 vt100-nav
+1 S rcxdb    24558 10026  0  75   0 - 15977 -      05:22 ?        00:00:00 postgres: rcxdb production 127.0.0.1(54660) idle                     
+0 S root     24329     1  0  75   0 -   950 -       2012 xvc0     00:00:00 /sbin/agetty xvc0 9600 vt100-nav
+1 S rcxdb    24558 10026  0  75   0 - 15977 -      05:22 ?        00:00:00 postgres: rcxdb production 127.0.0.1(54660) idle                     
+1 S rcxdb    24757 10026  0  75   0 - 15838 -      Jul18 ?        00:00:01 postgres: rcxdb production 127.0.0.1(51101) idle                     
+1 S rcxdb    24757 10026  0  75   0 - 15838 -      Jul18 ?        00:00:01 postgres: rcxdb production 127.0.0.1(51101) idle                     
+0 S root     25157     1  0  85   0 - 163300 184467 02:50 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    25713 10026  0  75   0 - 15978 -      03:41 ?        00:00:00 postgres: rcxdb production 127.0.0.1(44396) idle                     
+0 S root     25157     1  0  85   0 - 163300 184467 02:50 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    25713 10026  0  75   0 - 15978 -      03:41 ?        00:00:00 postgres: rcxdb production 127.0.0.1(44396) idle                     
+1 S rcxdb    25782 10026  0  75   0 - 15977 -      04:31 ?        00:00:00 postgres: rcxdb production 127.0.0.1(51015) idle                     
+0 S root     26203     1  0  84   0 - 163518 184466 02:00 ?       00:00:18 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    25782 10026  0  75   0 - 15977 -      04:31 ?        00:00:00 postgres: rcxdb production 127.0.0.1(51015) idle                     
+0 S root     26203     1  0  84   0 - 163518 184466 02:00 ?       00:00:18 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    26542 10026  0  75   0 - 15977 -      02:51 ?        00:00:02 postgres: rcxdb production 127.0.0.1(44600) idle                     
+5 S daemon   26650 28450  0  75   0 - 17664 -      Jul24 ?        00:00:00 /opt/FJSVcsm/apache/bin/httpd -E /var/opt/FJSVcsm/log/apache/error_log -k start
+1 S rcxdb    26542 10026  0  75   0 - 15977 -      02:51 ?        00:00:02 postgres: rcxdb production 127.0.0.1(44600) idle                     
+5 S daemon   26650 28450  0  75   0 - 17664 -      Jul24 ?        00:00:00 /opt/FJSVcsm/apache/bin/httpd -E /var/opt/FJSVcsm/log/apache/error_log -k start
+0 S root     26956     1  0  78   0 - 163627 184467 01:10 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     26956     1  0  78   0 - 163627 184467 01:10 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     26977     1  0  78   0 - 163347 184466 06:40 ?       00:00:14 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    27545 10026  0  75   0 - 15977 -      02:01 ?        00:00:00 postgres: rcxdb production 127.0.0.1(45654) idle                     
+0 S root     26977     1  0  78   0 - 163347 184466 06:40 ?       00:00:14 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    27545 10026  0  75   0 - 15977 -      02:01 ?        00:00:00 postgres: rcxdb production 127.0.0.1(45654) idle                     
+1 S rcxdb    27843 10026  0  75   0 - 15977 -      01:11 ?        00:00:00 postgres: rcxdb production 127.0.0.1(34601) idle                     
+1 S rcxdb    27843 10026  0  75   0 - 15977 -      01:11 ?        00:00:00 postgres: rcxdb production 127.0.0.1(34601) idle                     
+0 S root     27961     1  0  85   0 - 163983 184466 05:50 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+5 S daemon   28007 11448  0  75   0 -  2385 -      11:01 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+0 S root     27961     1  0  85   0 - 163983 184466 05:50 ?       00:00:17 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+5 S daemon   28007 11448  0  75   0 -  2385 -      11:01 ?        00:00:00 /opt/FJSVrcvmr/sys/apache/bin/httpd -k start
+0 S root     28244     1  0  80   0 - 647689 184466 Feb27 ?       00:26:12 /opt/FJSVcsm/java/bin/java -Xms1024m -Xmx2048m -Djava.library.path=/opt/FJSVcsm/lib -XX:Error
+0 S root     28244     1  0  80   0 - 647689 184466 Feb27 ?       00:26:12 /opt/FJSVcsm/java/bin/java -Xms1024m -Xmx2048m -Djava.library.path=/opt/FJSVcsm/lib -XX:Error
+1 S root     28414     1  0  75   0 - 62825 -      Feb27 ?        01:01:09 /opt/FJSVcsm/ruby/bin/ruby /opt/FJSVcsm/svm/ruby/daemon/svm_daemon.rb
+1 S root     28433     1  0  75   0 - 43705 -      Feb27 ?        00:02:24 /opt/FJSVcsm/ruby/bin/ruby /opt/FJSVcsm/ruby/bin/mongrel_rails start -p 23471 -P log/svm_mong
+1 S root     28414     1  0  75   0 - 62825 -      Feb27 ?        01:01:09 /opt/FJSVcsm/ruby/bin/ruby /opt/FJSVcsm/svm/ruby/daemon/svm_daemon.rb
+1 S root     28433     1  0  75   0 - 43705 -      Feb27 ?        00:02:24 /opt/FJSVcsm/ruby/bin/ruby /opt/FJSVcsm/ruby/bin/mongrel_rails start -p 23471 -P log/svm_mong
+1 S root     28443     1  0  75   0 - 63516 -      Feb27 ?        06:07:47 /opt/FJSVcsm/ruby/bin/ruby /opt/FJSVcsm/ruby/bin/mongrel_rails start -p 23472 -P log/svm_mong
+1 S root     28446     1  0  75   0 - 54566 -      Feb27 ?        05:12:41 /opt/FJSVcsm/ruby/bin/ruby /opt/FJSVcsm/ruby/bin/mongrel_rails start -p 23480 -P log/svm_mong
+1 S root     28450     1  0  78   0 - 17626 -      Feb27 ?        00:00:02 /opt/FJSVcsm/apache/bin/httpd -E /var/opt/FJSVcsm/log/apache/error_log -k start
+1 S root     28443     1  0  75   0 - 63516 -      Feb27 ?        06:07:47 /opt/FJSVcsm/ruby/bin/ruby /opt/FJSVcsm/ruby/bin/mongrel_rails start -p 23472 -P log/svm_mong
+1 S root     28446     1  0  75   0 - 54566 -      Feb27 ?        05:12:41 /opt/FJSVcsm/ruby/bin/ruby /opt/FJSVcsm/ruby/bin/mongrel_rails start -p 23480 -P log/svm_mong
+1 S root     28450     1  0  78   0 - 17626 -      Feb27 ?        00:00:02 /opt/FJSVcsm/apache/bin/httpd -E /var/opt/FJSVcsm/log/apache/error_log -k start
+0 S root     28490     1  0  78   0 - 15997 wait   Feb27 ?        00:01:54 /bin/sh /opt/FJSVcsm/sbin/watch_csmsvem
+0 S root     29293     1  0  85   0 - 297832 184467 03:45 ?       00:00:14 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=1024m -Djruby.stack.max=1024k
+0 S root     28490     1  0  78   0 - 15997 wait   Feb27 ?        00:01:54 /bin/sh /opt/FJSVcsm/sbin/watch_csmsvem
+0 S root     29293     1  0  85   0 - 297832 184467 03:45 ?       00:00:14 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=1024m -Djruby.stack.max=1024k
+0 S root     29736     1  0  81   0 - 163464 184466 05:00 ?       00:00:15 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    29827 10026  0  75   0 - 15977 -      06:43 ?        00:00:00 postgres: rcxdb production 127.0.0.1(53525) idle                     
+0 S root     29736     1  0  81   0 - 163464 184466 05:00 ?       00:00:15 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    29827 10026  0  75   0 - 15977 -      06:43 ?        00:00:00 postgres: rcxdb production 127.0.0.1(53525) idle                     
+1 S rcxdb    29906 10026  0  75   0 - 15977 -      05:52 ?        00:00:00 postgres: rcxdb production 127.0.0.1(60079) idle                     
+1 S rcxdb    30024 10026  0  75   0 - 15978 -      03:46 ?        00:00:00 postgres: rcxdb production 127.0.0.1(57672) idle                     
+1 S rcxdb    29906 10026  0  75   0 - 15977 -      05:52 ?        00:00:00 postgres: rcxdb production 127.0.0.1(60079) idle                     
+1 S rcxdb    30024 10026  0  75   0 - 15978 -      03:46 ?        00:00:00 postgres: rcxdb production 127.0.0.1(57672) idle                     
+0 S root     30106     1  0  78   0 - 298820 184467 03:46 ?       00:00:13 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=1024m -Djruby.stack.max=1024k
+1 S rcxdb    30800 10026  0  75   0 - 15960 -      Jul19 ?        00:00:02 postgres: rcxdb production 127.0.0.1(33111) idle                     
+0 S root     30106     1  0  78   0 - 298820 184467 03:46 ?       00:00:13 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=1024m -Djruby.stack.max=1024k
+1 S rcxdb    30800 10026  0  75   0 - 15960 -      Jul19 ?        00:00:02 postgres: rcxdb production 127.0.0.1(33111) idle                     
+1 S rcxdb    30803 10026  0  75   0 - 16216 -      Jul19 ?        00:00:04 postgres: rcxdb production 127.0.0.1(33114) idle                     
+5 S daemon   30861 28450  0  75   0 - 17664 -      Jul19 ?        00:00:01 /opt/FJSVcsm/apache/bin/httpd -E /var/opt/FJSVcsm/log/apache/error_log -k start
+1 S rcxdb    30803 10026  0  75   0 - 16216 -      Jul19 ?        00:00:04 postgres: rcxdb production 127.0.0.1(33114) idle                     
+5 S daemon   30861 28450  0  75   0 - 17664 -      Jul19 ?        00:00:01 /opt/FJSVcsm/apache/bin/httpd -E /var/opt/FJSVcsm/log/apache/error_log -k start
+0 S root     30897     1  0  79   0 - 163720 184467 03:20 ?       00:00:18 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     30897     1  0  79   0 - 163720 184467 03:20 ?       00:00:18 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    31191 10026  0  75   0 - 15978 -      03:47 ?        00:00:03 postgres: rcxdb production 127.0.0.1(57767) idle                     
+0 S root     31211     1  0  78   0 - 163257 184466 04:10 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    31191 10026  0  75   0 - 15978 -      03:47 ?        00:00:03 postgres: rcxdb production 127.0.0.1(57767) idle                     
+0 S root     31211     1  0  78   0 - 163257 184466 04:10 ?       00:00:16 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    31501 10026  0  75   0 - 15978 -      05:02 ?        00:00:00 postgres: rcxdb production 127.0.0.1(42896) idle                     
+1 S rcxdb    31501 10026  0  75   0 - 15978 -      05:02 ?        00:00:00 postgres: rcxdb production 127.0.0.1(42896) idle                     
+0 S root     31849     1  0  81   0 - 163794 184467 02:30 ?       00:00:19 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    32361 10026  0  75   0 - 15977 -      03:21 ?        00:00:02 postgres: rcxdb production 127.0.0.1(57612) idle                     
+0 S root     31849     1  0  81   0 - 163794 184467 02:30 ?       00:00:19 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+1 S rcxdb    32361 10026  0  75   0 - 15977 -      03:21 ?        00:00:02 postgres: rcxdb production 127.0.0.1(57612) idle                     
+0 S root     32757     1  0  78   0 - 163660 184467 07:10 ?       00:00:14 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+0 S root     32757     1  0  78   0 - 163660 184467 07:10 ?       00:00:14 /opt/FJSVrcvmr/runtime/jre6/bin/java -client -Djruby.memory.max=500m -Djruby.stack.max=1024k
+]0;root@islanda-cbrm:~[root@islanda-cbrm ~]# 

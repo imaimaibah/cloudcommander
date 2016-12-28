@@ -1,0 +1,17 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "/usr/local/2nd_tools/lib/func.exp"
+
+set ID [lindex $argv 0]
+set password [lindex $argv 1]
+
+island_login "admin-pr"
+send -- "/opt/cockpit/bin/ldappasswd\n"
+expect "E-Mail Address or User ID:"
+send -- "$ID\n"
+expect "Password:"
+send -- "$password\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

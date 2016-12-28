@@ -1,0 +1,55 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set option [lindex $argv 0]
+if { $option == "start" } {
+	set mode "rt-mode-config"
+} elseif { $option == "stop" } {
+	set mode "startup-config"
+} else {
+	puts "Option is not specified \[start|stop\]"
+	exit 1
+}
+
+log_user 0
+
+#island_login "islanda-cbrm"
+
+spawn ssh admin@slb-portal
+expect "password" {
+	send -- "nt%$region_num\n"
+} "yes/no" {
+	send -- "yes\n"
+	expect "password"
+	send -- "nt%$region_num\n"
+} timeout {
+	send_user -- "TIMEOUT\n"
+	exit 1
+} eof {
+	send_user -- "CONNECTION FAILED\n"
+	exit 1
+}
+
+set timeout -1
+expect "slb-portal> "
+send -- "admin\n"
+expect "slb-portal# "
+send -- "configure terminal\n"
+expect "slb-portal(config)# "
+send -- "load $mode\n"
+expect "slb-portal(edit)# "
+send -- "commit\n"
+expect "by the current configuration?"
+send -- "y\n"
+expect "the restarting system?"
+send -- "n\n"
+expect "slb-portal(edit)# "
+send -- "end\n"
+expect "slb-portal# "
+send -- "exit\n"
+expect "slb-portal> "
+send -- "exit\n"
+expect eof
+exit 

@@ -1,0 +1,104 @@
+#!/usr/bin/expect
+
+source	"/usr/local/2nd_tools/lib/env.exp"
+source	"$base_dir/lib/func.exp"
+
+log_user	0
+set	timeout 10
+set	sedai [lindex $argv 0]
+set	opeType [lindex $argv 1]
+
+trap	{} {SIGHUP}
+
+spawn	/bin/bash
+expect	-re $prompt
+
+while	{$sedai >= 1} {
+	if {$opeType == 11} {
+		send	-- "test -f /data/download/rcxtssnap_islanda-cbrm* \n"
+	}	elseif {$opeType == 12} {
+		send	-- "test -f /data/download/rcxtssnap_light_islanda-cbrm* \n"
+	}	elseif {$opeType == 13} {
+		send	-- "test -f /data/download/*operationlog* \n"
+	}	elseif {$opeType == 14} {
+		send -- "test -f /data/download/* \n"
+	}	elseif {$opeType == 15} {
+		send -- "test -f /data/download/* \n"
+	}	elseif {$opeType == 16} {
+		send -- "test -f /data/download/* \n"
+  } elseif {$opeType == 17} {
+    send -- "test -f /data/download/agentsnap_FJSVcsma* \n"
+	} elseif {$opeType == 21} {
+		send -- "test -f /data/download/vsys-db_sql-info* \n"
+	} elseif {$opeType == 22} {
+		send -- "test -f /data/download/vsys-db_trace* \n"
+	}	elseif {$opeType == 31} {
+		send -- "test -f /data/download/vsys-ap_trace* \n"
+	} elseif {$opeType == 32} {
+		send -- "test -f /data/download/vsys-ap_img-plugin* \n"
+	} elseif {$opeType == 41} {
+		send -- "test -f /data/download/*charge-logs* \n"
+  } elseif {$opeType == 51} {
+    send -- "test -f /data/download/cb-cmgr-zentai_swcolinf* \n"
+  } elseif {$opeType == 52} {
+    send -- "test -f /data/download/cb-relay_swcolinf* \n"
+  } elseif {$opeType == 53} {
+    send -- "test -f /data/download/island*-sl_swcolinf* \n"
+	} elseif {$opeType == 61} {
+		send -- "test -f /data/download/*xen-snap* \n"
+  } elseif {$opeType == 71} {
+    send -- "test -f /data/download/pclsnap* \n"
+	} else {
+		send -- "echo ERROR1\n"
+	}
+expect	-re $prompt
+send	-- "echo \$?\n"
+expect	-re ".*?\n"
+expect	-re "(.*?)\n"
+	if	{ $expect_out(1,string) == 0 } {
+		if	{$opeType == 11} {
+			send -- "rm /data/download/rcxtssnap_islanda-cbrm* \n"
+		}	elseif {$opeType == 12} {
+			send -- "rm /data/download/rcxtssnap_light_islanda-cbrm* \n"
+		} elseif {$opeType == 13} {
+			send -- "rm /data/download/*operationlog* \n"
+		}	elseif {$opeType == 14} {
+			send -- "rm /data/download/* \n"
+		} elseif {$opeType == 15} {
+			send -- "rm /data/download/* \n"
+		} elseif {$opeType == 16} {
+			send -- "rm /data/download/* \n"
+    } elseif {$opeType == 17} {
+      send -- "rm /data/download/agentsnap_FJSVcsma* \n"
+		}	elseif {$opeType == 21} {
+			send -- "rm /data/download/vsys-db_sql-info* \n"
+		} elseif {$opeType == 22} {
+			send -- "rm /data/download/vsys-db_trace* \n"
+		} elseif {$opeType == 31} {
+			send -- "rm /data/download/vsys-ap_trace* \n"
+		} elseif {$opeType == 32} {
+			send -- "rm /data/download/vsys-ap_img-plugin* \n"
+		} elseif {$opeType == 41} {
+			send -- "rm /data/download/*charge-logs* \n"
+    } elseif {$opeType == 51} {
+      send -- "rm /data/download/cb-cmmgr-zentai_swcolinf* \n"
+    } elseif {$opeType == 52} {
+      send -- "rm /data/download/cb-relay_swcolinf* \n"
+    } elseif {$opeType == 53} {
+      send -- "rm /data/download/island*-sl_swcolinf* \n"
+		} elseif {$opeType == 61} {
+			send -- "rm /data/download/*xen-snap* \n"	
+    } elseif {$opeType == 71} {
+      send -- "rm /data/download/pcl-snap* \n"
+		} else {
+			send -- "echo ERROR2 \n"
+		}
+	}	else {
+		send	-- "echo 'N/A' > /tmp/date_result$sedai$opeType \n"
+	}
+	expect	-re $prompt
+incr	sedai -1
+}
+expect	-re $prompt
+send	-- "exit\n"
+expect	eof

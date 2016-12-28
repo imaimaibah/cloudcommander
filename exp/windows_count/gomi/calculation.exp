@@ -1,0 +1,54 @@
+#!/usr/bin/expect -f
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set region [lindex $argv 0]
+set type [lindex $argv 1]
+set num_win [lindex $agrgv 2]
+
+set file1 /data/cgi-bin/billing_system_honbandesu/tables/$region\_transfer_table.csv
+
+set timeout 15
+#log_user 0
+
+spawn /bin/bash
+expect -re $prompt
+if {$type == "se" } {
+	if {$region == "tatebayashi"} {
+	send -- "$price=`grep OS-0001-0004 $file1 | cut -d ',' -f5` \n"
+	} else if {$region == "akashi"}
+  send -- "$price=`grep OS-0001-0004 $file1 | cut -d ',' -f5` \n"
+  } else if {$region == "fal"}
+  send -- "$price=`grep OS-0001-0004 $file1 | cut -d ',' -f6` \n"
+  } else if {$region == "fapl"}
+  send -- "$price=`grep OS-0001-0004 $file1 | cut -d ',' -f7` \n"
+  } else if {$region == "fna"}
+  send -- "$price=`grep OS-0001-0004 $file1 | cut -d ',' -f8` \n"
+  } else if {$region == "fs"}
+  send -- "$price=`grep OS-0001-0004 $file1 | cut -d ',' -f9` \n"
+  } else if {$region == "fts"}
+  send -- "$price=`grep OS-0001-0004 $file1 | cut -d ',' -f10` \n"
+  }
+} else {
+  if {$region == "tatebayashi"} {
+  send -- "$price=`grep OS-0001-0001 $file1 | cut -d ',' -f5` \n"
+  } else if {$region == "akashi"}
+  send -- "$price=`grep OS-0001-0001 $file1 | cut -d ',' -f5` \n"
+  } else if {$region == "fal"}
+  send -- "$price=`grep OS-0001-0001 $file1 | cut -d ',' -f6` \n"
+  } else if {$region == "fapl"}
+  send -- "$price=`grep OS-0001-0001 $file1 | cut -d ',' -f7` \n"
+  } else if {$region == "fna"}
+  send -- "$price=`grep OS-0001-0001 $file1 | cut -d ',' -f8` \n"
+  } else if {$region == "fs"}
+  send -- "$price=`grep OS-0001-0001 $file1 | cut -d ',' -f9` \n"
+  } else if {$region == "fts"}
+  send -- "$price=`grep OS-0001-0001 $file1 | cut -d ',' -f10` \n"
+  }
+}
+expect -re $prompt
+send -- " let total=$price*$num_win;echo $total > /tmp/tmp_num \n"
+expect -re $prompt  
+send -- "exit\n"
+expect eof

@@ -1,0 +1,26 @@
+#!/usr/bin/expect -f
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set server charge
+set year [lindex $argv 0]
+set month [lindex $argv 1]
+set path /var/opt/sopchg/license/usedlog_$year-$month\_Windows_Server_*.csv 
+
+set timeout 15
+#log_user 0
+
+spawn scp root@$server:$path /var/tmp/
+expect "password" {
+	send -- "sv@01011\n"
+} "(yes/no)" {
+        send -- "yes\n"
+        expect "password"
+        send -- "sv@01011\n"
+} timeout {
+        send_user -- "$server TIMEOUT\n"
+	exit
+}
+
+expect eof

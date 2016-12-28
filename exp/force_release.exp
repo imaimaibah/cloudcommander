@@ -1,0 +1,45 @@
+#!/usr/bin/expect
+
+set prompt "(#|\\$) $"
+set vsys_id [lindex $argv 0]
+set org_id [lindex [split $vsys_id "-" ] 0]
+
+log_user 0
+spawn /bin/bash --norc
+expect -re $prompt
+set timeout 10
+send -- "telnet vsys-ap 7902\n"
+expect "Escape character is '^]'." {
+	send -- "POST /vsys/services/VSYS/lock?userId=vsysadmin&orgId=$org_id&vsysId=$vsys_id&force=true HTTP/1.0\r"
+	send -- "Content-Type: application/x-www-form-urlencoded\r"
+	send -- "Authorization: Basic c29wdXNlcjptdG0hMDI1Ng==\r\r"
+	expect -re $prompt
+} timeout {
+	exit 1
+}
+send -- "telnet vsys-ap 7902\n"
+expect "Escape character is '^]'." {
+	send -- "POST /vsys/services/VSYS/release?userId=vsysadmin&orgId=$org_id&vsysId=$vsys_id&force=true HTTP/1.0\r"
+	send -- "Content-Type: application/x-www-form-urlencoded\r"
+	send -- "Authorization: Basic c29wdXNlcjptdG0hMDI1Ng==\r\r"
+} timeout {
+	exit 2
+}
+
+expect "SUCCESS" {
+	expect -re $prompt
+	send -- "exit\n"
+	expect eof
+	log_user 1
+	exit 0
+} -re $prompt {
+	send -- "exit\n"
+	expect eof
+	log_user 1
+	exit 1
+} timeout {
+	exit 1
+}
+
+exit 1
+log_user 1

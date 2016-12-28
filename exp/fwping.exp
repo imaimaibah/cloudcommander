@@ -1,0 +1,45 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+set ASR [lindex $argv 0]
+
+log_user 1
+island_login "islanda-cnm"
+set i 1
+set timeout 3
+while { [lindex $argv $i] != "" } {
+	send -- "ssh -l admin [lindex $argv $i]\n"
+	expect "password" {
+		send -- "\n"
+	} "(yes/no)" {
+		send -- "yes\n"
+		expect "password"
+		send -- "\n"
+	} eof {
+		incr i 1
+		expect -re $prompt
+		continue
+	} timeout {
+		incr i 1
+		expect -re $prompt
+		continue
+	}
+
+	expect "# "
+	send -- "ping $ASR\n"
+	expect "# " {
+	send -- "exit\n"
+	expect -re $prompt
+	incr i 1
+	} timeout {
+		send -- "\x03"
+		incr i 1
+		expect "# "
+		send -- "exit\n"
+		expect -re $prompt
+	}
+}
+send -- "exit\n"
+expect eof
+log_user 1

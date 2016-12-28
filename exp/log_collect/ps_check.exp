@@ -1,0 +1,232 @@
+#!/usr/bin/expect
+
+#exp_internal 1
+
+source	"/usr/local/2nd_tools/lib/env.exp"
+source	"$base_dir/lib/func.exp"
+
+log_user 0
+set	timeout 5
+set	sedai [lindex $argv 0]
+set ps_num [lindex $argv 1]
+set island [lindex $argv 2]
+
+trap	{} {SIGHUP}
+
+spawn	/bin/bash
+expect -re $prompt
+
+#while	{$sedai >= 1} {
+	if {$ps_num == 11} {
+#		send -- "ps aux | grep ror_snap_full.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+		send -- "ps aux | egrep 'ror_snap_full.exp|ror_snap_light.exp|csm_manager_snap.exp' | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? \n"
+		expect -re ".*?\n"	
+		expect -re "(.*?)\n"
+		if { $expect_out(1,string) == 0 } {
+			spawn /bin/bash
+			expect -re $prompt
+			send -- "ps aux | grep ror_snap_full.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? \n"
+			expect -re ".*?\n"
+			expect -re "(.*?)\n"
+			if { $expect_out(1,string) == 0 } {
+				send -- "echo 1a > /tmp/ps_result$sedai$ps_num \n"
+			} else {
+				spawn /bin/bash
+				expect -re $prompt
+				send -- "ps aux | grep ror_snap_light.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? \n"
+				expect -re ".*?\n"
+				expect -re "(.*?)\n"
+				if { $expect_out(1,string) == 0 } {
+					send -- "echo 2a > /tmp/ps_result$sedai$ps_num \n"
+				} else {
+					send -- "echo 3a > /tmp/ps_result$sedai$ps_num \n"
+				}
+			}
+		} else {
+			send -- "echo 4a > /tmp/ps_result$sedai$ps_num \n"
+		}
+	}	elseif {$ps_num == 12} {
+#		send -- "ps aux | grep ror_snap_light.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+    send -- "ps aux | egrep 'ror_snap_full.exp|ror_snap_light.exp|csm_manager_snap.exp' | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? \n"
+    expect -re ".*?\n"
+    expect -re "(.*?)\n"
+    if { $expect_out(1,string) == 0 } {
+			spawn /bin/bash
+			expect -re $prompt
+      send -- "ps aux | grep ror_snap_full.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? \n"
+      expect -re ".*?\n"
+      expect -re "(.*?)\n"
+      if { $expect_out(1,string) == 0 } {
+        send -- "echo 1a > /tmp/ps_result$sedai$ps_num \n"
+      } else {
+				spawn /bin/bash
+				expect -re $propt
+        send -- "ps aux | grep ror_snap_light.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? \n"
+        expect -re ".*?\n"
+        expect -re "(.*?)\n"
+        if { $expect_out(1,string) == 0 } {
+          send -- "echo 2a > /tmp/ps_result$sedai$ps_num \n"
+        } else {
+          send -- "echo 3a > /tmp/ps_result$sedai$ps_num \n"
+        }
+      }
+    } else {
+      send -- "echo 4a > /tmp/ps_result$sedai$ps_num \n"
+    }
+	}	elseif {$ps_num == 13} {
+		send -- "ps aux | grep ror_ope_log.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+	}	elseif {$ps_num == 14} {
+#		send -- "ps aux | grep cnm_manager_snap.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+		send -- "ps aux | egrep 'cnm_manager_snap.exp|cnm_manager_snap_prov.exp' | grep $island | grep -v grep > /dev/null 2>&1 ; echo $?\n"
+		expect -re ".*?\n"
+		expect -re "(.*?)\n"
+		if { $expect_out(1,string) == 0 } {
+			spawn /bin/bash
+			expect -re $prompt
+			send -- "ps aux | grep cnm_manager_snap.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? \n"
+			expect -re ".*?\n"
+			expect -re "(.*?)\n"
+			if { $expect_out(1,string) == 0 } {
+				send -- "echo 1b > /tmp/ps_result$sedai$ps_num \n"
+			} else {
+				send -- "echo 2b > /tmp/ps_result$sedai$ps_num \n"	
+			}				
+		} else {
+			send -- "echo 3b > /tmp/ps_result$sedai$ps_num \n"
+		}
+	}	elseif {$ps_num == 15} {
+#		send -- "ps aux | grep cnm_manager_snap_prov.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+		send -- "ps aux | egrep 'cnm_manager_snap.exp|cnm_manager_snap_prov.exp' | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? \n"
+		expect -re ".*?\n"
+		expect -re "(.*?)\n"
+		if { $expect_out(1,string) == 0 } {
+			spawn /bin/bash
+			epect -re $prompt
+			send -- "ps aux | grep cnm_manager_snap.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? \n"
+			expect -re ".*?\n"
+			expect -re "(.*?)\n"
+			if { $expect_out(1,string) == 0 } {
+				send -- "echo 1b > /tmp/ps_result$sedai$ps_num \n"
+			} else {
+				send -- "echo 2b > /tmp/ps_result$sedai$ps_num \n"	
+			}				
+		} else {
+			send -- "echo 3b > /tmp/ps_result$sedai$ps_num \n"
+		}
+  } elseif {$ps_num == 16} {
+#	send -- "ps aux | grep csm_manager_snap.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+    send -- "ps aux | egrep 'ror_snap_full.exp|ror_snap_light.exp|csm_manager_snap.exp' | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? \n"
+    expect -re ".*?\n"
+    expect -re "(.*?)\n"
+    if { $expect_out(1,string) == 0 } {
+			spawn /bin/bash
+			expect -re $prompt
+      send -- "ps aux | grep ror_snap_full.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? \n"
+      expect -re ".*?\n"
+      expect -re "(.*?)\n"
+      if { $expect_out(1,string) == 0 } {
+        send -- "echo 1a > /tmp/ps_result$sedai$ps_num \n"
+      } else {
+				spawn /bin/bash
+				expect -re $prompt
+        send -- "ps aux | grep ror_snap_light.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? \n"
+        expect -re ".*?\n"
+        expect -re "(.*?)\n"
+        if { $expect_out(1,string) == 0 } {
+          send -- "echo 2a > /tmp/ps_result$sedai$ps_num \n"
+        } else {
+          send -- "echo 3a > /tmp/ps_result$sedai$ps_num \n"
+        }
+      }
+    } else {
+      send -- "echo 4a > /tmp/ps_result$sedai$ps_num \n"
+    }
+	} elseif {$ps_num == 21} {
+		send -- "ps aux | grep vsys-db_info.exp | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+	} elseif {$ps_num == 22} {
+		send -- "ps aux | grep vsys-db_trace-log.exp | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+	}	elseif {$ps_num == 31} {
+		send -- "ps aux | grep vsys-ap_trace-log.exp | grep -v grep> /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+	} elseif {$ps_num == 32} {
+		send -- "ps aux | grep vsys-ap_img-plugin.exp | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+	} elseif {$ps_num == 41} {
+		send -- "ps aux | grep charge_log.exp | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+	} elseif {$ps_num == 51} {
+		send -- "ps aux | grep swcm_cb-cmgr-zentai.exp | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+	} elseif {$ps_num == 52} {
+		send -- "ps aux | grep swcm_cb-relay.exp | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+	} elseif {$ps_num == 53} {
+		send -- "ps aux | grep swcm_islandx-sl.exp | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+	} elseif {$ps_num == 61} {
+		send -- "ps aux | grep xen_snap.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+	} elseif {$ps_num == 62} {
+		send -- "ps aux | grep csm_agent_snap.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+	} elseif {$ps_num == 63} {
+		send -- "ps aux | grep kvm_snap.exp | grep $island | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+	} elseif {$ps_num == 71} {
+		send -- "ps aux | grep pcl-snap.exp | grep -v grep > /dev/null 2>&1 ; echo $? | tee /tmp/ps_result$sedai$ps_num \n"
+	} else {
+		send -- "echo ERROR5\n"
+	}
+#	expect -re $prompt
+#	incr sedai -1
+#}
+#	expect -re ".*?\n"
+#	expect -re "(.*?)\n"
+#	if { $expect_out(1,string) == 0 } {
+#		if {$ps_num == 11} {
+#	  
+#		} elseif {$ps_num == 12} {
+#
+#	  } elseif {$ps_num == 14} {
+#
+#	  } elseif {$ps_num == 15} {
+#
+#	  } elseif {$ps_num == 16} {
+#
+#		} else {
+#	    send -- "echo ERROR6\n"
+#		}
+#	}
+#		send -- "rm -f /tmp/ps_result$sedai$ps_num \n"
+#		expect -re $prompt
+#		if {$ps_num == 11} {
+#			send -- "echo -n `ps -eo lstart,cmd | grep ror_snap_full.exp | grep $island | grep -v grep | sed -e 's/  */ /g' | cut -d " " -f4` > /tmp/ps_result$sedai$ps_num \n"
+#	  } elseif {$ps_num == 12} {
+#  	  send -- "echo -n `ps -eo lstart,cmd | grep ror_snap_light.exp | grep $island | grep -v grep | sed -e 's/  */ /g' | cut -d " " -f4` > /tmp/ps_result$sedai$ps_num \n"
+#	  } elseif {$ps_num == 13} {
+#  	  send -- "echo -n `ps -eo lstart,cmd | grep ror_ope_log.exp | grep $island | grep -v grep | sed -e 's/  */ /g' | cut -d " " -f4` > /tmp/ps_result$sedai$ps_num\n"
+#	  } elseif {$ps_num == 14} {
+#  	  send -- "echo -n `ps -eo lstart,cmd | grep cnm_manager_snap.exp | grep $island | grep -v grep | sed -e 's/  */ /g' | cut -d " " -f4` > /tmp/ps_result$sedai$ps_num \n"
+#	  } elseif {$ps_num == 15} {
+#  	  send -- "echo -n `ps -eo lstart,cmd | grep cnm_manager_snap_prov.exp | grep $island | grep -v grep | sed -e 's/  */ /g' | cut -d " " -f4` > /tmp/ps_result$sedai$ps_num \n"
+#	  } elseif {$ps_num == 16} {
+#  	  send -- "echo -n `ps -eo lstart,cmd | grep csm_manager_snap.exp | grep $island | grep -v grep | sed -e 's/  */ /g' | cut -d " " -f4` > /tmp/ps_result$sedai$ps_num \n"
+#	  } elseif {$ps_num == 21} {
+#  	  send -- "echo -n `ps -eo lstart,cmd | grep vsys-db_info.exp | grep -v grep | sed -e 's/  */ /g' | cut -d " " -f4` > /tmp/ps_result$sedai$ps_num \n"
+#	  } elseif {$ps_num == 22} {
+#  	  send -- "echo -n `ps -eo lstart,cmd | grep vsys-db_trace-log.exp | grep -v grep | sed -e 's/  */ /g' | cut -d " " -f4` > /tmp/ps_result$sedai$ps_num \n"
+#	  } elseif {$ps_num == 31} {
+#  	  send -- "echo -n `ps -eo lstart,cmd | grep vsys-ap_trace-log.exp | grep -v grep | sed -e 's/  */ /g' | cut -d " " -f4` > /tmp/ps_result$sedai$ps_num \n"
+#		} elseif {$ps_num == 32} {
+#  	  send -- "echo -n `ps -eo lstart,cmd | grep vsys-ap_img-plugin.exp | grep -v grep | sed -e 's/  */ /g' | cut -d " " -f4` > /tmp/ps_result$sedai$ps_num \n"
+#	  } elseif {$ps_num == 41} {
+#  	  send -- "echo -n `ps -eo lstart,cmd | grep charge_log.exp | grep -v grep | sed -e 's/  */ /g' | cut -d " " -f4` > /tmp/ps_result$sedai$ps_num \n"
+#	  } elseif {$ps_num == 51} {
+#  	  send -- "echo -n `ps -eo lstart,cmd | grep swcm_cb-cmgr-zentai.exp | grep -v grep | sed -e 's/  */ /g' | cut -d " " -f4` > /tmp/ps_result$sedai$ps_num \n"
+#	  } elseif {$ps_num == 52} {
+#  	  send -- "echo -n `ps -eo lstart,cmd | grep swcm_cb-relay.exp | grep -v grep | sed -e 's/  */ /g' | cut -d " " -f4` > /tmp/ps_result$sedai$ps_num \n"
+#		} elseif {$ps_num == 53} {
+#  	  send -- "echo -n `ps -eo lstart,cmd | grep swcm_islandx-sl.exp | grep -v grep | sed -e 's/  */ /g' | cut -d " " -f4` > /tmp/ps_result$sedai$ps_num \n"
+#	  } elseif {$ps_num == 61} {
+#  	} elseif {$ps_num == 62} {
+#	  } elseif {$ps_num == 71} {
+#  	} else {
+#	    send -- "echo ERROR6\n"
+#  	}
+#	}
+expect -re $prompt
+#	expect -re ".*?\n"
+#	expect -re "(.*?)\r\n"
+send -- "exit\n"
+expect eof

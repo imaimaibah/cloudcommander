@@ -1,0 +1,28 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set server [lindex $argv 0]
+set password [lindex $argv 1]
+set file [lindex $argv 2]
+
+log_user 0
+spawn ssh -l root $server "cat $file"
+expect "password" {
+	send -- "$password\n"
+} "yes/no" {
+	send -- "yes\n"
+	expect "password"
+	send -- "$password\n"
+}
+expect -re ".*\n"
+while {1} {
+	expect -re ".*\n" {
+		send_user -- "$expect_out(buffer)"
+	} eof {
+		break
+	}
+}
+
+

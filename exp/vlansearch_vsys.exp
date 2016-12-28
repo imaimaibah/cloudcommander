@@ -1,0 +1,23 @@
+#!/usr/bin/expect
+
+### VERSION 2.0 ###
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set vsys [lindex $argv 0]
+
+
+log_user 0
+mgtcb_login "vsys-db"
+send -- "/usr/local/mysql/bin/mysql -usopuser -p'mtm!0256' sop\n"
+expect -re $prompt
+if {[regexp -- "^\[A-Z0-9\]{8}$" $vsys] == 1} {
+stdout "select vi.org_id,vi.vlan_id,vi.vnet_id,vi.resource_id from `vnet#instance` vi inner join instance it on vi.vsys_id = it.vsys_id where it.status = 'NORMAL' and vi.network_id like '%INTRANET' and vi.org_id = '$vsys' group by org_id;"
+} elseif {[regexp -- "^\[A-Z0-9\]{8}-\[A-Z0-9\]{9}$" $vsys] == 1} {
+stdout "select vi.vsys_id,vi.vlan_id,vi.vnet_id,vi.resource_id from `vnet#instance` vi inner join instance it on vi.vsys_id = it.vsys_id where it.status = 'NORMAL' and it.vsys_id = '$vsys' and vi.network_id = '$vsys-N-INTRANET';"
+}
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

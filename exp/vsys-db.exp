@@ -1,0 +1,32 @@
+#!/usr/bin/expect
+
+set sql [lindex $argv 0]
+set whandle [open "/usr/local/2nd_tools/tmp/vsys-db.list" "w"]
+
+spawn ssh -l root vsys-db
+expect "password" {
+	send -- "sv@01011\r"
+} "yes/no" {
+	send -- "yes\r"
+	expect "password"
+	send -- "sv@01011\r"
+}
+expect "# "
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p sop\r"
+expect "Enter password: "
+send -- "mtm!0256\r"
+expect "mysql> "
+send -- "$sql\r"
+expect -re ".*?\n"
+while {1} {
+	expect -re ".*\n" {
+		puts -nonewline $whandle "$expect_out(buffer)"
+	} "mysql> " {
+		close $whandle
+		break
+	}
+}
+send -- "quit\r"
+expect "# "
+send -- "exit\r"
+expect eof

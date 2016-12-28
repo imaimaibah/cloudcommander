@@ -1,0 +1,38 @@
+#!/usr/bin/expect -f
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set year [lindex $argv 0]
+set month [lindex $argv 1]
+
+set path_ee /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_Windows_Server_Enterprise_Edition.csv
+set path_se /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_Windows_Server_Standard_Edition.csv
+set path_ee_sql /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_SQL_Server_Enterprise_Edition.csv
+set path_se_sql /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_SQL_Server_Standard_Edition.csv
+
+set file_ee /tmp/windows_license_ee.csv
+set file_se /tmp/windows_license_se.csv
+set file_ee_sql /tmp/sql_license_ee.csv
+set file_se_sql /tmp/sql_license_se.csv
+
+set free_id1 /data/cgi-bin/billing_system_honbandesu/tables/host_lead*.table
+set non_free_id /root/charge_id.txt
+
+set timeout 15
+#log_user 0
+
+spawn /bin/bash
+expect -re $prompt
+send -- "grep '.*,.*,.*,.*,.*,1' $free_id1 | cut -d ',' -f2 | sort | uniq > $non_free_id \n"
+expect -re $prompt
+send -- "grep -v -f $non_free_id $path_ee | cut -d ',' -f2- | sort | uniq > $file_ee \n"
+expect -re $prompt
+send -- "grep -v -f $non_free_id $path_se | cut -d ',' -f2- | sort | uniq > $file_se \n"
+expect -re $prompt
+send -- "grep -v -f $non_free_id $path_ee_sql | cut -d ',' -f2- | sort | uniq > $file_ee_sql \n"
+expect -re $prompt
+send -- "grep -v -f $non_free_id $path_se_sql | cut -d ',' -f2- | sort | uniq > $file_se_sql \n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

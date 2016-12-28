@@ -1,0 +1,30 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "/usr/local/2nd_tools/lib/func.exp"
+
+log_user 0
+set server [lindex $argv 0]
+if { $server == "" } {
+	puts "Option is invalid"
+	exit
+}
+set i 0
+dom0_login "$server"
+send -- "amCLI -l struct |grep Disk|perl -e 'while(<STDIN>){chomp;(\$tmp) = \$_ =~ /\[^\\s:\]+/g;print \$tmp.\"\\n\"}'\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re "(.*?)\r\n" {
+		array set disk "$i $expect_out(1,string)"
+		incr i 1
+	} -re $prompt {
+		break
+	}
+}
+
+for { set l 0 } { $l<$i } { incr l 1 } {
+	stdout "amCLI -g $disk($l) Status"
+}
+
+send -- "exit\r"
+expect eof

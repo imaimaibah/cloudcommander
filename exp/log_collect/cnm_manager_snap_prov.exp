@@ -1,0 +1,52 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set island [lindex $argv 0]
+	if {$island == "region"} {
+		set server region-cnm
+	} else {
+		set server $island-cnm
+	}
+
+log_user 0
+set timeout 1800
+set kind /DB/tmp/$server\_provisioning_snap_log.tar.gz
+set kind2 /data/download/$server\_provisioning_snap_log.tar.gz
+
+trap {} {SIGHUP}
+
+island_login $server
+send -- "cd /DB/tmp\n"
+expect -re $prompt
+send -- "ps aux | grep provisioning | grep -v grep > /dev/null 2>&1 ; echo $?\n"
+expect -re ".*?\n"
+expect -re "(.*?)\n"
+if { $expect_out(1,string) == 0 } {
+  log_user 1
+    send_user -- "CNM Manager Snap is already collecting.\n"
+  log_user 0
+  send -- "exit\n"
+} else {
+	send -- "rm -f ./cnm_provisioning_snap_log.tar.gz\n"
+	expect -re $prompt
+  send -- "/opt/FJSVcnm/bin/cnmtakesnapshot -t provisioning\n"
+	expect -re $prompt
+	send -- "mv -f cnm_provisioning_snap_log.tar.gz $kind\n"
+	expect -re $prompt
+  send -- "exit\n"
+  expect -re $prompt
+
+	spawn /bin/bash
+	expect -re $prompt
+	send -- "rm -f $kind2\n"
+	expect -re $prompt
+	send -- "$base_dir/exp/log_collect/transfer_file.exp $server $kind\n"
+  expect -re $prompt
+  island_login $server
+  send -- "rm -f $kind\n"
+	expect -re $prompt
+  send -- "exit\n"
+}
+expect eof

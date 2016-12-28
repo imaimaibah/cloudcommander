@@ -1,0 +1,46 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set eternus [lindex $argv 0]
+if { [lindex $argv 1] != "" } {
+	set flag [lindex $argv 1]
+} else {
+	set flag ""
+}
+set prompt "CLI> "
+
+log_user 0
+eternus_login $eternus
+if { $flag == "-v" } {
+	send -- "show raid-groups\r"
+} elseif { $flag == "-l" } {
+	send -- "show events\r"
+} else {
+	send -- "show enclosure-status\r"
+}
+expect -re ".*?\r\n"
+while {1} {
+	expect "Status*\\\[Error\\\]*\n" {
+		send_user -- "$expect_out(buffer)"
+		expect -re $prompt
+		send -- "show enclosure-status -type all\r"
+		expect -re ".*?\r\n"
+		while {1} {
+			expect -re ".*\n" {
+				send_user -- "$expect_out(buffer)"
+			} -re $prompt {
+				break
+			}
+		}
+		break
+	} -re ".*\r\n" {
+		send_user -- "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send -- "exit\r"
+expect eof
+log_user 1

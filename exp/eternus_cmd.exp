@@ -1,0 +1,20 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set prompt "CLI> "
+
+log_user 0
+set eternus [lindex $argv 0]
+eternus_login $eternus
+send_user -- "ENCLOSURE\n"
+stdout "show enclosure-status"
+send_user -- "CE\n"
+stdout "show enclosure-status -type ce"
+send_user -- "DE #1\n"
+stdout "show enclosure-status -type de -de 1"
+send_user -- "DE #2\n"
+stdout "show enclosure-status -type de -de 2"
+send -- "exit\r"
+close

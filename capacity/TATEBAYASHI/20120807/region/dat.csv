@@ -1,0 +1,85 @@
+1. Contract IDs,37
+
+2.VM Usage
+,Max VMs:,8352
+,Running VMs(Economy Equivalent):,90
+,Stopped VMs(Economy Equivalent):,90
+,Deployable(Economy):,8262
+,Deployable(including stopped VMs):,8172
+,Deployed VMs:,284
+,Economy:,96
+,Standard:,24
+,Advanced:,5
+,High-perf:,2
+,Firewall:,0
+,SLB:,0
+,VSYS:,79
+
+3. Disk Usage
+,Total Disk Space(TB):,335.7
+,In Use(TB):,19.6
+,Zero Clearing(TB):,0.0
+,Free Disk Space(TB):,316.1
+,Free Disk Space(%):,94.2
+
+4. OS Usage
+Running
+,CentOS 5.4 32bit (Japanese),5
+,CentOS 5.4 64bit (Japanese),17
+,CentOS 6.0 64bit (English),0
+,CentOS 6.2 32bit (English),6
+,CentOS 6.2 64bit (English),4
+,CentOS5.4 ST用,10
+,Red Hat Enterprise Linux 5.7 32bit (Japanese),4
+,Red Hat Enterprise Linux 5.7 64bit (Japanese),1
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) + NetVault Backup Client for Linux with Support + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) + NetVault Backup Server for Linux with Support + NetVault Backup SmartDisk for Linux with Support + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) + Symantec AntiVirus for Linux 1.0 + NetVault Backup Client for Linux with Support,0
+,Red Hat Enterprise Linux 6.2 32bit (Japanese) + Symantec AntiVirus for Linux 1.0,5
+,Red Hat Enterprise Linux 6.2 64bit (Japanese) + Symantec AntiVirus for Linux 1.0,3
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),2
+,Windows Server 2008 R2 EE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese),2
+,Windows Server 2008 R2 SE 64bit (Japanese) + SQLServer 2008 R2 SE (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),2
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),5
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + SQLServer 2008 R2 SE (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),1
+,Windows2003 Server SE SP2,0
+,others,58
+
+Stopped
+,CentOS 5.4 32bit (Japanese),11
+,CentOS 5.4 64bit (Japanese),15
+,CentOS 6.0 64bit (English),0
+,CentOS 6.2 32bit (English),9
+,CentOS 6.2 64bit (English),5
+,CentOS5.4 ST用,0
+,Red Hat Enterprise Linux 5.7 32bit (Japanese),33
+,Red Hat Enterprise Linux 5.7 64bit (Japanese),9
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) + NetVault Backup Client for Linux with Support + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) + NetVault Backup Server for Linux with Support + NetVault Backup SmartDisk for Linux with Support + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) + Symantec AntiVirus for Linux 1.0 + NetVault Backup Client for Linux with Support,0
+,Red Hat Enterprise Linux 6.2 32bit (Japanese) + Symantec AntiVirus for Linux 1.0,6
+,Red Hat Enterprise Linux 6.2 64bit (Japanese) + Symantec AntiVirus for Linux 1.0,10
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),10
+,Windows Server 2008 R2 EE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),1
+,Windows Server 2008 R2 SE 64bit (Japanese),8
+,Windows Server 2008 R2 SE 64bit (Japanese) + SQLServer 2008 R2 SE (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),3
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),6
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + SQLServer 2008 R2 SE (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),1
+,Windows2003 Server SE SP2,0
+,others,32
+
+5. Internet Connect Usage
+,Total:,762
+,In Use:,86
+,Free Internet Connect:,676
+,Free Internet Connect(%):,88.7
+
+6. Glogal IP Address Usage
+,Total:,747
+,In Use:,72
+,Unavailable:,31
+,Free Global IP Address:,644
+,Free Global IP Address(%):,86.2
+
+Capacity Data Tool Ver.1.1

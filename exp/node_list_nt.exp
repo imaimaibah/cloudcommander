@@ -1,0 +1,22 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+log_user 0
+mgtcb_login "cb-cmgr-zentai"
+send -- "/opt/FJSVfwnm/bin/mpmonstat -f /tmp/node_list.csv\n"
+expect -re $prompt
+send -- "cat /tmp/node_list.csv\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re ".*\n" {
+		send_user -- "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send -- "exit\n"
+expect eof
+log_user 1
+

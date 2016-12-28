@@ -1,0 +1,53 @@
+#!/usr/bin/expect
+
+set server [lindex $argv 0]
+set region [lindex $argv 1]
+set fumidai [lindex $argv 2]
+set prompt "(#|\\$) $"
+
+proc connect_ipcom {server region} {
+
+set timeout 5
+send -- "ssh -l admin $server\n"
+expect "password" {
+	send -- "nt%$region\r"
+} "yes/no" {
+	send -- "yes\r"
+	expect "password"
+	send -- "nt%$region\r"
+} timeout {
+	send_user "TIMEOUT\n"
+	exit 1
+}
+set timeout -1
+
+return 0
+}
+
+log_user 0
+spawn /bin/bash --norc
+expect -re $prompt
+connect_ipcom $server $region
+expect "> "
+send -- "admin\r"
+expect "# "
+send -- "terminal pager disable\r"
+expect -- "# "
+send -- "show user\r"
+expect -re ".*?\r"
+log_file -noappend "/usr/local/2nd_tools/log/exp/show_user.log"
+while {1} {
+	expect -re ".*\n" {
+		send_log -- "$expect_out(buffer)"
+	} "# " {
+		break
+	}
+}
+log_file
+send -- "exit\r"
+expect "> "
+send -- "exit\r"
+expect -re $prompt
+send -- "exit\r"
+expect eof
+log_user 1

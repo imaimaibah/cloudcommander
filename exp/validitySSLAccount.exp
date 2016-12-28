@@ -1,0 +1,37 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set ipcom [lindex $argv 0]
+set prompt "(#|>) $"
+
+log_user 0
+spawn telnet  $ipcom
+expect "login: " {
+	send -- "admin\n"
+}
+
+expect "Password: " {
+	send -- "nt%$region_num\n"
+}
+
+expect -re $prompt
+send -- "admin\n"
+expect -re $prompt
+while { [gets stdin user] >= 0} {
+	send -- "show user $user\n"
+	expect -re ".*?\n"
+	while {1} {
+		expect -re "Password valid days: (\[^\n\]+)" {
+			puts "$user,$expect_out(1,string)"
+		} -re $prompt {
+			break
+		}
+	}
+}
+send -- "exit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+exit

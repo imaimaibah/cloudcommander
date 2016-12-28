@@ -1,0 +1,45 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set dom0 [lindex $argv 0]
+
+log_user 0
+
+set i 0
+dom0_login $dom0
+send -- "amCLI -l struct |grep '\\(Disk\\|Logical drive\\)'|perl -e 'while(<STDIN>){chomp;(\$tmp) = \$_ =~ /\[^\\s:\]+/g;print \$tmp.\"\\n\"}'\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re "(.*?)\r\n" {
+		array set disk "$i $expect_out(1,string)"
+		incr i 1
+	} -re $prompt {
+		break
+	}
+}
+
+for { set l 0 } { $l<$i } { incr l 1 } {
+	stdout "amCLI -l $disk($l)"
+	send_user "=========================\n"
+}
+
+send -- "\n"
+expect -re $prompt
+send_user "========XM LIST ========\n"
+stdout "xm list 2> /dev/null|awk '\$1!=\"Domain-0\" && \$1!=\"Name\" {print \$1}'"
+send -- "echo \${PIPESTATUS\[0\]}\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re "(.*?)\r\n" {
+		if {[regexp -- "^1$" $expect_out(1,string) j] == 1} {
+			stdout "virsh list 2> /dev/null | awk '\$1!=\"Id\" && \$1!~/^--------/ && !/^\$/ {print \$1}'"
+			break
+		}
+	} -re $prompt {
+		break
+	}
+}
+send -- "exit\n"
+expect eof

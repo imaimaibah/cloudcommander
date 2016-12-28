@@ -1,0 +1,44 @@
+#!/usr/bin/expect
+
+set timeout -1
+
+spawn /bin/bash --norc
+expect -re "# |\\$ "
+send -- "ssh -l root islanda-cbrm\n"
+expect "password" {
+	send -- "sv@01011\n"
+} "yes/no" {
+	send -- "yes\n"
+	expect "password"
+	send -- "sv@01011\n"
+}
+
+expect "# "
+send -- "/opt/FJSVcsm/sbin/managersnap -dir /DB/tmp\n"
+expect "# "
+send -- "exit\n"
+expect -re "# |\\$ "
+send -- "scp root@islanda-cbrm:/DB/tmp/* ~/\n"
+expect "password" {
+	send -- "sv@01011\n"
+} "yes/no" {
+	send -- "yes\n"
+	expect "password"
+	send -- "sv@01011\n"
+}
+expect -re "# |\\$ "
+send -- "ssh -l root islanda-cbrm\n"
+expect "password" {
+	send -- "sv@01011\n"
+} "yes/no" {
+	send -- "yes\n"
+	expect "password"
+	send -- "sv@01011\n"
+}
+expect "# "
+send -- "rm -rf /DB/tmp/*\n"
+expect "# "
+send -- "exit\n"
+expect -re "# |\\$ "
+send -- "exit\n"
+expect eof

@@ -1,0 +1,472 @@
+# save at:Mon Jun 18 22:40:21 2012
+
+# comment at:
+password admin set fil0iR0pOVp6WOKzA encrypted
+ether 1 vlan untag 301
+ether 1 description et0000-09-02_C0_CA#0.#0
+ether 1 lldp mode enable
+ether 1 lldp info port-vlan-id disable
+ether 1 lldp info port-and-protocol-vlan-id disable
+ether 1 lldp info vlan-name disable
+ether 1 lldp info protocol-identity disable
+ether 1 lldp info mac-phy-configuration-status disable
+ether 1 lldp info power-via-mdi disable
+ether 1 lldp info link-aggregation disable
+ether 1 lldp info maximum-frame-size disable
+ether 2 vlan untag 301
+ether 2 description et0000-09-02_C0_CA#0.#1
+ether 2 lldp mode enable
+ether 2 lldp info port-vlan-id disable
+ether 2 lldp info port-and-protocol-vlan-id disable
+ether 2 lldp info vlan-name disable
+ether 2 lldp info protocol-identity disable
+ether 2 lldp info mac-phy-configuration-status disable
+ether 2 lldp info power-via-mdi disable
+ether 2 lldp info link-aggregation disable
+ether 2 lldp info maximum-frame-size disable
+ether 3 vlan untag 301
+ether 3 description et0000-09-02_C1_CA#0.#0
+ether 3 lldp mode enable
+ether 3 lldp info port-vlan-id disable
+ether 3 lldp info port-and-protocol-vlan-id disable
+ether 3 lldp info vlan-name disable
+ether 3 lldp info protocol-identity disable
+ether 3 lldp info mac-phy-configuration-status disable
+ether 3 lldp info power-via-mdi disable
+ether 3 lldp info link-aggregation disable
+ether 3 lldp info maximum-frame-size disable
+ether 4 vlan untag 301
+ether 4 description et0000-09-02_C1_CA#0.#1
+ether 4 lldp mode enable
+ether 4 lldp info port-vlan-id disable
+ether 4 lldp info port-and-protocol-vlan-id disable
+ether 4 lldp info vlan-name disable
+ether 4 lldp info protocol-identity disable
+ether 4 lldp info mac-phy-configuration-status disable
+ether 4 lldp info power-via-mdi disable
+ether 4 lldp info link-aggregation disable
+ether 4 lldp info maximum-frame-size disable
+ether 5 vlan untag 201
+ether 5 description et0000-09-02_CM0_MNT
+ether 5 lldp mode enable
+ether 5 lldp info port-vlan-id disable
+ether 5 lldp info port-and-protocol-vlan-id disable
+ether 5 lldp info vlan-name disable
+ether 5 lldp info protocol-identity disable
+ether 5 lldp info mac-phy-configuration-status disable
+ether 5 lldp info power-via-mdi disable
+ether 5 lldp info link-aggregation disable
+ether 5 lldp info maximum-frame-size disable
+ether 6 vlan untag 201
+ether 6 description et0000-09-02_CM1_MNT
+ether 6 lldp mode enable
+ether 6 lldp info port-vlan-id disable
+ether 6 lldp info port-and-protocol-vlan-id disable
+ether 6 lldp info vlan-name disable
+ether 6 lldp info protocol-identity disable
+ether 6 lldp info mac-phy-configuration-status disable
+ether 6 lldp info power-via-mdi disable
+ether 6 lldp info link-aggregation disable
+ether 6 lldp info maximum-frame-size disable
+ether 7 vlan untag 302
+ether 7 description et0000-09-06_C0_CA#0.#0
+ether 7 lldp mode enable
+ether 7 lldp info port-vlan-id disable
+ether 7 lldp info port-and-protocol-vlan-id disable
+ether 7 lldp info vlan-name disable
+ether 7 lldp info protocol-identity disable
+ether 7 lldp info mac-phy-configuration-status disable
+ether 7 lldp info power-via-mdi disable
+ether 7 lldp info link-aggregation disable
+ether 7 lldp info maximum-frame-size disable
+ether 8 vlan untag 302
+ether 8 description et0000-09-06_C0_CA#0.#1
+ether 8 lldp mode enable
+ether 8 lldp info port-vlan-id disable
+ether 8 lldp info port-and-protocol-vlan-id disable
+ether 8 lldp info vlan-name disable
+ether 8 lldp info protocol-identity disable
+ether 8 lldp info mac-phy-configuration-status disable
+ether 8 lldp info power-via-mdi disable
+ether 8 lldp info link-aggregation disable
+ether 8 lldp info maximum-frame-size disable
+ether 9 vlan untag 302
+ether 9 description et0000-09-06_C1_CA#0.#0
+ether 9 lldp mode enable
+ether 9 lldp info port-vlan-id disable
+ether 9 lldp info port-and-protocol-vlan-id disable
+ether 9 lldp info vlan-name disable
+ether 9 lldp info protocol-identity disable
+ether 9 lldp info mac-phy-configuration-status disable
+ether 9 lldp info power-via-mdi disable
+ether 9 lldp info link-aggregation disable
+ether 9 lldp info maximum-frame-size disable
+ether 10 vlan untag 302
+ether 10 description et0000-09-06_C1_CA#0.#1
+ether 10 lldp mode enable
+ether 10 lldp info port-vlan-id disable
+ether 10 lldp info port-and-protocol-vlan-id disable
+ether 10 lldp info vlan-name disable
+ether 10 lldp info protocol-identity disable
+ether 10 lldp info mac-phy-configuration-status disable
+ether 10 lldp info power-via-mdi disable
+ether 10 lldp info link-aggregation disable
+ether 10 lldp info maximum-frame-size disable
+ether 11 vlan untag 202
+ether 11 description et0000-09-06_CM0_MNT
+ether 11 lldp mode enable
+ether 11 lldp info port-vlan-id disable
+ether 11 lldp info port-and-protocol-vlan-id disable
+ether 11 lldp info vlan-name disable
+ether 11 lldp info protocol-identity disable
+ether 11 lldp info mac-phy-configuration-status disable
+ether 11 lldp info power-via-mdi disable
+ether 11 lldp info link-aggregation disable
+ether 11 lldp info maximum-frame-size disable
+ether 12 vlan untag 202
+ether 12 description et0000-09-06_CM1_MNT
+ether 12 lldp mode enable
+ether 12 lldp info port-vlan-id disable
+ether 12 lldp info port-and-protocol-vlan-id disable
+ether 12 lldp info vlan-name disable
+ether 12 lldp info protocol-identity disable
+ether 12 lldp info mac-phy-configuration-status disable
+ether 12 lldp info power-via-mdi disable
+ether 12 lldp info link-aggregation disable
+ether 12 lldp info maximum-frame-size disable
+ether 13 vlan untag 301
+ether 13 description et0000-09-10_C0_CA#0.#0
+ether 13 lldp mode enable
+ether 13 lldp info port-vlan-id disable
+ether 13 lldp info port-and-protocol-vlan-id disable
+ether 13 lldp info vlan-name disable
+ether 13 lldp info protocol-identity disable
+ether 13 lldp info mac-phy-configuration-status disable
+ether 13 lldp info power-via-mdi disable
+ether 13 lldp info link-aggregation disable
+ether 13 lldp info maximum-frame-size disable
+ether 14 vlan untag 302
+ether 14 description et0000-09-10_C0_CA#0.#1
+ether 14 lldp mode enable
+ether 14 lldp info port-vlan-id disable
+ether 14 lldp info port-and-protocol-vlan-id disable
+ether 14 lldp info vlan-name disable
+ether 14 lldp info protocol-identity disable
+ether 14 lldp info mac-phy-configuration-status disable
+ether 14 lldp info power-via-mdi disable
+ether 14 lldp info link-aggregation disable
+ether 14 lldp info maximum-frame-size disable
+ether 15 vlan untag 301
+ether 15 description et0000-09-10_C1_CA#0.#0
+ether 15 lldp mode enable
+ether 15 lldp info port-vlan-id disable
+ether 15 lldp info port-and-protocol-vlan-id disable
+ether 15 lldp info vlan-name disable
+ether 15 lldp info protocol-identity disable
+ether 15 lldp info mac-phy-configuration-status disable
+ether 15 lldp info power-via-mdi disable
+ether 15 lldp info link-aggregation disable
+ether 15 lldp info maximum-frame-size disable
+ether 16 vlan untag 302
+ether 16 description et0000-09-10_C1_CA#0.#1
+ether 16 lldp mode enable
+ether 16 lldp info port-vlan-id disable
+ether 16 lldp info port-and-protocol-vlan-id disable
+ether 16 lldp info vlan-name disable
+ether 16 lldp info protocol-identity disable
+ether 16 lldp info mac-phy-configuration-status disable
+ether 16 lldp info power-via-mdi disable
+ether 16 lldp info link-aggregation disable
+ether 16 lldp info maximum-frame-size disable
+ether 17 vlan untag 201
+ether 17 description et0000-09-10_CM0_MNT
+ether 17 lldp mode enable
+ether 17 lldp info port-vlan-id disable
+ether 17 lldp info port-and-protocol-vlan-id disable
+ether 17 lldp info vlan-name disable
+ether 17 lldp info protocol-identity disable
+ether 17 lldp info mac-phy-configuration-status disable
+ether 17 lldp info power-via-mdi disable
+ether 17 lldp info link-aggregation disable
+ether 17 lldp info maximum-frame-size disable
+ether 18 vlan untag 201
+ether 18 description et0000-09-10_CM1_MNT
+ether 18 lldp mode enable
+ether 18 lldp info port-vlan-id disable
+ether 18 lldp info port-and-protocol-vlan-id disable
+ether 18 lldp info vlan-name disable
+ether 18 lldp info protocol-identity disable
+ether 18 lldp info mac-phy-configuration-status disable
+ether 18 lldp info power-via-mdi disable
+ether 18 lldp info link-aggregation disable
+ether 18 lldp info maximum-frame-size disable
+ether 19 lldp mode enable
+ether 19 lldp info port-vlan-id disable
+ether 19 lldp info port-and-protocol-vlan-id disable
+ether 19 lldp info vlan-name disable
+ether 19 lldp info protocol-identity disable
+ether 19 lldp info mac-phy-configuration-status disable
+ether 19 lldp info power-via-mdi disable
+ether 19 lldp info link-aggregation disable
+ether 19 lldp info maximum-frame-size disable
+ether 20 lldp mode enable
+ether 20 lldp info port-vlan-id disable
+ether 20 lldp info port-and-protocol-vlan-id disable
+ether 20 lldp info vlan-name disable
+ether 20 lldp info protocol-identity disable
+ether 20 lldp info mac-phy-configuration-status disable
+ether 20 lldp info power-via-mdi disable
+ether 20 lldp info link-aggregation disable
+ether 20 lldp info maximum-frame-size disable
+ether 21 lldp mode enable
+ether 21 lldp info port-vlan-id disable
+ether 21 lldp info port-and-protocol-vlan-id disable
+ether 21 lldp info vlan-name disable
+ether 21 lldp info protocol-identity disable
+ether 21 lldp info mac-phy-configuration-status disable
+ether 21 lldp info power-via-mdi disable
+ether 21 lldp info link-aggregation disable
+ether 21 lldp info maximum-frame-size disable
+ether 22 lldp mode enable
+ether 22 lldp info port-vlan-id disable
+ether 22 lldp info port-and-protocol-vlan-id disable
+ether 22 lldp info vlan-name disable
+ether 22 lldp info protocol-identity disable
+ether 22 lldp info mac-phy-configuration-status disable
+ether 22 lldp info power-via-mdi disable
+ether 22 lldp info link-aggregation disable
+ether 22 lldp info maximum-frame-size disable
+ether 23 lldp mode enable
+ether 23 lldp info port-vlan-id disable
+ether 23 lldp info port-and-protocol-vlan-id disable
+ether 23 lldp info vlan-name disable
+ether 23 lldp info protocol-identity disable
+ether 23 lldp info mac-phy-configuration-status disable
+ether 23 lldp info power-via-mdi disable
+ether 23 lldp info link-aggregation disable
+ether 23 lldp info maximum-frame-size disable
+ether 24 lldp mode enable
+ether 24 lldp info port-vlan-id disable
+ether 24 lldp info port-and-protocol-vlan-id disable
+ether 24 lldp info vlan-name disable
+ether 24 lldp info protocol-identity disable
+ether 24 lldp info mac-phy-configuration-status disable
+ether 24 lldp info power-via-mdi disable
+ether 24 lldp info link-aggregation disable
+ether 24 lldp info maximum-frame-size disable
+ether 25 lldp mode enable
+ether 25 lldp info port-vlan-id disable
+ether 25 lldp info port-and-protocol-vlan-id disable
+ether 25 lldp info vlan-name disable
+ether 25 lldp info protocol-identity disable
+ether 25 lldp info mac-phy-configuration-status disable
+ether 25 lldp info power-via-mdi disable
+ether 25 lldp info link-aggregation disable
+ether 25 lldp info maximum-frame-size disable
+ether 26 lldp mode enable
+ether 26 lldp info port-vlan-id disable
+ether 26 lldp info port-and-protocol-vlan-id disable
+ether 26 lldp info vlan-name disable
+ether 26 lldp info protocol-identity disable
+ether 26 lldp info mac-phy-configuration-status disable
+ether 26 lldp info power-via-mdi disable
+ether 26 lldp info link-aggregation disable
+ether 26 lldp info maximum-frame-size disable
+ether 27 lldp mode enable
+ether 27 lldp info port-vlan-id disable
+ether 27 lldp info port-and-protocol-vlan-id disable
+ether 27 lldp info vlan-name disable
+ether 27 lldp info protocol-identity disable
+ether 27 lldp info mac-phy-configuration-status disable
+ether 27 lldp info power-via-mdi disable
+ether 27 lldp info link-aggregation disable
+ether 27 lldp info maximum-frame-size disable
+ether 28 lldp mode enable
+ether 28 lldp info port-vlan-id disable
+ether 28 lldp info port-and-protocol-vlan-id disable
+ether 28 lldp info vlan-name disable
+ether 28 lldp info protocol-identity disable
+ether 28 lldp info mac-phy-configuration-status disable
+ether 28 lldp info power-via-mdi disable
+ether 28 lldp info link-aggregation disable
+ether 28 lldp info maximum-frame-size disable
+ether 29 lldp mode enable
+ether 29 lldp info port-vlan-id disable
+ether 29 lldp info port-and-protocol-vlan-id disable
+ether 29 lldp info vlan-name disable
+ether 29 lldp info protocol-identity disable
+ether 29 lldp info mac-phy-configuration-status disable
+ether 29 lldp info power-via-mdi disable
+ether 29 lldp info link-aggregation disable
+ether 29 lldp info maximum-frame-size disable
+ether 30 lldp mode enable
+ether 30 lldp info port-vlan-id disable
+ether 30 lldp info port-and-protocol-vlan-id disable
+ether 30 lldp info vlan-name disable
+ether 30 lldp info protocol-identity disable
+ether 30 lldp info mac-phy-configuration-status disable
+ether 30 lldp info power-via-mdi disable
+ether 30 lldp info link-aggregation disable
+ether 30 lldp info maximum-frame-size disable
+ether 31 lldp mode enable
+ether 31 lldp info port-vlan-id disable
+ether 31 lldp info port-and-protocol-vlan-id disable
+ether 31 lldp info vlan-name disable
+ether 31 lldp info protocol-identity disable
+ether 31 lldp info mac-phy-configuration-status disable
+ether 31 lldp info power-via-mdi disable
+ether 31 lldp info link-aggregation disable
+ether 31 lldp info maximum-frame-size disable
+ether 32 lldp mode enable
+ether 32 lldp info port-vlan-id disable
+ether 32 lldp info port-and-protocol-vlan-id disable
+ether 32 lldp info vlan-name disable
+ether 32 lldp info protocol-identity disable
+ether 32 lldp info mac-phy-configuration-status disable
+ether 32 lldp info power-via-mdi disable
+ether 32 lldp info link-aggregation disable
+ether 32 lldp info maximum-frame-size disable
+ether 33 lldp mode enable
+ether 33 lldp info port-vlan-id disable
+ether 33 lldp info port-and-protocol-vlan-id disable
+ether 33 lldp info vlan-name disable
+ether 33 lldp info protocol-identity disable
+ether 33 lldp info mac-phy-configuration-status disable
+ether 33 lldp info power-via-mdi disable
+ether 33 lldp info link-aggregation disable
+ether 33 lldp info maximum-frame-size disable
+ether 34 lldp mode enable
+ether 34 lldp info port-vlan-id disable
+ether 34 lldp info port-and-protocol-vlan-id disable
+ether 34 lldp info vlan-name disable
+ether 34 lldp info protocol-identity disable
+ether 34 lldp info mac-phy-configuration-status disable
+ether 34 lldp info power-via-mdi disable
+ether 34 lldp info link-aggregation disable
+ether 34 lldp info maximum-frame-size disable
+ether 35 lldp mode enable
+ether 35 lldp info port-vlan-id disable
+ether 35 lldp info port-and-protocol-vlan-id disable
+ether 35 lldp info vlan-name disable
+ether 35 lldp info protocol-identity disable
+ether 35 lldp info mac-phy-configuration-status disable
+ether 35 lldp info power-via-mdi disable
+ether 35 lldp info link-aggregation disable
+ether 35 lldp info maximum-frame-size disable
+ether 36 lldp mode enable
+ether 36 lldp info port-vlan-id disable
+ether 36 lldp info port-and-protocol-vlan-id disable
+ether 36 lldp info vlan-name disable
+ether 36 lldp info protocol-identity disable
+ether 36 lldp info mac-phy-configuration-status disable
+ether 36 lldp info power-via-mdi disable
+ether 36 lldp info link-aggregation disable
+ether 36 lldp info maximum-frame-size disable
+ether 37 lldp mode enable
+ether 37 lldp info port-vlan-id disable
+ether 37 lldp info port-and-protocol-vlan-id disable
+ether 37 lldp info vlan-name disable
+ether 37 lldp info protocol-identity disable
+ether 37 lldp info mac-phy-configuration-status disable
+ether 37 lldp info power-via-mdi disable
+ether 37 lldp info link-aggregation disable
+ether 37 lldp info maximum-frame-size disable
+ether 38 lldp mode enable
+ether 38 lldp info port-vlan-id disable
+ether 38 lldp info port-and-protocol-vlan-id disable
+ether 38 lldp info vlan-name disable
+ether 38 lldp info protocol-identity disable
+ether 38 lldp info mac-phy-configuration-status disable
+ether 38 lldp info power-via-mdi disable
+ether 38 lldp info link-aggregation disable
+ether 38 lldp info maximum-frame-size disable
+ether 39 lldp mode enable
+ether 39 lldp info port-vlan-id disable
+ether 39 lldp info port-and-protocol-vlan-id disable
+ether 39 lldp info vlan-name disable
+ether 39 lldp info protocol-identity disable
+ether 39 lldp info mac-phy-configuration-status disable
+ether 39 lldp info power-via-mdi disable
+ether 39 lldp info link-aggregation disable
+ether 39 lldp info maximum-frame-size disable
+ether 40 lldp mode enable
+ether 40 lldp info port-vlan-id disable
+ether 40 lldp info port-and-protocol-vlan-id disable
+ether 40 lldp info vlan-name disable
+ether 40 lldp info protocol-identity disable
+ether 40 lldp info mac-phy-configuration-status disable
+ether 40 lldp info power-via-mdi disable
+ether 40 lldp info link-aggregation disable
+ether 40 lldp info maximum-frame-size disable
+ether 41 vlan tag 22,201-202,301-302
+ether 41 description sw0000-08-24_3port
+ether 41 lldp mode enable
+ether 41 lldp info port-vlan-id disable
+ether 41 lldp info port-and-protocol-vlan-id disable
+ether 41 lldp info vlan-name disable
+ether 41 lldp info protocol-identity disable
+ether 41 lldp info mac-phy-configuration-status disable
+ether 41 lldp info power-via-mdi disable
+ether 41 lldp info link-aggregation disable
+ether 41 lldp info maximum-frame-size disable
+ether 42 lldp mode enable
+ether 42 lldp info port-vlan-id disable
+ether 42 lldp info port-and-protocol-vlan-id disable
+ether 42 lldp info vlan-name disable
+ether 42 lldp info protocol-identity disable
+ether 42 lldp info mac-phy-configuration-status disable
+ether 42 lldp info power-via-mdi disable
+ether 42 lldp info link-aggregation disable
+ether 42 lldp info maximum-frame-size disable
+ether 43 lldp mode enable
+ether 43 lldp info port-vlan-id disable
+ether 43 lldp info port-and-protocol-vlan-id disable
+ether 43 lldp info vlan-name disable
+ether 43 lldp info protocol-identity disable
+ether 43 lldp info mac-phy-configuration-status disable
+ether 43 lldp info power-via-mdi disable
+ether 43 lldp info link-aggregation disable
+ether 43 lldp info maximum-frame-size disable
+ether 44 lldp mode enable
+ether 44 lldp info port-vlan-id disable
+ether 44 lldp info port-and-protocol-vlan-id disable
+ether 44 lldp info vlan-name disable
+ether 44 lldp info protocol-identity disable
+ether 44 lldp info mac-phy-configuration-status disable
+ether 44 lldp info power-via-mdi disable
+ether 44 lldp info link-aggregation disable
+ether 44 lldp info maximum-frame-size disable
+stp mode disable
+lan 2 ip address 10.1.2.31/22 3
+lan 2 ip route 0 default 10.1.2.220 1 1
+lan 2 vlan 201
+lan 3 ip address 10.1.6.31/22 3
+lan 3 vlan 202
+lan 4 ip address 10.2.2.177/22 3
+lan 4 vlan 301
+lan 5 ip address 10.2.6.177/22 3
+lan 5 vlan 302
+snmp service on
+snmp agent sysname sw0000-09-44
+snmp agent address 10.1.2.31
+snmp manager 0 10.0.3.7 T2soP9Rw v1 enable
+snmp manager 1 10.0.3.7 T1soP9Ro v1 disable
+snmp manager 2 10.3.0.142 T2soP9Rw v1 enable
+snmp manager 3 10.3.0.142 T1soP9Ro v1 disable
+snmp manager 4 10.0.7.7 T2soP9Rw v1 enable
+snmp manager 5 10.0.7.7 T1soP9Ro v1 disable
+snmp manager 6 10.3.0.131 T1soP9Ro v2c disable
+snmp manager 7 172.16.1.54 T1soP9Ro v2c disable
+syslog server 0 address 10.0.3.7
+syslog pri error,warn,notice,info
+syslog facility 23
+time auto server 10.1.2.220 sntp
+time auto interval 20m
+time zone 0900
+consoleinfo autologout 5m
+telnetinfo autologout 5m
+sysname sw0000-09-44
+terminal pager enable
+terminal charset SJIS
+alias history "show logging command brief"
+eof

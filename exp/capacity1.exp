@@ -1,0 +1,32 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set server [lindex $argv 0]
+
+log_user 0
+island_login $server
+
+set timeout -1
+send -- "/opt/FJSVrcvmr/bin/rcxadm lserver list -verbose\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re ".*\n" {
+		send_user -- "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send -- "/opt/FJSVcsm/bin/csmpool --info --pool pool01\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re ".*\n" {
+		send_user -- "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send -- "exit\n"
+expect eof
+log_user 1

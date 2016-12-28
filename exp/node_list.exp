@@ -1,0 +1,17 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set island [lindex $argv 0]
+
+log_user 0
+if { $island == "all" } {
+	mgtcb_login "cb-cmgr-zentai";
+} else {
+	island_login "$island-sl"
+}
+
+stdout "/opt/FJSVfwnm/bin/mpmonstat -f /dev/stdout"
+send -- "exit\n"
+

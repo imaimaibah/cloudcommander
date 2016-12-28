@@ -1,0 +1,50 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+set vsysId [lindex $argv 0]
+regexp -- {^[A-Z0-9]{8}} $vsysId orgId
+log_user 0
+set timeout 90
+set server vsys-db
+set kind /var/tmp/vsys-db_sql-info_$vsysId.txt
+
+trap {} {SIGHUP}
+
+island_login $server
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop\n"
+expect "mysql> " 
+send -- "tee $kind;\n"
+expect "mysql> "
+send -- "select * from instance where vsys_id = '$vsysId';\n"
+expect "mysql> "
+send -- "select * from `server#instance` where vsys_id = '$vsysId';\n"
+expect "mysql> "
+send -- "select * from `vnet#instance` where vsys_id = '$vsysId';\n"
+expect "mysql> "
+send -- "select * from `vnic#instance` where vsys_id = '$vsysId';\n"
+expect "mysql> "
+send -- "select * from `vdisk#instance` where vsys_id = '$vsysId';\n"
+expect "mysql> "
+send -- "select * from `gip#instance` where vsys_id = '$vsysId';\n"
+expect "mysql> "
+send -- "select * from `config_task_seq` where vsys_id = '$vsysId';\n"
+expect "mysql> "
+send -- "select * from task where org_id = '$orgId';\n"
+expect "mysql> "
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect -re $prompt
+
+spawn /bin/bash
+expect -re $prompt
+send -- "rm -f /data/download/vsys-db_sql-info*\n"
+expect -re $prompt
+send -- "$base_dir/exp/log_collect/transfer_file.exp $server $kind\n"
+expect -re $prompt
+island_login $server
+send -- "rm -f $kind\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

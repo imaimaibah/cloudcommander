@@ -1,0 +1,35 @@
+#!/usr/bin/expect
+
+### VERSION 1.0 ###
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set contractid [lindex $argv 0]
+
+set server "vsys-db"
+
+log_user 0
+
+# vsys-dbにログインしデータベースにアクセス
+mgtcb_login $server
+
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p sop\n"
+expect "Enter password:" {
+	send -- "mtm!0256\n"
+}
+
+expect -re $prompt
+
+# 対象のcontractidのvnet_idを取得
+
+if { $contractid == "all" } {
+  stdout "SELECT i.vsys_id, i.resource_id, v.vnet_id FROM (select * from instance where status ='NORMAL') i left join `vnet#instance` v on i.vsys_id = v.vsys_id WHERE v.network_category = 'INTRANET';"
+} else {
+  stdout "SELECT i.vsys_id, i.resource_id, v.vnet_id FROM  (select * from instance where status ='NORMAL' and org_id ='$contractid' limit 1) i left join `vnet#instance` v on i.vsys_id = v.vsys_id WHERE v.network_category = 'INTRANET';"
+}
+
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

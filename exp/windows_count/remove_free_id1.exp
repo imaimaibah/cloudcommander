@@ -1,0 +1,54 @@
+#!/usr/bin/expect -f
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set year [lindex $argv 0]
+set month [lindex $argv 1]
+
+set path_ee /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_Windows_Server_Enterprise_Edition.csv
+set path_se /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_Windows_Server_Standard_Edition.csv
+set path_ee_sql /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_SQL_Server_Enterprise_Edition.csv
+set path_se_sql /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_SQL_Server_Standard_Edition.csv
+
+set file_ee /tmp/windows_license_ee.csv
+set file_se /tmp/windows_license_se.csv
+set file_ee_sql /tmp/sql_license_ee.csv
+set file_se_sql /tmp/sql_license_se.csv
+
+set file_ee_free /tmp/windows_license_ee_free.csv
+set file_se_free /tmp/windows_license_se_free.csv
+set file_ee_sql_free /tmp/sql_license_ee_free.csv
+set file_se_sql_free /tmp/sql_license_se_free.csv
+
+set all_id1 /data/cgi-bin/billing_system_honbandesu/tables/host_lead*.table
+set free_id2 /root/free_id.txt
+
+set timeout 15
+#log_user 0
+
+# Check the contract ID based on free/charge/MID base (for Windows/SQL). 
+# MID contract IDs are exclded.
+
+spawn /bin/bash
+expect -re $prompt
+send -- "egrep '.*,.*,\[A-Z\]{2}0\[0-9\]{1},\[A-Z\]{2}0\[0-9\]{1},\[01\],0,' $all_id1 | cut -d ',' -f2 | sort | uniq > $free_id2 \n"
+expect -re $prompt
+send -- "grep -v -f $free_id2 $path_ee | grep island | cut -d ',' -f2- | sort | uniq > $file_ee \n"
+expect -re $prompt
+send -- "grep -v -f $free_id2 $path_se | grep island | cut -d ',' -f2- | sort | uniq > $file_se \n"
+expect -re $prompt
+send -- "grep -v -f $free_id2 $path_ee_sql | grep island | cut -d ',' -f2- | sort | uniq > $file_ee_sql \n"
+expect -re $prompt
+send -- "grep -v -f $free_id2 $path_se_sql | grep island | cut -d ',' -f2- | sort | uniq > $file_se_sql \n"
+expect -re $prompt
+send -- "grep -f $free_id2 $path_ee | cut -d ',' -f2- | sort | uniq > $file_ee_free \n"
+expect -re $prompt
+send -- "grep -f $free_id2 $path_se | cut -d ',' -f2- | sort | uniq > $file_se_free \n"
+expect -re $prompt
+send -- "grep -f $free_id2 $path_ee_sql | cut -d ',' -f2- | sort | uniq > $file_ee_sql_free \n"
+expect -re $prompt
+send -- "grep -f $free_id2 $path_se_sql | cut -d ',' -f2- | sort | uniq > $file_se_sql_free \n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

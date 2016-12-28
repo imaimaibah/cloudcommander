@@ -1,0 +1,39 @@
+#!/bin/bash
+
+if [ "$1" == "" ];then
+	echo "Dom0 is not specified"
+	exit
+fi
+
+EXPECT_START=`awk '/^__EXPECT__$/ {print NR;exit}' "$0"`
+DATA_START=`awk '/^__DATA__$/ {print NR;exit}' "$0"`
+TEMP=`mktemp`
+
+(echo "set server $1;";echo "set FILE $0;";echo "set DATA_START $DATA_START;";awk 'NR>'"$EXPECT_START"' && NR<'"$DATA_START"' {print;}' $0;) > $TEMP
+
+expect $TEMP
+
+rm -f $TEMP
+
+exit 0
+__EXPECT__
+source "/usr/local/2nd_tools/lib/env.exp";
+source "$base_dir/lib/func.exp"
+
+if { $server == "" } {
+	puts "Dom0 is not specified";
+	exit;
+} 
+
+send_user "Start $server\n";
+
+set timeout -1;
+
+log_user 1;
+dom0_login $server;
+send -- "xm list\n";
+expect -re $prompt;
+send -- "exit\n";
+expect eof;
+send_user "End\n";
+__DATA__

@@ -1,0 +1,23 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set day [lindex $argv 0]
+
+set server "vsys-db"
+
+log_user 0
+mgtcb_login $server
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p sop\n"
+expect "Enter password:" {
+	send -- "mtm!0256\n"
+}
+
+expect -re $prompt
+
+stdout "select vsys_id,gip,status,from_unixtime(update_date/1000) from `gip#instance` where status = 'UNDEPLOY' and update_date > unix_timestamp('$day 00:00:00')*1000 and update_date < unix_timestamp('$day 23:59:59')*1000+999;"
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

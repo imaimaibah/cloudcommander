@@ -1,0 +1,76 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+set domu [lindex $argv 0]
+if { $domu == "" } {
+	exit 1;
+}
+log_user 1;
+spawn ssh -l root islanda-cbrm
+expect "password" {
+	send -- "sv@01011\n"
+} "yes/no" {
+	send -- "yes\n"
+	expect "password"
+	send -- "sv@01011\n"
+} timeout {
+	send_user -- "TIMEOUT\n"
+	exit 1
+}
+
+expect -re $prompt
+if { [lindex $argv 1] == "" } {
+set i 0
+array set disk ""
+send -- "/opt/FJSVrcvmr/bin/rcxadm lserver show -name $domu\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re "<DiskLink name=\"(.*?)\"  id=.*" {
+		array set disk "$i '$expect_out(1,string)'"
+		incr i 1
+	} -re $prompt {
+		break
+	}
+}
+set l $i
+incr l -1
+while { $l >= 0 } {
+	send -- "/opt/FJSVrcvmr/bin/rcxadm disk show -name $disk($l)\n"
+	expect -re ".*?\n"
+	while {1} {
+		expect -re "external_identifier: \"(.*?)\"," {
+			array set ext "$l $expect_out(1,string)\n"
+		} -re $prompt {
+			break
+		}
+	}
+	incr l -1
+}
+
+set m $i
+incr m -1
+} else {
+	array set ext "0 $domu"
+	set m 0
+}
+set l 0
+while { $m >= 0 } {
+	send -- "/opt/FJSVcsm/bin/csmslice --info --vdisk $ext($m) --pool pool01 --list segment\n"
+	expect -re ".*?\n"
+	while {1} {
+		expect -re "<provider>(.*?)</provider>" {
+			array set provider "$l $expect_out(1,string)"
+			incr l 1
+		} -re $prompt {
+			break
+		}
+	}
+	incr m -1
+}
+for { set i 0 } { $i < $l } { incr i 1 } {
+	send_user -- "$provider($i)\n"
+}
+send -- "exit\n"
+expect eof
+log_user 1
+exit 0

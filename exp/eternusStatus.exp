@@ -1,0 +1,10 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set eternus [lindex $argv 0]
+
+set prompt "CLI> "
+eternus_login "$eternus"
+stdout "show enclosure-status"

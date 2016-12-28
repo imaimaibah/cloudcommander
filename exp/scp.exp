@@ -1,0 +1,24 @@
+#!/usr/bin/expect
+
+set server [lindex $argv 0]
+set password [lindex $argv 1]
+set src [lindex $argv 2]
+set dst [lindex $argv 3]
+set prompt "(#|\\$) $"
+
+log_user 0
+spawn scp $src root@$server:$dst
+expect "password" {
+	send -- "$password\r"
+} "yes/no" {
+	send -- "yes\r"
+	expect "password"
+	send -- "$password\r"
+} timeout {
+	send_user "TIMEOUT\n"
+	exit
+} eof {
+	send_user "FAILED\n"
+	exit
+}
+expect eof

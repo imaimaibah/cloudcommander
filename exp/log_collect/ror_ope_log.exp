@@ -1,0 +1,36 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set island [lindex $argv 0]
+	if {$island == "region"} {
+		set server region-cbrm-image
+	} else {
+		set server $island-cbrm
+	}
+
+log_user 0
+set timeout 90
+set kind /DB/tmp/$server\_operationlog.tar.bz2
+set kind2 /data/download/$server\_operationlog.tar.bz2
+
+trap {} {SIGHUP} 
+
+island_login $server
+send --  "tar zcf $kind /var/opt/FJSVrcvmr/operation/\n"
+expect -re $prompt 
+send -- "exit\n"
+expect -re $prompt
+
+spawn /bin/bash
+expect -re $prompt 
+send -- "rm -f $kind2\n"
+expect -re $prompt
+send -- "$base_dir/exp/log_collect/transfer_file.exp $server $kind\n"
+expect -re $prompt
+island_login $server
+send -- "rm -f $kind\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

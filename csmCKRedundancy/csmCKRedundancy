@@ -1,0 +1,499 @@
+#!/bin/bash
+
+TARGET_FILES_MSG=`ls -r /var/log/messages*`
+TARGET_FILES_CPLOG="/var/opt/FJSVsdx/SVE/log/svelog.0 /var/opt/FJSVsdx/SVE/log/copylog.0"
+TARGET_SVELOG="/var/opt/FJSVsdx/SVE/log/svelog.0"
+
+# ログ中にコピーの処理が沢山ある場合には引数が長くなりすぎるので、処理
+# をいくつかのブロックに分けて実施する必要がある。このとき、1回の処理で
+# 処理するログの数を設定する。
+OPE_LINES=200
+
+CMD_NAME=$0
+
+usage() {
+  echo "Usage:"
+  echo " ${CMD_NAME} {-l|--error-list|-r|--recover-info} [--detail] [files]"
+  echo
+  echo " option:"
+  echo "   -l, --error-list :"
+  echo "          エラーが発生した VDISK 一覧の表示"
+  echo "        このオプションを指定するときにはサブオプションとして"
+  echo "        --detail もしくは --lun を指定することができる。"
+  echo "        --detail を指定した場合にはエラーを検出した際のアクセスタ"
+  echo "        イプを表示する。"
+  echo "        --lun を指定した場合にはエラーが発生した LUN とオフセット"
+  echo "        情報を表示する。"
+  echo "   -r, --recover-info :"
+  echo "          冗長化回復情報の表示"
+  echo "   files :"
+  echo "          解析対象のログを変更する場合に指定する。調査資料から状況"
+  echo "          を確認する場合に指定。"
+  echo "          指定がない場合は CSM が標準で出力するファイルを解析対象"
+  echo "          とする。"
+  exit 22
+} 
+
+error_state_check() {
+  gawk '
+# I/O エラーを検出した時のメッセージが出力されている
+/FSP_FJSVCSM.*: ERROR: 24087:/{
+  for ( i = 1; i <= NF; i++ ){
+    if ( $i ~/^VDISKID/ ){
+      split( $i, vdisk, "=" )
+    }
+    else if ( $i ~/^SERVERID/){
+      split( $i, server, "=" )
+    }
+    else if ( $i ~/^LUNNAME/){
+      split( $i, lunname, "=" )
+    }
+    else if ( $i ~/^SECTOR/){
+      split( $i, sector, "=" )
+    }
+  }
+  lun_sector = sprintf( "%s=%s", lunname[2], sector[2] )
+  if ( errored[vdisk[2]] ~ /^DET=/ ){
+# 同じ VDISK で連続してエラーのメッセージが出力されているときはサーバを追記
+    if ( errored[vdisk[2]] !~ server[2] ){
+# 同じサーバ情報があるときは冗長な情報なので追記しない
+      errored[vdisk[2]] = sprintf( "%s,%s", errored[vdisk[2]], server[2] )
+    }
+  }
+  else if ( errored[vdisk[2]] !~ /^ERR=/ ){
+# リカバリ処理が動いた後にエラーを検出した場合はリカバリ処理が動作して
+# ない可能性があるので情報をリセット
+# エラーの場合は情報を上書きしない
+    errored[vdisk[2]] = sprintf( "DET=%s-%s-%s on %s", $1,$2,$3, server[2] )
+  }
+  if ( vdisk[2] in detailinfo ){
+# 別のセクタでエラーが検出されている時は追記
+    detailinfo[vdisk[2]] = sprintf( "%s,%s", detailinfo[vdisk[2]], lun_sector )
+  }
+  else {
+# 初出
+    detailinfo[vdisk[2]] = lun_sector
+  }
+}
+# 縮退運転になった時のメッセージが出力されている
+/FSP_FJSVCSM.*: ERROR: 24092:/{
+  for ( i = 1; i <= NF; i++ ){
+    if ( $i ~/VDISKID/ ){
+      split( $i, vdisk, "=" );
+      break
+    }
+  }
+  if ( errored[vdisk[2]] == "" ){
+# ログの都合上、エラー検出のログが流れていた
+    errored[vdisk[2]] = sprintf( "RED=%s-%s-%s", $1,$2,$3 )
+  }
+  else if ( errored[vdisk[2]] !~ /^ERR=/ ){
+# VDISKへの I/O がエラーとなっていた場合のメッセージの方が優先
+# それ以外はメッセージヘッダを上書き
+    sub( "DET=", "RED=", errored[vdisk[2]] )
+  }
+}
+# VDISKへの I/O がエラーとなった時のメッセージが出力されている
+/FSP_FJSVCSM.*: ERROR: 24090:/{
+  for ( i = 1; i <= NF; i++ ){
+    if ( $i ~/^VDISKID/ ){
+      split( $i, vdisk, "=" );
+    }
+    else if ( $i ~/^SERVERID/){
+      split( $i, server, "=" )
+    }
+  }
+  if ( errored[vdisk[2]] !~ /^ERR=/ ){
+# VDISKの I/O がエラーでなかった場合はメッセージを上書き
+    errored[vdisk[2]] = sprintf( "ERR=%s-%s-%s on %s", $1,$2,$3, server[2] )
+  }
+  else {
+# 既に VDISK への I/O エラーを検出していた時の処理
+    if ( errored[vdisk[2]] !~ server[2] ){
+# 別の配備サーバでエラーが発生している場合にはサーバを追記
+# 同じ配備サーバ上であれば情報が冗長になるので処理しない
+      errored[vdisk[2]] = sprintf( "%s,%s", errored[vdisk[2]], server[2] )
+    }
+  }
+}
+# リカバリが完了したメッセージが出力されている
+/FSP_FJSVCSM.*: INFO: 24093:/{
+  for ( i = 1; i <= NF; i++ ){
+    if ( $i ~/VDISKID/ ){
+      split( $i, vdisk, "=" );
+      break
+    }
+  }
+  if ( errored[vdisk[2]] == "" ){
+# ログの都合上、エラー検出のログが流れていた
+    errored[vdisk[2]] = sprintf( "NML=%s-%s-%s", $1,$2,$3 )
+  }
+  else if ( errored[vdisk[2]] !~ /^ERR=/ ){
+# VDISKへの I/O がエラーとなっていた場合のメッセージの方が優先
+# それ以外はメッセージヘッダを上書き
+    sub( "(DET=)|(RED=)", "NML=", errored[vdisk[2]] )
+    errored[vdisk[2]] = sprintf( "%s END=%s-%s-%s", errored[vdisk[2]], $1,$2,$3 )
+  }
+}
+END{
+  for ( i in errored ){
+    print i, errored[i], "(", detailinfo[i], ")"
+  }
+}
+' $* | sed "s/'//g"
+}
+
+event_catch() {
+  gawk '
+function get_value(v_str) {
+  split( v_str, values, "=" )
+  return values[2]
+}
+/procedureName=diskIOError/{
+  for ( i = 1; i <= NF; i++ ){
+    if ( $i ~/^errorSectorOffset/ ){
+      e_sect = get_value( $i )
+      gsub( ",|}", "", e_sect )
+    }
+    else if ( $i ~/^devicePath/ ){
+      e_lun = get_value( $i )
+      gsub( ",|}", "", e_lun )
+    }
+    else if ( $i ~/^volumeName/ ){
+      e_vol = get_value( $i )
+      gsub( ",|}", "", e_vol )
+    }
+  }
+  if ( e_lun ~/\/dev\/mapper\/CSM/ ){
+# device mapper のデバイスは対象外
+    next
+  }
+  e_key = sprintf("%s_%s_%s", e_sect, e_lun, e_vol )
+  sub(":SVE", "", $2 )
+  detect[e_key] = sprintf( "%s-%s", $1, $2 )
+}
+/DiskIOErrorJob volumeIOResume kicked/{
+  for ( i = 1; i <= NF; i++ ){
+    if ( $i ~/^volumeName/ ){
+      e_vol = get_value( $i )
+    }
+    else if ( $i ~/^devicePath/ ){
+      e_lun = get_value( $i )
+    }
+    else if ( $i ~/errorSectorOffset/ ){
+      e_sect = get_value( $i )
+    }
+    else if ( $i ~/^segmentSetIndex/ ){
+      seg_S_idx = get_value( $i )
+    }
+    else if ( $i ~/^segmentGrpIndex/ ){
+      seg_G_idx = get_value( $i )
+    }
+    else if ( $i ~/^segmentIndexInGrp/ ){
+      seg_I_Grp = get_value( $i )
+    }
+  }
+  if ( e_lun ~/\/dev\/mapper\/CSM/ ){
+# device mapper のデバイスは対象外
+    next
+  }
+  e_key = sprintf("%s_%s_%s", e_sect, e_lun, e_vol )
+  sub( ":SVE", "", $2 )
+  if ( e_key in detect ){
+    printf("%s", detect[e_key] )
+  }
+  else {
+# ログが既に流れていた
+    printf("-")
+  }
+  printf( ",%s-%s,%s,%s,%s,%s,%s\n", $1, $2, e_vol, e_lun, seg_S_idx, seg_G_idx, seg_I_Grp )
+}' $1
+}
+
+copy_info_sub() {
+  gawk -v detect_list=$1 '
+BEGIN{
+  n = split( detect_list, detect, "!" )
+  for ( i = 1; i <= n; i++ ){
+    split( detect[i], elms, "," )
+# key のフォーマットは volID,segmentset,segmentgrp,segmentgrpIDX
+    t_key = sprintf( "%s,%s,%s,%s", elms[3], elms[5], elms[6], elms[7] )
+# value のフォーマットは LUN,error,recoverstart
+    t_val = sprintf( "%s,%s,%s", elms[4], elms[1], elms[2] )
+    times[t_key] = t_val
+  }
+}
+function get_value(v_str) {
+  split( v_str, values, "=" )
+  gsub( ",|}", "", values[2] )
+  return values[2]
+}
+/ENTERING: CopyManager#registerRedundancyRecoverCopyStart/{
+  for ( i = 1; i <= NF; i++ ){
+     if ( $i ~/^SLICE_ID/ ){
+       k_vol = get_value( $i )
+     }
+     else if ( $i ~/^SEGMENT_SET/ ){
+       k_segset = get_value( $i )
+     }
+     else if ( $i ~/^SEGMENT_GROUP/ ){
+       k_seggrp = get_value( $i )
+     }
+     else if ( $i ~/^INDEX_IN_SEGMENT_GROUP/ ){
+       k_segidx = get_value( $i )
+     }
+     else if ( $i ~/^serverId/ ){
+       v_server = get_value( $i )
+     }
+  }
+  v_key = sprintf( "%s,%s,%s,%s", k_vol, k_segset, k_seggrp, k_segidx )
+  if ( v_key in times ) {
+    sub( ":COPY:", "", $2 )
+    t_start[v_key] = sprintf( "%s,%s-%s", v_server, $1, $2 )
+  }
+}
+/Pseud disconnect SUCCESS/{
+  for ( i = 1; i <= NF; i++ ){
+     if ( $i ~/^SLICE_ID/ ){
+       k_vol = get_value( $i )
+     }
+     else if ( $i ~/^SEGMENT_SET/ ){
+       k_segset = get_value( $i )
+     }
+     else if ( $i ~/^SEGMENT_GROUP/ ){
+       k_seggrp = get_value( $i )
+     }
+     else if ( $i ~/^INDEX_IN_SEGMENT_GROUP/ ){
+       k_segidx = get_value( $i )
+     }
+     else if ( $i ~/^serverId/ ){
+       v_server = get_value( $i )
+     }
+  }
+  v_key = sprintf( "%s,%s,%s,%s", k_vol, k_segset, k_seggrp, k_segidx )
+  if ( (v_key in t_start)||(v_key in times) ) {
+# t_start の配列に v_key がなくて、times に v_key があるという状況は
+# 開始のログが流れてしまっている場合
+    sub( ":COPY:", "", $2 )
+    t_finish[v_key] = sprintf( "%s,%s-%s", v_server, $1, $2 )
+  }
+}
+END {
+  for ( key in times ) {
+    if ( key in t_start ){
+      split( t_start[key], elm, "," )
+      c_server = elm[1]
+      s_time = elm[2]
+    }
+    else {
+      c_server = ""
+      s_time = "-"
+    }
+    if ( key in t_finish ){
+      split( t_finish[key], elm, "," )
+      if ( c_server == "" ){
+        c_server = elm[1]
+      }
+      e_time = elm[2]
+    }
+    else {
+# c_server に何も値が入ってないときは c_server = "" とする意味は無い
+# c_server に何か値が入っているときは c_server = "" としてはいけない
+# なのでここでは c_server の値は変更しなくて良い
+      e_time = "-"
+    }
+    printf( "%s,%s,%s,%s\n", times[key], s_time, e_time, c_server )
+  }
+}' $2 | sed -e 's/\[//g' -e 's/\]//g'
+}
+
+copy_info() {
+  infile=$1
+  lcount=0
+  ovar=""
+  while read log_one
+  do
+    if [ ${lcount} -ne 0 ]
+    then
+      ovar=${ovar}'!'
+    fi
+    ovar=${ovar}${log_one}
+    lcount=`expr ${lcount} + 1`
+    if [ ${lcount} -ge ${OPE_LINES} ]
+    then
+      copy_info_sub ${ovar} ${infile}
+      ovar=""
+      lcount=0
+    fi
+  done
+  if [ ${lcount} -ne 0 ]
+  then
+    copy_info_sub ${ovar} ${infile}
+  fi
+}
+
+recovery_state_check() {
+  event_catch $1 | copy_info $2
+# event_catch $1
+}
+
+err_detail_sub() {
+#  echo $1
+#  echo $2 |\
+  gawk -v var=$1 '
+BEGIN{
+  split(var,errinfo,"+")
+  for ( i in errinfo ){
+    split(errinfo[i],errdet,"(")
+    gsub( /\)|;/, "", errdet[2] )
+    errstat[errdet[1]] = errdet[2]
+  }
+}
+function getValue( str ) {
+  split( str, retval, "=" )
+  gsub( ",", "", retval[2] )
+  return retval[2]
+}
+function getErrType( iot, proct ) {
+  if ( proct ~/^jrm/ ){
+    return "jrm"
+  }
+  else {
+    return iot
+  }
+}
+/ioAccessType=/{
+  for ( i=1; i <= NF; i++ ){
+    if ( $i ~/ioAccessType/ ){
+      ioType=getValue( $i )
+    }
+    else if ( $i ~/^errorSectorOffset/ ){
+      sectorOffset=getValue( $i )
+    }
+    else if ( $i ~/^devicePath/ ){
+      devpath=getValue( $i )
+      if ( devpath !~/csmluns/ ){
+        next
+      }
+      sub( "/dev/csmluns/", "", devpath )
+    }
+    else if ( $i ~/^procedureName/ ){
+      procType=getValue( $i )
+    }
+  }
+  luninfo=sprintf( "%s=%s", devpath, sectorOffset )
+  for ( i in errstat ){
+    split( errstat[i], errLuns, "," )
+    for ( el in errLuns ){
+      if ( errLuns[el] == luninfo ){
+        errType=getErrType( ioType, procType )
+	if ( errState[i] == "" ){
+	  errState[i] = errType
+	}
+	else {
+          errState[i] = sprintf( "%s,%s", errState[i], errType )
+	}
+      }
+    }
+  }
+}
+END{
+  for ( i in errState ) {
+    printf( "%s (%s)\n", i, errState[i] )
+  }
+}' $2 | sed 's/;/ /g'
+}
+
+err_detail() {
+  infile=$1
+  lcount=0
+  ovar=""
+  while read log_tmp
+  do
+    log_one=`echo ${log_tmp} | sed 's/ /;/g'`
+    if [ ${lcount} -ne 0 ]
+    then
+      ovar=${ovar}'+'
+    fi
+    ovar=${ovar}${log_one}
+    lcount=`expr ${lcount} + 1`
+    if [ ${lcount} -ge ${OPE_LINES} ]
+    then
+      err_detail_sub ${ovar} ${infile}
+      ovar=""
+      lcount=0
+    fi
+  done
+  if [ ${lcount} -ne 0 ]
+  then
+    err_detail_sub ${ovar} ${infile}
+  fi
+}
+
+#if [ $# -lt 0 ]
+#then
+#  usage
+#fi
+OPT="-l"
+case $OPT in
+ -l|--error-list)
+  DETAIL=""
+  TARGET_FILES=${TARGET_FILES_MSG}  
+  if [ $# -ge 2 ]
+  then
+    if [ $2 = "--lun" ]
+    then
+      DETAIL="L"
+      if [ $# -ne 2 ]
+      then
+        shift
+        shift
+        TARGET_FILES=$*
+      fi      
+    else
+      if [ $2 = "--detail" ]
+      then
+        DETAIL="D"
+        if [ $# -ne 2 ]
+        then
+          if [ $# -eq 3 ]
+          then
+            usage
+          fi
+          TARGET_SVELOG=$3
+          shift
+          shift
+          shift
+          TARGET_FILES=$*
+        fi
+      else
+        shift
+        TARGET_FILES=$*
+      fi
+    fi
+  fi
+
+  if [ "${DETAIL}" = "D" ]
+  then
+    error_state_check ${TARGET_FILES} | err_detail ${TARGET_SVELOG}
+  elif [ "${DETAIL}" = "L" ]
+  then
+    error_state_check ${TARGET_FILES}
+  else
+    error_state_check ${TARGET_FILES} | cut -d\( -f 1
+  fi
+  ;;
+ -r|--recover-info)
+  if [ $# -ge 2 ]
+  then
+    shift
+    TARGET_FILES=$*
+  else
+    TARGET_FILES=${TARGET_FILES_CPLOG}  
+  fi
+
+  recovery_state_check ${TARGET_FILES}
+  ;;
+ *)
+  usage
+esac

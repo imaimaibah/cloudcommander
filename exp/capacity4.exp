@@ -1,0 +1,39 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+log_user 0
+mgtcb_login "vsys-db"
+set timeout -1
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop<<EOF\n"
+expect "> "
+send -- "select vsys_id,disk_size,disk_category from \\\`vdisk#instance\\\` where status = 'NORMAL';\n"
+expect "> "
+send -- "EOF\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re ".*\n" {
+		send_user "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop <<EOF\n"
+expect "> "
+send -- "select server_id,sysvol_size,'SYSVOL' from \\\`server#instance\\\` where status != 'UNDEPLOY' and status != 'UNDEPLOYING';\n"
+expect "> "
+send -- "EOF\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re ".*\n" {
+		send_user "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+log_user 1

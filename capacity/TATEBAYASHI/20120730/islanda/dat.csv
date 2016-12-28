@@ -1,0 +1,258 @@
+1.VM Usage
+,Max VMs:,2784
+,Running VMs(Economy Equivalent):,14
+,Stopped VMs(Economy Equivalent):,88
+,Deployable(Economy):,2770
+,Deployable(including stopped VMs):,2682
+,Deployed VMs:,93
+,Economy:,45
+,Standard:,5
+,Advanced:,1
+,High-perf:,2
+,Firewall:,7
+,SLB:,10
+,VSYS:,29
+
+2. Disk Usage
+,Total Disk Space(TB):,10.8
+,In Use(TB):,10.6
+,Zero Clearing(TB):,0.0
+,Free Disk Space(TB):,0.2
+,Free Disk Space(%):,1.9
+
+3. OS Usage
+Running
+,CentOS 5.4 32bit,1
+,CentOS 5.4 32bit-en,0
+,CentOS 5.4 64bit,1
+,CentOS 5.4 64bit-en,0
+,CentOS 5.5 64bit (Japanese),0
+,CentOS 5.6 32bit (English),0
+,CentOS 5.6 64bit (English),2
+,CentOS 6.0 32bit (English),0
+,CentOS 6.0 64bit (English),0
+,CentOS 6.0 64bit (Japanese) + OSS Web Platform(PHP/MySQL),0
+,CentOS 6.0 64bit (Japanese) + OSS Web Platform(PHP/PostgreSQL),0
+,CentOS 6.0 64bit (Japanese) + OSS Web Platform(Tomcat/MySQL),0
+,CentOS 6.0 64bit (Japanese) + OSS Web Platform(Tomcat/PostgreSQL),0
+,CentOS 6.2 32bit (English),0
+,CentOS 6.2 64bit (English),0
+,Firewall,2
+,OSS Web Platform(PHP/PostgreSQL),0
+,Red Hat Enterprise Linux 5.5 32bit (English) + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.5 32bit (Japanese) + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.5 64bit (English),0
+,Red Hat Enterprise Linux 5.5 64bit (English) + Symantec AntiVirus for Linux 1.0,1
+,Red Hat Enterprise Linux 5.5 64bit (Japanese) + Interstage Application Server S-JE + Symfoware Server Client + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.5 64bit (Japanese) + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.5 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Red Hat Enterprise Linux 5.5 64bit (Japanese) + Symfoware Server SE + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.7 32bit (Japanese) + Symantec AntiVirus for Linux 1.0,1
+,Red Hat Enterprise Linux 5.7 32bit simple JPN with Support,0
+,Red Hat Enterprise Linux 5.7 32bit stand JPN with Support,0
+,Red Hat Enterprise Linux 5.7 64bit (English) with Support,0
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) + NetVault Backup Client for Linux with Support + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) + NetVault Backup Server for Linux with Support + NetVault Backup SmartDisk for Linux with Support + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) + Symantec AntiVirus for Linux 1.0 + NetVault Backup Server for Linux with Support + NetVault Backup SmartDisk for Linux with Support,0
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) SELinux on + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) with Support,0
+,Red Hat Enterprise Linux 5.7 64bit simple JPN with Support,0
+,Red Hat Enterprise Linux 6.2 32bit (Japanese) + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 6.2 64bit (Japanese) + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 6.2 64bit (Japanese) SELinux on + Symantec AntiVirus for Linux 1.0,0
+,Server Load Balancer,2
+,Windows Server 2003 R2 EE 32bit (Japanese),0
+,Windows Server 2003 R2 EE 32bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 EE 32bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + Internet Information Server 6.0,0
+,Windows Server 2003 R2 EE 32bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 R2 SE (Japanese) with Support,0
+,Windows Server 2003 R2 EE 32bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese) with Support,0
+,Windows Server 2003 R2 EE 32bit SP2 (Japanese) with Support + SQLServer 2008 R2 SE (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 EE 32bit SP2 (Japanese) with Support + SQLServer 2008 SE SP1 (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 EE 32bit SP2 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 EE 32bit SP2 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + Internet Information Server 6.0,0
+,Windows Server 2003 R2 EE 32bit SP2 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + Internet Information Server 6.0,0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + Internet Information Server 6.0 + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + SQLServer 2008 R2 SE (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + SQLServer 2008 R2 SE (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + SQLServer 2008 SE SP1 (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),1
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + Internet Information Server 6.0,0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 R2 SE (Japanese) with Support,0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese) with Support,0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) with Support + Internet Information Server 6.0 + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) with Support + SQLServer 2008 SE SP1 (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),1
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + Internet Information Server 6.0,0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 R2 SE (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese),0
+,Windows Server 2008 R2 EE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 EE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + Internet Information Server 7.5,0
+,Windows Server 2008 R2 EE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 R2 EE (Japanese),0
+,Windows Server 2008 R2 EE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese),0
+,Windows Server 2008 R2 EE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 EE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + Internet Information Server 7.5,0
+,Windows Server 2008 R2 EE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 R2 SE (Japanese) with Support,0
+,Windows Server 2008 R2 EE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese) with Support,0
+,Windows Server 2008 R2 SE 32bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (English) + SQLServer 2008 R2 SE (Japanese),0
+,Windows Server 2008 R2 SE 64bit (English) + Symantec Endpoint Protection 11.0 (English),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Internet Information Server 7.5 + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Interstage Application Server S-JE + Symfoware Server Client + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + NetVault Backup Client for Windows + NetVault Backup Microsoft SQL Server SE Plug-in + SQLServer 2008 R2 SE (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + SQLServer 2008 R2 EE (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + SQLServer 2008 R2 SE (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + SQLServer 2008 R2 SE (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),1
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + ARCserve Backup Base Suite,0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + ARCserve Backup Base with SQL Suite + SQLServer 2008 R2 SE (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + ARCserve Backup Client Suite,0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + NetVault Backup Client for Windows + Internet Information Server 7.5,0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + NetVault Backup Server for Windows + NetVault Backup SmartDisk for Windows,0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 EE SP1 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 R2 SE (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symfoware Server SE + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + ARCserve Backup Base Suite + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + ARCserve Backup Base with SQL Suite + SQLServer 2008 R2 SE (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + ARCserve Backup Client Suite + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + IBM DB2 9.7.301.326 fP 3a + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Interstage Business Operations Platform + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 R2 SE (Japanese) with Support,0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Interstage Web Server + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + NetVault Backup Client for Windows with Support + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese) with Support + NetVault Backup Microsoft SQL Server SE Plug-in with Support,0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + NetVault Backup Server for Windows with Support + Symantec Endpoint Protection 11.0 (Japanese) + NetVault Backup SmartDisk for Windows with Support,0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Rational AppScan Standard Edition (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + SQLServer 2008 EE SP1 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + SQLServer 2008 R2 SE (Japanese) with Support + ARCserve Backup Base with SQL Suite + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + SQLServer 2008 R2 SE (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + SQLServer 2008 SE SP1 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Symantec Backup Exec 2010 R3 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + ARCserve Backup Base Suite,0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + IBM WebSphere 7.0.0.13,0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + Internet Information Server 7.5,0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + NetVault Backup Client for Windows with Support + Internet Information Server 7.5,0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 R2 EE (Japanese) with Support,0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese) with Support,0
+,fujitsu-vcis 20120214,0
+,others,12
+
+Stopped
+,CentOS 5.4 32bit,5
+,CentOS 5.4 32bit-en,1
+,CentOS 5.4 64bit,8
+,CentOS 5.4 64bit-en,3
+,CentOS 5.5 64bit (Japanese),0
+,CentOS 5.6 32bit (English),5
+,CentOS 5.6 64bit (English),9
+,CentOS 6.0 32bit (English),0
+,CentOS 6.0 64bit (English),0
+,CentOS 6.0 64bit (Japanese) + OSS Web Platform(PHP/MySQL),0
+,CentOS 6.0 64bit (Japanese) + OSS Web Platform(PHP/PostgreSQL),0
+,CentOS 6.0 64bit (Japanese) + OSS Web Platform(Tomcat/MySQL),0
+,CentOS 6.0 64bit (Japanese) + OSS Web Platform(Tomcat/PostgreSQL),0
+,CentOS 6.2 32bit (English),1
+,CentOS 6.2 64bit (English),1
+,Firewall,5
+,OSS Web Platform(PHP/PostgreSQL),0
+,Red Hat Enterprise Linux 5.5 32bit (English) + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.5 32bit (Japanese) + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.5 64bit (English),0
+,Red Hat Enterprise Linux 5.5 64bit (English) + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.5 64bit (Japanese) + Interstage Application Server S-JE + Symfoware Server Client + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.5 64bit (Japanese) + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.5 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Red Hat Enterprise Linux 5.5 64bit (Japanese) + Symfoware Server SE + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.7 32bit (Japanese) + Symantec AntiVirus for Linux 1.0,4
+,Red Hat Enterprise Linux 5.7 32bit simple JPN with Support,0
+,Red Hat Enterprise Linux 5.7 32bit stand JPN with Support,0
+,Red Hat Enterprise Linux 5.7 64bit (English) with Support,0
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) + NetVault Backup Client for Linux with Support + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) + NetVault Backup Server for Linux with Support + NetVault Backup SmartDisk for Linux with Support + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) + Symantec AntiVirus for Linux 1.0 + NetVault Backup Server for Linux with Support + NetVault Backup SmartDisk for Linux with Support,0
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) SELinux on + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 5.7 64bit (Japanese) with Support,0
+,Red Hat Enterprise Linux 5.7 64bit simple JPN with Support,0
+,Red Hat Enterprise Linux 6.2 32bit (Japanese) + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 6.2 64bit (Japanese) + Symantec AntiVirus for Linux 1.0,0
+,Red Hat Enterprise Linux 6.2 64bit (Japanese) SELinux on + Symantec AntiVirus for Linux 1.0,0
+,Server Load Balancer,8
+,Windows Server 2003 R2 EE 32bit (Japanese),0
+,Windows Server 2003 R2 EE 32bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 EE 32bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + Internet Information Server 6.0,0
+,Windows Server 2003 R2 EE 32bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 R2 SE (Japanese) with Support,0
+,Windows Server 2003 R2 EE 32bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese) with Support,0
+,Windows Server 2003 R2 EE 32bit SP2 (Japanese) with Support + SQLServer 2008 R2 SE (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 EE 32bit SP2 (Japanese) with Support + SQLServer 2008 SE SP1 (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 EE 32bit SP2 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 EE 32bit SP2 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + Internet Information Server 6.0,0
+,Windows Server 2003 R2 EE 32bit SP2 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + Internet Information Server 6.0,0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + Internet Information Server 6.0 + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + SQLServer 2008 R2 SE (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + SQLServer 2008 R2 SE (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + SQLServer 2008 SE SP1 (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),4
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + Internet Information Server 6.0,0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 R2 SE (Japanese) with Support,0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese) with Support,0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) with Support + Internet Information Server 6.0 + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) with Support + SQLServer 2008 SE SP1 (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + Internet Information Server 6.0,0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 R2 SE (Japanese),0
+,Windows Server 2003 R2 SE 32bit SP2 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese),0
+,Windows Server 2008 R2 EE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 EE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + Internet Information Server 7.5,0
+,Windows Server 2008 R2 EE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 R2 EE (Japanese),0
+,Windows Server 2008 R2 EE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese),0
+,Windows Server 2008 R2 EE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 EE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + Internet Information Server 7.5,0
+,Windows Server 2008 R2 EE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 R2 SE (Japanese) with Support,0
+,Windows Server 2008 R2 EE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese) with Support,0
+,Windows Server 2008 R2 SE 32bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (English) + SQLServer 2008 R2 SE (Japanese),0
+,Windows Server 2008 R2 SE 64bit (English) + Symantec Endpoint Protection 11.0 (English),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Internet Information Server 7.5 + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Interstage Application Server S-JE + Symfoware Server Client + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + NetVault Backup Client for Windows + NetVault Backup Microsoft SQL Server SE Plug-in + SQLServer 2008 R2 SE (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + SQLServer 2008 R2 EE (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + SQLServer 2008 R2 SE (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + SQLServer 2008 R2 SE (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + ARCserve Backup Base Suite,0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + ARCserve Backup Base with SQL Suite + SQLServer 2008 R2 SE (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + ARCserve Backup Client Suite,0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + NetVault Backup Client for Windows + Internet Information Server 7.5,0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + NetVault Backup Server for Windows + NetVault Backup SmartDisk for Windows,0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 EE SP1 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 R2 SE (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) + Symfoware Server SE + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + ARCserve Backup Base Suite + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + ARCserve Backup Base with SQL Suite + SQLServer 2008 R2 SE (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),1
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + ARCserve Backup Client Suite + Symantec Endpoint Protection 11.0 (Japanese),1
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + IBM DB2 9.7.301.326 fP 3a + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Interstage Business Operations Platform + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 R2 SE (Japanese) with Support,0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Interstage Web Server + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + NetVault Backup Client for Windows with Support + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese) with Support + NetVault Backup Microsoft SQL Server SE Plug-in with Support,0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + NetVault Backup Server for Windows with Support + Symantec Endpoint Protection 11.0 (Japanese) + NetVault Backup SmartDisk for Windows with Support,0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Rational AppScan Standard Edition (Japanese) + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + SQLServer 2008 EE SP1 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + SQLServer 2008 R2 SE (Japanese) with Support + ARCserve Backup Base with SQL Suite + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + SQLServer 2008 R2 SE (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + SQLServer 2008 SE SP1 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Symantec Backup Exec 2010 R3 (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese),0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + ARCserve Backup Base Suite,1
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + IBM WebSphere 7.0.0.13,0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + Internet Information Server 7.5,0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + NetVault Backup Client for Windows with Support + Internet Information Server 7.5,1
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 R2 EE (Japanese) with Support,0
+,Windows Server 2008 R2 SE 64bit (Japanese) with Support + Symantec Endpoint Protection 11.0 (Japanese) + SQLServer 2008 SE SP1 (Japanese) with Support,0
+,fujitsu-vcis 20120214,0
+,others,10

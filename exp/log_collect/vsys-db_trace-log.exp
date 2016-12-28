@@ -1,0 +1,39 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+set yyyymmdd [lindex $argv 0]
+
+log_user 0
+set timeout 90
+set server vsys-db
+set kind /var/tmp/vsys-db_trace_$yyyymmdd.tar.gz
+
+trap {} {SIGHUP}
+
+island_login $server
+send -- "ls /vsys/log/vsys_trace_log$yyyymmdd\n"
+expect -re $prompt
+send -- "echo \$?\n"
+expect -re ".*?\n"
+expect -re "(.*?)\n"
+if { $expect_out(1,string) == 0 } {
+	send -- "tar zcf $kind /vsys/log/vsys_trace_log$yyyymmdd*\n"
+} else {
+	send -- "cp -p /vsys/log/$yyyymmdd.tar.gz $kind\n"
+}
+expect -re $prompt
+send -- "exit\n"
+expect -re $prompt
+
+spawn /bin/bash
+expect -re $prompt
+send -- "rm -f /data/download/vsys-db_trace*\n"
+expect -re $prompt
+send -- "$base_dir/exp/log_collect/transfer_file.exp $server $kind\n"
+expect -re $prompt
+island_login $server
+send -- "rm -f $kind\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

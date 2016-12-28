@@ -1,0 +1,45 @@
+#!/usr/bin/expect -f
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set file1 /data/cgi-bin/billing_system_honbandesu/tables/host_lead*.table
+
+set timeout 15
+#log_user 0
+
+# Check the contract IDs based on host region base. 
+# MID contract IDs are excluded.
+
+spawn /bin/bash
+expect -re $prompt
+send -- "grep '.*,.*,JP01,.*,.,1,' $file1 | cut -d ',' -f2 | sort | uniq > /tmp/org_list_jp01 \n"
+expect -re $prompt
+send -- "grep '.*,.*,JP02,.*,.,1,' $file1 | cut -d ',' -f2 | sort | uniq > /tmp/org_list_jp02 \n"
+expect -re $prompt
+send -- "grep '.*,.*,AU01,.*,.,1,' $file1 | cut -d ',' -f2 | sort | uniq > /tmp/org_list_au01 \n"
+expect -re $prompt
+send -- "grep '.*,.*,SG01,.*,.,1,' $file1 | cut -d ',' -f2 | sort | uniq > /tmp/org_list_sg01 \n"
+expect -re $prompt
+send -- "grep '.*,.*,US01,.*,.,1,' $file1 | cut -d ',' -f2 | sort | uniq > /tmp/org_list_us01 \n"
+expect -re $prompt
+send -- "grep '.*,.*,GB01,.*,.,1,' $file1 | cut -d ',' -f2 | sort | uniq > /tmp/org_list_gb01 \n"
+expect -re $prompt
+send -- "grep '.*,.*,DE01,.*,.,1,' $file1 | cut -d ',' -f2 | sort | uniq > /tmp/org_list_de01 \n"
+expect -re $prompt
+send -- "grep '.*,.*,JP01,.*,.,0,' $file1 | cut -d ',' -f2 | sort | uniq > /tmp/org_list_jp01_free \n"
+expect -re $prompt
+send -- "grep '.*,.*,JP02,.*,.,0,' $file1 | cut -d ',' -f2 | sort | uniq > /tmp/org_list_jp02_free \n"
+expect -re $prompt
+send -- "grep '.*,.*,AU01,.*,.,0,' $file1 | cut -d ',' -f2 | sort | uniq > /tmp/org_list_au01_free \n"
+expect -re $prompt
+send -- "grep '.*,.*,SG01,.*,.,0,' $file1 | cut -d ',' -f2 | sort | uniq > /tmp/org_list_sg01_free \n"
+expect -re $prompt
+send -- "grep '.*,.*,US01,.*,.,0,' $file1 | cut -d ',' -f2 | sort | uniq > /tmp/org_list_us01_free \n"
+expect -re $prompt
+send -- "grep '.*,.*,GB01,.*,.,0,' $file1 | cut -d ',' -f2 | sort | uniq > /tmp/org_list_gb01_free \n"
+expect -re $prompt
+send -- "grep '.*,.*,DE01,.*,.,0,' $file1 | cut -d ',' -f2 | sort | uniq > /tmp/org_list_de01_free \n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

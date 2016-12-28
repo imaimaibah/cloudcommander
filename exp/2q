@@ -1,0 +1,26 @@
+#!/usr/bin/expect
+
+set sql [lindex $argv 0]
+set whandle [open "/usr/local/2nd_tools/tmp/vsys-db.list" "w"]
+
+spawn ssh -l root islanda-cbrm
+expect "password" {
+	send -- "sv@01011\r"
+} "yes/no" {
+	send -- "yes\r"
+	expect "password"
+	send -- "sv@01011\r"
+}
+
+set timeout 10
+log_user 0
+expect "# "{
+send -- "/opt/FJSVrcvmr/bin/rcxadm pool list -name VMPOOL -template high_performance\r"
+} expect "# " {
+send -- "exit\r"
+} timeout {
+send_user "Dom0 is not ruuning"
+send --	"exit\r"
+}
+
+expect eof

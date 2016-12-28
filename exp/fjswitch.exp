@@ -1,0 +1,88 @@
+#!/usr/bin/expect
+
+set switch [lindex $argv 0]
+set password [lindex $argv 1]
+
+log_user 0
+set timeout 5
+spawn ssh -l admin $switch
+expect "password" {
+    send -- "$password\n"
+} "yes/no" {
+    send -- "yes\r"
+    expect "password"
+    send -- "$password\n"
+} timeout {
+	send_user "TIMEOUT\n"
+	exit
+} eof {
+	send_user "Cannot access\n"
+	exit
+}
+
+expect -re "Permission denied" {
+	send_user "Password is incorrect\n"
+	exit
+} -re "sw.*# $" 
+set timeout -1
+log_file -noappend "/usr/local/2nd_tools/log/exp/$switch.log"
+send -- "terminal pager disable\r"
+expect -re ".*\n"
+send_log -- "$expect_out(buffer)"
+expect -re "sw.*# $"
+send -- "date\r"
+while {1} {
+	expect -re ".*\n" {
+		send_log -- "$expect_out(buffer)"
+	} -re "sw.*# $" {
+		break
+	}
+}
+send -- "show system info\r"
+while {1} {
+	expect -re ".*\n" {
+		send_log -- "$expect_out(buffer)"
+	} -re "sw.*# $" {
+		break
+	}
+}
+send -- "show ether statistics detail\r"
+while {1} {
+	expect -re ".*\n" {
+		send_log -- "$expect_out(buffer)"
+	} -re "sw.*# $" {
+		break
+	}
+}
+send -- "show ether statistics line cpu\r"
+while {1} {
+	expect -re ".*\n" {
+		send_log -- "$expect_out(buffer)"
+	} -re "sw.*# $" {
+		break
+	}
+}
+send -- "show logg error\r"
+while {1} {
+	expect -re ".*\n" {
+		send_log -- "$expect_out(buffer)"
+	} -re "sw.*# $" {
+		break
+	}
+}
+send -- "show logg syslog\r"
+while {1} {
+	expect -re ".*\n" {
+		send_log -- "$expect_out(buffer)"
+	} -re "sw.*# $" {
+		break
+	}
+}
+send -- "terminal pager enable\r"
+#expect -re ".*\n"
+#send_log -- "$expect_out(buffer)"
+expect -re "sw.*# $"
+log_file
+send -- "exit\r"
+expect eof
+log_user 1

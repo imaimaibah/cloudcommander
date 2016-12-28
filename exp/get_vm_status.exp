@@ -1,0 +1,28 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set vsys_id [lindex $argv 0]
+
+log_user 0
+mgtcb_login "vsys-db"
+
+set timeout -1
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop\n"
+expect -re $prompt
+send -- "select server_id,status,resource_id from `server#instance` where vsys_id = '$vsys_id';\n"
+expect -re ".*?\n"
+while { 1 } {
+	expect -re ".*\n" {
+		puts -nonewline "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+log_user 1
+exit 0

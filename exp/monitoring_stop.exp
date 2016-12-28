@@ -1,0 +1,41 @@
+#!/usr/bin/expect -f
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set server "cb-cmgr-zentai cb-relay"
+
+log_user 0
+for { set i 0 } { $i<2 } { incr i 1 } {
+	send_user -- "---[lindex $server $i]---\n"
+	mgtcb_login [lindex $server $i]
+	send -- "/opt/FJSVfwaos/usr/bin/mpaosment -M\n"
+	expect -re ".*?\n"
+	while {1} {
+		expect -re ".*\n" {
+			send_user -- "$expect_out(buffer)"
+		} -re $prompt {
+			break
+		}
+	}
+	send -- "exit\n"
+	expect eof
+	send_user "\n\n"
+}
+
+for { set i 0 } { "" != [lindex $argv $i] } { incr i 1 } {
+	send_user -- "---[lindex $argv $i]---\n"
+	island_login [lindex $argv $i]
+	send -- "/opt/FJSVfwaos/usr/bin/mpaosment -M\n"
+	expect -re ".*?\n"
+	while {1} {
+		expect -re ".*\n" {
+			send_user -- "$expect_out(buffer)"
+		} -re $prompt {
+			break
+		}
+	}
+	send -- "exit\n"
+	expect eof
+	send_user "\n\n"
+}

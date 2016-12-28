@@ -1,0 +1,4744 @@
+terminal pager disable
+date
+Thu Jun 21 15:25:18 2012
+show system info
+Current-time : Thu Jun 21 15:25:19 2012
+Startup-time : Fri Sep 10 16:23:10 2010
+System : SR-S348TC1
+Serial No. : 00000589
+ROM Ver. : 1.1
+Firm Ver. : V13.00 NY0014 Wed Dec  2 19:12:41 JST 2009
+Security Software Ver. : SR-S Security Software V01.02
+Startup-config : Tue Apr 17 20:41:59 2012 config1
+Running-config : Tue Apr 17 20:43:03 2012
+MAC : 0023260e8bf4
+Memory : 256MB
+show ether statistics detail
+
+[ETHER PORT-1 STATISTICS]
+[Input Statistics]
+ Octets                   : 216010637197
+  bits/sec                : 1344
+ Frames                   : 5365996628
+  frames/sec              : 1
+ Unicast                  : 5365995828
+  frames/sec              : 1
+ Multicast                : 458
+  frames/sec              : 0
+ Broadcast                : 342
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 1
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 1
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 351282740579
+  bits/sec                : 12272
+ Frames                   : 4098730267
+  frames/sec              : 21
+ Unicast                  : 3995121047
+ Multicast                : 56072087
+  frames/sec              : 0
+ Broadcast                : 47537133
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 410928222   0         
+        65-127            : 1022701226  1         
+        128-255           : 17014972    0         
+        256-511           : 87216849    0         
+        512-1023          : 238995356   0         
+        1024-1518         : 3589140003  0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 2285190140  3         
+        65-127            : 1770473988  17        
+        128-255           : 4486373     0         
+        256-511           : 1322511     0         
+        512-1023          : 5476410     0         
+        1024-1518         : 31744566    0         
+        1519-2047         : 36279       0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-2 STATISTICS]
+[Input Statistics]
+ Octets                   : 401086091294
+  bits/sec                : 18404888
+ Frames                   : 45141346135
+  frames/sec              : 2171
+ Unicast                  : 45139533741
+  frames/sec              : 2171
+ Multicast                : 1665352
+  frames/sec              : 0
+ Broadcast                : 147042
+  frames/sec              : 0
+ Pause frames             : 1664513
+ Mac Control frames       : 1664513
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 733846415711
+  bits/sec                : 1045016
+ Frames                   : 29092293792
+  frames/sec              : 1458
+ Unicast                  : 28984413855
+ Multicast                : 56078661
+  frames/sec              : 0
+ Broadcast                : 51801276
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 2624791348  99        
+        65-127            : 2617048187  487       
+        128-255           : 282151506   11        
+        256-511           : 785261830   26        
+        512-1023          : 2754714534  85        
+        1024-1518         : 1717640340  1460      
+        1519-2047         : 22          0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 2455984874  928       
+        65-127            : 3318929351  513       
+        128-255           : 4495760     0         
+        256-511           : 1332274     0         
+        512-1023          : 6137671     0         
+        1024-1518         : 1830541104  15        
+        1519-2047         : 36278       0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-3 STATISTICS]
+[Input Statistics]
+ Octets                   : 780966345058
+  bits/sec                : 3857536
+ Frames                   : 51711105475
+  frames/sec              : 412
+ Unicast                  : 51709457646
+  frames/sec              : 412
+ Multicast                : 1501077
+  frames/sec              : 0
+ Broadcast                : 146752
+  frames/sec              : 0
+ Pause frames             : 1500005
+ Mac Control frames       : 1500005
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 263341601191
+  bits/sec                : 155760
+ Frames                   : 35980662541
+  frames/sec              : 261
+ Unicast                  : 35872816159
+ Multicast                : 56062752
+  frames/sec              : 0
+ Broadcast                : 51783630
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 1435845845  20        
+        65-127            : 1149058660  63        
+        128-255           : 326531500   5         
+        256-511           : 492732011   2         
+        512-1023          : 4005965864  10        
+        1024-1518         : 1351298525  308       
+        1519-2047         : 110         0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 422507640   182       
+        65-127            : 2317595531  79        
+        128-255           : 4495343     0         
+        256-511           : 1332211     0         
+        512-1023          : 9074098     0         
+        1024-1518         : 3160850348  0         
+        1519-2047         : 36298       0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-4 STATISTICS]
+[Input Statistics]
+ Octets                   : 569849982529
+  bits/sec                : 20956752
+ Frames                   : 43755609117
+  frames/sec              : 2304
+ Unicast                  : 43753234020
+  frames/sec              : 2304
+ Multicast                : 2227734
+  frames/sec              : 0
+ Broadcast                : 147363
+  frames/sec              : 0
+ Pause frames             : 2226934
+ Mac Control frames       : 2226934
+
+ Discards
+  All DiscardsPkts        : 2
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 2
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 1046868348729
+  bits/sec                : 853056
+ Frames                   : 28020289380
+  frames/sec              : 1420
+ Unicast                  : 27912457536
+ Multicast                : 56064715
+  frames/sec              : 0
+ Broadcast                : 51767129
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 2978705300  112       
+        65-127            : 2432991368  358       
+        128-255           : 368885501   17        
+        256-511           : 581599056   44        
+        512-1023          : 2537635956  128       
+        1024-1518         : 496046346   1642      
+        1519-2047         : 7222        0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 1857803410  1032      
+        65-127            : 3557831085  388       
+        128-255           : 4501067     0         
+        256-511           : 1332870     0         
+        512-1023          : 5883424     0         
+        1024-1518         : 1118053323  0         
+        1519-2047         : 47721       0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-5 STATISTICS]
+[Input Statistics]
+ Octets                   : 170073280788
+  bits/sec                : 615744
+ Frames                   : 37779878256
+  frames/sec              : 98
+ Unicast                  : 37777562449
+  frames/sec              : 98
+ Multicast                : 2212311
+  frames/sec              : 0
+ Broadcast                : 103496
+  frames/sec              : 0
+ Pause frames             : 2211315
+ Mac Control frames       : 2211315
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 880308737635
+  bits/sec                : 59128
+ Frames                   : 24606743353
+  frames/sec              : 91
+ Unicast                  : 24498913162
+ Multicast                : 56062231
+  frames/sec              : 0
+ Broadcast                : 51767960
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 2980616878  10        
+        65-127            : 412183933   33        
+        128-255           : 332462187   2         
+        256-511           : 391170207   0         
+        512-1023          : 2690382873  1         
+        1024-1518         : 908290813   48        
+        1519-2047         : 293         0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 3525417098  39        
+        65-127            : 1558181314  51        
+        128-255           : 4495428     0         
+        256-511           : 1331999     0         
+        512-1023          : 6464499     0         
+        1024-1518         : 2330947259  0         
+        1519-2047         : 36572       0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-6 STATISTICS]
+[Input Statistics]
+ Octets                   : 850886286571
+  bits/sec                : 4047040
+ Frames                   : 26977942171
+  frames/sec              : 471
+ Unicast                  : 26976965113
+  frames/sec              : 471
+ Multicast                : 848242
+  frames/sec              : 0
+ Broadcast                : 128816
+  frames/sec              : 0
+ Pause frames             : 847234
+ Mac Control frames       : 847234
+
+ Discards
+  All DiscardsPkts        : 2
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 2
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 414393420605
+  bits/sec                : 188592
+ Frames                   : 17614819843
+  frames/sec              : 306
+ Unicast                  : 17507019864
+ Multicast                : 56059314
+  frames/sec              : 0
+ Broadcast                : 51740665
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 2052873332  25        
+        65-127            : 3587383987  97        
+        128-255           : 253284063   7         
+        256-511           : 214931832   4         
+        512-1023          : 1964404725  15        
+        1024-1518         : 1725192943  320       
+        1519-2047         : 2105        0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 3129044551  197       
+        65-127            : 302663722   109       
+        128-255           : 4495069     0         
+        256-511           : 1331975     0         
+        512-1023          : 5935080     0         
+        1024-1518         : 1286411280  0         
+        1519-2047         : 36278       0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-7 STATISTICS]
+[Input Statistics]
+ Octets                   : 553304419874
+  bits/sec                : 6802096
+ Frames                   : 29428345174
+  frames/sec              : 715
+ Unicast                  : 29426407660
+  frames/sec              : 715
+ Multicast                : 1789940
+  frames/sec              : 0
+ Broadcast                : 147574
+  frames/sec              : 0
+ Pause frames             : 1788817
+ Mac Control frames       : 1788817
+
+ Discards
+  All DiscardsPkts        : 1
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 1
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 430634880313
+  bits/sec                : 254072
+ Frames                   : 18930354717
+  frames/sec              : 434
+ Unicast                  : 18822486758
+ Multicast                : 56073024
+  frames/sec              : 0
+ Broadcast                : 51794935
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 2147136323  26        
+        65-127            : 3818461248  96        
+        128-255           : 285895316   5         
+        256-511           : 256535372   8         
+        512-1023          : 2167277455  48        
+        1024-1518         : 3573161287  529       
+        1519-2047         : 8989        0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 4252466202  325       
+        65-127            : 572606209   109       
+        128-255           : 4498296     0         
+        256-511           : 1332141     0         
+        512-1023          : 6187194     0         
+        1024-1518         : 1208319153  0         
+        1519-2047         : 43634       0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-8 STATISTICS]
+[Input Statistics]
+ Octets                   : 512298210441
+  bits/sec                : 10153560
+ Frames                   : 81793603449
+  frames/sec              : 1305
+ Unicast                  : 81791537656
+  frames/sec              : 1305
+ Multicast                : 1918497
+  frames/sec              : 0
+ Broadcast                : 147296
+  frames/sec              : 0
+ Pause frames             : 1917260
+ Mac Control frames       : 1917260
+
+ Discards
+  All DiscardsPkts        : 1
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 1
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 567141716402
+  bits/sec                : 577720
+ Frames                   : 52686904273
+  frames/sec              : 897
+ Unicast                  : 52579067810
+ Multicast                : 56055635
+  frames/sec              : 0
+ Broadcast                : 51780828
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 377914404   104       
+        65-127            : 1053387096  320       
+        128-255           : 444773609   24        
+        256-511           : 1724677861  19        
+        512-1023          : 4209322981  44        
+        1024-1518         : 969077551   792       
+        1519-2047         : 5915        0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 1040095171  530       
+        65-127            : 1246303594  366       
+        128-255           : 4495170     0         
+        256-511           : 1331566     0         
+        512-1023          : 6362224     0         
+        1024-1518         : 3143634468  0         
+        1519-2047         : 41824       0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-9 STATISTICS]
+[Input Statistics]
+ Octets                   : 40300781944
+  bits/sec                : 1344
+ Frames                   : 27926790576
+  frames/sec              : 1
+ Unicast                  : 27924061759
+  frames/sec              : 1
+ Multicast                : 2318422
+  frames/sec              : 0
+ Broadcast                : 410392
+  frames/sec              : 0
+ Pause frames             : 2316534
+ Mac Control frames       : 2316534
+
+ Discards
+  All DiscardsPkts        : 99
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 9
+  Port In Discards        : 7
+  Input Discards          : 83
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 3
+  SymbolErrors            : 3
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 381127261458
+  bits/sec                : 12272
+ Frames                   : 18899389557
+  frames/sec              : 21
+ Unicast                  : 18791797102
+ Multicast                : 56066106
+  frames/sec              : 0
+ Broadcast                : 51526349
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 2704239446  0         
+        65-127            : 1042297182  1         
+        128-255           : 216947208   0         
+        256-511           : 213154676   0         
+        512-1023          : 2921952760  0         
+        1024-1518         : 3648330117  0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 3           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 3706625411  3         
+        65-127            : 2065636074  17        
+        128-255           : 4540882     0         
+        256-511           : 1330073     0         
+        512-1023          : 33524281    0         
+        1024-1518         : 202794669   0         
+        1519-2047         : 36279       0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-10 STATISTICS]
+[Input Statistics]
+ Octets                   : 1036417485618
+  bits/sec                : 2360
+ Frames                   : 17870024204
+  frames/sec              : 3
+ Unicast                  : 17868758140
+  frames/sec              : 3
+ Multicast                : 926566
+  frames/sec              : 0
+ Broadcast                : 339497
+  frames/sec              : 0
+ Pause frames             : 924918
+ Mac Control frames       : 924918
+
+ Discards
+  All DiscardsPkts        : 1290
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 97
+  Port In Discards        : 1193
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 1
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 984679329388
+  bits/sec                : 12272
+ Frames                   : 14838753850
+  frames/sec              : 21
+ Unicast                  : 14733477543
+ Multicast                : 55625537
+  frames/sec              : 0
+ Broadcast                : 49650770
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 186
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 3434880490  1         
+        65-127            : 740365797   1         
+        128-255           : 68089768    0         
+        256-511           : 132191239   0         
+        512-1023          : 1393443905  0         
+        1024-1518         : 3511118412  0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 2753411049  3         
+        65-127            : 1300245430  17        
+        128-255           : 4516294     0         
+        256-511           : 1323391     0         
+        512-1023          : 14563850    0         
+        1024-1518         : 2174723009  0         
+        1519-2047         : 36235       0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-11 STATISTICS]
+[Input Statistics]
+ Octets                   : 1033900022978
+  bits/sec                : 186088
+ Frames                   : 14621212273
+  frames/sec              : 32
+ Unicast                  : 14621060704
+  frames/sec              : 32
+ Multicast                : 1528
+  frames/sec              : 0
+ Broadcast                : 150041
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 4
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 3
+  Port In Discards        : 0
+  Input Discards          : 1
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 222555806428
+  bits/sec                : 26768
+ Frames                   : 10059377331
+  frames/sec              : 43
+ Unicast                  : 9951500500
+ Multicast                : 56075520
+  frames/sec              : 0
+ Broadcast                : 51801311
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 1265837416  3         
+        65-127            : 1237877108  11        
+        128-255           : 69518356    0         
+        256-511           : 101907778   0         
+        512-1023          : 997422580   2         
+        1024-1518         : 2358714443  13        
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 2144746582  15        
+        65-127            : 1924308076  27        
+        128-255           : 4495975     0         
+        256-511           : 1334917     0         
+        512-1023          : 9741483     0         
+        1024-1518         : 1679746723  0         
+        1519-2047         : 36279       0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-12 STATISTICS]
+[Input Statistics]
+ Octets                   : 259332214991
+  bits/sec                : 2696
+ Frames                   : 12413518752
+  frames/sec              : 3
+ Unicast                  : 12413354652
+  frames/sec              : 3
+ Multicast                : 12501
+  frames/sec              : 0
+ Broadcast                : 151599
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 3
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 3
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 660988598704
+  bits/sec                : 13112
+ Frames                   : 8473788404
+  frames/sec              : 22
+ Unicast                  : 8366737663
+ Multicast                : 55525734
+  frames/sec              : 0
+ Broadcast                : 51525007
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 952550405   0         
+        65-127            : 1144842968  2         
+        128-255           : 96628714    0         
+        256-511           : 102844991   0         
+        512-1023          : 1235701400  0         
+        1024-1518         : 291015682   0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 1208661830  3         
+        65-127            : 1820450462  18        
+        128-255           : 4430818     0         
+        256-511           : 1310743     0         
+        512-1023          : 9002238     0         
+        1024-1518         : 1134929225  0         
+        1519-2047         : 35792       0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-13 STATISTICS]
+[Input Statistics]
+ Octets                   : 1036365293515
+  bits/sec                : 1344
+ Frames                   : 14373063889
+  frames/sec              : 1
+ Unicast                  : 14372802716
+  frames/sec              : 1
+ Multicast                : 245071
+  frames/sec              : 0
+ Broadcast                : 16102
+  frames/sec              : 0
+ Pause frames             : 6
+ Mac Control frames       : 6
+
+ Discards
+  All DiscardsPkts        : 25
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 25
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 1035514896274
+  bits/sec                : 12272
+ Frames                   : 9043381689
+  frames/sec              : 21
+ Unicast                  : 8953124539
+ Multicast                : 47571219
+  frames/sec              : 0
+ Broadcast                : 42685931
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 830231089   0         
+        65-127            : 282872507   1         
+        128-255           : 56976239    0         
+        256-511           : 60238228    0         
+        512-1023          : 1879855053  0         
+        1024-1518         : 2672211520  0         
+        1519-2047         : 744661      0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 2382163325  3         
+        65-127            : 848167945   17        
+        128-255           : 3706946     0         
+        256-511           : 1023502     0         
+        512-1023          : 5484644     0         
+        1024-1518         : 1507090388  0         
+        1519-2047         : 777643      0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-14 STATISTICS]
+[Input Statistics]
+ Octets                   : 713677647360
+  bits/sec                : 496888
+ Frames                   : 17352294267
+  frames/sec              : 129
+ Unicast                  : 17352289985
+  frames/sec              : 129
+ Multicast                : 2062
+  frames/sec              : 0
+ Broadcast                : 2220
+  frames/sec              : 0
+ Pause frames             : 12
+ Mac Control frames       : 12
+
+ Discards
+  All DiscardsPkts        : 4
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 1
+  Port In Discards        : 1
+  Input Discards          : 2
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 823536317234
+  bits/sec                : 90600
+ Frames                   : 11852261579
+  frames/sec              : 131
+ Unicast                  : 11761931259
+ Multicast                : 47752891
+  frames/sec              : 0
+ Broadcast                : 42577429
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 1711422452  19        
+        65-127            : 332254062   61        
+        128-255           : 65312324    1         
+        256-511           : 73050708    0         
+        512-1023          : 2098314831  12        
+        1024-1518         : 187037720   33        
+        1519-2047         : 282         0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 3417576824  48        
+        65-127            : 856529934   83        
+        128-255           : 3722890     0         
+        256-511           : 1404346     0         
+        512-1023          : 7588044     0         
+        1024-1518         : 3270016012  0         
+        1519-2047         : 456233      0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-15 STATISTICS]
+[Input Statistics]
+ Octets                   : 672485124853
+  bits/sec                : 156888
+ Frames                   : 18619303035
+  frames/sec              : 30
+ Unicast                  : 18608419342
+  frames/sec              : 30
+ Multicast                : 705594
+  frames/sec              : 0
+ Broadcast                : 10178099
+  frames/sec              : 0
+ Pause frames             : 8
+ Mac Control frames       : 8
+
+ Discards
+  All DiscardsPkts        : 8
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 2
+  Port In Discards        : 4
+  Input Discards          : 2
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 770247837779
+  bits/sec                : 25248
+ Frames                   : 11813263241
+  frames/sec              : 40
+ Unicast                  : 11733018185
+ Multicast                : 47727605
+  frames/sec              : 0
+ Broadcast                : 32517451
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 1258644169  6         
+        65-127            : 533201649   10        
+        128-255           : 81207087    0         
+        256-511           : 80665844    0         
+        512-1023          : 2218224135  0         
+        1024-1518         : 1562457995  11        
+        1519-2047         : 268         0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 4242378963  12        
+        65-127            : 1122970147  27        
+        128-255           : 3690998     0         
+        256-511           : 987587      0         
+        512-1023          : 7016418     0         
+        1024-1518         : 2141216116  0         
+        1519-2047         : 35716       0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-16 STATISTICS]
+[Input Statistics]
+ Octets                   : 635366200069
+  bits/sec                : 1344
+ Frames                   : 9360757923
+  frames/sec              : 1
+ Unicast                  : 9360755784
+  frames/sec              : 1
+ Multicast                : 1485
+  frames/sec              : 0
+ Broadcast                : 654
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 3
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 2
+  Input Discards          : 1
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 506799465318
+  bits/sec                : 12272
+ Frames                   : 5445826418
+  frames/sec              : 21
+ Unicast                  : 5356492853
+ Multicast                : 47185657
+  frames/sec              : 0
+ Broadcast                : 42147908
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 107351111   0         
+        65-127            : 172438509   1         
+        128-255           : 37152549    0         
+        256-511           : 37107194    0         
+        512-1023          : 1298615763  0         
+        1024-1518         : 3413125501  0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 290664093   3         
+        65-127            : 709484350   17        
+        128-255           : 3649343     0         
+        256-511           : 996396      0         
+        512-1023          : 5171866     0         
+        1024-1518         : 140857974   0         
+        1519-2047         : 35100       0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-17 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-18 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-19 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-20 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-21 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-22 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-23 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-24 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-25 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-26 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-27 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-28 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-29 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-30 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-31 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-32 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-33 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-34 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-35 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-36 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-37 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-38 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-39 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-40 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-41 STATISTICS]
+[Input Statistics]
+ Octets                   : 21421536371
+  bits/sec                : 2832
+ Frames                   : 183490793
+  frames/sec              : 4
+ Unicast                  : 91900623
+  frames/sec              : 0
+ Multicast                : 55124410
+  frames/sec              : 0
+ Broadcast                : 36465760
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 7351069
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 7351069
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 36073169340
+  bits/sec                : 8624
+ Frames                   : 512729642
+  frames/sec              : 15
+ Unicast                  : 500492774
+ Multicast                : 2022567
+  frames/sec              : 0
+ Broadcast                : 10214301
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 21406631    3         
+        65-127            : 149279590   0         
+        128-255           : 4552354     0         
+        256-511           : 1322781     0         
+        512-1023          : 5397686     0         
+        1024-1518         : 328159      0         
+        1519-2047         : 1203592     0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 10044814    0         
+        65-127            : 500714035   15        
+        128-255           : 1167557     0         
+        256-511           : 47891       0         
+        512-1023          : 7708        0         
+        1024-1518         : 2724        0         
+        1519-2047         : 744913      0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-42 STATISTICS]
+[Input Statistics]
+ Octets                   : 228487005
+  bits/sec                : 0
+ Frames                   : 1801820
+  frames/sec              : 0
+ Unicast                  : 718116
+  frames/sec              : 0
+ Multicast                : 1083704
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 521569197
+  bits/sec                : 0
+ Frames                   : 6116230
+  frames/sec              : 0
+ Unicast                  : 5041084
+ Multicast                : 1075146
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 223188      0         
+        65-127            : 485823      0         
+        128-255           : 1087338     0         
+        256-511           : 4273        0         
+        512-1023          : 966         0         
+        1024-1518         : 128         0         
+        1519-2047         : 104         0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 227078      0         
+        65-127            : 4805311     0         
+        128-255           : 1078098     0         
+        256-511           : 4008        0         
+        512-1023          : 1276        0         
+        1024-1518         : 161         0         
+        1519-2047         : 298         0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-43 STATISTICS]
+[Input Statistics]
+ Octets                   : 501244107814
+  bits/sec                : 3321216
+ Frames                   : 291255077788
+  frames/sec              : 4884
+ Unicast                  : 291249875860
+  frames/sec              : 4884
+ Multicast                : 1067339
+  frames/sec              : 0
+ Broadcast                : 4134589
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 203
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 203
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 1046035290325
+  bits/sec                : 65828424
+ Frames                   : 453714012612
+  frames/sec              : 7655
+ Unicast                  : 453710903161
+ Multicast                : 1107006
+  frames/sec              : 0
+ Broadcast                : 2002445
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 208406074
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 2868242959  4868      
+        128-255           : 1106324     0         
+        256-511           : 7490        0         
+        512-1023          : 59579688    0         
+        1024-1518         : 563321813   15        
+        1519-2047         : 10682       0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 1051225903  1965      
+        128-255           : 3002692913  79        
+        256-511           : 1040744181  108       
+        512-1023          : 225734247   352       
+        1024-1518         : 787499960   477       
+        1519-2047         : 929516624   4672      
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-44 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-45 STATISTICS]
+[Input Statistics]
+ Octets                   : 3079138879
+  bits/sec                : 6752
+ Frames                   : 28804718
+  frames/sec              : 9
+ Unicast                  : 27116799
+  frames/sec              : 9
+ Multicast                : 1093349
+  frames/sec              : 0
+ Broadcast                : 594570
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 5
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 5
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 3390093857
+  bits/sec                : 10280
+ Frames                   : 28026256
+  frames/sec              : 7
+ Unicast                  : 26951102
+ Multicast                : 1075146
+  frames/sec              : 0
+ Broadcast                : 8
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 23107753    8         
+        128-255           : 5696778     0         
+        256-511           : 123         0         
+        512-1023          : 48          0         
+        1024-1518         : 15          0         
+        1519-2047         : 1           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 22347232    4         
+        128-255           : 5665759     1         
+        256-511           : 3845        0         
+        512-1023          : 611         0         
+        1024-1518         : 1110        0         
+        1519-2047         : 7699        0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-46 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-47 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-48 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+ Jabbers                  : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+
+[ETHER PORT-49 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+        9217-16383        : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+        9217-16383        : 0           0         
+
+[ETHER PORT-50 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+        9217-16383        : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+        9217-16383        : 0           0         
+
+[ETHER PORT-51 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+        9217-16383        : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+        9217-16383        : 0           0         
+
+[ETHER PORT-52 STATISTICS]
+[Input Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+  frames/sec              : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 0
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 0
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 0
+  bits/sec                : 0
+ Frames                   : 0
+  frames/sec              : 0
+ Unicast                  : 0
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+        9217-16383        : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 0           0         
+        65-127            : 0           0         
+        128-255           : 0           0         
+        256-511           : 0           0         
+        512-1023          : 0           0         
+        1024-1518         : 0           0         
+        1519-2047         : 0           0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+        9217-16383        : 0           0         
+
+[INTERNAL CONNECTION PORT-1 STATISTICS]
+ Packets from             : line 1 to 24
+                          : line 51 to 52
+ Connected to             : C3
+
+[Input Statistics]
+ Octets                   : 918116975477
+  bits/sec                : 3653808
+ Frames                   : 295096183317
+  frames/sec              : 4913
+ Unicast                  : 294999734258
+  frames/sec              : 4908
+ Multicast                : 54042802
+  frames/sec              : 0
+ Broadcast                : 41194919
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 3667118680
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 3667118680
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 264578428166
+  bits/sec                : 11746552
+ Frames                   : 199789660254
+  frames/sec              : 1295
+ Unicast                  : 62217925078
+ Multicast                : 957716
+  frames/sec              : 0
+ Broadcast                : 11152784
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 3687442275  11        
+        65-127            : 3011434187  4885      
+        128-255           : 3017363     0         
+        256-511           : 1698568     0         
+        512-1023          : 64962717    0         
+        1024-1518         : 563608037   15        
+        1519-2047         : 1211338     0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+        9217-16383        : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 10275550    0         
+        65-127            : 1029086871  291       
+        128-255           : 1370744178  14        
+        256-511           : 1701662165  11        
+        512-1023          : 4233679480  65        
+        1024-1518         : 2344979782  59        
+        1519-2047         : 120671204   852       
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+        9217-16383        : 0           0         
+
+[INTERNAL CONNECTION PORT-2 STATISTICS]
+ Packets from             : line 1 to 24
+                          : line 51 to 52
+ Connected to             : C4
+
+[Input Statistics]
+ Octets                   : 264021294269
+  bits/sec                : 4568
+ Frames                   : 3666760289
+  frames/sec              : 7
+ Unicast                  : 3666760185
+  frames/sec              : 7
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 3666042173
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 3666042173
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 334354775845
+  bits/sec                : 54713136
+ Frames                   : 254648400088
+  frames/sec              : 6393
+ Unicast                  : 86135157387
+ Multicast                : 21565
+  frames/sec              : 0
+ Broadcast                : 1063995
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 3666265361  7         
+        65-127            : 484329      0         
+        128-255           : 5112        0         
+        256-511           : 4279        0         
+        512-1023          : 975         0         
+        1024-1518         : 129         0         
+        1519-2047         : 104         0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+        9217-16383        : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 7494        0         
+        65-127            : 529049431   1695      
+        128-255           : 1584855672  63        
+        256-511           : 3684988936  98        
+        512-1023          : 313003739   287       
+        1024-1518         : 2714926347  422       
+        1519-2047         : 1008432597  3826      
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+        9217-16383        : 0           0         
+
+[INTERNAL CONNECTION PORT-3 STATISTICS]
+ Packets from             : line 25 to 48
+                          : line 49 to 50
+ Connected to             : C1
+
+[Input Statistics]
+ Octets                   : 264578428166
+  bits/sec                : 11748648
+ Frames                   : 199789660254
+  frames/sec              : 1295
+ Unicast                  : 62217925078
+  frames/sec              : 443
+ Multicast                : 957716
+  frames/sec              : 0
+ Broadcast                : 11152784
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 93118989
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 93118989
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 918116975477
+  bits/sec                : 3641544
+ Frames                   : 295096183317
+  frames/sec              : 4897
+ Unicast                  : 294999734258
+ Multicast                : 54042802
+  frames/sec              : 0
+ Broadcast                : 41194919
+  frames/sec              : 3
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 10275550    0         
+        65-127            : 1029086871  291       
+        128-255           : 1370744178  14        
+        256-511           : 1701662165  11        
+        512-1023          : 4233679480  65        
+        1024-1518         : 2344979782  59        
+        1519-2047         : 120671204   852       
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+        9217-16383        : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 3687442275  11        
+        65-127            : 3011434187  4869      
+        128-255           : 3017363     0         
+        256-511           : 1698568     0         
+        512-1023          : 64962717    0         
+        1024-1518         : 563608037   15        
+        1519-2047         : 1211338     0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+        9217-16383        : 0           0         
+
+[INTERNAL CONNECTION PORT-4 STATISTICS]
+ Packets from             : line 25 to 48
+                          : line 49 to 50
+ Connected to             : C2
+
+[Input Statistics]
+ Octets                   : 334354775997
+  bits/sec                : 54647520
+ Frames                   : 254648400090
+  frames/sec              : 6375
+ Unicast                  : 86135157389
+  frames/sec              : 2556
+ Multicast                : 21565
+  frames/sec              : 0
+ Broadcast                : 1063995
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  All DiscardsPkts        : 115298237
+  Resource Full           : 0
+  Discards by Filter      : 0
+  Policy Discards         : 0
+  Port In Discards        : 0
+  Input Discards          : 115298237
+ Errors
+  Undersize               : 0
+  FCSErrors               : 0
+  AlignmentErrors         : 0
+  FragmentErrors          : 0
+  Jabbers                 : 0
+  SymbolErrors            : 0
+  UnknownOpcodes          : 0
+
+[Output Statistics]
+ Octets                   : 264021294269
+  bits/sec                : 4568
+ Frames                   : 3666760289
+  frames/sec              : 7
+ Unicast                  : 3666760185
+ Multicast                : 0
+  frames/sec              : 0
+ Broadcast                : 0
+  frames/sec              : 0
+ Pause frames             : 0
+ Mac Control frames       : 0
+
+ Discards
+  DelayExceededDiscards   : 0
+  Internal Discards       : 0
+  Queue Full Discards     : 0
+ Errors
+  FCSErrors               : 0
+  FragmentErrors          : 0
+  CarrierSenseErrors      : 0
+  ExcessiveCollisions     : 0
+  LateCollisions          : 0
+  InternalCellErrors      : 0
+
+ SingleCollisionFrames    : 0
+ MultipleCollisionFrames  : 0
+ DeferredTransmissions    : 0
+
+[Input Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 7494        0         
+        65-127            : 529049433   1688      
+        128-255           : 1584855672  63        
+        256-511           : 3684988936  98        
+        512-1023          : 313003739   287       
+        1024-1518         : 2714926347  418       
+        1519-2047         : 1008432597  3819      
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+        9217-16383        : 0           0         
+[Output Detail Statistics]
+  Frame size                frames      frames/sec
+        64                : 3666265361  7         
+        65-127            : 484329      0         
+        128-255           : 5112        0         
+        256-511           : 4279        0         
+        512-1023          : 975         0         
+        1024-1518         : 129         0         
+        1519-2047         : 104         0         
+        2048-4095         : 0           0         
+        4096-9216         : 0           0         
+        9217-16383        : 0           0         

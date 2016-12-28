@@ -1,0 +1,50 @@
+#!/usr/bin/expect
+
+source	"/usr/local/2nd_tools/lib/env.exp"
+source	"$base_dir/lib/func.exp"
+
+#log_user 0
+set timeout -1
+
+trap	{} {SIGHUP}
+
+set file1 /var/tmp/vsysId_systemName
+
+set server vsys-db
+
+island_login $server
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop\n"
+expect "mysql> "
+send -- "tee $file1;\n"
+expect "mysql> "
+send -- "select vsys_id, system_name from instance order by vsys_id; \n"
+expect "mysql> "
+send -- "quit\n"
+expect -re $prompt
+
+send -- "grep -E '\[A-Z0-9\]\{8\}-\[A-Z0-9\]\{9\}' $file1 | sed -e 's/ *//g' | cut -d '|' -f2-3 | sed -e 's/|/,/g' | sort | uniq > /var/tmp/`grep ps000 /etc/hosts | head -5 | tail -1 | sed -e 's/\\t/,/g' | cut -d ',' -f2 | cut -d '-' -f1-2`_vsysId_systemName.csv \n"
+expect -re $prompt
+
+send -- "exit \n"
+expect eof
+
+spawn scp root@$server:/var/tmp/*_vsysId_systemName.csv /var/tmp/
+expect "password" {
+	send -- "sv@01011\n"
+} "(yes/no)" {
+		send -- "yes\n"
+		expect "password"
+		send -- "sv@01011\n"
+} timeout {
+		send_user -- "$server TIMEOUT\n"
+		exit
+}
+expect eof
+
+island_login $server
+send -- "rm -f /var/tmp/*vsysId_systemName.csv \n"
+expect -re $prompt
+send -- "rm -f /var/tmp/vsysId_systemName.csv \n"
+expect -re $prompt
+send -- "exit \n"
+expect eof

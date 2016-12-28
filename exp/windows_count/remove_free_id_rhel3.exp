@@ -1,0 +1,55 @@
+#!/usr/bin/expect -f
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set year [lindex $argv 0]
+set month [lindex $argv 1]
+
+set path_rhel_premium /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_Red_Hat_Enterprise_Linux_Premium_Small.csv
+set path_rhel_minimum /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_Red_Hat_Enterprise_Linux_Standard_Small.csv
+set path_oss_php_postgres /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_OSS_Web_Platform_PHP_PostgreSQL.csv
+set path_oss_tomcat_postgres /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_OSS_Web_Platform_Tomcat_PostgreSQL.csv
+set path_oss_php_mysql /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_OSS_Web_Platform_PHP_MySQL.csv
+set path_oss_tomcat_mysql /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_OSS_Web_Platform_Tomcat_MySQL.csv
+set path_oss_ruby_postgres /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_OSS_Web_Platform_Ruby_PostgreSQL.csv
+set path_oss_ruby_mysql /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_OSS_Web_Platform_Ruby_MySQL.csv
+set path_oss_support_tool /data/cgi-bin/windows_count/info/*/usedlog_$year-$month\_OSS_Web_Platform_Support_Tool.csv
+
+set file_rhel_premium /tmp/rhel_premium.csv
+set file_rhel_minimum /tmp/rhel_minimum.csv
+set file_oss /tmp/oss.csv
+
+set file_rhel_premium_free /tmp/rhel_premium_free.csv
+set file_rhel_minimum_free /tmp/rhel_minimum_free.csv
+set file_oss_free /tmp/oss_free.csv
+
+#set all_id1 /data/cgi-bin/billing_system_honbandesu/tables/host_lead*.table
+set free_id /root/free_id.txt
+
+set timeout 15
+#log_user 0
+
+# Check the contract ID based on free/charge/MID base (for RHEL). 
+# MID contract IDs are included.
+
+spawn /bin/bash
+expect -re $prompt
+#send -- "egrep '.*,.*,\[A-Z\]{2}0\[0-9\]{1},\[A-Z\]{2}0\[0-9\]{1},\[01\],\[02\],' $all_id1 | cut -d ',' -f2 | sort | uniq > $free_id2 \n"
+send -- "cat /tmp/org_list_au01_rhel_free /tmp/org_list_de01_rhel_free /tmp/org_list_gb01_rhel_free /tmp/org_list_sg01_rhel_free /tmp/org_list_us01_rhel_free | sort | uniq > $free_id \n"
+expect -re $prompt
+send -- "grep -v -f $free_id $path_rhel_premium | grep island | cut -d ',' -f2- | sort | uniq > $file_rhel_premium \n"
+expect -re $prompt
+send -- "grep -v -f $free_id $path_rhel_minimum | grep island | cut -d ',' -f2- | sort | uniq > $file_rhel_minimum \n"
+expect -re $prompt
+send -- "grep -h -v -f $free_id $path_oss_php_postgres $path_oss_tomcat_postgres $path_oss_php_mysql $path_oss_tomcat_mysql $path_oss_ruby_postgres $path_oss_ruby_mysql $path_oss_support_tool | grep island | cut -d ',' -f2- | sort | uniq > $file_oss \n"
+expect -re $prompt
+
+send -- "grep -f $free_id $path_rhel_premium | cut -d ',' -f2- | sort | uniq > $file_rhel_premium_free \n"
+expect -re $prompt
+send -- "grep -f $free_id $path_rhel_minimum | cut -d ',' -f2- | sort | uniq > $file_rhel_minimum_free \n"
+expect -re $prompt
+send -- "grep -h -f $free_id $path_oss_php_postgres $path_oss_tomcat_postgres $path_oss_php_mysql $path_oss_tomcat_mysql $path_oss_ruby_postgres $path_oss_ruby_mysql $path_oss_support_tool | grep island | cut -d ',' -f2- | sort | uniq > $file_oss_free \n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

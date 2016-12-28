@@ -1,0 +1,22 @@
+#!/usr/bin/expect -f
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set path [lindex $argv 0]
+set island [lindex $argv 1]
+
+trap {} {SIGHUP}
+
+log_user 0
+set timeout 10
+
+spawn /bin/bash
+expect -re $prompt
+
+send -- "rm -f /tmp/file_log.txt \n"
+expect -re $prompt
+send -- "ls --full-time /data/download/* | grep '$path' | grep \"$island\" | sed -e 's/  */ /g' | cut -d '/' -f4 > /tmp/file_log.txt \n"
+expect -re $prompt
+send -- "exit \n"
+expect eof

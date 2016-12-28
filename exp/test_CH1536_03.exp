@@ -1,0 +1,33 @@
+#!/usr/bin/expect
+
+set timeout -1
+set password "sv@01011"
+set prompt "# "
+set pid [lindex $argv 0]
+
+log_user 1
+spawn ssh -l root islanda-cbrm
+expect "password" {
+	send -- "$password\n"
+} "yes/no" {
+	send -- "yes\n"
+	expect "password"
+	send -- "$password\n"
+}
+expect "$prompt"
+send -- "gcore ${pid}\n"
+expect -re ".*?\n"
+#send_user -- "$expect_out(buffer)"
+log_file -noappend "/usr/local/2nd_tools/log/exp/test_CH1536_03.log"
+while {1} {
+	expect -re ".*\n" {
+		send_log -- "$expect_out(buffer)"
+	} $prompt {
+		break
+	}
+}
+log_file
+#send_user -- "$expect_out(buffer)"
+send -- "exit\n"
+expect eof
+log_user 1

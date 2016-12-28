@@ -1,0 +1,23 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set server [lindex $argv 0]
+set disk [lindex $argv 1]
+
+log_user 0
+dom0_login "$server"
+send -- "amCLI -g '$disk' 'serialnumber'\n"
+expect -re ".*?\n"
+while {1} {
+	expect -re "(.*?)\r\n" {
+		set serial $expect_out(1,string);
+	} -re $prompt {
+		break
+	}
+}
+send -- "exit\n"
+expect eof
+
+send_user "$serial"

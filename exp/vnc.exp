@@ -1,0 +1,113 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+# Trap settings
+trap { send -- \x03; } {SIGTSTP SIGINT SIGHUP SIGTERM}
+
+set vm [lindex $argv 0]
+set island [lindex $argv 1]
+set source_ip [lindex $argv 2]
+set listen "17770"
+
+log_user 0
+island_login $island
+
+set timeout -1
+# Get Dom0 where the VM is running
+send -- "/opt/FJSVrcvmr/bin/rcxadm lserver show -name $vm|grep VmHost\n"
+expect -re ".*?\n"
+expect -re "<VmHost name=\"(.*)\" id=\"${island}_.*\" />.*\n" {
+	set server $expect_out(1,string);
+	expect -re $prompt
+} -re $prompt {
+	send -- "exit\n"
+	expect eof
+	log_user 1
+	send_user -- "VM is not running\n"
+	exit
+}
+send -- "exit\n"
+expect eof
+
+set timeout 10
+dom0_login $server
+set timeout -1
+#send -- "virsh dumpxml $vm | grep graphics\n"
+send -- "netstat -pln |grep LISTEN|grep `ps auxf |grep $vm|grep -v grep|grep -v ipdata|awk '{print \$2}'`|awk '{print \$4}'|awk -F: '{print \$2}'\n"
+expect -re ".*?\n"
+
+# GET VNC port
+expect -re "(\[^\n\r\]+)" {
+	set port $expect_out(1,string);
+} -re $prompt {
+	send -- "exit\n"
+	expect eof
+	log_user 1
+	send_user -- "The VM might not be Windows/RHEL\n";
+	exit
+}
+expect -re $prompt
+send -- "exit\n"
+expect eof
+
+#spawn /bin/bash --norc
+#expect -re $prompt
+# Get Source IP address to restrict the access
+#send -- "who |grep `id -un`|head -1\n"
+#expect -re ".*?\n"
+#while {1} {
+#	expect -re ".*\\\((.*)\\\)\r\n" {
+#		set source_ip [lindex [split $expect_out(1,string) ":"] 0]
+#	} -re $prompt {
+#		break
+#	}
+#}
+#send -- "exit\n"
+#expect eof
+
+#if { ! [info exists source_ip] } {
+#	send_user -- "Source IP wasn't detected\n"
+#	exit 1
+#}
+
+spawn su - 
+expect  "Password:" {
+	send -- "sv@01011\n"
+} -re $prompt {
+	send -- "\n";
+}
+expect -re $prompt
+#while {1} {
+#	send -- "netstat -plant |grep $listen |grep LISTEN\n"
+#	expect -re ".*?\n"
+#	expect -re ".*\n" {
+#		incr listen 1
+#		expect -re $prompt
+#	} -re $prompt {
+#		break
+#	}
+#}
+# Set IPtables
+#set listen2 [incr listen 1]
+#puts  "$listen"
+send -- "iptables -I INPUT 1 -p tcp --source $source_ip --dport 6080 -j ACCEPT\n"
+expect -re $prompt
+# Set SSH forwarding
+send -- "ssh -N -L 127.0.0.1:$listen:127.0.0.1:$port $server\n"
+expect "password" {
+	send -- "sr@01011\n"
+} "yes/no" {
+	send -- "yes\n"
+	expect "password"
+	send -- "sr@01011\n"
+}
+expect -re $prompt
+# Remove the IPtables setting
+send -- "iptables -D INPUT -p tcp --source $source_ip --dport 6080 -j ACCEPT\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+log_user 1
+exit

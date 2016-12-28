@@ -1,0 +1,48 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set island [lindex $argv 0]
+	if {$island == "region"} {
+		set server region-cbrm-image
+		set kind /DB/tmp/rcxtssnap_light_region-cbrm-image.tar.gz
+		set kind2 /data/download/rcxtssnap_light_region-cbrm-image.tar.gz
+	} else {
+		set server $island-cbrm
+		set kind /DB/tmp/rcxtssnap_light_$island-cbrm.tar.gz
+		set kind2 /data/download/rcxtssnap_light_$island-cbrm.tar.gz
+	}
+
+log_user 0
+set timeout 1200
+
+trap {} {SIGHUP}
+
+island_login $server
+send -- "ps aux | egrep 'managersnap|rcxmgrsnap_light.sh|mgrctl' | grep -v grep > /dev/null 2>&1 ; echo $?\n"
+expect -re ".*?\n"
+expect -re "(.*?)\n"
+if { $expect_out(1,string) == 0 } {
+  log_user 1
+    send_user -- "CSM Manager Snap / ROR snap is currently collecting.\n"
+  log_user 0
+  send -- "exit\n"
+} else {
+  send -- "/root/tool/rcxmgrsnap_light.sh -dir /DB/tmp\n"
+	expect -re $prompt
+	send -- "exit\n"
+	expect -re $prompt
+
+	spawn /bin/bash
+	expect -re $prompt
+	send -- "rm -f $kind2\n"
+	expect -re $prompt
+	send -- "$base_dir/exp/log_collect/transfer_file.exp $server $kind\n"
+	expect -re $prompt
+	island_login $server
+	send -- "rm -f $kind\n"
+	expect -re $prompt
+	send -- "exit\n"
+}
+expect eof

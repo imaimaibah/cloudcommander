@@ -1,0 +1,115 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+log_user 0
+
+set server [lindex $argv 0]
+set password [lindex $argv 1]
+
+proc delUser {} {
+	global REGION
+	send -- "admin\r"
+	expect "# "
+	send -- "terminal pager disable\r"
+	expect "# "
+	send -- "configure\r"
+	expect "have already existed in configure mode" {
+		send -- "exit\n"
+		expect "> "
+		send -- "exit\n"
+		expect -re $prompt
+		send -- "exit\n"
+		expect eof
+		exit 127
+	} "# "
+	send -- "load running-config\r"
+	expect "# "
+while {[gets stdin line] >= 0} {
+set user [lindex [split $line ,] 0]
+set pass [lindex [split $line ,] 1]
+	send -- "no user $user\r"
+	expect "is also ok"
+	send -- "y\r"
+	expect "# "
+}
+	set timeout -1
+	send -- "commit force\r"
+	expect "Do you overwrite \"running-config\" by the current"
+	send -- "y\r"
+	expect "it save also at \"startup-config\"" {
+		send -- "y\r"
+	} "Do you update \"startup-config\" for the restarting system" {
+		send -- "y\r"
+	}
+	expect "# "
+	set timeout 60
+	send -- "end\r"
+	expect "# "
+	if { $REGION != "STGV1" && $REGION != "STGV2" } {
+		send -- "sync cluster\r"
+		expect -re ".*?\n"
+		expect -re ".*? \\\((....)/(..)/(..)\\\(...\\\)(..):(..):(..)\\\) -> .*?\\\((....)/(..)/(..)\\\(...\\\)(..):(..):(..)\\\)\r\n"
+		set year1 $expect_out(1,string)
+		set month1 $expect_out(2,string)
+		set day1 $expect_out(3,string)
+		set hour1 $expect_out(4,string)
+		set min1 $expect_out(5,string)
+		set sec1 $expect_out(6,string)
+		set year2 $expect_out(7,string)
+		set month2 $expect_out(8,string)
+		set day2 $expect_out(9,string)
+		set hour2 $expect_out(10,string)
+		set min2 $expect_out(11,string)
+		set sec2 $expect_out(12,string)
+		expect "Are you sure?"
+		if { "$year1$month1$day1$hour1$min1$sec1" > "$year2$month2$day2$hour2$min2$sec2" } {
+			send -- "y\r"
+			expect "The synchronization was completed"
+		} else {
+			send -- "n\r"
+			expect "Operation is aborted by user"
+		}
+		expect "# "
+	}
+}
+
+proc connect_ipcom {server region} {
+	global password
+
+send -- "telnet $server\n"
+expect "login: " {
+	send -- "admin\n"
+}
+
+expect "Password" {
+	send -- "$password\r"
+} "yes/no" {
+	send -- "yes\r"
+	expect "password"
+	send -- "$password\r"
+} timeout {
+	exit 1
+}
+
+return 0
+}
+
+
+spawn /bin/bash --norc
+expect -re $prompt
+connect_ipcom $server $password
+expect "> "
+
+delUser
+
+send -- "exit\r"
+expect "> "
+send -- "exit\r"
+
+expect -re $prompt
+send -- "exit\n"
+expect eof
+log_user 1
+exit 0

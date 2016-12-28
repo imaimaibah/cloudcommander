@@ -1,0 +1,13 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set eternus [lindex $argv 0]
+
+log_user 0
+eternus_login "$eternus"
+stdout "show raid-groups";
+send "exit\r"
+expect eof
+exit

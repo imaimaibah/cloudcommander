@@ -1,0 +1,24 @@
+#!/usr/bin/expect
+
+source	"/usr/local/2nd_tools/lib/env.exp"
+source	"$base_dir/lib/func.exp"
+
+#log_user 0
+set	timeout 5
+set	year [lindex $argv 0]
+set	month [lindex $argv 1]
+set file2 [lindex $agrv 2]
+
+trap	{} {SIGHUP}
+
+#set file1 /var/tmp/usedlog_$year-$month\_Windows_Server_Enterprise_Edition.csv
+#set file2 /var/tmp/usedlog_$year-$month\_Windows_Server_Standard_Edition.csv
+set file1 /tmp/windows_license.csv
+#set file2 /tmp/windows_org_list
+
+spawn	/bin/bash
+expect -re $prompt
+send -- "grep island $file1 | grep -f $file2 | cut -d ',' -f1 | cut -d '-' -f1 | sort | uniq  > $file2 \n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

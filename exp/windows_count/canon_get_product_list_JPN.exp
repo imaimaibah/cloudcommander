@@ -1,0 +1,66 @@
+#!/usr/bin/expect
+
+source	"/usr/local/2nd_tools/lib/env.exp"
+source	"$base_dir/lib/func.exp"
+
+#log_user 0
+set timeout -1
+
+trap	{} {SIGHUP}
+
+set file0 /var/tmp/product_list
+set server vsys-db
+
+island_login $server
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop\n"
+expect "mysql> "
+send -- "tee $file0;\n"
+expect "mysql> "
+send -- "select pr.product_id, pr.product_type, pr.expected_usage, pr.unit_name, pn.product_name from product as pr, product_name as pn where pr.product_id = pn.product_id and pn.lcid = 'ja';\n"
+expect "mysql> "
+send -- "quit\n"
+expect -re $prompt
+
+send -- "sed -i 's/hour/Hour/g' $file0 \n";
+expect -re $prompt
+send -- "sed -i 's/month/License/g' $file0 \n";
+expect -re $prompt
+send -- "sed -i 's/GBH/GB\*Hour/g' $file0 \n";
+expect -re $prompt
+send -- "sed -i 's/Economy/Economy VM Service/g' $file0 \n";
+expect -re $prompt
+send -- "sed -i 's/Standard/Standard VM Service/g' $file0 \n";
+expect -re $prompt
+send -- "sed -i 's/Advance/Advance VM Service/g' $file0 \n";
+expect -re $prompt
+send -- "sed -i 's/High-Performance/High-Performance VM Service/g' $file0 \n";
+expect -re $prompt
+send -- "sed -i 's/W-High/Double-High VM Service/g' $file0 \n";
+expect -re $prompt
+send -- "sed -i 's/Quad-High/Quad-High VM Service/g' $file0 \n";
+expect -re $prompt
+
+send -- "grep -E '\[A-Z\]{2}\\-\[0-9]\{4}\\-\[0-9\]{4}' $file0 | sed -e 's/|/,/g' | sed -e 's/ *,/,/g' | sed -e 's/, */,/g' | sed -e 's/$/0,0/g'| cut -d ',' -f2- > /var/tmp/`grep ps0 /etc/hosts | tail -5 | head -1 | sed -e 's/\\t/,/g' | cut -d ',' -f2 | cut -d '-' -f1-2`_product_list_JPN.csv \n"
+expect -re $prompt
+
+send -- "exit \n"
+expect eof
+
+spawn scp root@$server:/var/tmp/*_product_list_JPN.csv /var/tmp/
+expect "password" {
+	send -- "sv@01011\n"
+} "(yes/no)" {
+		send -- "yes\n"
+		expect "password"
+		send -- "sv@01011\n"
+} timeout {
+		send_user -- "$server TIMEOUT\n"
+		exit
+}
+expect eof
+
+island_login $server
+send -- "rm -f /var/tmp/*product_list* \n"
+expect -re $prompt
+send -- "exit \n"
+expect eof

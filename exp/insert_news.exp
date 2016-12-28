@@ -1,0 +1,27 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set org [lindex $argv 0]
+set title [lindex $argv 1]
+set start [lindex $argv 2]
+set end [lindex $argv 3]
+set file [lindex $argv 4]
+set fhandle [open "$file" "r"]
+
+gets $fhandle msg
+
+
+log_user 0
+mgtcb_login "vsys-db"
+send -- "/usr/local/mysql/bin/mysql -u sopuser -p'mtm!0256' sop\n"
+expect -re $prompt
+send -- "insert into information (org_id, title, message, start_date, expiry, entry_date, update_date) values ('$org', '$title', '$msg', from_unixtime(unix_timestamp('$start')), from_unixtime(unix_timestamp('$end')), UNIX_TIMESTAMP()*1000, UNIX_TIMESTAMP()*1000);\n";
+expect -re $prompt
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+log_user 1
+exit 0

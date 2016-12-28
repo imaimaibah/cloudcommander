@@ -1,0 +1,41 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+proc noLogin {user} {
+	global prompt
+	send -- "echo \"dn: uid=$user,ou=User,ou=sop,o=fujitsu,dc=com\n"
+	expect "> "
+	send -- "changetype: modify\n"
+	expect "> "
+	send -- "replace: loginShell\n"
+	expect "> "
+	send -- "loginShell: /sbin/nologin\" | /opt/FJSVirepc/bin/ldapmodify -D \"cn=Administrator,ou=sop,o=fujitsu,dc=com\" -w ssopassword\n"
+	expect -re $prompt
+}
+
+log_user 0
+island_login "admin-pr"
+
+while { [gets stdin line] >= 0} {
+	set email $line
+
+	send -- "/opt/cockpit/bin/ldapuserdel\n"
+	expect "E-Mail Address or"
+	send -- "$email\n"
+	expect -re $prompt
+}
+send -- "exit\n"
+expect eof
+set username [lindex [split $email "@"] 0]
+spawn su - 
+expect "Password" {
+	send -- "sv@01011\n"
+}
+expect -re $prompt
+send -- "/bin/rm -rf /home/$username\n"
+expect -re $prompt
+send -- "exit\n"
+log_user 1
+exit

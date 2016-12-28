@@ -1,0 +1,85 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+proc noLogin {user} {
+	global prompt
+	send -- "echo \"dn: uid=$user,ou=User,ou=sop,o=fujitsu,dc=com\n"
+	expect "> "
+	send -- "changetype: modify\n"
+	expect "> "
+	send -- "replace: loginShell\n"
+	expect "> "
+	send -- "loginShell: /sbin/nologin\" | /opt/FJSVirepc/bin/ldapmodify -D \"cn=Administrator,ou=sop,o=fujitsu,dc=com\" -w ssopassword\n"
+	expect -re $prompt
+}
+
+proc homeDirectory {user} {
+	global prompt
+	if { $user != "" } {
+		spawn su -
+		expect "Password:" {
+			send -- "sv@01011\n"
+		}
+
+		expect -re $prompt
+		send -- "cp -pr /etc/skel /home/$user\n"
+		expect -re $prompt
+		send -- "chmod 700 -R /home/$user\n"
+		expect -re $prompt
+		send -- "chown $user -R /home/$user\n"
+		expect -re $prompt
+		send -- "exit\n"
+		expect eof
+	}
+}
+
+log_user 0
+island_login "admin-pr"
+log_file -noappend "/tmp/expect.log"
+
+while { [gets stdin line] >= 0} {
+	set email [lindex [split $line ","] 0]
+	set user [lindex [split $email "@"] 0]
+	set password [lindex [split $line ","] 1]
+	set group [lindex [split $line ","] 2]
+	if { $group == "administrator" } {
+			set groupNum "1"
+	} else {
+			set groupNum "0"
+	}
+	set confidential [lindex [split $line ","] 3]
+
+	send -- "/opt/cockpit/bin/ldapuseradd\n"
+	expect "E-Mail Address:"
+	send -- "$email\n"
+	expect "First Name:"
+	send -- "$user\n"
+	expect "Last Name:"
+	send -- "$user\n"
+	expect "Organization:"
+	send -- "\n"
+	expect "Role(0:viewer, 1:administrator):"
+	send -- "$groupNum\n"
+	expect "Add role \"confidential\" ? (y/n):"
+	send -- "$confidential\n"
+	expect -re $prompt
+	send -- "/opt/cockpit/bin/ldappasswd\n"
+	expect "E-Mail Address or User ID:"
+	send -- "$email\n"
+	expect "Password:"
+	send -- "$password\n"
+	expect -re $prompt
+	if { [lindex [split $line ","] 4] == "n" } {
+		noLogin $user
+	} else {
+		homeDirectory $user
+	}
+}
+send -- "exit\n"
+expect eof
+
+
+log_user 1
+exit

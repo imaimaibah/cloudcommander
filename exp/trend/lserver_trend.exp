@@ -1,0 +1,15 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+log_user 0
+mgtcb_login "vsys-db"
+send -- "/usr/local/mysql/bin/mysql -usopuser -p'mtm!0256' sop\n"
+expect -re $prompt
+stdout "select org_id,vsys_id,server_id,status,image_id,sysvol_size,server_type,resource_id from `server#instance` where status not in('DEPLOYING','UNDEPLOY','UNDEPLOYING','ERROR','UNALLOCATED');"
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+

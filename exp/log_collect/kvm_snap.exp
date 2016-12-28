@@ -1,0 +1,35 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set Dom0 [lindex $argv 0]
+
+log_user 0
+set timeout 700
+set kind /tmp/fjsnap_$Dom0.tar.gz
+set kind2 /data/download/fjsnap_$Dom0.tar.gz
+
+trap {} {SIGHUP} 
+
+dom0_login $Dom0
+send -- "rm -f $kind\n"
+expect -re $prompt
+send -- "killall -USR2 libvirtd\n"
+expect -re $prompt
+send -- "/usr/sbin/fjsnap -a $kind\n"
+expect -re $prompt
+send -- "exit\n"
+expect -re $prompt
+
+spawn /bin/bash
+expect -re $prompt
+send -- "rm -f $kind2\n"
+expect -re $prompt
+send -- "$base_dir/exp/log_collect/transfer_file2.exp $Dom0 $kind\n"
+expect -re $prompt
+dom0_login $Dom0
+send -- "rm -f $kind\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

@@ -1,0 +1,20 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+log_user 0 
+island_login "region-cbrm-image"
+set timeout -1
+send -- "/opt/FJSVrcvmr/bin/rcxadm manager list\n"
+expect -re ".*?\n"
+while {1} {
+	expect ".*\n" {
+		send_user -- "$expect_out(buffer)"
+	} -re $prompt {
+		break
+	}
+}
+send -- "quit\n"
+expect -re $prompt
+send -- "exit\n"

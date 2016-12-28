@@ -1,0 +1,35 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set lserver [lindex $argv 0]
+set dom0 [lindex $argv 1]
+set password [lindex $argv 2]
+
+set timeout -1
+log_user 0
+dom0_login $dom0
+send -- "xm con $lserver\n"
+expect -re ".*?\n"
+send -- "\n"
+set timeout 3
+while {1} {
+	expect -re ".*\n" {
+		send_user -- "$expect_out(buffer)"
+	} -re (login|User:).*$ {
+		send_user -- "$expect_out(buffer)\n"
+		break
+	} timeout {
+		expect -re ".*"
+		send_user -- "$expect_out(buffer)\n"
+		send_user -- "Poassible hang status\n"
+		break
+	}
+}
+
+send \x1d
+expect -re $prompt
+send -- "exit\n"
+expect eof
+exit 0

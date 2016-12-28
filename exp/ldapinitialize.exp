@@ -1,0 +1,55 @@
+#!/usr/bin/expect
+
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set uid [lindex $argv 0]
+set pass [lindex $argv 1]
+
+
+log_user 1
+island_login "admin-pr"
+send -- "/opt/FJSVirepc/bin/ldapsearch -b 'uid=$uid,ou=User,ou=sop,o=fujitsu,dc=com'\n"
+expect -re ".*?\n"
+while {1} {
+global confidentail
+global role
+	expect "ssoRoleName: confidential" {
+		set confidential "y"
+	} "ssoRoleName: supervisor" {
+		set role 1
+	} -re "mail: (.*?)\r\n" {
+		set mail $expect_out(1,string);
+	} "ldapsearch: Search failed. No such object" {
+		expect -re $prompt
+		send -- "exit\n"
+		expect eof
+		exit 1
+	} -re $prompt {
+		break
+	}
+}
+if { ! [info exists mail] } {
+	send_user -- "Email address is not found\n"
+	exit 1;
+} else {
+	send_user -- "$mail\n"
+}
+send -- "/opt/cockpit/bin/ldappasswd\n"
+expect "E-Mail Address or User ID:"
+send -- "$uid\n"
+expect "Password:"
+send -- "$pass\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof
+spawn $base_dir/pl/smtp.pl -f SOP_FGCP@jp.fujitsu.com -t $mail
+send -- "Your password for Cockpit has been initialized.\n\n"
+send -- "New Password : $pass\n\n"
+send -- "If you do not intend to initialize your password for Cockpit, please contact GSD as soon as possible.\n"
+send -- ".\n"
+expect "Your Mail has been sent successfully"
+expect eof
+log_user 1
+exit 0

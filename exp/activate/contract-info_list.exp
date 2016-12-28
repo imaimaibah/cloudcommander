@@ -1,0 +1,246 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+log_user 0
+set orgId [lindex $argv 0]
+set server user-mgmt
+set kind /var/tmp/activate
+set timeout 30
+set user1 ""
+set user2 ""
+set user3 ""
+set user4 ""
+set ShowListSQL "cat $kind | grep -v 0002 | grep -v '+' | grep -v 'mysql>' | grep -v bye | grep -v 'rows in set' | grep -v ContractNo | sed -e '/^$/d' | sed -e 's/  */ /g' | sed -e 's/ | /,/g' | sed -e 's/| //g' | sed -e 's/ |//g'"
+set CheckCockpit1 "/var/opt/FJSVssosv/log/ssoatcsv.log* | grep 'Session validation succeeded' | cut -d ' ' -f8 | cut -d ',' -f1 | colrm 1 1 | cut -d '=' -f2 | sort | uniq"
+set CheckCockpit2 "/var/opt/FJSVssoac/log/ssoatcag.log* | grep 'Session validation succeeded' | cut -d ' ' -f10 | cut -d ',' -f1 | colrm 1 1 | cut -d '=' -f2 | sort | uniq"
+
+island_login $server
+send -- "rm -rf $kind*\n"
+expect -re $prompt
+send -- "mysql -umysqlusr -p'mwm!0277' SOPUSER\n"
+expect "mysql> " 
+send -- "use SOPUSER\n"
+expect "mysql> "
+send -- "tee $kind\n"
+expect "mysql> "
+send -- "select T_ORGNZ_INFO.ContractNo, T_ORGNZ_INFO.UserID, T_CNTRCT_USER_LINK.UserKind,T_ORGNZ_INFO.RegiDate, T_ORGNZ_INFO.DisableDate from T_ORGNZ_INFO left join T_CNTRCT_USER_LINK on T_ORGNZ_INFO.ContractNo = T_CNTRCT_USER_LINK.ContractNo order by T_ORGNZ_INFO.ContractNo;\n"
+expect "mysql> "
+send -- "quit\n"
+expect -re $prompt
+
+if { $orgId == "" } {
+	stdout "$ShowListSQL"
+} else {
+	stdout "echo `$ShowListSQL | grep $orgId | cut -d ',' -f1`,`$ShowListSQL | grep $orgId | cut -d ',' -f3`"
+	stdout "echo `$ShowListSQL | grep $orgId | cut -d ',' -f1`,`$ShowListSQL | grep $orgId | cut -d ',' -f4`"
+	stdout "echo `$ShowListSQL | grep $orgId | cut -d ',' -f1`,`$ShowListSQL | grep $orgId | cut -d ',' -f5`"
+
+## Check the activation status.
+
+	send -- "$ShowListSQL | grep $orgId | grep -v 0006 > /dev/null 2>&1; echo $?\n"
+	expect -re ".*?\n"
+	expect -re "(.*?)\n"
+	if {$expect_out(1,string) == 1 } {
+		stdout "echo `$ShowListSQL | grep $orgId | cut -d ',' -f1`,This contract is not activated yet."
+#		stdout "echo END1"
+	} else {
+
+		send -- "$ShowListSQL | grep $orgId | cut -d ',' -f3 | sed -e 's#-#/#g' | cut -c -15\n"
+		expect -re ".*?\n"
+		expect -re "(.*?)\n"
+		set time1 $expect_out(1,string)
+
+		island_login admin-pr
+
+		send -- "grep '$time1'* $CheckCockpit1  > /dev/null 2>&1; echo $?\n"
+		expect -re ".*?\n"
+		expect -re "(.*?)\n"
+		if { $expect_out(1,string) == 0 } {
+			send -- "grep '$time1'* $CheckCockpit1\n"
+			expect -re $prompt
+			set user1 $expect_out(1,string)
+			stdout "echo user1: $user1"
+#			stdout "echo END2-1a"
+		} else {
+			set user1 ""
+#			stdout "echo user1 is blank."
+#			stdout "echo END2-1b"
+		}
+
+		send -- "grep '$time1'* $CheckCockpit2 > /dev/null 2>&1; echo $?\n"
+		expect -re ".*?\n"
+		expect -re "(.*?)\n"
+		if { $expect_out(1,string) == 0 } {
+			send -- "grep '$time1'* $CheckCockpit2\n"
+			expect -re $prompt
+			set user2 $expect_out(1,string)
+			stdout "echo user2: $user2"
+#			stdout "echo END2-2a"
+		} else {
+			set user2 ""
+#			stdout "echo user2 is blank"
+#			stdout "echo END2-2b"
+		}
+
+		island_login $server
+
+		if { $user1 == "" } {
+			if { $user2 == "" } {
+				stdout "echo `$ShowListSQL | grep $orgId | cut -d ',' -f1`,The person who activates this contract is N/A."
+			} else {
+				stdout "echo `$ShowListSQL | grep $orgId | cut -d ',' -f1`,This contract is activated by $user2."
+			}
+		} elseif { $user1 == $user2 } {
+			stdout "echo `$ShowListSQL | grep $orgId | cut -d ',' -f1`,This contract is activated by $user1."
+		} else {
+			stdout "echo `$ShowListSQL | grep $orgId | cut -d ',' -f1`,This contract is activated by $user1 or $user2."
+		}
+
+## Check the deactivation status.
+
+		send -- "$ShowListSQL | grep $orgId | grep -v 0001 > /dev/null 2>&1; echo $?\n"
+		expect -re ".*?\n"
+		expect -re "(.*?)\n"
+		if {$expect_out(1,string) == 1 } {
+			stdout "echo `$ShowListSQL | grep $orgId | cut -d ',' -f1`,This contract is not canceled yet."
+#			stdout "echo END1"
+		} else {
+			send -- "grep doDisableOrganization /var/log/sopsec/sop_manager.log* | grep $orgId > /dev/null 2>&1; echo $?\n"
+			expect -re ".*?\n"
+			expect -re "(.*?)\n"
+			if { $expect_out(1,string) == 0 } {
+				stdout "echo `$ShowListSQL | grep $orgId | cut -d ',' -f1`,This contract is canceled by user."
+#				stdout "echo END4a"
+			} else {
+				send -- "$ShowListSQL | grep $orgId | grep $orgId | cut -d ',' -f4 | sed -e 's#-##g' | cut -c -8\n"
+				expect -re ".*?\n"
+				expect -re "(.*?)\r\n"
+				set DisDate $expect_out(1,string)
+				
+				send -- "date -d-3month +%Y%m%d\n"
+				expect -re ".*?\n"
+				expect -re "(.*?)\r\n"
+				set DateOf3MonthBefore $expect_out(1,string)
+
+				if { $DisDate < $DateOf3MonthBefore } {
+
+					island_login cb-cmgr-zentai
+
+					send -- "cp -p /log/collect_log2/user-mgmt_SopSecLog-Manager_C_$DisDate.loga /var/tmp\n"
+					expect -re $prompt
+					send -- "cd /var/tmp/\n"
+					expect -re $prompt
+					send -- "/opt/systemwalker/bin/mpatmextract -H user-mgmt -A SopSecLog-Manager -B $DisDate -L /var/tmp -D /var/tmp\n"					
+					expect -re $prompt
+					send -- "grep doDisableOrganization /var/tmp/user-mgmt_SopSecLog-Manager_C_$DisDate* | grep $orgId > /dev/null 2>&1; echo $?\n"
+					expect -re ".*?\n"
+					expect -re "(.*?)\n"
+					if { $expect_out(1,string) == 0 } {
+						send -- "rm -rf /var/tmp/user-mgmt_SopSecLog-Manager_C_$DisDate*\n"
+						expect -re $prompt
+
+						island_login $server
+
+						stdout "echo `$ShowListSQL | grep $orgId | cut -d ',' -f1`,This contract is canceled by user."
+#						stdout "echo END4b"
+      		} else {
+						send -- "rm -rf /var/tmp/user-mgmt_SopSecLog-Manager_C_$DisDate*\n"
+						expect -re $prompt
+
+						island_login $server
+
+						send -- "$ShowListSQL | grep $orgId | cut -d ',' -f4 | sed -e 's#-#/#g' | cut -c -15\n"
+						expect -re ".*?\n"
+						expect -re "(.*?)\n"
+						set time $expect_out(1,string)
+
+						island_login admin-pr
+
+						send -- "grep '$time'* $CheckCockpit1 > /dev/null 2>&1; echo $?\n"
+						expect -re ".*?\n"
+						expect -re "(.*?)\n"
+						if { $expect_out(1,string) == 0 } {
+							send -- "grep '$time'* $CheckCockpit1\n"
+							expect -re $prompt
+							set user3 $expect_out(1,string)
+							stdout "echo user3: $user3"
+#							stdout "echo END2-1a"
+						} else {
+							set user3 ""
+							stdout "echo user3 is blank."
+#							stdout "echo END2-2a"
+						}
+
+						send -- "grep '$time'* $CheckCockpit2 > /dev/null 2>&1; echo $?\n"
+						expect -re ".*?\n"
+						expect -re "(.*?)\n"
+						if { $expect_out(1,string) == 0 } {
+							send -- "grep '$time'* $CheckCockpit2\n"
+							expect -re $prompt
+							set user4 $expect_out(1,string)
+							stdout "echo user4: $user4"
+#							stdout "echo END3-1a"
+						} else {
+							set user4 ""
+							stdout "echo user4 is blank"
+#							stdout "echo END3-2a"
+						}
+
+						if { $user3 == $user4 } {
+							stdout "echo `$ShowListSQL | grep $orgId | cut -d ',' -f1`,This contract is canceled by $user3."
+						} else {
+							stdout "echo `$ShowListSQL | grep $orgId | cut -d ',' -f1`,This contract is canceled by $user3 or $user4."
+						}
+					}
+				} else {
+					send -- "$ShowListSQL | grep $orgId | cut -d ',' -f4 | sed -e 's#-#/#g' | cut -c -15\n"
+					expect -re ".*?\n"
+					expect -re "(.*?)\n"
+					set time $expect_out(1,string)
+
+					island_login admin-pr
+
+					send -- "grep '$time'* $CheckCockpit1 > /dev/null 2>&1; echo $?\n"
+					expect -re ".*?\n"
+					expect -re "(.*?)\n"
+					if { $expect_out(1,string) == 0 } {
+						send -- "grep '$time'* $CheckCockpit1\n"
+						expect -re $prompt
+						set user3 $expect_out(1,string)
+						stdout "echo user3: $user3"
+#						stdout "echo END2-1b"
+					} else {
+						set user3 ""
+						stdout "echo user3 is blank."
+#						stdout "echo END2-2b"
+					}
+
+					send -- "grep '$time'* $CheckCockpit2 > /dev/null 2>&1; echo $?\n"
+		  	  expect -re ".*?\n"
+	 		  	expect -re "(.*?)\n"
+			 	  if { $expect_out(1,string) == 0 } {
+						send -- "grep '$time'* $CheckCockpit2 \n"
+						expect -re $prompt
+						set user4 $expect_out(1,string)
+						stdout "echo user4: $user4"
+#						stdout "echo END3-1b"
+					} else {
+						set user4 ""
+						stdout "echo user4 is blank"
+#						stdout "echo END3-1b"
+					}
+
+					if { $user3 == $user4 } {
+						stdout "echo `$ShowListSQL | grep $orgId | cut -d ',' -f1`,This contract is canceled by $user3."
+					} else {
+						stdout "echo `$ShowListSQL | grep $orgId | cut -d ',' -f1`,This contract is canceled by $user3 or $user4."
+					}
+				}
+			}
+		}
+	}
+}
+send -- "exit\n"
+expect eof

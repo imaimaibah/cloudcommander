@@ -1,0 +1,13 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set lastmonth [lindex $argv 0]
+set type [lindex $argv 1]
+
+log_user 0
+mgtcb_login "charge"
+stdout "cat /var/opt/sopchg/license/usedlog_${lastmonth}_Windows_Server_${type}_Edition.csv"
+send -- "exit\n"
+expect eof

@@ -1,0 +1,28 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+log_user 0
+set timeout 90
+set server vsys-ap
+set kind /var/tmp/vsys-ap_img-plugin.tar.bz2
+
+trap {} {SIGHUP}
+
+island_login $server
+send -- "tar vcjf $kind /var/log/apps/img_plugin/\n"
+expect -re $prompt
+send -- "exit\n"
+expect -re $prompt
+
+spawn /bin/bash
+expect -re $prompt
+send -- "rm -f /data/download/vsys-ap_img-plugin*\n"
+expect -re $prompt
+send -- "$base_dir/exp/log_collect/transfer_file.exp $server $kind\n"
+expect -re $prompt
+island_login $server
+send -- "rm -f $kind\n"
+expect -re $prompt
+send -- "exit\n"
+expect eof

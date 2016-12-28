@@ -1,0 +1,18 @@
+#!/usr/bin/expect
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "/usr/local/2nd_tools/lib/func.exp"
+
+log_user 0
+
+set eternus [lindex $argv 0]
+set cmd [lindex $argv 1]
+if { $cmd == "" } {
+	puts "Option is invalid"
+	exit
+}
+eternus_login "$eternus"
+stdout "$cmd"
+send -- "exit\r"
+expect eof
+

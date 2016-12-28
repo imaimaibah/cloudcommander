@@ -1,0 +1,31 @@
+#!/usr/bin/expect
+
+### VERSION 1.0 ###
+
+source "/usr/local/2nd_tools/lib/env.exp"
+source "$base_dir/lib/func.exp"
+
+set server "vsys-db"
+
+log_user 0
+
+# access to vsys-db
+mgtcb_login $server
+
+expect -re $prompt
+
+# 対象のcontractidのvnet_idを取得
+
+send -- "tail -n +38 /opt/apps/vsys_zero/bin/sql\n"
+expect -re ".*?\n"
+while {1} {
+        expect -re ".*\n" {
+                send_user -- "$expect_out(buffer)"
+        } -re $prompt {
+                break
+        }
+}
+
+
+send -- "exit\n"
+expect eof
