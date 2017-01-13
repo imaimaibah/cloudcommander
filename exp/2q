@@ -4,6 +4,16 @@ set sql [lindex $argv 0]
 set whandle [open "/usr/local/2nd_tools/tmp/vsys-db.list" "w"]
 
 spawn ssh -l root islanda-cbrm
+#expect {
+#	"yes/no" {
+#		send "yes\r"
+#		exp_continue
+#	}
+#	"password" {
+#		send "sv@01011\r"
+#	}
+#}
+
 expect "password" {
 	send -- "sv@01011\r"
 } "yes/no" {
