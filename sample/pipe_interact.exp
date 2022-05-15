@@ -1,0 +1,19 @@
+#!/usr/bin/expect
+if {[catch {
+    #  Close stdin and reopen it as /dev/tty. Then we are
+    #+ connecting to a tty.
+    close stdin
+    open /dev/tty
+} err]} {
+    puts stderr $err
+    exit 1
+}
+
+# Without this, inputed lines will be echo'ed twice.
+set stty_init -echo
+spawn bash --noprofile --norc
+
+expect -re {bash-[.0-9]+(#|\$) }
+interact
+
+exit

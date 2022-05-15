@@ -420,7 +420,7 @@ print OUT <<"EOF";
 
 <tr>
 	<td align="left">
-	<img src="jpg/fujitsuLogo.png" alt="Smiley face" height="84" width="155"> 
+	<img src="jpg/Logo.png" alt="Smiley face" height="84" width="155"> 
 	</td>
 </tr>
 
@@ -1012,7 +1012,7 @@ sub error(){
 	my $self = shift;
 	my $msg = shift;
 
-	#open(SMTP,"|$env::base_dir/pl/smtp.pl -f GCP_administrator\@jp.fujitsu.com -t c3s-global-suppport-2nd\@ml.css.fujitsu.com -s 'Billing Calculation' > /dev/null");
+	#open(SMTP,"|$env::base_dir/pl/smtp.pl -f administrator\@jp.example.com -t support\@ml.css.example.com -s 'Billing Calculation' > /dev/null");
 	#print SMTP "I found an error. Please see below\n\n";
 	#print SMTP "$msg\n";
 	#close(SMTP);

@@ -1,0 +1,7 @@
+#!/usr/bin/expect
+
+if { [catch { system {[[ -t 0 ]]} } error] } {
+    puts "stdin is not a tty"
+} else {
+    puts "stdin is a tty"
+}
